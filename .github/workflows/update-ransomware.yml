@@ -16,6 +16,9 @@ jobs:
   update-ransomware:
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    env:
+      RANSOMWARE_LIVE_API_KEY: ${{ secrets.RANSOMWARE_LIVE_API_KEY }}
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
