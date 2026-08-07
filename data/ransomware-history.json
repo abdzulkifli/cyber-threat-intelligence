@@ -1,0 +1,12 @@
+{
+  "meta": {
+    "status": "pending",
+    "source": "Rolling ransomware history",
+    "collectedAt": null,
+    "retentionDays": 365,
+    "maxRecords": 10000,
+    "methodology": "This file will be populated automatically on the next ransomware workflow run."
+  },
+  "stats": { "retainedClaims": 0 },
+  "victims": []
+}
