@@ -6,15 +6,15 @@
     "upstream": "ransomware.live",
     "mode": "direct-v2",
     "authentication": "none",
-    "collectedAt": "2026-08-07T17:36:29.232Z",
-    "checkedAt": "2026-08-07T17:36:29.232Z",
+    "collectedAt": "2026-08-07T19:28:51.221Z",
+    "checkedAt": "2026-08-07T19:28:51.221Z",
     "dataUpdatedAt": "2026-08-07T16:49:43.439Z",
     "lastSourceUpdate": "2026-08-07T16:30:41.713Z",
     "latestVictimDiscovered": "2026-08-07T16:30:41.713Z",
     "latestVictimName": "Hitech Distribuzione Informatica S.r.l. (HTDI)",
     "latestVictimGroup": "spacebears",
     "latestVictimCountry": "IT",
-    "sourceDataAgeMinutes": 66,
+    "sourceDataAgeMinutes": 178,
     "feedFreshness": "fresh",
     "newClaimsSincePreviousCollection": 0,
     "selectedBy": "freshest-latest-victim",
@@ -28,7 +28,7 @@
       {
         "mode": "direct-legacy",
         "source": "ransomware.live public API",
-        "latestVictimDiscovered": "2026-08-07T13:32:41.706Z",
+        "latestVictimDiscovered": "2026-08-07T13:53:04.771Z",
         "victimCount": 100
       }
     ],
@@ -2999,8 +2999,8 @@
       "locationCount": 3,
       "locations": [
         "CONTI.News",
-        "Error Response Page",
-        "Access Blocked"
+        "Access Blocked",
+        "Error Response Page"
       ],
       "victims": 0,
       "firstSeen": null,
@@ -4266,8 +4266,8 @@
       "description": "",
       "locationCount": 3,
       "locations": [
-        "HELIX - Leaks",
-        "HELIX"
+        "HELIX",
+        "HELIX - Leaks"
       ],
       "victims": 0,
       "firstSeen": null,
@@ -4474,8 +4474,8 @@
       "locationCount": 7,
       "locations": [
         "Disclosures",
-        "Error Response Page",
-        "INC Ransom"
+        "INC Ransom",
+        "Error Response Page"
       ],
       "victims": 0,
       "firstSeen": null,
@@ -4579,7 +4579,7 @@
       "description": "Karakurt is a pure data-extortion group (no encryption) assessed with high confidence to be the extortion arm of the Conti ransomware group, active from 2021, that steals data and threatens to auction or publish it unless ransoms ranging from $25,000 to $13 million are paid.",
       "locationCount": 3,
       "locations": [
-        "403 Forbidden",
+        "Download - MEGA",
         "Magazine",
         "Chat"
       ],
@@ -4785,8 +4785,8 @@
       "description": "",
       "locationCount": 2,
       "locations": [
-        "Home | L Blog",
-        "Posts | L Blog"
+        "Posts | L Blog",
+        "Home | L Blog"
       ],
       "victims": 0,
       "firstSeen": null,
@@ -4960,9 +4960,9 @@
       "description": "LockBit, also recognized as LockBit Black or Lockbit 3.0, is one of the largest Ransomware Groups in the world and has orchestrated extensive cyberattacks across various industries, impacting thousands of organizations globally with its relentless and adaptive strategies.",
       "locationCount": 36,
       "locations": [
-        "LockBit BLOG",
-        "LockBit LOGIN",
         "Title",
+        "LockBit LOGIN",
+        "LockBit BLOG",
         "Humanity check",
         "504 Gateway Time-out"
       ],
@@ -5746,10 +5746,10 @@
       "description": "NightSpire is a ransomware group that first emerged in March 2025 and rapidly claimed over 250 victims across retail, manufacturing, healthcare, finance, and education sectors in the US, France, India, Taiwan, and Japan, using aggressive double-extortion with ransom deadlines as short as two days.",
       "locationCount": 6,
       "locations": [
-        "Verify human - NightSpire",
         "NightSpire",
+        "RaaS Service Started",
         "Database | NightSpire",
-        "RaaS Service Started"
+        "Verify human - NightSpire"
       ],
       "victims": 0,
       "firstSeen": null,
@@ -6784,7 +6784,7 @@
       "description": "RobbinHood is a ransomware group first observed in April–May 2019, responsible for high-profile attacks on US cities including Baltimore, Maryland — demanding 13 BTC and causing months of disruption to city services — believed to operate as a limited closed-circle model rather than a broad public affiliate program.",
       "locationCount": 1,
       "locations": [
-        "Tumblr"
+        "Request denied."
       ],
       "victims": 0,
       "firstSeen": null,
