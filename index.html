@@ -155,7 +155,7 @@
     <section class="tab-panel" data-panel="ransomware">
       <div class="section-heading ransomware-heading">
         <div><span>RANSOMWARE INTELLIGENCE</span><h2>Global Activity Map & Explorer</h2><p>Ransomware.live public claim intelligence mapped across the retained rolling archive. Click countries, groups or victim claims to drill into the evidence.</p></div>
-        <div class="heading-actions"><div class="rw-window-tabs" id="rwWindowTabs"><button data-rw-window="30">30D</button><button class="active" data-rw-window="90">90D</button><button data-rw-window="365">365D</button><button data-rw-window="all">ALL</button></div><a class="source-link" href="https://www.ransomware.live/" target="_blank" rel="noopener">Open ransomware.live ↗</a></div>
+        <div class="heading-actions"><div class="rw-window-tabs" id="rwWindowTabs"><button class="active live-window" data-rw-window="1"><i></i>LIVE 24H</button><button data-rw-window="7">7D</button><button data-rw-window="30">30D</button><button data-rw-window="90">90D</button><button data-rw-window="all">ALL</button></div><a class="source-link" href="https://www.ransomware.live/" target="_blank" rel="noopener">Open ransomware.live ↗</a></div>
       </div>
 
       <div class="rw-sync-strip" id="rwSyncStrip">
@@ -163,6 +163,15 @@
         <div><span>LAST COLLECTOR CHECK</span><strong id="rwLastCollected">—</strong><small>GitHub Actions</small></div>
         <div><span>LATEST SOURCE CLAIM</span><strong id="rwLatestClaim">—</strong><small id="rwLatestClaimName">Waiting for source data</small></div>
         <div><span>NEW THIS CHECK</span><strong id="rwNewClaims">—</strong><small>Compared with previous collection</small></div>
+      </div>
+
+      <div class="rw-live-pulse" id="rwLivePulse">
+        <div class="live-pulse-title"><span><i></i>LIVE RANSOMWARE PULSE</span><small>Victim-claim intelligence · auto refresh every 5 minutes</small></div>
+        <div><span>LATEST CLAIM</span><strong id="rwPulseLatest">—</strong><small id="rwPulseLatestMeta">Waiting for source data</small></div>
+        <div><span>CLAIMS ≤24H</span><strong id="rwPulse24">—</strong><small>Current live window</small></div>
+        <div><span>COUNTRIES ≤24H</span><strong id="rwPulseCountries">—</strong><small>Mapped countries</small></div>
+        <div><span>ACTIVE GROUPS ≤24H</span><strong id="rwPulseGroups">—</strong><small>Observed groups</small></div>
+        <div class="malaysia-pulse"><span>MALAYSIA ≤24H</span><strong id="rwPulseMalaysia">—</strong><small>Malaysia focus</small></div>
       </div>
 
       <div class="five-kpis ransomware-kpis">
@@ -174,9 +183,16 @@
       </div>
 
       <article class="panel world-map-panel">
-        <div class="panel-head map-panel-head"><div><span class="section-label">GLOBAL TARGETING</span><h3>Ransomware claim concentration</h3><small id="rwMapWindowLabel">Rolling archive · 90 days</small></div><div class="map-legend"><span><i class="heat h1"></i>Low</span><span><i class="heat h2"></i></span><span><i class="heat h3"></i></span><span><i class="heat h4"></i>High</span></div></div>
-        <div class="world-map-stage" id="rwWorldMap"><div class="skeleton chart"></div></div>
-        <div class="world-map-foot"><span>Click any country for claim history, top group and targeted sectors.</span><span id="rwMapCoverage">Mapping retained claims…</span></div>
+        <div class="panel-head map-panel-head"><div><span class="section-label">GLOBAL LIVE TARGETING</span><h3>Where ransomware claims are appearing now</h3><small id="rwMapWindowLabel">LIVE · last 24 hours</small></div><div class="map-legend"><span><i class="heat h1"></i>Low</span><span><i class="heat h2"></i></span><span><i class="heat h3"></i></span><span><i class="heat h4"></i>High</span><span class="live-marker-key"><i></i>Latest ≤24h</span></div></div>
+        <div class="rw-map-layout">
+          <div class="world-map-stage" id="rwWorldMap"><div class="skeleton chart"></div></div>
+          <aside class="rw-live-claims-panel">
+            <div class="live-claims-head"><div><span class="section-label">LATEST CLAIMS</span><h4>Live ransomware stream</h4></div><span class="live-chip"><i></i>LIVE</span></div>
+            <div id="rwMapLiveClaims" class="rw-map-live-list"><div class="empty-state">Waiting for ransomware activity…</div></div>
+            <button class="live-panel-more" type="button" data-tab-jump="ransomware">Map uses victim-claim discovery time · click any item for detail</button>
+          </aside>
+        </div>
+        <div class="world-map-foot"><span>Country heat = selected time window. Pulsing markers = latest claims discovered within 24 hours.</span><span id="rwMapCoverage">Mapping retained claims…</span></div>
       </article>
 
       <div class="overview-grid ransomware-analytics-grid">
