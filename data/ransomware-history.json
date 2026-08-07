@@ -4,17 +4,34 @@
     "source": "ransomware.live API v2",
     "sourceUrl": "https://www.ransomware.live/",
     "upstream": "ransomware.live",
-    "collectedAt": "2026-08-07T12:19:00.481Z",
+    "collectedAt": "2026-08-07T12:43:45.586Z",
+    "latestVictimDiscovered": "2026-08-07T12:27:11.963Z",
     "retentionDays": 365,
     "maxRecords": 10000,
     "methodology": "Rolling archive built by merging each public recent-victims collection. Claims are not independently verified incidents."
   },
   "stats": {
-    "retainedClaims": 100
+    "retainedClaims": 101,
+    "claims24h": 51
   },
   "victims": [
     {
-      "id": "DHC-41",
+      "id": "ATMS-0",
+      "victim": "ATMS",
+      "group": "incransom",
+      "country": "IN",
+      "sector": "Transportation",
+      "discovered": "2026-08-07T12:27:11.963Z",
+      "attacked": "2026-08-07T12:03:00.000Z",
+      "website": "https://www.ransomware.live/id/QVRNU0BpbmNyYW5zb20=",
+      "screenshot": "https://images.ransomware.live/victims/45b875d1cb239f29f6e8289a094199b3.png",
+      "infostealer": "",
+      "press": "",
+      "description": "Unauthorized access has been gained to the company's confidential files, including client data, proprietary R&D, and financial documentation.",
+      "sourceUrl": ""
+    },
+    {
+      "id": "DHC-42",
       "victim": "DHC",
       "group": "thegentlemen",
       "country": "JP",
@@ -29,7 +46,7 @@
       "description": "dhc.co.jp zoominfo.com/c/dhc-corp/372590440 DHC Corporation is a prominent Japanese brand renowned for its high-quality cosmetics, dietary supplements, and health foods. Originally founded as a translation company, it achieved global success by focusing on pure, natural ingredients—most notably its signature olive oil skincare. Today, DHC is trusted worldwide for combining rigorous scientific research with effective, affordable wellness products."
     },
     {
-      "id": "INKA Group GmbH Co-38",
+      "id": "INKA Group GmbH Co-39",
       "victim": "INKA Group GmbH Co",
       "group": "thegentlemen",
       "country": "DE",
@@ -44,7 +61,7 @@
       "description": "INKA Group GmbH & Co. KG is a German real estate holding company headquartered in Munich, registered in the Munich Commercial Register under HRA 99442. It specializes in leasing and renting own or leased land, buildings, and apartments, as well as managing commercial real estate on a fee or contract basis. The company operates as a closed investment and management vehicle with no public website or brand. It should not be confused with the Turkish İnka Group holding or other similarly named companies."
     },
     {
-      "id": "Vitex Pharmaceuticals-37",
+      "id": "Vitex Pharmaceuticals-38",
       "victim": "Vitex Pharmaceuticals",
       "group": "thegentlemen",
       "country": "Unknown",
@@ -59,7 +76,7 @@
       "description": "vitexpharma.com zoominfo.com/c/vitex-pharmaceuticals-pty-ltd/90505264 Vitex Pharmaceuticals is a leading Australian contract manufacturer specializing in vitamins, minerals, and nutritional complementary medicines. Founded in 1989, this wholly Australian-owned company operates one of the country's largest and most state-of-the-art pharmaceutical manufacturing facilities. Recently, the company significantly expanded its capacity by opening a massive $250 million facility in Western Sydney to supply both domestic and global markets"
     },
     {
-      "id": "Mdj Management-36",
+      "id": "Mdj Management-37",
       "victim": "Mdj Management",
       "group": "thegentlemen",
       "country": "Unknown",
@@ -74,7 +91,7 @@
       "description": "appliedbizinvest.com zoominfo.com/c/mdj-management-llc/410565499 Applied Business Investments, Inc. (operating alongside MDJ Management LLC) is a private US-based management and finance consulting firm registered in Florida. Founded in the late 2000s, the company focuses on business investments, corporate management strategies, and financial advisory services. It operates as a boutique entity providing specialized support and investment structuring for various commercial projects"
     },
     {
-      "id": "Hst-35",
+      "id": "Hst-36",
       "victim": "Hst",
       "group": "thegentlemen",
       "country": "US",
@@ -89,7 +106,7 @@
       "description": "hstechnology.com zoominfo.com/c/hst/352516154 digital platform for Healthcare Solutions Team (HST), a US-based healthcare cost-containment company now operating as Claritev. The company specializes in value-driven health plans, reference-based pricing solutions, and patient advocacy to reduce medical expenses. Through its HST Care Connect portal, it helps employers and individuals seamlessly find quality healthcare providers and optimize their medical benefits"
     },
     {
-      "id": "Groupe BPCE-49",
+      "id": "Groupe BPCE-50",
       "victim": "Groupe BPCE",
       "group": "thegentlemen",
       "country": "VN",
@@ -104,7 +121,7 @@
       "description": "bpce-vietnam.com zoominfo.com/c/groupe-bpce/457963650 BPCE International (formerly Natixis), the Ho Chi Minh City branch of France’s second-largest banking group, Groupe BPCE. Operating in Vietnam since 1988, it is one of the country's longest-established foreign bank branches, holding a full banking license. The institution specializes in corporate and investment banking, offering specialized finance, trade solutions, and transaction processing to businesses across the region."
     },
     {
-      "id": "Axson Teknik-34",
+      "id": "Axson Teknik-35",
       "victim": "Axson Teknik",
       "group": "thegentlemen",
       "country": "SE",
@@ -119,7 +136,7 @@
       "description": "axson.se zoominfo.com/c/axson-teknik-ab/456419010 \nAxson Teknik AB is a Swedish industrial supplier based in Askim, specializing in high-quality manual and robotic welding and cutting equipment. Founded in 1984, the company provides comprehensive technical services, maintenance, and specialized training for various industrial applications. They represent leading global brands such as Fronius, Thermal Dynamics, and Orbitalum, serving as a reliable partner for the manufacturing sector"
     },
     {
-      "id": "Ponti-33",
+      "id": "Ponti-34",
       "victim": "Ponti",
       "group": "thegentlemen",
       "country": "PL",
@@ -134,7 +151,7 @@
       "description": "ponti.pl Ponti is a specialized automotive company based in Gdańsk, Poland, focused on the direct import, sales, and professional servicing of American vehicles. Operating as a leading expert in the US car market, the company handles everything from modern everyday models to the restoration of classic muscle cars and vintage vehicles. They provide a comprehensive range of services, including sourcing, repairing post-accident imports, and dedicated mechanical maintenance for automotive enthusiasts"
     },
     {
-      "id": "Godollo-32",
+      "id": "Godollo-33",
       "victim": "Godollo",
       "group": "thegentlemen",
       "country": "HU",
@@ -149,7 +166,7 @@
       "description": "godolloi.hu zoominfo.com/c/gödöll/1295448671 Gödöllő Ingatlanközpont is a leading real estate agency based in Gödöllő, Hungary, specializing in property sales, rentals, and construction in Eastern Pest County. The company offers a vast portfolio of residential and commercial properties, including apartments, family houses, land plots, and industrial spaces across Gödöllő and its surrounding towns. Established as a trusted local expert, the agency provides comprehensive real estate brokerage services to help clients navigate the regional property market"
     },
     {
-      "id": "Hoang Chiropractic Center-31",
+      "id": "Hoang Chiropractic Center-32",
       "victim": "Hoang Chiropractic Center",
       "group": "thegentlemen",
       "country": "US",
@@ -164,7 +181,7 @@
       "description": "hoangchiro.com zoominfo.com/c/hoang-chiropractic-center/357138190 Hoang Chiropractic Center is a specialized healthcare clinic located in Metairie, Louisiana, led by Dr. Kim Hoang. The practice focuses on non-surgical pain relief and holistic wellness, offering services like AccuSpina spinal decompression, chiropractic adjustments, and custom orthotics. They are dedicated to helping patients relieve back pain and restore the body's natural ability to heal itself through personalized care"
     },
     {
-      "id": "aZaaS-30",
+      "id": "aZaaS-31",
       "victim": "aZaaS",
       "group": "thegentlemen",
       "country": "US",
@@ -179,7 +196,7 @@
       "description": "azaas.com zoominfo.com/c/azaas-pte-ltd/353475433 aZaaS is a dynamic, Singapore-based IT services company specializing in IT as a Service (ITaaS) and hybrid cloud architecture solutions. They build and operate mission-grade, secure digital services for government and enterprise clients, strictly aligned with local compliance standards like GCC and IM8. The company provides comprehensive solutions including Business Process Management (BPM), Data as a Service (DaaS), and enterprise mobility to help organizations optimize their IT infrastructure"
     },
     {
-      "id": "National Furniture Outlet-29",
+      "id": "National Furniture Outlet-30",
       "victim": "National Furniture Outlet",
       "group": "thegentlemen",
       "country": "US",
@@ -194,7 +211,7 @@
       "description": "nationalfurnitureoutlet.com National Furniture Outlet is a family-owned retail store in Westwego, Louisiana, serving the Greater New Orleans area for over three decades. They specialize in selling affordable living room, bedroom, and dining room furniture, as well as mattresses and appliances at highly competitive, discounted prices. The business is well-known locally for its frequent overstock sales and flexible financing options to support the community"
     },
     {
-      "id": "TESI-28",
+      "id": "TESI-29",
       "victim": "TESI",
       "group": "thegentlemen",
       "country": "IT",
@@ -209,7 +226,7 @@
       "description": "tesiimpianti.it TESI S.r.l. is an Italian industrial company founded in 1997 as a spin-off from the Falck Group, specializing in machinery for coil and sheet metal processing. The company handles the buying, selling, installation, and maintenance of complete production lines for the metallurgical sector. A core part of their business is the deep refurbishment and technological upgrading of used industrial equipment with modern electrical and hydraulic systems."
     },
     {
-      "id": "Intranet Gov Brasil-27",
+      "id": "Intranet Gov Brasil-28",
       "victim": "Intranet Gov Brasil",
       "group": "thegentlemen",
       "country": "BR",
@@ -224,7 +241,7 @@
       "description": "English:\nintranet.gov.br \"Intranet Gov Brasil\" refers to the secure internal corporate network and digital portal infrastructure used by the Brazilian Federal Government (gov.br) for its civil servants and ministries. It provides restricted access to internal administrative systems, official communications, and digital public services that are hidden from the general public. The underlying IT infrastructure and cybersecurity of these portals are primarily developed and maintained by state-owned technology companies like Serpro and Dataprev."
     },
     {
-      "id": "Feraboli Zootech-26",
+      "id": "Feraboli Zootech-27",
       "victim": "Feraboli Zootech",
       "group": "thegentlemen",
       "country": "IT",
@@ -239,7 +256,7 @@
       "description": "feraboli.it Feraboli Zootech is a historic Italian company operating in the livestock sector since 1880, with a heritage spanning over six generations. Based in Sospiro (Cremona), it specializes in designing and building advanced cattle barns, metal structures, and tailor-made equipment for dairy and fattening farms. The company combines traditional craftsmanship with modern automation and animal welfare solutions for professional breeders."
     },
     {
-      "id": "Nobema-25",
+      "id": "Nobema-26",
       "victim": "Nobema",
       "group": "thegentlemen",
       "country": "DE",
@@ -254,7 +271,7 @@
       "description": "nobema.com zoominfo.com/c/nobema-srl/371446900 Nobema S.r.l. is an Italian family-run manufacturing company based near Turin, specializing in plastic molding and integrated industrial services since 1986. They provide end-to-end solutions ranging from custom mold design and pre-series sampling to advanced gas injection technology and mass production. The company serves diverse sectors with high-quality plastic components, uniquely combining industrial parts with niche consumer products like drumsticks"
     },
     {
-      "id": "Vemec-24",
+      "id": "Vemec-25",
       "victim": "Vemec",
       "group": "thegentlemen",
       "country": "AR",
@@ -269,7 +286,7 @@
       "description": "vemecsrl.com zoominfo.com/c/vemec-srl/397907621 \nVemec S.r.l. is a leading Italian manufacturing company founded in 1983, specializing in the design and production of mechanical components and assemblies for heavy machinery. Operating across multiple production facilities covering over 23,000 square meters in Northern Italy, the firm provides advanced metal machining, laser cutting, and structural fabrication services. With more than 40 years of experience, Vemec delivers high-precision engineering solutions to diverse industrial sectors, including mechanotextiles and heavy equipment manufacturing"
     },
     {
-      "id": "LensAss Architecten-23",
+      "id": "LensAss Architecten-24",
       "victim": "LensAss Architecten",
       "group": "thegentlemen",
       "country": "BE",
@@ -284,7 +301,7 @@
       "description": "lensass.be LensAss Architecten is a Belgian architecture studio based in Hasselt, founded in 1995 by Bart Lens. The firm centers its work on the relationship between space, light, and context, specializing in both renovation and new construction. Its portfolio spans private homes, galleries, and adaptive reuse of heritage buildings across Belgium."
     },
     {
-      "id": "Phase Technologies-22",
+      "id": "Phase Technologies-23",
       "victim": "Phase Technologies",
       "group": "thegentlemen",
       "country": "US",
@@ -299,7 +316,7 @@
       "description": "phasetechnologies.com zoominfo.com/c/phase-technologies-llc/92275872 Phase Technologies is a leading American manufacturer of advanced power electronics, specializing in digital phase converters, variable frequency drives (VFDs), and motor protection. Founded in 1999 and headquartered in Rapid City, South Dakota, the company engineers and assembles its products entirely in the USA. Their innovative solutions generate high-quality three-phase power from single-phase sources, maximizing energy efficiency and system reliability for industrial and agricultural applications"
     },
     {
-      "id": "Holborn European Marketing-21",
+      "id": "Holborn European Marketing-22",
       "victim": "Holborn European Marketing",
       "group": "thegentlemen",
       "country": "CY",
@@ -314,7 +331,7 @@
       "description": "holborn.com.cy zoominfo.com/c/holborn-european-marketing-company-ltd/462273998 \nHolborn European Marketing Company Limited is a Cyprus-based energy trading firm established in 1987, operating from its headquarters in Larnaca. The company specializes in purchasing crude oil and feedstocks, selling refined petroleum products, and active oil trading. It serves as a major energy supplier that fulfills local market needs in Cyprus while also maintaining a significant operational presence as a key oil products supplier in Northern Germany."
     },
     {
-      "id": "ZS Salovnova-20",
+      "id": "ZS Salovnova-21",
       "victim": "ZS Salovnova",
       "group": "thegentlemen",
       "country": "CZ",
@@ -329,7 +346,7 @@
       "description": "zssalounova.cz ZŠ Šalounova is a primary school located in the Vítkovice district of Ostrava, Czech Republic, operating across two buildings on Šalounova and Halasova streets. The institution provides comprehensive standard education alongside specialized programs, a wide range of extracurricular clubs, and a full school counseling facility. It actively supports student success through dedicated staff, including school psychologists, special educators, and career counselors, as well as various educational and sports projects."
     },
     {
-      "id": "Halliday Watkins Mann-19",
+      "id": "Halliday Watkins Mann-20",
       "victim": "Halliday Watkins Mann",
       "group": "thegentlemen",
       "country": "US",
@@ -344,7 +361,7 @@
       "description": "hwmlawfirm.com zoominfo.com/c/halliday--watkins--mann-pc/42929145 Halliday, Watkins & Mann, P.C. (HWM) is a Salt Lake City-based law firm founded in 1935, now operating as a fourth-generation family practice. The firm exclusively serves the mortgage banking industry, specializing in creditor remedies such as foreclosures, bankruptcies, replevins, evictions, and REO closings. With a team of 51–200 employees, HWM provides full-service legal support and title curative work to financial institutions across multiple states"
     },
     {
-      "id": "YY Business Solutions-18",
+      "id": "YY Business Solutions-19",
       "victim": "YY Business Solutions",
       "group": "thegentlemen",
       "country": "Unknown",
@@ -359,7 +376,7 @@
       "description": "Y&Y Business Solutions (YYB Business Solutions Inc.) is a Bronx-based company located at 169 Lincoln Avenue, Suite 208, Bronx, NY 10454, reachable at (347) 270-1283. Founded and led by Valerie and Yerlin, the firm specializes in income taxes, immigration services, business license & registration, DMV & TLC services, and document translation. The company primarily serves Spanish-speaking immigrants and small business owners, helping them navigate U.S. immigration processes and tax requirements. They are most active on Instagram (@yybsolutions) and Facebook, where they share updates and client guidance."
     },
     {
-      "id": "NCA Alarms-44",
+      "id": "NCA Alarms-45",
       "victim": "NCA Alarms",
       "group": "Storm",
       "country": "US",
@@ -374,7 +391,7 @@
       "description": "NCA Alarms specializes in home and commercial security systems, offering a range of products including security cameras and alarm systems. The company prioritizes customer service and transparency, providing no long-term contracts and clear pricing for their services. Their intended clients include both residential and commercial customers in Nashville, Tennessee, looking for reliable security solutions. NCA Alarms also offers remote access options and system conversion services to enhance existing security setups. \nThe company headquarters is located in 3304 Charlotte Ave, Nashville, TN 37209, United States. 11-50 Employees"
     },
     {
-      "id": "Nelson Manufacturing-45",
+      "id": "Nelson Manufacturing-46",
       "victim": "Nelson Manufacturing",
       "group": "Storm",
       "country": "US",
@@ -389,7 +406,7 @@
       "description": "Nelson Manufacturing Company specializes in the design and production of innovative trailers and crane attachments tailored for various industries, including aerospace. Their product range includes custom-made crane attachments, hydraulic goosenecks, and specialty trailers, ensuring efficient transportation solutions for heavy equipment. The company serves clients in the aerospace sector, providing transport trailers that meet stringent quality requirements for aircraft and spacecraft components. Founded in 1947, Nelson Manufacturing is recognized as a leading manufacturer of multi-axle trailers in the United States. \nThe company headquarters is located in 6448 State Route 224, Ottawa, OH 45875, United States. 51-200 Employees"
     },
     {
-      "id": "Southern Indiana Radiological Associates-46",
+      "id": "Southern Indiana Radiological Associates-47",
       "victim": "Southern Indiana Radiological Associates",
       "group": "Storm",
       "country": "US",
@@ -404,7 +421,7 @@
       "description": "Southern Indiana Radiological Associates provides a comprehensive range of diagnostic imaging services including CT, MRI, PET scans, and various breast imaging procedures. Established in 1964, SIRA focuses on delivering high-quality medical imaging to diagnosis disease or injury while ensuring patient comfort and reassurance. Their target clients include individuals seeking imaging services in Bloomington and Southern Indiana, with a commitment to providing test results to healthcare providers within 48 hours. SIRA is recognized as a Breast Imaging Center of Excellence, emphasizing their dedication to women's health and advanced imaging technology. \nThe company headquarters is located in 500 S Landmark Ave, Bloomington, IN 47403, United States.\n51-200 Employees"
     },
     {
-      "id": "Venture Logistics-0",
+      "id": "Venture Logistics-1",
       "victim": "Venture Logistics",
       "group": "Helix",
       "country": "Unknown",
@@ -419,7 +436,7 @@
       "description": "SharePoint libraries staged T1 (least) → T4 (most). Release countdown live on Helix. Tiers unlock by stage when each set timer reaches 0."
     },
     {
-      "id": "Uber-1",
+      "id": "Uber-2",
       "victim": "Uber",
       "group": "Helix",
       "country": "US",
@@ -434,7 +451,7 @@
       "description": "SharePoint libraries staged T1 (least) → T4 (most). Release countdown live on Helix. Tiers unlock by stage when each set timer reaches 0."
     },
     {
-      "id": "Highwoods Properties-2",
+      "id": "Highwoods Properties-3",
       "victim": "Highwoods Properties",
       "group": "Helix",
       "country": "US",
@@ -449,7 +466,7 @@
       "description": "SharePoint libraries staged T1 (least) → T4 (most). Release countdown live on Helix. Tiers unlock by stage when each set timer reaches 0."
     },
     {
-      "id": "Morguard-3",
+      "id": "Morguard-4",
       "victim": "Morguard",
       "group": "Helix",
       "country": "US",
@@ -464,7 +481,7 @@
       "description": "Morguard reached out, took extensions, then ignored the negotiation with no real offer.\n\nContacting us and stalling is not a strategy. Deadlines stand. Silence after outreach gets a private board and a countdown then publication."
     },
     {
-      "id": "Westland Insurance-4",
+      "id": "Westland Insurance-5",
       "victim": "Westland Insurance",
       "group": "Helix",
       "country": "CA",
@@ -479,7 +496,7 @@
       "description": "Westland reached out, got the full demand, then stalled with no serious number.\n\nContacting us and dragging process is not negotiation."
     },
     {
-      "id": "reflet2000.fr-5",
+      "id": "reflet2000.fr-6",
       "victim": "reflet2000.fr",
       "group": "krybit",
       "country": "FR",
@@ -494,7 +511,7 @@
       "description": "REFLET 2000 is a French company founded in 1984, specializing in general building cleaning services (Nettoyage courant d..."
     },
     {
-      "id": "www.actini.com-6",
+      "id": "www.actini.com-7",
       "victim": "www.actini.com",
       "group": "krybit",
       "country": "FR",
@@ -509,7 +526,7 @@
       "description": "Actini Group (ACTINI SAS) is a French industrial machinery manufacturing company with over 70 years of experience, found..."
     },
     {
-      "id": "www.ernat-bureau-etudes.fr-7",
+      "id": "www.ernat-bureau-etudes.fr-8",
       "victim": "www.ernat-bureau-etudes.fr",
       "group": "krybit",
       "country": "FR",
@@ -524,7 +541,7 @@
       "description": "ERNAT (Etudes Réalisations Négoce Assistance Technique) SARL SCOP is a French worker cooperative (SCOP — Société C..."
     },
     {
-      "id": "www.serengetiestates.co.za-8",
+      "id": "www.serengetiestates.co.za-9",
       "victim": "www.serengetiestates.co.za",
       "group": "krybit",
       "country": "ZA",
@@ -539,7 +556,7 @@
       "description": "Serengeti Estates (Serengeti Golf and Wildlife Estate) is a premier South African luxury residential golf and wildlife e..."
     },
     {
-      "id": "www.hymiasa.com-9",
+      "id": "www.hymiasa.com-10",
       "victim": "www.hymiasa.com",
       "group": "krybit",
       "country": "PE",
@@ -554,7 +571,7 @@
       "description": "HYMIASA (Hules y Mangueras Industriales y Automotrices, S.A. de C.V.) is a Mexican leading company specialized in fluid ..."
     },
     {
-      "id": "Mayer Brown-10",
+      "id": "Mayer Brown-11",
       "victim": "Mayer Brown",
       "group": "SilentRansomGroup",
       "country": "US",
@@ -569,7 +586,7 @@
       "description": "Mayer Brown is a distinctively global law firm, uniquely positioned to advise the world's leading comp…"
     },
     {
-      "id": "Crystal Pharmatech-11",
+      "id": "Crystal Pharmatech-12",
       "victim": "Crystal Pharmatech",
       "group": "qilin",
       "country": "US",
@@ -584,7 +601,7 @@
       "description": "N/A"
     },
     {
-      "id": "Signature Services-12",
+      "id": "Signature Services-13",
       "victim": "Signature Services",
       "group": "play",
       "country": "Unknown",
@@ -599,7 +616,7 @@
       "description": "United States"
     },
     {
-      "id": "GCATS Investments-13",
+      "id": "GCATS Investments-14",
       "victim": "GCATS Investments",
       "group": "play",
       "country": "US",
@@ -614,7 +631,7 @@
       "description": "United States"
     },
     {
-      "id": "Platinum Group-14",
+      "id": "Platinum Group-15",
       "victim": "Platinum Group",
       "group": "play",
       "country": "US",
@@ -629,7 +646,7 @@
       "description": "United States"
     },
     {
-      "id": "www.jerryleigh.com-16",
+      "id": "www.jerryleigh.com-17",
       "victim": "www.jerryleigh.com",
       "group": "lynx",
       "country": "US",
@@ -644,7 +661,7 @@
       "description": "Jerry Leigh is a family-owned women's, men's, and children's clothing manufacturer and brand management headquartered in Panorama City, CA, and established in 1962."
     },
     {
-      "id": "www.talbotdes.org-15",
+      "id": "www.talbotdes.org-16",
       "victim": "www.talbotdes.org",
       "group": "lynx",
       "country": "GB",
@@ -659,7 +676,7 @@
       "description": "Talbot County Department of Emergency Services provides essential emergency services including 9-1-1 communications, emergency medical services, and emergency management. The department aims to prepare the community for various emergencies, including natural and man-made disasters. Their intended clients include residents of Talbot County, first responders, and local businesses. They also offer resources such as CPR classes and community alerting systems to enhance public safety."
     },
     {
-      "id": "King International LLC-17",
+      "id": "King International LLC-18",
       "victim": "King International LLC",
       "group": "Gammax",
       "country": "US",
@@ -674,7 +691,7 @@
       "description": "King International LLC (DL International) is a fresh-fruits-and-vegetables wholesaler/distributor that supplies produce for ongoing needs in retail an..."
     },
     {
-      "id": "AmSpec-39",
+      "id": "AmSpec-40",
       "victim": "AmSpec",
       "group": "qilin",
       "country": "US",
@@ -689,7 +706,7 @@
       "description": "N/A"
     },
     {
-      "id": "ALIZE (alize-sud.fr)-50",
+      "id": "ALIZE (alize-sud.fr)-51",
       "victim": "ALIZE (alize-sud.fr)",
       "group": "qilin",
       "country": "FR",
@@ -704,7 +721,7 @@
       "description": "groupe-sirocco.com"
     },
     {
-      "id": "Jakle & Alexander-40",
+      "id": "Jakle & Alexander-41",
       "victim": "Jakle & Alexander",
       "group": "qilin",
       "country": "US",
@@ -719,7 +736,7 @@
       "description": "N/A"
     },
     {
-      "id": "Akuur Law Firm-42",
+      "id": "Akuur Law Firm-43",
       "victim": "Akuur Law Firm",
       "group": "qilin",
       "country": "TR",
@@ -734,7 +751,7 @@
       "description": "N/A"
     },
     {
-      "id": "J&T Bank and Trust-51",
+      "id": "J&T Bank and Trust-52",
       "victim": "J&T Bank and Trust",
       "group": "qilin",
       "country": "US",
@@ -749,7 +766,7 @@
       "description": "N/A"
     },
     {
-      "id": "MITC AG-43",
+      "id": "MITC AG-44",
       "victim": "MITC AG",
       "group": "bravox",
       "country": "CH",
@@ -764,7 +781,7 @@
       "description": "Industrial Engineering, IT Solutions and Technical Services."
     },
     {
-      "id": "Basic Grain Products-52",
+      "id": "Basic Grain Products-53",
       "victim": "Basic Grain Products",
       "group": "akira",
       "country": "Unknown",
@@ -779,7 +796,7 @@
       "description": "TasteMorr is a culinary platform that offers a variety of gourmet food products and cooking ser\nvices. The company aims to cater to food enthusiasts and home cooks looking for high-quality in\ngredients and unique recipes.\n\nWe will upload 104gb corporate data soon. Employee personal information (passports and SSNs, w9\nforms and so on), detailed financials, contracts and agreements, NDA, clients information and \nso on."
     },
     {
-      "id": "Pharma Test Apparatebau AG-53",
+      "id": "Pharma Test Apparatebau AG-54",
       "victim": "Pharma Test Apparatebau AG",
       "group": "akira",
       "country": "CH",
@@ -794,7 +811,7 @@
       "description": "Pharma Test is an internationally leading manufacturer and household name for the development a\nnd production of high-value test devices and systems. They offer a complete product range from \nmanual, physical testing instruments to fully automated, analytical test systems to analyze the\nactive chemical composition of a dosage form as well as its release rate.\n\nWe will upload 46gb corporate data soon. Employee personal information (passports and so on), f\ninancials, contracts and agreements, NDA, clients information and so on."
     },
     {
-      "id": "First Baptist Church of Belleview-54",
+      "id": "First Baptist Church of Belleview-55",
       "victim": "First Baptist Church of Belleview",
       "group": "Orova",
       "country": "US",
@@ -809,7 +826,7 @@
       "description": "First Baptist Church Belleview is dedicated to fostering devoted followers of Jesus Christ through worship and community engagement. They offer Sunday services at 10:45 a.m. and provide opportunities for learning and connection through various ministries and events."
     },
     {
-      "id": "Hilliard's Air Conditioning & Heating Inc-55",
+      "id": "Hilliard's Air Conditioning & Heating Inc-56",
       "victim": "Hilliard's Air Conditioning & Heating Inc",
       "group": "Orova",
       "country": "US",
@@ -824,7 +841,7 @@
       "description": "Since 1988 customers have trusted Hilliard's Air Conditioning & Heating, Inc. as their air conditioning and heating specialist. As a family run business, Hilliard's takes great pride in serving Central Florida and is state licensed and insured."
     },
     {
-      "id": "Gemstone UK-56",
+      "id": "Gemstone UK-57",
       "victim": "Gemstone UK",
       "group": "Orova",
       "country": "US",
@@ -839,7 +856,7 @@
       "description": "Gemstone UK was a company that operated for over 30 years before closing its doors. It served a diverse clientele, providing products and services related to gemstones. The company expressed gratitude to its loyal customers for their trust and support throughout the years."
     },
     {
-      "id": "Hope's Windows-57",
+      "id": "Hope's Windows-58",
       "victim": "Hope's Windows",
       "group": "cry0",
       "country": "US",
@@ -854,7 +871,7 @@
       "description": "Coming soon...."
     },
     {
-      "id": "St Theresa Catholic Church-58",
+      "id": "St Theresa Catholic Church-59",
       "victim": "St Theresa Catholic Church",
       "group": "Orova",
       "country": "US",
@@ -869,7 +886,7 @@
       "description": "Today we have broadened our network and capability to provide services by partnering with other individuals, groups and churches through the Belleview Area Social Services (BASS) Network. BASS works to bring a coordinated approach to providing services to those in need."
     },
     {
-      "id": "Stoneybrook West Master Association, Inc-59",
+      "id": "Stoneybrook West Master Association, Inc-60",
       "victim": "Stoneybrook West Master Association, Inc",
       "group": "Orova",
       "country": "US",
@@ -884,7 +901,7 @@
       "description": "At Stoneybrook West, we plan regularly scheduled group physical fitness and after school classes, personal fitness training, swimming classes, tennis instruction, and music lessons are just to name a few."
     },
     {
-      "id": "Stonecrest POA-60",
+      "id": "Stonecrest POA-61",
       "victim": "Stonecrest POA",
       "group": "Orova",
       "country": "US",
@@ -899,7 +916,7 @@
       "description": "Stonecrest POA is the mandatory property owners association for Stonecrest, a large gated 55+ residential community in Summerfield, Marion County, Florida. It is a nonprofit community-governance organization, not a conventional profit-making company."
     },
     {
-      "id": "Magnolia Dental-61",
+      "id": "Magnolia Dental-62",
       "victim": "Magnolia Dental",
       "group": "Orova",
       "country": "US",
@@ -914,7 +931,7 @@
       "description": "Our practice is dedicated to providing exceptional dental services to Summerfield, FL, and the surrounding areas. As a patient-centered practice, we treat you like family, prioritizing your comfort and well-being above all else."
     },
     {
-      "id": "Country Oaks Veterinary Clinic-62",
+      "id": "Country Oaks Veterinary Clinic-63",
       "victim": "Country Oaks Veterinary Clinic",
       "group": "Orova",
       "country": "US",
@@ -929,7 +946,7 @@
       "description": "Country Oaks Veterinary Clinic is a full-service hospital established in 1976. We provide high-quality veterinary care in a modern, welcoming environment. Our experienced doctors and staff treat your pets like family."
     },
     {
-      "id": "David King Architect-63",
+      "id": "David King Architect-64",
       "victim": "David King Architect",
       "group": "Orova",
       "country": "US",
@@ -944,7 +961,7 @@
       "description": "We are an Architectural Firm and Design and prepare plans for almost any low rise structure. We have designed Assisted Living Facilities, Offices, Warehouses, manufacturiing facilities and Car dealerships."
     },
     {
-      "id": "Woodside Ranch-64",
+      "id": "Woodside Ranch-65",
       "victim": "Woodside Ranch",
       "group": "Orova",
       "country": "US",
@@ -959,7 +976,7 @@
       "description": "Bryan and Holley Beattie Rice own and operate Woodside Ranch, a family run Thoroughbred Training Center in Ocala, Florida. Our motto is hard work and attention to detail. We are committed to giving young prospects the best possible start. We take great pride in our relentless effort to advance our methods and our facilities."
     },
     {
-      "id": "Ferrell \\ Skyline Implants & Periodontics \\ Dr. Scott Ferguson-66",
+      "id": "Ferrell \\ Skyline Implants & Periodontics \\ Dr. Scott Ferguson-67",
       "victim": "Ferrell \\ Skyline Implants & Periodontics \\ Dr. Scott Ferguson",
       "group": "Barracuda",
       "country": "Unknown",
@@ -974,7 +991,7 @@
       "description": "Full personal and servers files dumps from Skyline Implants & Periodontics company. The data files contain: medical documents of patients (including MRI scans of various parts of the body — files with the .dcm extension), personal photos, and the personal data of the doctor, Scott Ferguson, as well as documents from the company Skyline Implants & Periodontics — in particular, information on equipment and pharmaceutical procurement and other related materials. | Status: free | Size: 800 GB | Now free"
     },
     {
-      "id": "RS Automation Co., Ltd.-47",
+      "id": "RS Automation Co., Ltd.-48",
       "victim": "RS Automation Co., Ltd.",
       "group": "Barracuda",
       "country": "CN",
@@ -989,7 +1006,7 @@
       "description": "Full dump of all files from the servers and developers personal files and NAS. Legal documents, letters, drawings, assembly, C, and C++ source codes. Official manufacturer website: rsautomation.co.kr | Status: upcoming | Size: 637 GB | Starts at $50000.00"
     },
     {
-      "id": "clubonecasino.com-48",
+      "id": "clubonecasino.com-49",
       "victim": "clubonecasino.com",
       "group": "threeam",
       "country": "US",
@@ -1004,7 +1021,7 @@
       "description": "Club One Casino is the premier poker room in Central California, featuring 51 table games, a 24-hour restaurant, and extensive non-gaming entertainment options such as sporting events and e-Sports. Catering to both seasoned players and newcomers,"
     },
     {
-      "id": "vprj.org-65",
+      "id": "vprj.org-66",
       "victim": "vprj.org",
       "group": "incransom",
       "country": "US",
@@ -1019,7 +1036,7 @@
       "description": "The Virginia Peninsula Regional Jail (VPRJ) is a state-authorized, regional correctional facility located in Williamsburg, Virginia, USA. Opened in 1997, VPRJ provides short-to-medium-term detention services, ensuring public safety and order across the Virginia Peninsula region under the governance of a multi-jurisdictional jail board."
     },
     {
-      "id": "nuv*******-67",
+      "id": "nuv*******-68",
       "victim": "nuv*******",
       "group": "clop",
       "country": "Unknown",
@@ -1034,7 +1051,7 @@
       "description": "[CVE‑2026‑12569] Data exfiltrated included the following: Project, Soft"
     },
     {
-      "id": "ipm*******-68",
+      "id": "ipm*******-69",
       "victim": "ipm*******",
       "group": "clop",
       "country": "Unknown",
@@ -1049,7 +1066,7 @@
       "description": "[CVE‑2026‑12569] Data exfiltrated included the following: PDF files, Cad-files, Soft"
     },
     {
-      "id": "ecc*******-69",
+      "id": "ecc*******-70",
       "victim": "ecc*******",
       "group": "clop",
       "country": "Unknown",
@@ -1064,7 +1081,7 @@
       "description": "[CVE‑2026‑12569] Data exfiltrated included the following: DBF files, Cad-files, Project, Soft, Backups"
     },
     {
-      "id": "st*******-70",
+      "id": "st*******-71",
       "victim": "st*******",
       "group": "clop",
       "country": "Unknown",
@@ -1079,7 +1096,7 @@
       "description": "[CVE‑2026‑12569] Data exfiltrated included the following: Database, Project"
     },
     {
-      "id": "qc*******-71",
+      "id": "qc*******-72",
       "victim": "qc*******",
       "group": "clop",
       "country": "Unknown",
@@ -1094,7 +1111,7 @@
       "description": "[CVE‑2026‑12569] Data exfiltrated included the following: Database, Project"
     },
     {
-      "id": "flu*******-72",
+      "id": "flu*******-73",
       "victim": "flu*******",
       "group": "clop",
       "country": "Unknown",
@@ -1109,7 +1126,7 @@
       "description": "[CVE‑2026‑12569] Data exfiltrated included the following: Database, Project,Cad-files"
     },
     {
-      "id": "mid*******-73",
+      "id": "mid*******-74",
       "victim": "mid*******",
       "group": "clop",
       "country": "Unknown",
@@ -1124,7 +1141,7 @@
       "description": "[CVE‑2026‑12569] Data exfiltrated included the following: Database, Project"
     },
     {
-      "id": "itk*******-74",
+      "id": "itk*******-75",
       "victim": "itk*******",
       "group": "clop",
       "country": "Unknown",
@@ -1139,7 +1156,7 @@
       "description": "[CVE‑2026‑12569] Data exfiltrated included the following: Database, Projects"
     },
     {
-      "id": "G3A*******-75",
+      "id": "G3A*******-76",
       "victim": "G3A*******",
       "group": "clop",
       "country": "Unknown",
@@ -1154,7 +1171,7 @@
       "description": "[CVE‑2026‑12569] Data exfiltrated included the following: Database, Projects"
     },
     {
-      "id": "arc*******-76",
+      "id": "arc*******-77",
       "victim": "arc*******",
       "group": "clop",
       "country": "Unknown",
@@ -1169,7 +1186,7 @@
       "description": "[CVE‑2026‑12569] Data exfiltrated included the following: Database, Projects"
     },
     {
-      "id": "omn*******-77",
+      "id": "omn*******-78",
       "victim": "omn*******",
       "group": "clop",
       "country": "Unknown",
@@ -1184,7 +1201,7 @@
       "description": "[CVE‑2026‑12569] Data exfiltrated included the following: Database, Projects, SQL Backups, Soft installers, Jpeg, Png, PDF - files"
     },
     {
-      "id": "lif*******-78",
+      "id": "lif*******-79",
       "victim": "lif*******",
       "group": "clop",
       "country": "Unknown",
@@ -1199,7 +1216,7 @@
       "description": "[CVE‑2026‑12569] Data exfiltrated included the following: Database, Projects, Backups, Logs, Soft installers, PDF, TXT, XML - files"
     },
     {
-      "id": "sp*******-79",
+      "id": "sp*******-80",
       "victim": "sp*******",
       "group": "clop",
       "country": "Unknown",
@@ -1214,7 +1231,7 @@
       "description": "[CVE‑2026‑12569] Data exfiltrated included the following: Database, Projects"
     },
     {
-      "id": "iva*******-80",
+      "id": "iva*******-81",
       "victim": "iva*******",
       "group": "clop",
       "country": "Unknown",
@@ -1229,7 +1246,7 @@
       "description": "[CVE‑2026‑12569] Data exfiltrated included the following: Database, Projects, Backups"
     },
     {
-      "id": "nuo*******-81",
+      "id": "nuo*******-82",
       "victim": "nuo*******",
       "group": "clop",
       "country": "Unknown",
@@ -1244,7 +1261,7 @@
       "description": "[CVE‑2026‑12569] Data exfiltrated included the following: Database, Projects, Soft installers"
     },
     {
-      "id": "the*******-82",
+      "id": "the*******-83",
       "victim": "the*******",
       "group": "clop",
       "country": "Unknown",
@@ -1259,7 +1276,7 @@
       "description": "[CVE‑2026‑12569] Data exfiltrated included the following: Database, Projects, Soft installers"
     },
     {
-      "id": "wat*******-83",
+      "id": "wat*******-84",
       "victim": "wat*******",
       "group": "clop",
       "country": "Unknown",
@@ -1274,7 +1291,7 @@
       "description": "[CVE‑2026‑12569] Data exfiltrated included the following: Database, Projects, Project Backups, SQL Database Backup"
     },
     {
-      "id": "9al*******-84",
+      "id": "9al*******-85",
       "victim": "9al*******",
       "group": "clop",
       "country": "Unknown",
@@ -1289,7 +1306,7 @@
       "description": "[CVE‑2026‑12569] Data exfiltrated included the following: Database, Projects, Project Backups, SQL Database Backup"
     },
     {
-      "id": "int*******-85",
+      "id": "int*******-86",
       "victim": "int*******",
       "group": "clop",
       "country": "Unknown",
@@ -1304,7 +1321,7 @@
       "description": "[CVE‑2026‑12569] Data exfiltrated included the following: Database, Project, PDF, XLSX, XLS, DOCX - files"
     },
     {
-      "id": "hon*******-86",
+      "id": "hon*******-87",
       "victim": "hon*******",
       "group": "clop",
       "country": "Unknown",
@@ -1319,7 +1336,7 @@
       "description": "[CVE‑2026‑12569] Data exfiltrated included the following: Database, Project - files"
     },
     {
-      "id": "ato*******-87",
+      "id": "ato*******-88",
       "victim": "ato*******",
       "group": "clop",
       "country": "Unknown",
@@ -1334,7 +1351,7 @@
       "description": "[CVE‑2026‑12569] Data exfiltrated included the following: Database, Project - files"
     },
     {
-      "id": "clo*******-88",
+      "id": "clo*******-89",
       "victim": "clo*******",
       "group": "clop",
       "country": "Unknown",
@@ -1349,7 +1366,7 @@
       "description": "[CVE‑2026‑12569] Data exfiltrated included the following: Database, Project - files"
     },
     {
-      "id": "jpm*******-89",
+      "id": "jpm*******-90",
       "victim": "jpm*******",
       "group": "clop",
       "country": "Unknown",
@@ -1364,7 +1381,7 @@
       "description": "[CVE‑2026‑12569] Data exfiltrated included the following: Database, Project - files"
     },
     {
-      "id": "bri*******-90",
+      "id": "bri*******-91",
       "victim": "bri*******",
       "group": "clop",
       "country": "Unknown",
@@ -1379,7 +1396,7 @@
       "description": "[CVE‑2026‑12569] Data exfiltrated included the following: Database, Project - files"
     },
     {
-      "id": "suu*******-91",
+      "id": "suu*******-92",
       "victim": "suu*******",
       "group": "clop",
       "country": "Unknown",
@@ -1394,7 +1411,7 @@
       "description": "[CVE‑2026‑12569] Data exfiltrated included the following: Database, Project - files"
     },
     {
-      "id": "sma*******-92",
+      "id": "sma*******-93",
       "victim": "sma*******",
       "group": "clop",
       "country": "Unknown",
@@ -1409,7 +1426,7 @@
       "description": "[CVE‑2026‑12569] Data exfiltrated included the following: Database, Project - files"
     },
     {
-      "id": "tri*******-93",
+      "id": "tri*******-94",
       "victim": "tri*******",
       "group": "clop",
       "country": "Unknown",
@@ -1424,7 +1441,7 @@
       "description": "[CVE‑2026‑12569] Data exfiltrated included the following: Database, Project - files"
     },
     {
-      "id": "cor*******-94",
+      "id": "cor*******-95",
       "victim": "cor*******",
       "group": "clop",
       "country": "Unknown",
@@ -1439,7 +1456,7 @@
       "description": "[CVE‑2026‑12569] Data exfiltrated included the following: Database, Project, PDF, TXT, DOC - files"
     },
     {
-      "id": "mam*******-95",
+      "id": "mam*******-96",
       "victim": "mam*******",
       "group": "clop",
       "country": "Unknown",
@@ -1454,7 +1471,7 @@
       "description": "[CVE‑2026‑12569] Data exfiltrated included the following: .png files, files Windchil"
     },
     {
-      "id": "par*******-96",
+      "id": "par*******-97",
       "victim": "par*******",
       "group": "clop",
       "country": "Unknown",
@@ -1469,7 +1486,7 @@
       "description": "[CVE‑2026‑12569] Data exfiltrated included the following: Database, Project, Cad-files, Backups"
     },
     {
-      "id": "sta*******-97",
+      "id": "sta*******-98",
       "victim": "sta*******",
       "group": "clop",
       "country": "Unknown",
@@ -1484,7 +1501,7 @@
       "description": "[CVE‑2026‑12569] Data exfiltrated included the following: Database, Project"
     },
     {
-      "id": "lar*******-98",
+      "id": "lar*******-99",
       "victim": "lar*******",
       "group": "clop",
       "country": "Unknown",

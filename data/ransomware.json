@@ -6,24 +6,50 @@
     "upstream": "ransomware.live",
     "mode": "direct-v2",
     "authentication": "none",
-    "collectedAt": "2026-08-07T12:19:00.480Z",
-    "lastSourceUpdate": null,
+    "collectedAt": "2026-08-07T12:43:45.585Z",
+    "checkedAt": "2026-08-07T12:43:45.585Z",
+    "dataUpdatedAt": "2026-08-07T12:43:45.585Z",
+    "lastSourceUpdate": "2026-08-07T12:27:11.963Z",
+    "latestVictimDiscovered": "2026-08-07T12:27:11.963Z",
+    "latestVictimName": "ATMS",
+    "latestVictimGroup": "incransom",
+    "latestVictimCountry": "IN",
+    "sourceDataAgeMinutes": 17,
+    "feedFreshness": "fresh",
+    "newClaimsSincePreviousCollection": 1,
+    "selectedBy": "freshest-latest-victim",
+    "candidates": [
+      {
+        "mode": "direct-v2",
+        "source": "ransomware.live API v2",
+        "latestVictimDiscovered": "2026-08-07T12:27:11.963Z",
+        "victimCount": 100
+      },
+      {
+        "mode": "direct-legacy",
+        "source": "ransomware.live public API",
+        "latestVictimDiscovered": "2026-08-07T08:09:54.202Z",
+        "victimCount": 100
+      }
+    ],
     "methodology": "Victim records are public ransomware/extortion leak-site claims and are not independently verified incidents."
   },
   "stats": {
-    "totalVictims": 30572,
+    "totalVictims": 30573,
     "sourceAttacksMetric": 0,
     "trackedGroups": 380,
     "activeGroups": 380,
     "recentClaims": 100,
+    "retainedClaims": 101,
     "claims24h": 51,
-    "countriesRecent": 21,
+    "newClaimsSincePreviousCollection": 1,
+    "countriesRecent": 22,
     "sectorsRecent": 13
   },
   "topGroups": [
     {
       "name": "clop",
-      "count": 33
+      "count": 32
     },
     {
       "name": "thegentlemen",
@@ -57,7 +83,7 @@
   "topCountries": [
     {
       "name": "Unknown",
-      "count": 40
+      "count": 39
     },
     {
       "name": "US",
@@ -91,7 +117,7 @@
   "topSectors": [
     {
       "name": "Not Found",
-      "count": 36
+      "count": 35
     },
     {
       "name": "Other",
@@ -133,12 +159,27 @@
     },
     {
       "date": "2026-08-07",
-      "count": 37
+      "count": 38
     }
   ],
   "victims": [
     {
-      "id": "DHC-41",
+      "id": "ATMS-0",
+      "victim": "ATMS",
+      "group": "incransom",
+      "country": "IN",
+      "sector": "Transportation",
+      "discovered": "2026-08-07T12:27:11.963Z",
+      "attacked": "2026-08-07T12:03:00.000Z",
+      "website": "https://www.ransomware.live/id/QVRNU0BpbmNyYW5zb20=",
+      "screenshot": "https://images.ransomware.live/victims/45b875d1cb239f29f6e8289a094199b3.png",
+      "infostealer": "",
+      "press": "",
+      "description": "Unauthorized access has been gained to the company's confidential files, including client data, proprietary R&D, and financial documentation.",
+      "sourceUrl": ""
+    },
+    {
+      "id": "DHC-42",
       "victim": "DHC",
       "group": "thegentlemen",
       "country": "JP",
@@ -153,7 +194,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "INKA Group GmbH Co-38",
+      "id": "INKA Group GmbH Co-39",
       "victim": "INKA Group GmbH Co",
       "group": "thegentlemen",
       "country": "DE",
@@ -168,7 +209,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "Vitex Pharmaceuticals-37",
+      "id": "Vitex Pharmaceuticals-38",
       "victim": "Vitex Pharmaceuticals",
       "group": "thegentlemen",
       "country": "Unknown",
@@ -183,7 +224,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "Mdj Management-36",
+      "id": "Mdj Management-37",
       "victim": "Mdj Management",
       "group": "thegentlemen",
       "country": "Unknown",
@@ -198,7 +239,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "Hst-35",
+      "id": "Hst-36",
       "victim": "Hst",
       "group": "thegentlemen",
       "country": "US",
@@ -213,7 +254,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "Groupe BPCE-49",
+      "id": "Groupe BPCE-50",
       "victim": "Groupe BPCE",
       "group": "thegentlemen",
       "country": "VN",
@@ -228,7 +269,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "Axson Teknik-34",
+      "id": "Axson Teknik-35",
       "victim": "Axson Teknik",
       "group": "thegentlemen",
       "country": "SE",
@@ -243,7 +284,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "Ponti-33",
+      "id": "Ponti-34",
       "victim": "Ponti",
       "group": "thegentlemen",
       "country": "PL",
@@ -258,7 +299,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "Godollo-32",
+      "id": "Godollo-33",
       "victim": "Godollo",
       "group": "thegentlemen",
       "country": "HU",
@@ -273,7 +314,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "Hoang Chiropractic Center-31",
+      "id": "Hoang Chiropractic Center-32",
       "victim": "Hoang Chiropractic Center",
       "group": "thegentlemen",
       "country": "US",
@@ -288,7 +329,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "aZaaS-30",
+      "id": "aZaaS-31",
       "victim": "aZaaS",
       "group": "thegentlemen",
       "country": "US",
@@ -303,7 +344,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "National Furniture Outlet-29",
+      "id": "National Furniture Outlet-30",
       "victim": "National Furniture Outlet",
       "group": "thegentlemen",
       "country": "US",
@@ -318,7 +359,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "TESI-28",
+      "id": "TESI-29",
       "victim": "TESI",
       "group": "thegentlemen",
       "country": "IT",
@@ -333,7 +374,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "Intranet Gov Brasil-27",
+      "id": "Intranet Gov Brasil-28",
       "victim": "Intranet Gov Brasil",
       "group": "thegentlemen",
       "country": "BR",
@@ -348,7 +389,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "Feraboli Zootech-26",
+      "id": "Feraboli Zootech-27",
       "victim": "Feraboli Zootech",
       "group": "thegentlemen",
       "country": "IT",
@@ -363,7 +404,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "Nobema-25",
+      "id": "Nobema-26",
       "victim": "Nobema",
       "group": "thegentlemen",
       "country": "DE",
@@ -378,7 +419,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "Vemec-24",
+      "id": "Vemec-25",
       "victim": "Vemec",
       "group": "thegentlemen",
       "country": "AR",
@@ -393,7 +434,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "LensAss Architecten-23",
+      "id": "LensAss Architecten-24",
       "victim": "LensAss Architecten",
       "group": "thegentlemen",
       "country": "BE",
@@ -408,7 +449,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "Phase Technologies-22",
+      "id": "Phase Technologies-23",
       "victim": "Phase Technologies",
       "group": "thegentlemen",
       "country": "US",
@@ -423,7 +464,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "Holborn European Marketing-21",
+      "id": "Holborn European Marketing-22",
       "victim": "Holborn European Marketing",
       "group": "thegentlemen",
       "country": "CY",
@@ -438,7 +479,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "ZS Salovnova-20",
+      "id": "ZS Salovnova-21",
       "victim": "ZS Salovnova",
       "group": "thegentlemen",
       "country": "CZ",
@@ -453,7 +494,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "Halliday Watkins Mann-19",
+      "id": "Halliday Watkins Mann-20",
       "victim": "Halliday Watkins Mann",
       "group": "thegentlemen",
       "country": "US",
@@ -468,7 +509,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "YY Business Solutions-18",
+      "id": "YY Business Solutions-19",
       "victim": "YY Business Solutions",
       "group": "thegentlemen",
       "country": "Unknown",
@@ -483,7 +524,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "NCA Alarms-44",
+      "id": "NCA Alarms-45",
       "victim": "NCA Alarms",
       "group": "Storm",
       "country": "US",
@@ -498,7 +539,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "Nelson Manufacturing-45",
+      "id": "Nelson Manufacturing-46",
       "victim": "Nelson Manufacturing",
       "group": "Storm",
       "country": "US",
@@ -513,7 +554,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "Southern Indiana Radiological Associates-46",
+      "id": "Southern Indiana Radiological Associates-47",
       "victim": "Southern Indiana Radiological Associates",
       "group": "Storm",
       "country": "US",
@@ -528,7 +569,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "Venture Logistics-0",
+      "id": "Venture Logistics-1",
       "victim": "Venture Logistics",
       "group": "Helix",
       "country": "Unknown",
@@ -543,7 +584,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "Uber-1",
+      "id": "Uber-2",
       "victim": "Uber",
       "group": "Helix",
       "country": "US",
@@ -558,7 +599,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "Highwoods Properties-2",
+      "id": "Highwoods Properties-3",
       "victim": "Highwoods Properties",
       "group": "Helix",
       "country": "US",
@@ -573,7 +614,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "Morguard-3",
+      "id": "Morguard-4",
       "victim": "Morguard",
       "group": "Helix",
       "country": "US",
@@ -588,7 +629,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "Westland Insurance-4",
+      "id": "Westland Insurance-5",
       "victim": "Westland Insurance",
       "group": "Helix",
       "country": "CA",
@@ -603,7 +644,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "reflet2000.fr-5",
+      "id": "reflet2000.fr-6",
       "victim": "reflet2000.fr",
       "group": "krybit",
       "country": "FR",
@@ -618,7 +659,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "www.actini.com-6",
+      "id": "www.actini.com-7",
       "victim": "www.actini.com",
       "group": "krybit",
       "country": "FR",
@@ -633,7 +674,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "www.ernat-bureau-etudes.fr-7",
+      "id": "www.ernat-bureau-etudes.fr-8",
       "victim": "www.ernat-bureau-etudes.fr",
       "group": "krybit",
       "country": "FR",
@@ -648,7 +689,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "www.serengetiestates.co.za-8",
+      "id": "www.serengetiestates.co.za-9",
       "victim": "www.serengetiestates.co.za",
       "group": "krybit",
       "country": "ZA",
@@ -663,7 +704,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "www.hymiasa.com-9",
+      "id": "www.hymiasa.com-10",
       "victim": "www.hymiasa.com",
       "group": "krybit",
       "country": "PE",
@@ -678,7 +719,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "Mayer Brown-10",
+      "id": "Mayer Brown-11",
       "victim": "Mayer Brown",
       "group": "SilentRansomGroup",
       "country": "US",
@@ -693,7 +734,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "Crystal Pharmatech-11",
+      "id": "Crystal Pharmatech-12",
       "victim": "Crystal Pharmatech",
       "group": "qilin",
       "country": "US",
@@ -708,7 +749,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "Signature Services-12",
+      "id": "Signature Services-13",
       "victim": "Signature Services",
       "group": "play",
       "country": "Unknown",
@@ -723,7 +764,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "GCATS Investments-13",
+      "id": "GCATS Investments-14",
       "victim": "GCATS Investments",
       "group": "play",
       "country": "US",
@@ -738,7 +779,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "Platinum Group-14",
+      "id": "Platinum Group-15",
       "victim": "Platinum Group",
       "group": "play",
       "country": "US",
@@ -753,7 +794,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "www.jerryleigh.com-16",
+      "id": "www.jerryleigh.com-17",
       "victim": "www.jerryleigh.com",
       "group": "lynx",
       "country": "US",
@@ -768,7 +809,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "www.talbotdes.org-15",
+      "id": "www.talbotdes.org-16",
       "victim": "www.talbotdes.org",
       "group": "lynx",
       "country": "GB",
@@ -783,7 +824,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "King International LLC-17",
+      "id": "King International LLC-18",
       "victim": "King International LLC",
       "group": "Gammax",
       "country": "US",
@@ -798,7 +839,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "AmSpec-39",
+      "id": "AmSpec-40",
       "victim": "AmSpec",
       "group": "qilin",
       "country": "US",
@@ -813,7 +854,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "ALIZE (alize-sud.fr)-50",
+      "id": "ALIZE (alize-sud.fr)-51",
       "victim": "ALIZE (alize-sud.fr)",
       "group": "qilin",
       "country": "FR",
@@ -828,7 +869,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "Jakle & Alexander-40",
+      "id": "Jakle & Alexander-41",
       "victim": "Jakle & Alexander",
       "group": "qilin",
       "country": "US",
@@ -843,7 +884,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "Akuur Law Firm-42",
+      "id": "Akuur Law Firm-43",
       "victim": "Akuur Law Firm",
       "group": "qilin",
       "country": "TR",
@@ -858,7 +899,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "J&T Bank and Trust-51",
+      "id": "J&T Bank and Trust-52",
       "victim": "J&T Bank and Trust",
       "group": "qilin",
       "country": "US",
@@ -873,7 +914,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "MITC AG-43",
+      "id": "MITC AG-44",
       "victim": "MITC AG",
       "group": "bravox",
       "country": "CH",
@@ -888,7 +929,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "Basic Grain Products-52",
+      "id": "Basic Grain Products-53",
       "victim": "Basic Grain Products",
       "group": "akira",
       "country": "Unknown",
@@ -903,7 +944,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "Pharma Test Apparatebau AG-53",
+      "id": "Pharma Test Apparatebau AG-54",
       "victim": "Pharma Test Apparatebau AG",
       "group": "akira",
       "country": "CH",
@@ -918,7 +959,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "First Baptist Church of Belleview-54",
+      "id": "First Baptist Church of Belleview-55",
       "victim": "First Baptist Church of Belleview",
       "group": "Orova",
       "country": "US",
@@ -933,7 +974,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "Hilliard's Air Conditioning & Heating Inc-55",
+      "id": "Hilliard's Air Conditioning & Heating Inc-56",
       "victim": "Hilliard's Air Conditioning & Heating Inc",
       "group": "Orova",
       "country": "US",
@@ -948,7 +989,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "Gemstone UK-56",
+      "id": "Gemstone UK-57",
       "victim": "Gemstone UK",
       "group": "Orova",
       "country": "US",
@@ -963,7 +1004,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "Hope's Windows-57",
+      "id": "Hope's Windows-58",
       "victim": "Hope's Windows",
       "group": "cry0",
       "country": "US",
@@ -978,7 +1019,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "St Theresa Catholic Church-58",
+      "id": "St Theresa Catholic Church-59",
       "victim": "St Theresa Catholic Church",
       "group": "Orova",
       "country": "US",
@@ -993,7 +1034,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "Stoneybrook West Master Association, Inc-59",
+      "id": "Stoneybrook West Master Association, Inc-60",
       "victim": "Stoneybrook West Master Association, Inc",
       "group": "Orova",
       "country": "US",
@@ -1008,7 +1049,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "Stonecrest POA-60",
+      "id": "Stonecrest POA-61",
       "victim": "Stonecrest POA",
       "group": "Orova",
       "country": "US",
@@ -1023,7 +1064,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "Magnolia Dental-61",
+      "id": "Magnolia Dental-62",
       "victim": "Magnolia Dental",
       "group": "Orova",
       "country": "US",
@@ -1038,7 +1079,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "Country Oaks Veterinary Clinic-62",
+      "id": "Country Oaks Veterinary Clinic-63",
       "victim": "Country Oaks Veterinary Clinic",
       "group": "Orova",
       "country": "US",
@@ -1053,7 +1094,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "David King Architect-63",
+      "id": "David King Architect-64",
       "victim": "David King Architect",
       "group": "Orova",
       "country": "US",
@@ -1068,7 +1109,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "Woodside Ranch-64",
+      "id": "Woodside Ranch-65",
       "victim": "Woodside Ranch",
       "group": "Orova",
       "country": "US",
@@ -1083,7 +1124,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "Ferrell \\ Skyline Implants & Periodontics \\ Dr. Scott Ferguson-66",
+      "id": "Ferrell \\ Skyline Implants & Periodontics \\ Dr. Scott Ferguson-67",
       "victim": "Ferrell \\ Skyline Implants & Periodontics \\ Dr. Scott Ferguson",
       "group": "Barracuda",
       "country": "Unknown",
@@ -1098,7 +1139,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "RS Automation Co., Ltd.-47",
+      "id": "RS Automation Co., Ltd.-48",
       "victim": "RS Automation Co., Ltd.",
       "group": "Barracuda",
       "country": "CN",
@@ -1113,7 +1154,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "clubonecasino.com-48",
+      "id": "clubonecasino.com-49",
       "victim": "clubonecasino.com",
       "group": "threeam",
       "country": "US",
@@ -1128,7 +1169,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "vprj.org-65",
+      "id": "vprj.org-66",
       "victim": "vprj.org",
       "group": "incransom",
       "country": "US",
@@ -1143,7 +1184,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "nuv*******-67",
+      "id": "nuv*******-68",
       "victim": "nuv*******",
       "group": "clop",
       "country": "Unknown",
@@ -1158,7 +1199,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "ipm*******-68",
+      "id": "ipm*******-69",
       "victim": "ipm*******",
       "group": "clop",
       "country": "Unknown",
@@ -1173,7 +1214,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "ecc*******-69",
+      "id": "ecc*******-70",
       "victim": "ecc*******",
       "group": "clop",
       "country": "Unknown",
@@ -1188,7 +1229,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "st*******-70",
+      "id": "st*******-71",
       "victim": "st*******",
       "group": "clop",
       "country": "Unknown",
@@ -1203,7 +1244,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "qc*******-71",
+      "id": "qc*******-72",
       "victim": "qc*******",
       "group": "clop",
       "country": "Unknown",
@@ -1218,7 +1259,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "flu*******-72",
+      "id": "flu*******-73",
       "victim": "flu*******",
       "group": "clop",
       "country": "Unknown",
@@ -1233,7 +1274,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "mid*******-73",
+      "id": "mid*******-74",
       "victim": "mid*******",
       "group": "clop",
       "country": "Unknown",
@@ -1248,7 +1289,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "itk*******-74",
+      "id": "itk*******-75",
       "victim": "itk*******",
       "group": "clop",
       "country": "Unknown",
@@ -1263,7 +1304,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "G3A*******-75",
+      "id": "G3A*******-76",
       "victim": "G3A*******",
       "group": "clop",
       "country": "Unknown",
@@ -1278,7 +1319,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "arc*******-76",
+      "id": "arc*******-77",
       "victim": "arc*******",
       "group": "clop",
       "country": "Unknown",
@@ -1293,7 +1334,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "omn*******-77",
+      "id": "omn*******-78",
       "victim": "omn*******",
       "group": "clop",
       "country": "Unknown",
@@ -1308,7 +1349,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "lif*******-78",
+      "id": "lif*******-79",
       "victim": "lif*******",
       "group": "clop",
       "country": "Unknown",
@@ -1323,7 +1364,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "sp*******-79",
+      "id": "sp*******-80",
       "victim": "sp*******",
       "group": "clop",
       "country": "Unknown",
@@ -1338,7 +1379,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "iva*******-80",
+      "id": "iva*******-81",
       "victim": "iva*******",
       "group": "clop",
       "country": "Unknown",
@@ -1353,7 +1394,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "nuo*******-81",
+      "id": "nuo*******-82",
       "victim": "nuo*******",
       "group": "clop",
       "country": "Unknown",
@@ -1368,7 +1409,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "the*******-82",
+      "id": "the*******-83",
       "victim": "the*******",
       "group": "clop",
       "country": "Unknown",
@@ -1383,7 +1424,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "wat*******-83",
+      "id": "wat*******-84",
       "victim": "wat*******",
       "group": "clop",
       "country": "Unknown",
@@ -1398,7 +1439,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "9al*******-84",
+      "id": "9al*******-85",
       "victim": "9al*******",
       "group": "clop",
       "country": "Unknown",
@@ -1413,7 +1454,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "int*******-85",
+      "id": "int*******-86",
       "victim": "int*******",
       "group": "clop",
       "country": "Unknown",
@@ -1428,7 +1469,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "hon*******-86",
+      "id": "hon*******-87",
       "victim": "hon*******",
       "group": "clop",
       "country": "Unknown",
@@ -1443,7 +1484,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "ato*******-87",
+      "id": "ato*******-88",
       "victim": "ato*******",
       "group": "clop",
       "country": "Unknown",
@@ -1458,7 +1499,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "clo*******-88",
+      "id": "clo*******-89",
       "victim": "clo*******",
       "group": "clop",
       "country": "Unknown",
@@ -1473,7 +1514,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "jpm*******-89",
+      "id": "jpm*******-90",
       "victim": "jpm*******",
       "group": "clop",
       "country": "Unknown",
@@ -1488,7 +1529,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "bri*******-90",
+      "id": "bri*******-91",
       "victim": "bri*******",
       "group": "clop",
       "country": "Unknown",
@@ -1503,7 +1544,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "suu*******-91",
+      "id": "suu*******-92",
       "victim": "suu*******",
       "group": "clop",
       "country": "Unknown",
@@ -1518,7 +1559,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "sma*******-92",
+      "id": "sma*******-93",
       "victim": "sma*******",
       "group": "clop",
       "country": "Unknown",
@@ -1533,7 +1574,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "tri*******-93",
+      "id": "tri*******-94",
       "victim": "tri*******",
       "group": "clop",
       "country": "Unknown",
@@ -1548,7 +1589,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "cor*******-94",
+      "id": "cor*******-95",
       "victim": "cor*******",
       "group": "clop",
       "country": "Unknown",
@@ -1563,7 +1604,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "mam*******-95",
+      "id": "mam*******-96",
       "victim": "mam*******",
       "group": "clop",
       "country": "Unknown",
@@ -1578,7 +1619,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "par*******-96",
+      "id": "par*******-97",
       "victim": "par*******",
       "group": "clop",
       "country": "Unknown",
@@ -1593,7 +1634,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "sta*******-97",
+      "id": "sta*******-98",
       "victim": "sta*******",
       "group": "clop",
       "country": "Unknown",
@@ -1608,7 +1649,7 @@
       "sourceUrl": ""
     },
     {
-      "id": "lar*******-98",
+      "id": "lar*******-99",
       "victim": "lar*******",
       "group": "clop",
       "country": "Unknown",
@@ -1620,21 +1661,6 @@
       "infostealer": "",
       "press": "",
       "description": "[CVE‑2026‑12569] Data exfiltrated included the following: Project, Soft",
-      "sourceUrl": ""
-    },
-    {
-      "id": "toa*******-99",
-      "victim": "toa*******",
-      "group": "clop",
-      "country": "Unknown",
-      "sector": "Not Found",
-      "discovered": "2026-08-05T20:43:54.060Z",
-      "attacked": "2026-08-05T20:43:41.095Z",
-      "website": "https://www.ransomware.live/id/dG9hKioqKioqKkBjbG9w",
-      "screenshot": "https://images.ransomware.live/victims/6102061631e2489ca2c213c1c254aba3.png",
-      "infostealer": "",
-      "press": "",
-      "description": "[CVE‑2026‑12569] Data exfiltrated included the following: project, backup database, logs",
       "sourceUrl": ""
     }
   ],
@@ -1680,8 +1706,7 @@
       "description": "0mega is a double-extortion ransomware group that emerged in May 2022, targeting businesses across multiple sectors worldwide by encrypting files and threatening to leak stolen data; it also pivoted to cloud-based extortion by compromising Microsoft 365 admin accounts.",
       "locationCount": 2,
       "locations": [
-        "0mega | Blog",
-        "403"
+        "0mega | Blog"
       ],
       "victims": 0,
       "firstSeen": null,
@@ -2056,8 +2081,8 @@
       "description": "AuditTeam is a small ransomware group with approximately 5 known victims, primarily targeting organizations in East and Southeast Asia across technology and manufacturing sectors, operating a data leak site consistent with double-extortion methodology.",
       "locationCount": 2,
       "locations": [
-        "/// DATA EXPOSURE TERMINAL ///",
-        "[ SYSTEM ERROR ]"
+        "[ SYSTEM ERROR ]",
+        "/// DATA EXPOSURE TERMINAL ///"
       ],
       "victims": 0,
       "firstSeen": null,
@@ -4197,8 +4222,8 @@
       "description": "",
       "locationCount": 3,
       "locations": [
-        "HELIX",
-        "HELIX - Leaks"
+        "HELIX - Leaks",
+        "HELIX"
       ],
       "victims": 0,
       "firstSeen": null,
@@ -5676,9 +5701,9 @@
       "description": "NightSpire is a ransomware group that first emerged in March 2025 and rapidly claimed over 250 victims across retail, manufacturing, healthcare, finance, and education sectors in the US, France, India, Taiwan, and Japan, using aggressive double-extortion with ransom deadlines as short as two days.",
       "locationCount": 6,
       "locations": [
+        "Database | NightSpire",
         "NightSpire",
         "Verify human - NightSpire",
-        "Database | NightSpire",
         "RaaS Service Started"
       ],
       "victims": 0,
