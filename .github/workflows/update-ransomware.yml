@@ -16,8 +16,6 @@ jobs:
   update-ransomware:
     runs-on: ubuntu-latest
     timeout-minutes: 10
-    env:
-      RANSOMWARE_LIVE_API_KEY: ${{ secrets.RANSOMWARE_LIVE_API_KEY }}
 
     steps:
       - name: Checkout repository
@@ -28,7 +26,7 @@ jobs:
         with:
           node-version: "24"
 
-      - name: Collect ransomware intelligence
+      - name: Collect ransomware intelligence (public API, no key)
         run: node scripts/fetch-ransomware.js
 
       - name: Commit changed ransomware intelligence
