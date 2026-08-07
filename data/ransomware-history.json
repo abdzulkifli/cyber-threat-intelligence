@@ -4,7 +4,7 @@
     "source": "ransomware.live API v2",
     "sourceUrl": "https://www.ransomware.live/",
     "upstream": "ransomware.live",
-    "collectedAt": "2026-08-07T11:25:11.535Z",
+    "collectedAt": "2026-08-07T12:06:10.810Z",
     "retentionDays": 365,
     "maxRecords": 10000,
     "methodology": "Rolling archive built by merging each public recent-victims collection. Claims are not independently verified incidents."

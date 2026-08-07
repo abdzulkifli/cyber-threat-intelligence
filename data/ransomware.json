@@ -6,17 +6,17 @@
     "upstream": "ransomware.live",
     "mode": "direct-v2",
     "authentication": "none",
-    "collectedAt": "2026-08-07T11:25:11.534Z",
+    "collectedAt": "2026-08-07T12:06:10.809Z",
     "lastSourceUpdate": null,
     "methodology": "Victim records are public ransomware/extortion leak-site claims and are not independently verified incidents."
   },
   "stats": {
-    "totalVictims": 30571,
+    "totalVictims": 30572,
     "sourceAttacksMetric": 0,
     "trackedGroups": 380,
     "activeGroups": 380,
     "recentClaims": 100,
-    "claims24h": 52,
+    "claims24h": 51,
     "countriesRecent": 21,
     "sectorsRecent": 13
   },
