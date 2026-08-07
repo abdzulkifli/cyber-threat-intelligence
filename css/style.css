@@ -47,3 +47,6 @@ th { position:sticky; top:0; background:#101d29; color:#a9c3d8; z-index:2; }
 .footer { color:#6f879b; font-size:.78rem; padding:20px 3px 8px; }
 @media (max-width:1100px){ .grid{grid-template-columns:repeat(3,1fr)} .two{grid-template-columns:1fr} }
 @media (max-width:650px){ .shell{padding:15px}.header{flex-direction:column}.grid{grid-template-columns:repeat(2,1fr)} }
+
+.developer-credit { margin-top:7px; color:#8fa5b9; letter-spacing:.02em; }
+.developer-credit strong { color:#e9f2fb; font-weight:700; }
