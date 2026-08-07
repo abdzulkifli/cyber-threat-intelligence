@@ -6,15 +6,15 @@
     "upstream": "ransomware.live",
     "mode": "direct-v2",
     "authentication": "none",
-    "collectedAt": "2026-08-07T19:28:51.221Z",
-    "checkedAt": "2026-08-07T19:28:51.221Z",
+    "collectedAt": "2026-08-07T20:06:02.374Z",
+    "checkedAt": "2026-08-07T20:06:02.374Z",
     "dataUpdatedAt": "2026-08-07T16:49:43.439Z",
     "lastSourceUpdate": "2026-08-07T16:30:41.713Z",
     "latestVictimDiscovered": "2026-08-07T16:30:41.713Z",
     "latestVictimName": "Hitech Distribuzione Informatica S.r.l. (HTDI)",
     "latestVictimGroup": "spacebears",
     "latestVictimCountry": "IT",
-    "sourceDataAgeMinutes": 178,
+    "sourceDataAgeMinutes": 215,
     "feedFreshness": "fresh",
     "newClaimsSincePreviousCollection": 0,
     "selectedBy": "freshest-latest-victim",
@@ -41,7 +41,7 @@
     "activeGroups": 380,
     "recentClaims": 100,
     "retainedClaims": 30611,
-    "claims24h": 90,
+    "claims24h": 87,
     "newClaimsSincePreviousCollection": 0,
     "countriesRecent": 23,
     "sectorsRecent": 13
@@ -4579,7 +4579,6 @@
       "description": "Karakurt is a pure data-extortion group (no encryption) assessed with high confidence to be the extortion arm of the Conti ransomware group, active from 2021, that steals data and threatens to auction or publish it unless ransoms ranging from $25,000 to $13 million are paid.",
       "locationCount": 3,
       "locations": [
-        "Download - MEGA",
         "Magazine",
         "Chat"
       ],
@@ -6784,7 +6783,7 @@
       "description": "RobbinHood is a ransomware group first observed in April–May 2019, responsible for high-profile attacks on US cities including Baltimore, Maryland — demanding 13 BTC and causing months of disruption to city services — believed to operate as a limited closed-circle model rather than a broad public affiliate program.",
       "locationCount": 1,
       "locations": [
-        "Request denied."
+        "Tumblr"
       ],
       "victims": 0,
       "firstSeen": null,
