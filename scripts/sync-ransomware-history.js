@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 const API_KEY = process.env.RANSOMWARE_LIVE_API_KEY || '';
-const BASE = 'https://api.ransomware.live/v2';
+const BASE = (process.env.RANSOMWARE_LIVE_PRO_BASE || 'https://api-pro.ransomware.live').replace(/\/$/, '');
 const OUT = path.join(__dirname, '..', 'data', 'ransomware-history.json');
 const CURRENT = path.join(__dirname, '..', 'data', 'ransomware.json');
 const START_YEAR = 2013;
@@ -29,12 +29,20 @@ function arrayFrom(raw) {
   return [];
 }
 
+function countryValue(v) {
+  const raw = v.country ?? v.country_code ?? v.countrycode ?? v.country_name;
+  if (raw && typeof raw === 'object') {
+    return str(raw.code, raw.alpha2, raw.iso2, raw.name, raw.country);
+  }
+  return str(raw, 'Unknown');
+}
+
 function normalizeVictim(v, idx = 0) {
   return {
     id: str(v.id, v.victim_id, v.uuid, `${str(v.victim, v.name, v.post_title)}-${idx}`),
     victim: str(v.victim, v.name, v.post_title, v.title, 'Unknown victim'),
     group: str(v.group, v.group_name, v.ransomware, v.ransomware_group, 'Unknown'),
-    country: str(v.country, v.country_name, v.country_code, v.countrycode, 'Unknown'),
+    country: countryValue(v),
     sector: str(v.sector, v.activity, v.industry, v.business_sector, 'Unspecified'),
     discovered: toIso(v.discovered || v.discovered_at || v.date || v.published || v.created_at || v.firstseen || v.first_seen),
     attacked: toIso(v.attackdate || v.attacked || v.attack_date),
@@ -69,17 +77,29 @@ async function fetchJson(url, attempts = 3) {
         headers: {
           accept: 'application/json',
           'X-API-KEY': API_KEY,
-          'user-agent': 'Cyber-Threat-Intelligence-Command-Centre/1.5'
+          'user-agent': 'Cyber-Threat-Intelligence-Command-Centre/1.6'
         }
       });
       clearTimeout(timer);
       const text = await res.text();
+      const contentType = String(res.headers.get('content-type') || '').toLowerCase();
+
       if (!res.ok) {
-        const e = new Error(`HTTP ${res.status}: ${text.slice(0, 240)}`);
+        const e = new Error(`HTTP ${res.status}: ${text.slice(0, 320).replace(/\s+/g, ' ')}`);
         e.status = res.status;
         throw e;
       }
-      return JSON.parse(text);
+
+      const trimmed = text.trim();
+      if (!contentType.includes('json') && !trimmed.startsWith('{') && !trimmed.startsWith('[')) {
+        throw new Error(`Expected JSON but received ${contentType || 'non-JSON'} from ${url}: ${trimmed.slice(0, 220).replace(/\s+/g, ' ')}`);
+      }
+
+      try {
+        return JSON.parse(text);
+      } catch (parseErr) {
+        throw new Error(`Invalid JSON from ${url}: ${parseErr.message}. Response begins: ${trimmed.slice(0, 220).replace(/\s+/g, ' ')}`);
+      }
     } catch (err) {
       clearTimeout(timer);
       last = err;
@@ -92,22 +112,20 @@ async function fetchJson(url, attempts = 3) {
   throw last;
 }
 
+async function validateApiKey() {
+  console.log(`Validating ransomware.live Pro API key against ${BASE}/validate`);
+  const raw = await fetchJson(`${BASE}/validate`, 1);
+  console.log(`API key valid${raw?.client_id || raw?.clientId ? ` for ${raw.client_id || raw.clientId}` : ''}.`);
+  return raw;
+}
+
 async function fetchVictims(params) {
   const qs = new URLSearchParams(params).toString();
-  const urls = [`${BASE}/victims/?${qs}`, `${BASE}/victims?${qs}`];
-  let last;
-  for (const url of urls) {
-    try {
-      console.log(`GET ${url}`);
-      const raw = await fetchJson(url);
-      return arrayFrom(raw);
-    } catch (err) {
-      last = err;
-      if (err.status === 401 || err.status === 403) throw err;
-      console.warn(`Path variant failed: ${err.message}`);
-    }
-  }
-  throw last;
+  // Pro API list-victims endpoint. At least one filter is required.
+  const url = `${BASE}/victims/?${qs}`;
+  console.log(`GET ${url}`);
+  const raw = await fetchJson(url);
+  return arrayFrom(raw);
 }
 
 function readJson(file, fallback) {
@@ -121,23 +139,31 @@ function countBy(items, key) {
     const v = str(x[key], 'Unknown');
     m.set(v, (m.get(v) || 0) + 1);
   }
-  return [...m.entries()].map(([name,count]) => ({name,count})).sort((a,b)=>b.count-a.count || a.name.localeCompare(b.name));
+  return [...m.entries()]
+    .map(([name, count]) => ({ name, count }))
+    .sort((a, b) => b.count - a.count || a.name.localeCompare(b.name));
 }
 
 async function main() {
   if (!API_KEY) {
-    throw new Error('RANSOMWARE_LIVE_API_KEY is missing. Add the free ransomware.live API key as a GitHub Actions repository secret, then rerun this Full History Sync. The normal 5-minute recent-victim collector does not require this key.');
+    throw new Error('RANSOMWARE_LIVE_API_KEY is missing. Add it under GitHub repository Settings → Secrets and variables → Actions.');
   }
+
+  await validateApiKey();
 
   const existing = readJson(OUT, { meta: {}, victims: [] });
   const current = readJson(CURRENT, { victims: [] });
   const map = new Map();
+
   const add = raw => {
-    arrayFrom(raw).map(normalizeVictim).filter(v => v.victim && v.victim !== 'Unknown victim').forEach(v => {
-      const k = stableKey(v);
-      const prev = map.get(k) || {};
-      map.set(k, { ...prev, ...v });
-    });
+    arrayFrom(raw)
+      .map(normalizeVictim)
+      .filter(v => v.victim && v.victim !== 'Unknown victim')
+      .forEach(v => {
+        const k = stableKey(v);
+        const prev = map.get(k) || {};
+        map.set(k, { ...prev, ...v });
+      });
   };
 
   add(existing.victims || []);
@@ -150,11 +176,10 @@ async function main() {
     console.log(`${year}: ${rows.length} victim records`);
     add(rows);
     years.push({ year, count: rows.length });
-    await sleep(500);
+    await sleep(600);
   }
 
-  // Regional verification: query ASEAN countries directly. This makes the Malaysia/ASEAN
-  // lens independent of whether a particular record was omitted from a yearly response.
+  // Verify ASEAN independently so Malaysia/ASEAN counts do not depend on a country-name mapping guess.
   const aseanVerification = {};
   for (const code of ASEAN) {
     console.log(`\n=== ASEAN verification ${code} ===`);
@@ -162,7 +187,7 @@ async function main() {
     aseanVerification[code] = rows.length;
     console.log(`${code}: ${rows.length} victim records`);
     add(rows);
-    await sleep(350);
+    await sleep(400);
   }
 
   let stats = {};
@@ -172,26 +197,33 @@ async function main() {
     console.warn(`Stats endpoint unavailable: ${err.message}`);
   }
 
-  const victims = [...map.values()].sort((a,b) => String(b.discovered || '').localeCompare(String(a.discovered || '')));
-  const malaysia = victims.filter(v => String(v.country || '').toUpperCase() === 'MY' || String(v.country || '').toLowerCase() === 'malaysia');
-  const asean = victims.filter(v => ASEAN.includes(String(v.country || '').toUpperCase()));
+  const victims = [...map.values()].sort((a, b) => String(b.discovered || '').localeCompare(String(a.discovered || '')));
+  const malaysia = victims.filter(v => {
+    const c = String(v.country || '').trim().toUpperCase();
+    return c === 'MY' || c === 'MALAYSIA';
+  });
+  const asean = victims.filter(v => ASEAN.includes(String(v.country || '').trim().toUpperCase()));
+
+  const sourceTotalVictims = Number(stats.total_victims ?? stats.totalVictims ?? stats.victims ?? 0) || null;
+  const sourceTotalGroups = Number(stats.total_groups ?? stats.totalGroups ?? stats.groups ?? 0) || null;
 
   const output = {
     meta: {
       status: 'ok',
-      source: 'ransomware.live API v2',
+      source: 'ransomware.live Pro API',
       sourceUrl: 'https://www.ransomware.live/',
+      apiBase: BASE,
       upstream: 'ransomware.live',
       fullSync: true,
       fullSyncedAt: new Date().toISOString(),
       collectedAt: new Date().toISOString(),
-      archiveScope: `full historical mirror ${START_YEAR}-${CURRENT_YEAR} + incremental updates`,
-      sourceTotalVictims: Number(stats.total_victims || stats.totalVictims || 0) || null,
-      sourceTotalGroups: Number(stats.total_groups || stats.totalGroups || 0) || null,
+      archiveScope: `historical victim mirror ${START_YEAR}-${CURRENT_YEAR} + incremental recent-feed updates`,
+      sourceTotalVictims,
+      sourceTotalGroups,
       yearsSynced: years,
       aseanVerification,
-      authentication: 'X-API-KEY (GitHub Secret; never exposed to dashboard)',
-      methodology: 'Historical victim claims are mirrored from ransomware.live by year, with direct ASEAN country verification. Claims originate from public ransomware/extortion leak-site monitoring and are not independently verified incidents.'
+      authentication: 'X-API-KEY via GitHub Secret (not exposed to dashboard)',
+      methodology: 'Historical victim claims are mirrored from the authenticated ransomware.live victim API using year filters, then ASEAN countries are independently verified with ISO alpha-2 country filters. Claims are public ransomware/extortion leak-site observations and are not independently verified incidents.'
     },
     stats: {
       retainedClaims: victims.length,
@@ -213,7 +245,7 @@ async function main() {
   console.log(`Local mirrored claims: ${victims.length}`);
   console.log(`Malaysia claims: ${malaysia.length}`);
   console.log(`ASEAN claims: ${asean.length}`);
-  console.log(`Ransomware.live reported total victims: ${output.meta.sourceTotalVictims ?? 'not supplied'}`);
+  console.log(`Ransomware.live reported total victims: ${sourceTotalVictims ?? 'not supplied'}`);
   console.log(`Saved: ${OUT}`);
 }
 
