@@ -3,8 +3,10 @@ const path = require('path');
 
 const OUT = path.join(__dirname, '..', 'data', 'ransomware.json');
 const HIST_OUT = path.join(__dirname, '..', 'data', 'ransomware-history.json');
-const HISTORY_DAYS = 365;
-const HISTORY_MAX = 10000;
+// Keep the complete historical mirror once it has been bootstrapped.
+// The separate full-sync job seeds the archive; this 5-minute job only appends/refreshes it.
+const HISTORY_DAYS = null;
+const HISTORY_MAX = null;
 
 const SOURCES = [
   {
@@ -345,28 +347,25 @@ function readPreviousCurrent() {
 }
 
 
-function readHistory() {
+function readHistoryDoc() {
   try {
     const raw = JSON.parse(fs.readFileSync(HIST_OUT, 'utf8'));
-    return Array.isArray(raw?.victims) ? raw.victims : [];
+    return raw && typeof raw === 'object' ? raw : { meta: {}, victims: [] };
   } catch {
-    return [];
+    return { meta: {}, victims: [] };
   }
 }
 
-function mergeHistory(current) {
+function mergeHistory(current, historyDoc) {
   const map = new Map();
-  for (const v of [...readHistory(), ...current]) {
+  for (const v of [...(Array.isArray(historyDoc?.victims) ? historyDoc.victims : []), ...current]) {
     const k = victimKey(v);
     if (!k) continue;
     const prev = map.get(k) || {};
     map.set(k, { ...prev, ...v });
   }
-  const cutoff = Date.now() - HISTORY_DAYS * 86400000;
   return [...map.values()]
-    .filter(v => !v.discovered || new Date(v.discovered).getTime() >= cutoff)
-    .sort((a,b) => String(b.discovered || '').localeCompare(String(a.discovered || '')))
-    .slice(0, HISTORY_MAX);
+    .sort((a,b) => String(b.discovered || '').localeCompare(String(a.discovered || '')));
 }
 
 async function main() {
@@ -382,7 +381,8 @@ async function main() {
     throw new Error('No usable ransomware victim records were returned; existing data/ransomware.json was left untouched.');
   }
 
-  const historyVictims = mergeHistory(victims);
+  const historyDoc = readHistoryDoc();
+  const historyVictims = mergeHistory(victims, historyDoc);
   const previousKeys = new Set((previous?.victims || []).map(stableVictimKey));
   const newlyObserved = victims.filter(v => !previousKeys.has(stableVictimKey(v)));
   const latestVictim = victims.find(v => v.discovered) || victims[0];
@@ -453,9 +453,13 @@ async function main() {
       upstream: src.upstream,
       collectedAt: new Date().toISOString(),
       latestVictimDiscovered,
-      retentionDays: HISTORY_DAYS,
-      maxRecords: HISTORY_MAX,
-      methodology: 'Rolling archive built by merging each public recent-victims collection. Claims are not independently verified incidents.'
+      retentionDays: null,
+      maxRecords: null,
+      fullSync: Boolean(historyDoc?.meta?.fullSync),
+      fullSyncedAt: historyDoc?.meta?.fullSyncedAt || null,
+      archiveScope: historyDoc?.meta?.fullSync ? 'full historical Ransomware.live mirror + incremental updates' : 'incremental archive from recent-victims feed',
+      sourceTotalVictims: historyDoc?.meta?.sourceTotalVictims || totalVictims || null,
+      methodology: 'Historical archive is preserved without time truncation. The 5-minute collector merges newly observed public victim claims into the existing mirror. Claims are not independently verified incidents.'
     },
     stats: { retainedClaims: historyVictims.length, claims24h },
     victims: historyVictims
@@ -468,7 +472,7 @@ async function main() {
   console.log(`SUCCESS: ${src.source} (${src.mode})`);
   console.log(`Latest claim: ${latestVictim?.victim || 'unknown'} · ${latestVictimDiscovered || 'unknown'} · age ${latestAgeMinutes ?? 'unknown'} min`);
   console.log(`Feed freshness: ${feedFreshness}; new claims since previous collection: ${newlyObserved.length}`);
-  console.log(`Rolling history retained: ${historyVictims.length} claims (${HISTORY_DAYS} days max)`);
+  console.log(`Historical archive retained: ${historyVictims.length} claims; fullSync=${Boolean(historyDoc?.meta?.fullSync)}`);
   console.log(`Saved ${victims.length} recent ransomware claims and ${groups.length} groups to ${OUT}`);
   console.log(`Active groups: ${output.stats.activeGroups}; retained claims within 24h: ${claims24h}`);
 }
