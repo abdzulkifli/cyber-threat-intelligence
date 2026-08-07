@@ -53,12 +53,15 @@ async function fetchJson(url, attempts = 3) {
     const controller = new AbortController();
     const timer = setTimeout(() => controller.abort(), 120000);
     try {
-      console.log(`GET ${url} (attempt ${i}/${attempts})`);
-      const res = await fetch(url, {
+      const requestUrl = `${url}${url.includes('?') ? '&' : '?'}_cti=${Date.now()}`;
+      console.log(`GET ${requestUrl} (attempt ${i}/${attempts})`);
+      const res = await fetch(requestUrl, {
         signal: controller.signal,
         headers: {
           accept: 'application/json',
-          'user-agent': 'Cyber-Threat-Intelligence-Command-Centre/1.2'
+          'user-agent': 'Cyber-Threat-Intelligence-Command-Centre/1.4',
+          'cache-control': 'no-cache, no-store, max-age=0',
+          pragma: 'no-cache'
         }
       });
       clearTimeout(timer);
@@ -244,48 +247,103 @@ function deepFindDate(raw, candidates) {
   return null;
 }
 
-async function collectSource(source) {
-  console.log(`Trying ${source.source} (${source.mode}) — no authentication.`);
+async function probeSource(source) {
+  console.log(`Probing ${source.source} (${source.mode}) for freshest victim data.`);
+  const victimsRaw = await fetchJson(source.urls.victims);
+  const victimsSource = arrayFrom(victimsRaw, ['victims', 'recentvictims', 'recentVictims', 'posts']);
+  if (!victimsSource.length) throw new Error('Source returned no recent victim records.');
+  const victims = victimsSource
+    .map(normalizeVictim)
+    .filter(v => v.victim && v.victim !== 'Unknown victim')
+    .sort((a, b) => String(b.discovered || '').localeCompare(String(a.discovered || '')));
+  if (!victims.length) throw new Error('Source returned no usable victim records.');
+  const latest = victims.find(v => v.discovered)?.discovered || null;
+  console.log(`${source.mode}: ${victims.length} victims; latest=${latest || 'unknown'}`);
+  return { ...source, victimsRaw, victimsSource, victims, latest };
+}
 
-  // Victims and groups are required. Info/stats is optional because all visible
-  // dashboard metrics can be derived from the two primary datasets if necessary.
-  const [victimsRaw, groupsRaw] = await Promise.all([
-    fetchJson(source.urls.victims),
-    fetchJson(source.urls.groups)
-  ]);
+async function loadAuxiliary(selected, successfulProbes) {
+  let groupsRaw = {}, infoRaw = {}, groupsSource = [];
+  const ordered = [selected, ...successfulProbes.filter(x => x.mode !== selected.mode)];
 
-  let infoRaw = {};
-  try {
-    infoRaw = await fetchJson(source.urls.info, 2);
-  } catch (err) {
-    console.warn(`Info/stats endpoint unavailable (${err.message}); continuing with derived statistics.`);
+  for (const candidate of ordered) {
+    try {
+      groupsRaw = await fetchJson(candidate.urls.groups, 2);
+      groupsSource = arrayFrom(groupsRaw, ['groups', 'ransomware_groups']);
+      if (groupsSource.length) {
+        console.log(`Group metadata loaded via ${candidate.mode}.`);
+        break;
+      }
+    } catch (err) {
+      console.warn(`Groups via ${candidate.mode} unavailable: ${err.message}`);
+    }
   }
 
-  const victimsSource = arrayFrom(victimsRaw, ['victims', 'recentvictims', 'recentVictims', 'posts']);
-  const groupsSource = arrayFrom(groupsRaw, ['groups', 'ransomware_groups']);
+  for (const candidate of ordered) {
+    try {
+      infoRaw = await fetchJson(candidate.urls.info, 2);
+      console.log(`Stats/info loaded via ${candidate.mode}.`);
+      break;
+    } catch (err) {
+      console.warn(`Info/stats via ${candidate.mode} unavailable: ${err.message}`);
+    }
+  }
 
-  if (!victimsSource.length) throw new Error('Source returned no recent victim records.');
-  if (!groupsSource.length) console.warn('Source returned no group list; victim feed will still be used.');
-
-  return { ...source, victimsRaw, groupsRaw, infoRaw, victimsSource, groupsSource };
+  return { groupsRaw, infoRaw, groupsSource };
 }
 
 async function getSourceData() {
-  let lastError;
-  for (const source of SOURCES) {
-    try {
-      return await collectSource(source);
-    } catch (err) {
-      lastError = err;
-      console.error(`${source.mode} failed: ${err.message}`);
-    }
-  }
-  throw new Error(`All ransomware public sources failed. Last error: ${lastError?.message || 'unknown error'}`);
+  const probes = await Promise.allSettled(SOURCES.map(probeSource));
+  const successful = probes.filter(x => x.status === 'fulfilled').map(x => x.value);
+  const failed = probes.filter(x => x.status === 'rejected');
+  failed.forEach((x, i) => console.warn(`Ransomware source probe failed #${i + 1}: ${x.reason?.message || x.reason}`));
+  if (!successful.length) throw new Error('All ransomware public victim feeds failed.');
+
+  // IMPORTANT: select the freshest successful feed, not merely the first endpoint that returned HTTP 200.
+  successful.sort((a, b) => dateValue(b.latest) - dateValue(a.latest) || b.victims.length - a.victims.length);
+  const selected = successful[0];
+  console.log(`Selected freshest feed: ${selected.source} (${selected.mode}), latest victim ${selected.latest || 'unknown'}`);
+
+  const aux = await loadAuxiliary(selected, successful);
+  return {
+    ...selected,
+    ...aux,
+    candidates: successful.map(x => ({
+      mode: x.mode,
+      source: x.source,
+      latestVictimDiscovered: x.latest,
+      victimCount: x.victims.length
+    }))
+  };
+}
+
+function dateValue(v) {
+  const t = v ? new Date(v).getTime() : 0;
+  return Number.isFinite(t) ? t : 0;
+}
+
+function stableVictimKey(v) {
+  return [
+    str(v.victim).toLowerCase(),
+    str(v.group).toLowerCase(),
+    str(v.country).toLowerCase(),
+    str(v.discovered).slice(0, 19),
+    str(v.website).toLowerCase()
+  ].join('|');
 }
 
 function victimKey(v) {
-  return str(v.id) || [str(v.victim), str(v.group), str(v.country), str(v.discovered)].join('|').toLowerCase();
+  return stableVictimKey(v);
 }
+
+function readPreviousCurrent() {
+  try {
+    return JSON.parse(fs.readFileSync(OUT, 'utf8'));
+  } catch {
+    return null;
+  }
+}
+
 
 function readHistory() {
   try {
@@ -312,13 +370,10 @@ function mergeHistory(current) {
 }
 
 async function main() {
+  const previous = readPreviousCurrent();
   const src = await getSourceData();
 
-  const victims = src.victimsSource
-    .map(normalizeVictim)
-    .filter(v => v.victim && v.victim !== 'Unknown victim')
-    .sort((a, b) => String(b.discovered || '').localeCompare(String(a.discovered || '')));
-
+  const victims = src.victims;
   const groups = src.groupsSource
     .map(normalizeGroup)
     .sort((a, b) => Number(b.active) - Number(a.active) || b.victims - a.victims || a.name.localeCompare(b.name));
@@ -327,13 +382,25 @@ async function main() {
     throw new Error('No usable ransomware victim records were returned; existing data/ransomware.json was left untouched.');
   }
 
+  const historyVictims = mergeHistory(victims);
+  const previousKeys = new Set((previous?.victims || []).map(stableVictimKey));
+  const newlyObserved = victims.filter(v => !previousKeys.has(stableVictimKey(v)));
+  const latestVictim = victims.find(v => v.discovered) || victims[0];
+  const latestVictimDiscovered = latestVictim?.discovered || null;
+  const latestAgeMinutes = latestVictimDiscovered
+    ? Math.max(0, Math.round((Date.now() - new Date(latestVictimDiscovered).getTime()) / 60000))
+    : null;
+  const feedFreshness = latestAgeMinutes == null ? 'unknown' : latestAgeMinutes <= 24 * 60 ? 'fresh' : latestAgeMinutes <= 72 * 60 ? 'aging' : 'stale';
+
   const cutoff24 = Date.now() - 24 * 3600 * 1000;
-  const claims24h = victims.filter(v => v.discovered && new Date(v.discovered).getTime() >= cutoff24).length;
+  const claims24h = historyVictims.filter(v => v.discovered && new Date(v.discovered).getTime() >= cutoff24).length;
 
   const totalVictims = deepFindNumber(src.infoRaw, ['totalVictims', 'total_victims', 'victims']) || victims.length;
   const totalGroups = deepFindNumber(src.infoRaw, ['totalGroups', 'total_groups', 'groups']) || groups.length;
   const totalAttacks = deepFindNumber(src.infoRaw, ['totalAttacks', 'total_attacks', 'attacks', 'press', 'total_press']);
-  const lastSourceUpdate = deepFindDate(src.infoRaw, ['lastUpdate', 'last_update', 'lastVictim', 'last_victim', 'updatedAt']);
+  const lastSourceUpdate = deepFindDate(src.infoRaw, ['lastUpdate', 'last_update', 'lastVictim', 'last_victim', 'updatedAt']) || latestVictimDiscovered;
+  const dataChanged = newlyObserved.length > 0 || !previous || previous?.meta?.latestVictimDiscovered !== latestVictimDiscovered;
+  const dataUpdatedAt = dataChanged ? new Date().toISOString() : (previous?.meta?.dataUpdatedAt || previous?.meta?.collectedAt || new Date().toISOString());
 
   const output = {
     meta: {
@@ -344,7 +411,18 @@ async function main() {
       mode: src.mode,
       authentication: 'none',
       collectedAt: new Date().toISOString(),
+      checkedAt: new Date().toISOString(),
+      dataUpdatedAt,
       lastSourceUpdate,
+      latestVictimDiscovered,
+      latestVictimName: latestVictim?.victim || null,
+      latestVictimGroup: latestVictim?.group || null,
+      latestVictimCountry: latestVictim?.country || null,
+      sourceDataAgeMinutes: latestAgeMinutes,
+      feedFreshness,
+      newClaimsSincePreviousCollection: newlyObserved.length,
+      selectedBy: 'freshest-latest-victim',
+      candidates: src.candidates || [],
       methodology: 'Victim records are public ransomware/extortion leak-site claims and are not independently verified incidents.'
     },
     stats: {
@@ -353,19 +431,20 @@ async function main() {
       trackedGroups: groups.length || totalGroups,
       activeGroups: groups.filter(g => g.active).length,
       recentClaims: victims.length,
+      retainedClaims: historyVictims.length,
       claims24h,
+      newClaimsSincePreviousCollection: newlyObserved.length,
       countriesRecent: uniqueCount(victims, 'country'),
       sectorsRecent: uniqueCount(victims, 'sector')
     },
     topGroups: countBy(victims, 'group', 8),
     topCountries: countBy(victims, 'country', 8),
     topSectors: countBy(victims, 'sector', 8),
-    dailyActivity: buildDaily(victims),
+    dailyActivity: buildDaily(historyVictims),
     victims,
     groups
   };
 
-  const historyVictims = mergeHistory(victims);
   const historyOutput = {
     meta: {
       status: 'ok',
@@ -373,11 +452,12 @@ async function main() {
       sourceUrl: src.sourceUrl,
       upstream: src.upstream,
       collectedAt: new Date().toISOString(),
+      latestVictimDiscovered,
       retentionDays: HISTORY_DAYS,
       maxRecords: HISTORY_MAX,
       methodology: 'Rolling archive built by merging each public recent-victims collection. Claims are not independently verified incidents.'
     },
-    stats: { retainedClaims: historyVictims.length },
+    stats: { retainedClaims: historyVictims.length, claims24h },
     victims: historyVictims
   };
 
@@ -385,11 +465,12 @@ async function main() {
   fs.writeFileSync(OUT, JSON.stringify(output, null, 2) + '\n');
   fs.writeFileSync(HIST_OUT, JSON.stringify(historyOutput, null, 2) + '\n');
 
-  console.log(`SUCCESS: ${src.source}`);
+  console.log(`SUCCESS: ${src.source} (${src.mode})`);
+  console.log(`Latest claim: ${latestVictim?.victim || 'unknown'} · ${latestVictimDiscovered || 'unknown'} · age ${latestAgeMinutes ?? 'unknown'} min`);
+  console.log(`Feed freshness: ${feedFreshness}; new claims since previous collection: ${newlyObserved.length}`);
   console.log(`Rolling history retained: ${historyVictims.length} claims (${HISTORY_DAYS} days max)`);
   console.log(`Saved ${victims.length} recent ransomware claims and ${groups.length} groups to ${OUT}`);
-  console.log(`Authentication: none`);
-  console.log(`Active groups: ${output.stats.activeGroups}; claims within 24h: ${claims24h}`);
+  console.log(`Active groups: ${output.stats.activeGroups}; retained claims within 24h: ${claims24h}`);
 }
 
 main().catch(err => {
