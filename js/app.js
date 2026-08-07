@@ -1,6 +1,7 @@
 let KEV=null,NVD=null,EPSS=null,RW=null,MYCERT=null;
 let NVD_BY_ID=new Map(),EPSS_BY_ID=new Map();
 let PAGE=1; const PAGE_SIZE=50;
+let FEED_FILTER='all',FEED_LIMIT=18,KNOWN_FEED_IDS=null;
 const $=id=>document.getElementById(id);
 const esc=v=>String(v??'').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
 const fmt=n=>Number(n||0).toLocaleString();
@@ -57,12 +58,77 @@ function renderMycert(){const ready=sourceReady(MYCERT),feed=$('mycertFeed');if(
   feed.innerHTML=(MYCERT.advisories||[]).slice(0,10).map(a=>{const u=safeMycertUrl(a.url);return `<a class="mycert-item" href="${esc(u)}" ${u==='#'?'':'target="_blank" rel="noopener"'}><div class="mycert-date"><strong>${esc(a.date||'—')}</strong><span>${esc(a.id||'MYCERT')}</span></div><div class="mycert-copy"><div><span class="mycert-type type-${String(a.type||'advisory').toLowerCase()}">${esc(a.type||'Advisory')}</span>${a.severity?`<span class="mycert-severity">${esc(a.severity)}</span>`:''}</div><strong>${esc(a.title||'MyCERT advisory')}</strong>${a.cves?.length?`<small>${a.cves.map(esc).join(' · ')}</small>`:''}</div><span class="mycert-arrow">↗</span></a>`;}).join('')||'<div class="empty-state">No advisories parsed from MyCERT.</div>';
 }
 
+
+function safeHttpUrl(v){try{const u=new URL(v);return ['http:','https:'].includes(u.protocol)?u.href:'#';}catch{return '#';}}
+function asMs(v,dateOnly=false){if(!v)return 0;const raw=dateOnly&&/^\d{4}-\d{2}-\d{2}$/.test(String(v))?`${v}T12:00:00Z`:v;const t=new Date(raw).getTime();return Number.isFinite(t)?t:0;}
+function feedTime(e){if(!e.time)return 'Date unavailable';if(e.dateOnly){const d=new Date(e.time);return Number.isNaN(d.getTime())?e.time:d.toLocaleDateString(undefined,{year:'numeric',month:'short',day:'numeric'});}return relTime(e.time);}
+function severityRank(v){return({critical:4,high:3,medium:2,low:1,info:0})[String(v||'info').toLowerCase()]??0;}
+function normalizeSeverity(v){const x=String(v||'').toUpperCase();return x.includes('CRITICAL')?'critical':x.includes('HIGH')?'high':x.includes('MEDIUM')?'medium':x.includes('LOW')?'low':'info';}
+function makeFeedId(parts){return parts.map(x=>String(x??'')).join('|');}
+function buildIntelligenceEvents(){
+  const events=[];
+  const unified=buildUnified();
+  const byId=new Map(unified.map(v=>[v.id,v]));
+
+  if(sourceReady(KEV)){
+    [...(KEV.vulnerabilities||[])].sort((a,b)=>String(b.dateAdded||'').localeCompare(String(a.dateAdded||''))).slice(0,45).forEach(v=>{
+      const u=byId.get(v.id)||v,pri=u.priority?.label||'HIGH',sev=v.ransomware?'critical':normalizeSeverity(pri);
+      events.push({id:makeFeedId(['cisa',v.id,v.dateAdded]),source:'CISA KEV',sourceCode:'CISA',kind:v.ransomware?'ransomware':'vulnerability',severity:sev,time:v.dateAdded,dateOnly:true,title:`${v.id} added to CISA KEV`,detail:`${v.vendor||'Unknown vendor'} ${v.product||''}${v.vulnerabilityName?` · ${v.vulnerabilityName}`:''}`,badges:[v.ransomware?'Known ransomware use':null,pri?`CTI ${pri}`:null].filter(Boolean),url:'https://www.cisa.gov/known-exploited-vulnerabilities-catalog',malaysia:false});
+    });
+  }
+
+  if(sourceReady(NVD)){
+    [...(NVD.vulnerabilities||[])].filter(v=>v.lastModified).sort((a,b)=>asMs(b.lastModified)-asMs(a.lastModified)).slice(0,28).forEach(v=>{
+      const sev=normalizeSeverity(v.cvss?.severity),score=v.cvss?.score==null?'No CVSS':`CVSS ${Number(v.cvss.score).toFixed(1)}`;
+      events.push({id:makeFeedId(['nvd',v.id,v.lastModified]),source:'NVD CVE API',sourceCode:'NVD',kind:'vulnerability',severity:sev,time:v.lastModified,title:`${v.id} NVD record updated`,detail:`${score} · ${String(v.cvss?.severity||'UNKNOWN').toUpperCase()}${v.description?` · ${v.description.slice(0,180)}`:''}`,badges:[v.vulnStatus||null].filter(Boolean),url:v.sourceUrl,malaysia:false});
+    });
+  }
+
+  if(sourceReady(EPSS)){
+    [...(EPSS.vulnerabilities||[])].sort((a,b)=>Number(b.epss||0)-Number(a.epss||0)).slice(0,12).forEach(v=>{
+      const p=Number(v.epss||0),sev=p>=.7?'critical':p>=.5?'high':p>=.1?'medium':'low';
+      events.push({id:makeFeedId(['epss',v.id,EPSS.meta?.scoreDate||EPSS.meta?.collectedAt]),source:'FIRST EPSS',sourceCode:'EPSS',kind:'exploitation',severity:sev,time:EPSS.meta?.collectedAt,title:`${v.id} daily EPSS ${(p*100).toFixed(2)}%`,detail:`Estimated probability of exploitation in the next 30 days · ${(Number(v.percentile||0)*100).toFixed(1)} percentile`,badges:[p>=.5?'High exploit probability':'EPSS scored'],url:'https://www.first.org/epss/',malaysia:false});
+    });
+  }
+
+  if(sourceReady(RW)){
+    (RW.victims||[]).slice(0,70).forEach(v=>{
+      const member=aseanMember(v.country),isMY=member?.code==='MY';
+      events.push({id:makeFeedId(['rw',v.id,v.discovered]),source:'Ransomware OSINT',sourceCode:'RW',kind:'ransomware',severity:isMY?'critical':'high',time:v.discovered,title:`Ransomware claim: ${v.victim||'Unknown victim'}`,detail:`${v.group||'Unknown group'} · ${v.country||'Unknown country'} · ${v.sector||'Unspecified sector'} · public leak-site claim`,badges:[v.group||null,isMY?'Malaysia':member?'ASEAN':null].filter(Boolean),url:safeHttpUrl(v.sourceUrl||v.website),malaysia:isMY});
+    });
+  }
+
+  if(sourceReady(MYCERT)){
+    (MYCERT.advisories||[]).slice(0,35).forEach(a=>{
+      const ransomware=String(a.type||'').toUpperCase().includes('RANSOMWARE');
+      const sev=ransomware?'critical':normalizeSeverity(a.severity||a.type);
+      events.push({id:makeFeedId(['mycert',a.id,a.date]),source:'MyCERT Malaysia',sourceCode:'MY',kind:ransomware?'ransomware':'malaysia',severity:sev,time:a.date,dateOnly:true,title:a.title||'MyCERT advisory',detail:`${a.type||'Advisory'}${a.cves?.length?` · ${a.cves.join(', ')}`:''}`,badges:['Malaysia',a.severity||null].filter(Boolean),url:safeMycertUrl(a.url),malaysia:true});
+    });
+  }
+
+  return events.filter(e=>e.time).sort((a,b)=>asMs(b.time,b.dateOnly)-asMs(a.time,a.dateOnly)||severityRank(b.severity)-severityRank(a.severity));
+}
+function matchesFeedFilter(e){if(FEED_FILTER==='all')return true;if(FEED_FILTER==='critical')return e.severity==='critical';if(FEED_FILTER==='ransomware')return e.kind==='ransomware';if(FEED_FILTER==='malaysia')return e.malaysia;if(FEED_FILTER==='vulnerability')return e.kind==='vulnerability'||e.kind==='exploitation';return true;}
+function freshnessInfo(label,data,thresholdMin,code){const t=asMs(data?.meta?.collectedAt);if(!t)return{label,code,state:'offline',age:'Not collected',pct:0};const mins=Math.max(0,(Date.now()-t)/60000);const state=mins<=thresholdMin?'fresh':mins<=thresholdMin*2?'aging':'stale';const pct=Math.max(7,Math.min(100,100-(mins/(thresholdMin*2))*100));return{label,code,state,age:mins<60?`${Math.floor(mins)}m ago`:mins<2880?`${Math.floor(mins/60)}h ago`:`${Math.floor(mins/1440)}d ago`,pct};}
+function renderFreshness(){const rows=[freshnessInfo('CISA KEV',KEV,60,'C'),freshnessInfo('NVD CVE API',NVD,240,'N'),freshnessInfo('FIRST EPSS',EPSS,2160,'E'),freshnessInfo('Ransomware OSINT',RW,45,'R'),freshnessInfo('MyCERT Malaysia',MYCERT,180,'MY')];$('freshnessList').innerHTML=rows.map(r=>`<div class="fresh-row"><span class="fresh-code">${r.code}</span><div class="fresh-main"><div><strong>${r.label}</strong><span class="fresh-state ${r.state}">${r.state.toUpperCase()}</span></div><div class="fresh-track"><i class="${r.state}" style="width:${r.pct}%"></i></div></div><small>${r.age}</small></div>`).join('');}
+function renderUnifiedFeed(){
+  const events=buildIntelligenceEvents(),filtered=events.filter(matchesFeedFilter),shown=filtered.slice(0,FEED_LIMIT),now=Date.now();
+  const recent24=events.filter(e=>{const t=asMs(e.time,e.dateOnly);return t&&now-t<=86400000&&now-t>=-86400000;}).length;
+  $('signals24h').textContent=fmt(recent24);$('criticalSignals').textContent=fmt(events.filter(e=>e.severity==='critical').length);$('ransomwareSignals').textContent=fmt(events.filter(e=>e.kind==='ransomware').length);$('malaysiaSignals').textContent=fmt(events.filter(e=>e.malaysia).length);$('activeSourceCount').textContent=`${[KEV,NVD,EPSS,RW,MYCERT].filter(sourceReady).length} SOURCES`;
+  const latest=events[0];$('latestSignalSource').textContent=latest?.source||'—';$('tickerSource').textContent=latest?.sourceCode||'INTELLIGENCE';$('latestSignalTicker').textContent=latest?latest.title:'Waiting for source data…';$('feedUpdatedAt').textContent=new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});$('intelFeedCount').textContent=`${fmt(filtered.length)} correlated signals · newest first`;
+  const previous=KNOWN_FEED_IDS;const currentIds=new Set(events.map(e=>e.id));
+  $('unifiedIntelFeed').innerHTML=shown.map(e=>{const isNew=previous&&!previous.has(e.id);const url=safeHttpUrl(e.url);const tags=(e.badges||[]).slice(0,3).map(b=>`<span>${esc(b)}</span>`).join('');return `<article class="intel-event sev-${e.severity} ${isNew?'is-new':''}"><div class="event-rail"><span class="event-source source-${String(e.sourceCode).toLowerCase()}">${esc(e.sourceCode)}</span><i></i></div><div class="event-body"><div class="event-top"><div><span class="event-severity">${esc(e.severity.toUpperCase())}</span><span class="event-kind">${esc(String(e.kind).toUpperCase())}</span>${isNew?'<span class="new-signal">NEW</span>':''}</div><time>${esc(feedTime(e))}</time></div><h4>${esc(e.title)}</h4><p>${esc(e.detail||'')}</p>${tags?`<div class="event-tags">${tags}</div>`:''}</div>${url!=='#'?`<a class="event-link" href="${esc(url)}" target="_blank" rel="noopener" aria-label="Open source">↗</a>`:'<span class="event-link muted-link">•</span>'}</article>`;}).join('')||'<div class="empty-state">No signals match this filter.</div>';
+  $('feedMore').style.display=filtered.length>FEED_LIMIT?'inline-flex':'none';$('feedWindowHint').textContent=filtered.length>FEED_LIMIT?`Showing ${fmt(Math.min(FEED_LIMIT,filtered.length))} of ${fmt(filtered.length)}`:`Showing all ${fmt(filtered.length)} signals`;
+  KNOWN_FEED_IDS=currentIds;renderFreshness();
+}
+
 function renderRanking(id,list,limit,numbered){const max=Math.max(...list.map(x=>x.count),1);$(id).innerHTML=list.slice(0,limit).map((x,i)=>`<div class="rank-row">${numbered?`<span class="rank-num">${String(i+1).padStart(2,'0')}</span>`:''}<div class="rank-main"><div><strong>${esc(x.name)}</strong><span>${fmt(x.count)}</span></div><div class="rank-bar"><i style="width:${Math.max(5,x.count/max*100)}%"></i></div></div></div>`).join('')||'<div class="empty-state">No activity data.</div>';}
 function renderActivity(data){if(!data.length){$('activityChart').innerHTML='<div class="empty-state">No dated claims in the latest feed.</div>';return;}const w=820,h=230,p=28,max=Math.max(...data.map(x=>x.count),1);const pts=data.map((d,i)=>{const x=p+(i*(w-2*p)/Math.max(data.length-1,1));const y=h-p-(d.count/max)*(h-2*p);return{x,y,d};});const poly=pts.map(p=>`${p.x},${p.y}`).join(' ');const bars=pts.map((p,i)=>{const bw=Math.max(8,(w-2*p)/(data.length*1.8));return`<rect x="${p.x-bw/2}" y="${p.y}" width="${bw}" height="${h-p-p.y}" rx="4" class="chart-bar"/><circle cx="${p.x}" cy="${p.y}" r="4" class="chart-dot"/>`;}).join('');const labels=pts.map((p,i)=>i%Math.ceil(data.length/6)===0||i===data.length-1?`<text x="${p.x}" y="${h-5}" text-anchor="middle">${p.d.date.slice(5)}</text>`:'').join('');$('activityChart').innerHTML=`<svg viewBox="0 0 ${w} ${h}" role="img" aria-label="Recent ransomware claims activity"><defs><linearGradient id="area" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#56e6ff" stop-opacity=".28"/><stop offset="1" stop-color="#56e6ff" stop-opacity="0"/></linearGradient></defs><polyline points="${poly}" class="chart-line"/>${bars}${labels}</svg>`;const first=data[0]?.count||0,last=data[data.length-1]?.count||0;$('rwTrendLabel').textContent=last>first?'RISING':last<first?'EASING':'STEADY';}
 function epssMatch(x,f){const p=x.epss?.epss;if(f==='all')return true;if(p==null)return false;return f==='50'?p>=.5:f==='10'?p>=.1:f==='1'?p>=.01:f==='lt1'?p<.01:true;}
 function getFiltered(){const q=$('search').value.trim().toLowerCase(),sev=$('severityFilter').value,ep=$('epssFilter').value,pri=$('priorityFilter').value,ran=$('ransomFilter').value;return buildUnified().filter(v=>{const s=String(v.nvd?.cvss?.severity||'UNKNOWN').toUpperCase();const hay=`${v.id} ${v.vendor} ${v.product} ${v.vulnerabilityName} ${v.nvd?.description||''}`.toLowerCase();return(!q||hay.includes(q))&&(sev==='all'||s===sev)&&epssMatch(v,ep)&&(pri==='all'||v.priority.label===pri)&&(ran==='all'||(ran==='yes'?v.ransomware:!v.ransomware));});}
 function renderTable(){const items=getFiltered();const pages=Math.max(1,Math.ceil(items.length/PAGE_SIZE));PAGE=Math.min(PAGE,pages);const slice=items.slice((PAGE-1)*PAGE_SIZE,PAGE*PAGE_SIZE);$('resultLabel').textContent=`${fmt(items.length)} matching records · 50 per page`;$('pageLabel').textContent=`Page ${PAGE} of ${pages}`;$('prevPage').disabled=PAGE<=1;$('nextPage').disabled=PAGE>=pages;$('rows').innerHTML=slice.map(v=>{const cv=v.nvd?.cvss||{},score=cv.score==null?'—':Number(cv.score).toFixed(1),sev=String(cv.severity||'UNKNOWN').toUpperCase(),ep=v.epss?`${(Number(v.epss.epss)*100).toFixed(2)}%`:'—';return`<tr><td><strong class="cve">${esc(v.id)}</strong><small>${esc(v.dateAdded||'')}</small></td><td><strong>${esc(v.vendor)}</strong><small>${esc(v.product)}</small></td><td><b class="cvss">${score}</b><span class="sev-badge sev-${sev.toLowerCase()}">${esc(sev)}</span></td><td><strong class="epss">${ep}</strong><small>${v.epss?`${(Number(v.epss.percentile)*100).toFixed(1)} percentile`:''}</small></td><td><span class="pill ${v.ransomware?'pill-red':'pill-green'}">${v.ransomware?'KNOWN':'NOT KNOWN'}</span></td><td><span class="priority p-${v.priority.label.toLowerCase()}">${v.priority.label}</span><small>${v.priority.score}/100</small></td><td class="intel-cell"><strong>${esc(v.vulnerabilityName)}</strong><small>${esc(v.nvd?.description||v.description||'')}</small></td><td class="action-cell">${esc(v.requiredAction||'—')}</td></tr>`;}).join('')||'<tr><td colspan="8" class="empty-state">No records match your filters.</td></tr>';}
 async function fetchJson(path){const r=await fetch(`${path}?t=${Date.now()}`,{cache:'no-store'});if(!r.ok)throw new Error(`${path}: HTTP ${r.status}`);return r.json();}
-async function load(){const res=await Promise.allSettled(['data/kev.json','data/nvd.json','data/epss.json','data/ransomware.json','data/mycert.json'].map(fetchJson));[KEV,NVD,EPSS,RW,MYCERT]=res.map(x=>x.status==='fulfilled'?x.value:null);NVD_BY_ID=sourceReady(NVD)?new Map((NVD.vulnerabilities||[]).map(v=>[v.id,v])):new Map();EPSS_BY_ID=sourceReady(EPSS)?new Map((EPSS.vulnerabilities||[]).map(v=>[v.id,v])):new Map();renderHeader();renderTopMetrics();renderEpss();renderSeverity();renderVendors();renderRansomware();renderRegional();renderTable();}
-['search','severityFilter','epssFilter','priorityFilter','ransomFilter'].forEach(id=>$(id).addEventListener(id==='search'?'input':'change',()=>{PAGE=1;renderTable();}));$('prevPage').addEventListener('click',()=>{if(PAGE>1){PAGE--;renderTable();document.querySelector('.intelligence-table-card').scrollIntoView({behavior:'smooth',block:'start'});}});$('nextPage').addEventListener('click',()=>{PAGE++;renderTable();document.querySelector('.intelligence-table-card').scrollIntoView({behavior:'smooth',block:'start'});});
+async function load(){const res=await Promise.allSettled(['data/kev.json','data/nvd.json','data/epss.json','data/ransomware.json','data/mycert.json'].map(fetchJson));[KEV,NVD,EPSS,RW,MYCERT]=res.map(x=>x.status==='fulfilled'?x.value:null);NVD_BY_ID=sourceReady(NVD)?new Map((NVD.vulnerabilities||[]).map(v=>[v.id,v])):new Map();EPSS_BY_ID=sourceReady(EPSS)?new Map((EPSS.vulnerabilities||[]).map(v=>[v.id,v])):new Map();renderHeader();renderTopMetrics();renderEpss();renderSeverity();renderVendors();renderRansomware();renderRegional();renderUnifiedFeed();renderTable();}
+['search','severityFilter','epssFilter','priorityFilter','ransomFilter'].forEach(id=>$(id).addEventListener(id==='search'?'input':'change',()=>{PAGE=1;renderTable();}));
+$('feedFilters').addEventListener('click',e=>{const b=e.target.closest('[data-feed-filter]');if(!b)return;FEED_FILTER=b.dataset.feedFilter;FEED_LIMIT=18;document.querySelectorAll('.feed-filter').forEach(x=>x.classList.toggle('active',x===b));renderUnifiedFeed();});$('feedMore').addEventListener('click',()=>{FEED_LIMIT+=18;renderUnifiedFeed();});$('prevPage').addEventListener('click',()=>{if(PAGE>1){PAGE--;renderTable();document.querySelector('.intelligence-table-card').scrollIntoView({behavior:'smooth',block:'start'});}});$('nextPage').addEventListener('click',()=>{PAGE++;renderTable();document.querySelector('.intelligence-table-card').scrollIntoView({behavior:'smooth',block:'start'});});
 load();setInterval(load,5*60*1000);
