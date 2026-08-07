@@ -6,17 +6,17 @@
     "upstream": "ransomware.live",
     "mode": "direct-v2",
     "authentication": "none",
-    "collectedAt": "2026-08-07T14:58:33.557Z",
-    "checkedAt": "2026-08-07T14:58:33.557Z",
+    "collectedAt": "2026-08-07T15:56:32.061Z",
+    "checkedAt": "2026-08-07T15:56:32.061Z",
     "dataUpdatedAt": "2026-08-07T14:58:33.557Z",
     "lastSourceUpdate": "2026-08-07T13:53:04.771Z",
     "latestVictimDiscovered": "2026-08-07T13:53:04.771Z",
     "latestVictimName": "Pioneer Bank",
     "latestVictimGroup": "Storm",
     "latestVictimCountry": "US",
-    "sourceDataAgeMinutes": 65,
+    "sourceDataAgeMinutes": 123,
     "feedFreshness": "fresh",
-    "newClaimsSincePreviousCollection": 10,
+    "newClaimsSincePreviousCollection": 0,
     "selectedBy": "freshest-latest-victim",
     "candidates": [
       {
@@ -41,8 +41,8 @@
     "activeGroups": 380,
     "recentClaims": 100,
     "retainedClaims": 30610,
-    "claims24h": 95,
-    "newClaimsSincePreviousCollection": 10,
+    "claims24h": 92,
+    "newClaimsSincePreviousCollection": 0,
     "countriesRecent": 23,
     "sectorsRecent": 13
   },
@@ -1750,7 +1750,8 @@
       "description": "0mega is a double-extortion ransomware group that emerged in May 2022, targeting businesses across multiple sectors worldwide by encrypting files and threatening to leak stolen data; it also pivoted to cloud-based extortion by compromising Microsoft 365 admin accounts.",
       "locationCount": 2,
       "locations": [
-        "0mega | Blog"
+        "0mega | Blog",
+        "kelkoogroup.net"
       ],
       "victims": 0,
       "firstSeen": null,
@@ -4230,7 +4231,7 @@
       "locationCount": 5,
       "locations": [
         "This Website Has Been Seized",
-        "Redirecting...",
+        "Loading https://m.ntesgsght.com/c/jtck6n?network_click_id=365ae279f1a0450c994046815808f287&site_id=4601&sub_site_id=&campaign=pwn_h72na_youdao_all_gb_install_conversion_event_pc_20260121&ad=&ad_name=&ad_group=",
         "Error Response Page",
         "Security Verification"
       ],
@@ -4959,9 +4960,9 @@
       "description": "LockBit, also recognized as LockBit Black or Lockbit 3.0, is one of the largest Ransomware Groups in the world and has orchestrated extensive cyberattacks across various industries, impacting thousands of organizations globally with its relentless and adaptive strategies.",
       "locationCount": 36,
       "locations": [
-        "Title",
-        "LockBit LOGIN",
         "LockBit BLOG",
+        "LockBit LOGIN",
+        "Title",
         "Humanity check",
         "504 Gateway Time-out"
       ],
@@ -5745,9 +5746,9 @@
       "description": "NightSpire is a ransomware group that first emerged in March 2025 and rapidly claimed over 250 victims across retail, manufacturing, healthcare, finance, and education sectors in the US, France, India, Taiwan, and Japan, using aggressive double-extortion with ransom deadlines as short as two days.",
       "locationCount": 6,
       "locations": [
-        "Database | NightSpire",
-        "NightSpire",
         "Verify human - NightSpire",
+        "NightSpire",
+        "Database | NightSpire",
         "RaaS Service Started"
       ],
       "victims": 0,
