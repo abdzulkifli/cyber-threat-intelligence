@@ -123,8 +123,26 @@ function normalizeVictim(v, idx) {
     discovered: toIso(v.discovered || v.discovered_at || v.date || v.published || v.created_at || v.firstseen || v.first_seen),
     attacked: toIso(v.attacked || v.attackdate || v.attack_date),
     website: str(v.website, v.domain, v.url),
+    screenshot: str(v.screenshot, v.screenshot_url),
+    infostealer: str(v.infostealer, v.infostealer_status, v.stealer),
+    press: str(v.press, v.press_coverage, v.presscoverage),
+    description: str(v.description, v.summary),
     sourceUrl: str(v.permalink, v.source_url, v.link, v.post_url)
   };
+}
+
+function flatStrings(value) {
+  if (value === undefined || value === null) return [];
+  const input = Array.isArray(value) ? value : [value];
+  const out = [];
+  for (const item of input) {
+    if (typeof item === 'string' || typeof item === 'number') out.push(String(item).trim());
+    else if (item && typeof item === 'object') {
+      const candidate = str(item.id, item.name, item.technique, item.cve, item.tool, item.title, item.description);
+      if (candidate) out.push(candidate);
+    }
+  }
+  return [...new Set(out.filter(Boolean))];
 }
 
 function normalizeGroup(g) {
@@ -143,8 +161,15 @@ function normalizeGroup(g) {
     active,
     status: rawStatus || (active ? 'active' : 'unknown'),
     description: str(g.description, g.profile?.description, profileText),
-    locations: Array.isArray(g.locations) ? g.locations.length : num(g.locations),
-    victims: num(g.victims, g.victim_count, g.count)
+    locationCount: Array.isArray(g.locations) ? g.locations.length : num(g.locations),
+    locations: flatStrings(g.locations),
+    victims: num(g.victims, g.victim_count, g.count),
+    firstSeen: toIso(g.first_seen || g.firstseen || g.firstSeen),
+    lastSeen: toIso(g.last_seen || g.lastseen || g.lastSeen),
+    profileUrl: str(g.url, g.profile_url, g.link),
+    ttps: flatStrings(g.ttps || g.ttp || g.techniques || g.mitre || g.mitre_attack),
+    vulnerabilities: flatStrings(g.vulnerabilities || g.cves || g.cve || g.exploits),
+    tools: flatStrings(g.tools || g.software || g.utilities)
   };
 }
 
