@@ -6,15 +6,15 @@
     "upstream": "ransomware.live",
     "mode": "direct-v2",
     "authentication": "none",
-    "collectedAt": "2026-08-07T22:05:15.681Z",
-    "checkedAt": "2026-08-07T22:05:15.681Z",
+    "collectedAt": "2026-08-07T22:50:30.545Z",
+    "checkedAt": "2026-08-07T22:50:30.545Z",
     "dataUpdatedAt": "2026-08-07T16:49:43.439Z",
     "lastSourceUpdate": "2026-08-07T16:30:41.713Z",
     "latestVictimDiscovered": "2026-08-07T16:30:41.713Z",
     "latestVictimName": "Hitech Distribuzione Informatica S.r.l. (HTDI)",
     "latestVictimGroup": "spacebears",
     "latestVictimCountry": "IT",
-    "sourceDataAgeMinutes": 335,
+    "sourceDataAgeMinutes": 380,
     "feedFreshness": "fresh",
     "newClaimsSincePreviousCollection": 0,
     "selectedBy": "freshest-latest-victim",
@@ -1750,8 +1750,7 @@
       "description": "0mega is a double-extortion ransomware group that emerged in May 2022, targeting businesses across multiple sectors worldwide by encrypting files and threatening to leak stolen data; it also pivoted to cloud-based extortion by compromising Microsoft 365 admin accounts.",
       "locationCount": 2,
       "locations": [
-        "0mega | Blog",
-        "kelkoogroup.net"
+        "0mega | Blog"
       ],
       "victims": 0,
       "firstSeen": null,
@@ -2962,7 +2961,9 @@
       "status": "active",
       "description": "CoinbaseCartel specializes in data acquisition through system access and strategic partnerships. It focus exclusively on data exfiltration—our operations never involve system encryption or operational disruption.",
       "locationCount": 1,
-      "locations": [],
+      "locations": [
+        "System Breach • Coinbasecartel"
+      ],
       "victims": 0,
       "firstSeen": null,
       "lastSeen": null,
@@ -4781,8 +4782,8 @@
       "description": "",
       "locationCount": 2,
       "locations": [
-        "Posts | L Blog",
-        "Home | L Blog"
+        "Home | L Blog",
+        "Posts | L Blog"
       ],
       "victims": 0,
       "firstSeen": null,
@@ -4956,9 +4957,9 @@
       "description": "LockBit, also recognized as LockBit Black or Lockbit 3.0, is one of the largest Ransomware Groups in the world and has orchestrated extensive cyberattacks across various industries, impacting thousands of organizations globally with its relentless and adaptive strategies.",
       "locationCount": 36,
       "locations": [
+        "LockBit BLOG",
         "LockBit LOGIN",
         "Title",
-        "LockBit BLOG",
         "Humanity check",
         "504 Gateway Time-out"
       ],
@@ -5744,8 +5745,8 @@
       "locations": [
         "RaaS Service Started",
         "NightSpire",
-        "Database | NightSpire",
-        "Verify human - NightSpire"
+        "Verify human - NightSpire",
+        "Database | NightSpire"
       ],
       "victims": 0,
       "firstSeen": null,
