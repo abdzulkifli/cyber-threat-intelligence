@@ -1,0 +1,45 @@
+name: Enrich FIRST EPSS Intelligence
+
+on:
+  workflow_dispatch:
+  schedule:
+    # FIRST publishes EPSS daily, typically shortly after 13:30 UTC.
+    # Run at 14:15 UTC to allow the new daily file to settle.
+    - cron: '15 14 * * *'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: epss-intelligence-update
+  cancel-in-progress: false
+
+jobs:
+  update-epss:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+          package-manager-cache: false
+
+      - name: Collect FIRST EPSS daily intelligence
+        run: node scripts/fetch-epss.js
+
+      - name: Commit changed EPSS intelligence
+        run: |
+          git config user.name "cti-intel-bot"
+          git config user.email "cti-intel-bot@users.noreply.github.com"
+          git add data/epss.json
+          if git diff --cached --quiet; then
+            echo "No EPSS intelligence changes to commit."
+          else
+            git commit -m "chore: update FIRST EPSS intelligence"
+            git push
+          fi
