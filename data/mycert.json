@@ -4,10 +4,11 @@
     "source": "MyCERT / CyberSecurity Malaysia",
     "sourceUrl": "https://mycert.org.my/portal/index",
     "collectedAt": "2026-08-07T10:00:00.000Z",
-    "lastAttemptAt": "2026-08-07T10:00:00.000Z",
-    "lastAttemptStatus": "bootstrap",
+    "lastAttemptAt": "2026-08-07T10:10:57.750Z",
+    "lastAttemptStatus": "failed",
     "collectionMode": "bootstrap",
-    "note": "Bootstrap from the latest official MyCERT advisory listing. The scheduled collector replaces this automatically when direct or reader-transport collection succeeds."
+    "note": "Refresh failed, so the last known-good MyCERT dataset was preserved.",
+    "lastError": "No advisory records parsed from reader response"
   },
   "stats": {
     "totalLoaded": 8,
@@ -59,7 +60,9 @@
       "url": "https://mycert.org.my/portal/advisories?id=fb834148-452a-44d2-858b-7f5c64611d22",
       "type": "VULNERABILITY",
       "severity": "",
-      "cves": ["CVE-2026-46817"]
+      "cves": [
+        "CVE-2026-46817"
+      ]
     },
     {
       "id": "MA-1474.072026",
@@ -68,7 +71,9 @@
       "url": "https://mycert.org.my/portal/advisories?id=431fab9c-d24c-4a27-ba93-e92edafdefa5",
       "type": "VULNERABILITY",
       "severity": "CRITICAL SIGNAL",
-      "cves": ["CVE-2026-53412"]
+      "cves": [
+        "CVE-2026-53412"
+      ]
     },
     {
       "id": "MA-1473.072026",
@@ -77,7 +82,9 @@
       "url": "https://mycert.org.my/portal/advisories?id=431fab9c-d24c-4a27-ba93-e92edafdefa5",
       "type": "VULNERABILITY",
       "severity": "CRITICAL SIGNAL",
-      "cves": ["CVE-2026-56164"]
+      "cves": [
+        "CVE-2026-56164"
+      ]
     },
     {
       "id": "MA-1472.072026",
@@ -86,7 +93,9 @@
       "url": "https://mycert.org.my/portal/advisories?id=431fab9c-d24c-4a27-ba93-e92edafdefa5",
       "type": "VULNERABILITY",
       "severity": "",
-      "cves": ["CVE-2026-56155"]
+      "cves": [
+        "CVE-2026-56155"
+      ]
     }
   ]
 }
