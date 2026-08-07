@@ -2,6 +2,9 @@ const fs = require('fs');
 const path = require('path');
 
 const OUT = path.join(__dirname, '..', 'data', 'ransomware.json');
+const HIST_OUT = path.join(__dirname, '..', 'data', 'ransomware-history.json');
+const HISTORY_DAYS = 365;
+const HISTORY_MAX = 10000;
 
 const SOURCES = [
   {
@@ -255,6 +258,34 @@ async function getSourceData() {
   throw new Error(`All ransomware public sources failed. Last error: ${lastError?.message || 'unknown error'}`);
 }
 
+function victimKey(v) {
+  return str(v.id) || [str(v.victim), str(v.group), str(v.country), str(v.discovered)].join('|').toLowerCase();
+}
+
+function readHistory() {
+  try {
+    const raw = JSON.parse(fs.readFileSync(HIST_OUT, 'utf8'));
+    return Array.isArray(raw?.victims) ? raw.victims : [];
+  } catch {
+    return [];
+  }
+}
+
+function mergeHistory(current) {
+  const map = new Map();
+  for (const v of [...readHistory(), ...current]) {
+    const k = victimKey(v);
+    if (!k) continue;
+    const prev = map.get(k) || {};
+    map.set(k, { ...prev, ...v });
+  }
+  const cutoff = Date.now() - HISTORY_DAYS * 86400000;
+  return [...map.values()]
+    .filter(v => !v.discovered || new Date(v.discovered).getTime() >= cutoff)
+    .sort((a,b) => String(b.discovered || '').localeCompare(String(a.discovered || '')))
+    .slice(0, HISTORY_MAX);
+}
+
 async function main() {
   const src = await getSourceData();
 
@@ -309,10 +340,28 @@ async function main() {
     groups
   };
 
+  const historyVictims = mergeHistory(victims);
+  const historyOutput = {
+    meta: {
+      status: 'ok',
+      source: src.source,
+      sourceUrl: src.sourceUrl,
+      upstream: src.upstream,
+      collectedAt: new Date().toISOString(),
+      retentionDays: HISTORY_DAYS,
+      maxRecords: HISTORY_MAX,
+      methodology: 'Rolling archive built by merging each public recent-victims collection. Claims are not independently verified incidents.'
+    },
+    stats: { retainedClaims: historyVictims.length },
+    victims: historyVictims
+  };
+
   fs.mkdirSync(path.dirname(OUT), { recursive: true });
   fs.writeFileSync(OUT, JSON.stringify(output, null, 2) + '\n');
+  fs.writeFileSync(HIST_OUT, JSON.stringify(historyOutput, null, 2) + '\n');
 
   console.log(`SUCCESS: ${src.source}`);
+  console.log(`Rolling history retained: ${historyVictims.length} claims (${HISTORY_DAYS} days max)`);
   console.log(`Saved ${victims.length} recent ransomware claims and ${groups.length} groups to ${OUT}`);
   console.log(`Authentication: none`);
   console.log(`Active groups: ${output.stats.activeGroups}; claims within 24h: ${claims24h}`);
