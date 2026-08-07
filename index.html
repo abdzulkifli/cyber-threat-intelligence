@@ -11,9 +11,9 @@
   <main class="shell">
     <header class="header">
       <div>
-        <div class="eyebrow">PHASE 1A + 1B · EXTERNAL THREAT & VULNERABILITY INTELLIGENCE</div>
+        <div class="eyebrow">PHASE 1A + 1B + 1C · EXTERNAL THREAT, VULNERABILITY & EXPLOITATION INTELLIGENCE</div>
         <h1>Cyber Threat Intelligence Command Centre</h1>
-        <div class="sub">Automated CISA Known Exploited Vulnerabilities intelligence enriched with NVD CVSS severity and vulnerability metadata. Source evidence, timestamps and collection health remain visible at every refresh.</div>
+        <div class="sub">CISA Known Exploited Vulnerabilities enriched with NVD CVSS severity and FIRST EPSS exploitation probability. Every source remains independently collected, timestamped and traceable.</div>
       </div>
       <div class="live"><span class="dot" id="liveDot"></span><strong id="feedStatus">LOADING</strong></div>
     </header>
@@ -27,6 +27,20 @@
       <div class="card metric"><div class="label">NVD CVSS Coverage</div><div class="value" id="nvdCoverage">—</div><div class="hint" id="nvdCoverageHint">Waiting for NVD</div></div>
       <div class="card metric critical-metric"><div class="label">Critical CVSS</div><div class="value" id="critical">—</div><div class="hint">NVD severity: critical</div></div>
       <div class="card metric high-metric"><div class="label">High CVSS</div><div class="value" id="high">—</div><div class="hint">NVD severity: high</div></div>
+    </section>
+
+    <section class="card panel epss-summary-panel">
+      <div class="panel-head">
+        <div><h2>FIRST EPSS Exploitation Probability</h2><div class="muted">Probability of exploitation in the wild during the next 30 days, as estimated by FIRST EPSS</div></div>
+        <span class="muted" id="epssScoreDate">Waiting for EPSS collection</span>
+      </div>
+      <div class="epss-summary-grid">
+        <div><span class="summary-label">EPSS Coverage</span><strong id="epssCoverage">—</strong><small id="epssCoverageHint">Run EPSS workflow</small></div>
+        <div><span class="summary-label">EPSS ≥ 50%</span><strong id="epss50">—</strong><small>Very high exploitation probability</small></div>
+        <div><span class="summary-label">EPSS ≥ 10%</span><strong id="epss10">—</strong><small>Elevated exploitation probability</small></div>
+        <div><span class="summary-label">Top 1% Percentile</span><strong id="epss99">—</strong><small>At or above 99th percentile</small></div>
+        <div class="priority-summary"><span class="summary-label">Critical CTI Priority</span><strong id="priorityCritical">—</strong><small>External intelligence priority, not organisational risk</small></div>
+      </div>
     </section>
 
     <section class="two">
@@ -49,6 +63,12 @@
             <div class="feed-meta">Enriched: <strong id="nvdRecordCount">—</strong> · CVSS: <strong id="nvdCvssCount">—</strong></div>
             <div class="feed-meta">Refresh policy: <strong>Every 2 hours</strong></div>
           </div>
+          <div class="feed-row">
+            <div class="feed-title"><strong>FIRST EPSS</strong><span class="badge" id="epssSourceBadge">CHECKING</span></div>
+            <div class="feed-meta">Collected: <strong id="epssCollectedAt">—</strong></div>
+            <div class="feed-meta">Score date: <strong id="epssDate">—</strong> · Matched KEV: <strong id="epssRecordCount">—</strong></div>
+            <div class="feed-meta">Model: <strong id="epssModel">—</strong> · Refresh policy: <strong>Daily</strong></div>
+          </div>
         </div>
       </div>
     </section>
@@ -69,16 +89,23 @@
 
     <section class="card panel">
       <div class="panel-head">
-        <div><h2>Live KEV + NVD Intelligence</h2><div class="muted" id="resultLabel">Loading intelligence…</div></div>
+        <div><h2>Live KEV + NVD + EPSS Intelligence</h2><div class="muted" id="resultLabel">Loading intelligence…</div></div>
         <div class="toolbar">
           <input id="search" placeholder="Search CVE, vendor, product…" />
           <select id="severityFilter">
             <option value="all">All severity</option>
-            <option value="CRITICAL">Critical</option>
-            <option value="HIGH">High</option>
-            <option value="MEDIUM">Medium</option>
-            <option value="LOW">Low</option>
-            <option value="UNKNOWN">No CVSS / Unknown</option>
+            <option value="CRITICAL">Critical</option><option value="HIGH">High</option><option value="MEDIUM">Medium</option><option value="LOW">Low</option><option value="UNKNOWN">No CVSS / Unknown</option>
+          </select>
+          <select id="epssFilter">
+            <option value="all">All EPSS</option>
+            <option value="50">EPSS ≥ 50%</option>
+            <option value="10">EPSS ≥ 10%</option>
+            <option value="1">EPSS ≥ 1%</option>
+            <option value="lt1">EPSS &lt; 1%</option>
+          </select>
+          <select id="priorityFilter">
+            <option value="all">All priority</option>
+            <option value="CRITICAL">Critical priority</option><option value="HIGH">High priority</option><option value="MEDIUM">Medium priority</option><option value="LOW">Low priority</option>
           </select>
           <select id="ransomFilter"><option value="all">All KEVs</option><option value="yes">Ransomware related</option><option value="no">Not known ransomware</option></select>
           <select id="periodFilter"><option value="all">All dates</option><option value="7">Added ≤ 7 days</option><option value="30">Added ≤ 30 days</option><option value="90">Added ≤ 90 days</option></select>
@@ -86,15 +113,26 @@
       </div>
       <div class="table-wrap">
         <table>
-          <thead><tr><th>Date Added</th><th>CVE</th><th>Vendor / Product</th><th>CVSS</th><th>Severity</th><th>Ransomware</th><th>Vulnerability Intelligence</th><th>Required Action</th></tr></thead>
+          <thead><tr><th>Date Added</th><th>CVE</th><th>Vendor / Product</th><th>CVSS</th><th>Severity</th><th>EPSS</th><th>Percentile</th><th>Ransomware</th><th>CTI Priority</th><th>Vulnerability Intelligence</th><th>Required Action</th></tr></thead>
           <tbody id="rows"></tbody>
         </table>
       </div>
     </section>
 
-    <div class="notice">This product uses the NVD API but is not endorsed or certified by the NVD.</div>
+    <section class="card panel methodology">
+      <div class="panel-head"><div><h2>CTI Priority Score</h2><div class="muted">Transparent external-intelligence prioritisation for Phase 1C</div></div><span class="muted">0–100</span></div>
+      <div class="method-grid">
+        <div><strong>CVSS</strong><span>Up to 30 points</span></div>
+        <div><strong>EPSS</strong><span>Up to 35 points</span></div>
+        <div><strong>Known ransomware use</strong><span>Up to 25 points</span></div>
+        <div><strong>Recent KEV addition</strong><span>Up to 10 points</span></div>
+      </div>
+      <div class="method-note">This is an <strong>external CTI priority score</strong>. It is not an organisational risk score. Asset exposure, business criticality and control effectiveness will be added in later phases.</div>
+    </section>
+
+    <div class="notice">EPSS data is provided by FIRST. This product also uses the NVD API but is not endorsed or certified by the NVD.</div>
     <div class="footer">
-      <div>Phase 1 architecture: CISA + NVD → Scheduled Collectors → Normalised JSON → GitHub Pages Dashboard. PostgreSQL, EPSS, organisational exposure and AI layers remain later phases.</div>
+      <div>Phase 1 architecture: CISA + NVD + FIRST EPSS → Scheduled Collectors → Normalised JSON → GitHub Pages Dashboard. PostgreSQL, organisational exposure and AI layers remain later phases.</div>
       <div class="developer-credit">Developed by <strong>Abdullah Zulkifli</strong></div>
     </div>
   </main>
