@@ -4,7 +4,7 @@
     "source": "ransomware.live API v2",
     "sourceUrl": "https://www.ransomware.live/",
     "upstream": "ransomware.live",
-    "collectedAt": "2026-08-07T12:06:10.810Z",
+    "collectedAt": "2026-08-07T12:19:00.481Z",
     "retentionDays": 365,
     "maxRecords": 10000,
     "methodology": "Rolling archive built by merging each public recent-victims collection. Claims are not independently verified incidents."
@@ -22,7 +22,11 @@
       "discovered": "2026-08-07T08:09:54.202Z",
       "attacked": "2026-08-06T15:20:12.000Z",
       "website": "dhc.co.jp",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "",
+      "infostealer": "[object Object]",
+      "press": "",
+      "description": "dhc.co.jp zoominfo.com/c/dhc-corp/372590440 DHC Corporation is a prominent Japanese brand renowned for its high-quality cosmetics, dietary supplements, and health foods. Originally founded as a translation company, it achieved global success by focusing on pure, natural ingredients—most notably its signature olive oil skincare. Today, DHC is trusted worldwide for combining rigorous scientific research with effective, affordable wellness products."
     },
     {
       "id": "INKA Group GmbH Co-38",
@@ -33,7 +37,11 @@
       "discovered": "2026-08-07T08:09:34.476Z",
       "attacked": "2026-08-06T15:32:27.000Z",
       "website": "https://www.ransomware.live/id/SU5LQSBHcm91cCBHbWJIIENvQHRoZWdlbnRsZW1lbg==",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "",
+      "infostealer": "",
+      "press": "",
+      "description": "INKA Group GmbH & Co. KG is a German real estate holding company headquartered in Munich, registered in the Munich Commercial Register under HRA 99442. It specializes in leasing and renting own or leased land, buildings, and apartments, as well as managing commercial real estate on a fee or contract basis. The company operates as a closed investment and management vehicle with no public website or brand. It should not be confused with the Turkish İnka Group holding or other similarly named companies."
     },
     {
       "id": "Vitex Pharmaceuticals-37",
@@ -44,7 +52,11 @@
       "discovered": "2026-08-07T08:09:13.132Z",
       "attacked": "2026-08-06T15:37:16.000Z",
       "website": "vitexpharma.com",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "",
+      "infostealer": "[object Object]",
+      "press": "",
+      "description": "vitexpharma.com zoominfo.com/c/vitex-pharmaceuticals-pty-ltd/90505264 Vitex Pharmaceuticals is a leading Australian contract manufacturer specializing in vitamins, minerals, and nutritional complementary medicines. Founded in 1989, this wholly Australian-owned company operates one of the country's largest and most state-of-the-art pharmaceutical manufacturing facilities. Recently, the company significantly expanded its capacity by opening a massive $250 million facility in Western Sydney to supply both domestic and global markets"
     },
     {
       "id": "Mdj Management-36",
@@ -55,7 +67,11 @@
       "discovered": "2026-08-07T08:08:52.768Z",
       "attacked": "2026-08-06T15:40:11.000Z",
       "website": "appliedbizinvest.com",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "",
+      "infostealer": "[object Object]",
+      "press": "",
+      "description": "appliedbizinvest.com zoominfo.com/c/mdj-management-llc/410565499 Applied Business Investments, Inc. (operating alongside MDJ Management LLC) is a private US-based management and finance consulting firm registered in Florida. Founded in the late 2000s, the company focuses on business investments, corporate management strategies, and financial advisory services. It operates as a boutique entity providing specialized support and investment structuring for various commercial projects"
     },
     {
       "id": "Hst-35",
@@ -66,7 +82,11 @@
       "discovered": "2026-08-07T08:08:32.615Z",
       "attacked": "2026-08-06T15:41:52.000Z",
       "website": "hstechnology.com",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "",
+      "infostealer": "[object Object]",
+      "press": "",
+      "description": "hstechnology.com zoominfo.com/c/hst/352516154 digital platform for Healthcare Solutions Team (HST), a US-based healthcare cost-containment company now operating as Claritev. The company specializes in value-driven health plans, reference-based pricing solutions, and patient advocacy to reduce medical expenses. Through its HST Care Connect portal, it helps employers and individuals seamlessly find quality healthcare providers and optimize their medical benefits"
     },
     {
       "id": "Groupe BPCE-49",
@@ -77,7 +97,11 @@
       "discovered": "2026-08-07T08:08:12.115Z",
       "attacked": "2026-08-06T00:00:00.000Z",
       "website": "bpce-vietnam.com",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "https://images.ransomware.live/victims/6bb24a284e9ae9b6112f26bceba4f478.png",
+      "infostealer": "[object Object]",
+      "press": "",
+      "description": "bpce-vietnam.com zoominfo.com/c/groupe-bpce/457963650 BPCE International (formerly Natixis), the Ho Chi Minh City branch of France’s second-largest banking group, Groupe BPCE. Operating in Vietnam since 1988, it is one of the country's longest-established foreign bank branches, holding a full banking license. The institution specializes in corporate and investment banking, offering specialized finance, trade solutions, and transaction processing to businesses across the region."
     },
     {
       "id": "Axson Teknik-34",
@@ -88,7 +112,11 @@
       "discovered": "2026-08-07T08:07:50.003Z",
       "attacked": "2026-08-06T15:44:36.000Z",
       "website": "axson.se",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "",
+      "infostealer": "[object Object]",
+      "press": "",
+      "description": "axson.se zoominfo.com/c/axson-teknik-ab/456419010 \nAxson Teknik AB is a Swedish industrial supplier based in Askim, specializing in high-quality manual and robotic welding and cutting equipment. Founded in 1984, the company provides comprehensive technical services, maintenance, and specialized training for various industrial applications. They represent leading global brands such as Fronius, Thermal Dynamics, and Orbitalum, serving as a reliable partner for the manufacturing sector"
     },
     {
       "id": "Ponti-33",
@@ -99,7 +127,11 @@
       "discovered": "2026-08-07T08:07:28.903Z",
       "attacked": "2026-08-06T15:48:23.000Z",
       "website": "ponti.pl",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "",
+      "infostealer": "[object Object]",
+      "press": "",
+      "description": "ponti.pl Ponti is a specialized automotive company based in Gdańsk, Poland, focused on the direct import, sales, and professional servicing of American vehicles. Operating as a leading expert in the US car market, the company handles everything from modern everyday models to the restoration of classic muscle cars and vintage vehicles. They provide a comprehensive range of services, including sourcing, repairing post-accident imports, and dedicated mechanical maintenance for automotive enthusiasts"
     },
     {
       "id": "Godollo-32",
@@ -110,7 +142,11 @@
       "discovered": "2026-08-07T08:07:07.493Z",
       "attacked": "2026-08-06T15:51:17.000Z",
       "website": "godolloi.hu",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "",
+      "infostealer": "[object Object]",
+      "press": "",
+      "description": "godolloi.hu zoominfo.com/c/gödöll/1295448671 Gödöllő Ingatlanközpont is a leading real estate agency based in Gödöllő, Hungary, specializing in property sales, rentals, and construction in Eastern Pest County. The company offers a vast portfolio of residential and commercial properties, including apartments, family houses, land plots, and industrial spaces across Gödöllő and its surrounding towns. Established as a trusted local expert, the agency provides comprehensive real estate brokerage services to help clients navigate the regional property market"
     },
     {
       "id": "Hoang Chiropractic Center-31",
@@ -121,7 +157,11 @@
       "discovered": "2026-08-07T08:06:45.692Z",
       "attacked": "2026-08-06T15:52:37.000Z",
       "website": "hoangchiro.com",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "",
+      "infostealer": "[object Object]",
+      "press": "",
+      "description": "hoangchiro.com zoominfo.com/c/hoang-chiropractic-center/357138190 Hoang Chiropractic Center is a specialized healthcare clinic located in Metairie, Louisiana, led by Dr. Kim Hoang. The practice focuses on non-surgical pain relief and holistic wellness, offering services like AccuSpina spinal decompression, chiropractic adjustments, and custom orthotics. They are dedicated to helping patients relieve back pain and restore the body's natural ability to heal itself through personalized care"
     },
     {
       "id": "aZaaS-30",
@@ -132,7 +172,11 @@
       "discovered": "2026-08-07T08:06:25.489Z",
       "attacked": "2026-08-06T15:54:42.000Z",
       "website": "azaas.com",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "",
+      "infostealer": "[object Object]",
+      "press": "",
+      "description": "azaas.com zoominfo.com/c/azaas-pte-ltd/353475433 aZaaS is a dynamic, Singapore-based IT services company specializing in IT as a Service (ITaaS) and hybrid cloud architecture solutions. They build and operate mission-grade, secure digital services for government and enterprise clients, strictly aligned with local compliance standards like GCC and IM8. The company provides comprehensive solutions including Business Process Management (BPM), Data as a Service (DaaS), and enterprise mobility to help organizations optimize their IT infrastructure"
     },
     {
       "id": "National Furniture Outlet-29",
@@ -143,7 +187,11 @@
       "discovered": "2026-08-07T08:05:45.114Z",
       "attacked": "2026-08-06T15:58:41.000Z",
       "website": "nationalfurnitureoutlet.com",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "",
+      "infostealer": "[object Object]",
+      "press": "",
+      "description": "nationalfurnitureoutlet.com National Furniture Outlet is a family-owned retail store in Westwego, Louisiana, serving the Greater New Orleans area for over three decades. They specialize in selling affordable living room, bedroom, and dining room furniture, as well as mattresses and appliances at highly competitive, discounted prices. The business is well-known locally for its frequent overstock sales and flexible financing options to support the community"
     },
     {
       "id": "TESI-28",
@@ -154,7 +202,11 @@
       "discovered": "2026-08-07T08:05:24.867Z",
       "attacked": "2026-08-06T16:00:27.000Z",
       "website": "tesiimpianti.it",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "",
+      "infostealer": "[object Object]",
+      "press": "",
+      "description": "tesiimpianti.it TESI S.r.l. is an Italian industrial company founded in 1997 as a spin-off from the Falck Group, specializing in machinery for coil and sheet metal processing. The company handles the buying, selling, installation, and maintenance of complete production lines for the metallurgical sector. A core part of their business is the deep refurbishment and technological upgrading of used industrial equipment with modern electrical and hydraulic systems."
     },
     {
       "id": "Intranet Gov Brasil-27",
@@ -165,7 +217,11 @@
       "discovered": "2026-08-07T08:05:01.069Z",
       "attacked": "2026-08-06T16:18:32.000Z",
       "website": "intranet.gov.br",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "",
+      "infostealer": "[object Object]",
+      "press": "",
+      "description": "English:\nintranet.gov.br \"Intranet Gov Brasil\" refers to the secure internal corporate network and digital portal infrastructure used by the Brazilian Federal Government (gov.br) for its civil servants and ministries. It provides restricted access to internal administrative systems, official communications, and digital public services that are hidden from the general public. The underlying IT infrastructure and cybersecurity of these portals are primarily developed and maintained by state-owned technology companies like Serpro and Dataprev."
     },
     {
       "id": "Feraboli Zootech-26",
@@ -176,7 +232,11 @@
       "discovered": "2026-08-07T08:04:40.469Z",
       "attacked": "2026-08-06T16:20:51.000Z",
       "website": "feraboli.it",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "",
+      "infostealer": "[object Object]",
+      "press": "",
+      "description": "feraboli.it Feraboli Zootech is a historic Italian company operating in the livestock sector since 1880, with a heritage spanning over six generations. Based in Sospiro (Cremona), it specializes in designing and building advanced cattle barns, metal structures, and tailor-made equipment for dairy and fattening farms. The company combines traditional craftsmanship with modern automation and animal welfare solutions for professional breeders."
     },
     {
       "id": "Nobema-25",
@@ -187,7 +247,11 @@
       "discovered": "2026-08-07T08:04:19.060Z",
       "attacked": "2026-08-06T16:22:50.000Z",
       "website": "nobema.com",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "",
+      "infostealer": "[object Object]",
+      "press": "",
+      "description": "nobema.com zoominfo.com/c/nobema-srl/371446900 Nobema S.r.l. is an Italian family-run manufacturing company based near Turin, specializing in plastic molding and integrated industrial services since 1986. They provide end-to-end solutions ranging from custom mold design and pre-series sampling to advanced gas injection technology and mass production. The company serves diverse sectors with high-quality plastic components, uniquely combining industrial parts with niche consumer products like drumsticks"
     },
     {
       "id": "Vemec-24",
@@ -198,7 +262,11 @@
       "discovered": "2026-08-07T08:03:58.250Z",
       "attacked": "2026-08-06T16:24:48.000Z",
       "website": "vemecsrl.com",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "",
+      "infostealer": "[object Object]",
+      "press": "",
+      "description": "vemecsrl.com zoominfo.com/c/vemec-srl/397907621 \nVemec S.r.l. is a leading Italian manufacturing company founded in 1983, specializing in the design and production of mechanical components and assemblies for heavy machinery. Operating across multiple production facilities covering over 23,000 square meters in Northern Italy, the firm provides advanced metal machining, laser cutting, and structural fabrication services. With more than 40 years of experience, Vemec delivers high-precision engineering solutions to diverse industrial sectors, including mechanotextiles and heavy equipment manufacturing"
     },
     {
       "id": "LensAss Architecten-23",
@@ -209,7 +277,11 @@
       "discovered": "2026-08-07T08:03:37.549Z",
       "attacked": "2026-08-06T16:27:23.000Z",
       "website": "lensass.be",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "",
+      "infostealer": "[object Object]",
+      "press": "",
+      "description": "lensass.be LensAss Architecten is a Belgian architecture studio based in Hasselt, founded in 1995 by Bart Lens. The firm centers its work on the relationship between space, light, and context, specializing in both renovation and new construction. Its portfolio spans private homes, galleries, and adaptive reuse of heritage buildings across Belgium."
     },
     {
       "id": "Phase Technologies-22",
@@ -220,7 +292,11 @@
       "discovered": "2026-08-07T08:03:17.356Z",
       "attacked": "2026-08-06T16:30:07.000Z",
       "website": "phasetechnologies.com",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "",
+      "infostealer": "[object Object]",
+      "press": "",
+      "description": "phasetechnologies.com zoominfo.com/c/phase-technologies-llc/92275872 Phase Technologies is a leading American manufacturer of advanced power electronics, specializing in digital phase converters, variable frequency drives (VFDs), and motor protection. Founded in 1999 and headquartered in Rapid City, South Dakota, the company engineers and assembles its products entirely in the USA. Their innovative solutions generate high-quality three-phase power from single-phase sources, maximizing energy efficiency and system reliability for industrial and agricultural applications"
     },
     {
       "id": "Holborn European Marketing-21",
@@ -231,7 +307,11 @@
       "discovered": "2026-08-07T08:02:56.864Z",
       "attacked": "2026-08-06T16:31:58.000Z",
       "website": "holborn.com.cy",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "",
+      "infostealer": "[object Object]",
+      "press": "",
+      "description": "holborn.com.cy zoominfo.com/c/holborn-european-marketing-company-ltd/462273998 \nHolborn European Marketing Company Limited is a Cyprus-based energy trading firm established in 1987, operating from its headquarters in Larnaca. The company specializes in purchasing crude oil and feedstocks, selling refined petroleum products, and active oil trading. It serves as a major energy supplier that fulfills local market needs in Cyprus while also maintaining a significant operational presence as a key oil products supplier in Northern Germany."
     },
     {
       "id": "ZS Salovnova-20",
@@ -242,7 +322,11 @@
       "discovered": "2026-08-07T08:02:34.269Z",
       "attacked": "2026-08-06T16:33:39.000Z",
       "website": "zssalounova.cz",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "",
+      "infostealer": "[object Object]",
+      "press": "",
+      "description": "zssalounova.cz ZŠ Šalounova is a primary school located in the Vítkovice district of Ostrava, Czech Republic, operating across two buildings on Šalounova and Halasova streets. The institution provides comprehensive standard education alongside specialized programs, a wide range of extracurricular clubs, and a full school counseling facility. It actively supports student success through dedicated staff, including school psychologists, special educators, and career counselors, as well as various educational and sports projects."
     },
     {
       "id": "Halliday Watkins Mann-19",
@@ -253,7 +337,11 @@
       "discovered": "2026-08-07T08:02:13.423Z",
       "attacked": "2026-08-06T16:35:27.000Z",
       "website": "hwmlawfirm.com",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "",
+      "infostealer": "[object Object]",
+      "press": "",
+      "description": "hwmlawfirm.com zoominfo.com/c/halliday--watkins--mann-pc/42929145 Halliday, Watkins & Mann, P.C. (HWM) is a Salt Lake City-based law firm founded in 1935, now operating as a fourth-generation family practice. The firm exclusively serves the mortgage banking industry, specializing in creditor remedies such as foreclosures, bankruptcies, replevins, evictions, and REO closings. With a team of 51–200 employees, HWM provides full-service legal support and title curative work to financial institutions across multiple states"
     },
     {
       "id": "YY Business Solutions-18",
@@ -264,7 +352,11 @@
       "discovered": "2026-08-07T08:01:53.100Z",
       "attacked": "2026-08-06T16:50:13.000Z",
       "website": "https://www.ransomware.live/id/WVkgQnVzaW5lc3MgU29sdXRpb25zQHRoZWdlbnRsZW1lbg==",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "",
+      "infostealer": "",
+      "press": "",
+      "description": "Y&Y Business Solutions (YYB Business Solutions Inc.) is a Bronx-based company located at 169 Lincoln Avenue, Suite 208, Bronx, NY 10454, reachable at (347) 270-1283. Founded and led by Valerie and Yerlin, the firm specializes in income taxes, immigration services, business license & registration, DMV & TLC services, and document translation. The company primarily serves Spanish-speaking immigrants and small business owners, helping them navigate U.S. immigration processes and tax requirements. They are most active on Instagram (@yybsolutions) and Facebook, where they share updates and client guidance."
     },
     {
       "id": "NCA Alarms-44",
@@ -275,7 +367,11 @@
       "discovered": "2026-08-07T07:47:58.509Z",
       "attacked": "2026-08-06T10:56:37.000Z",
       "website": "nca-alarms.com",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "https://images.ransomware.live/victims/0f535b9f7837b3c9b002ad26700ae66e.png",
+      "infostealer": "[object Object]",
+      "press": "",
+      "description": "NCA Alarms specializes in home and commercial security systems, offering a range of products including security cameras and alarm systems. The company prioritizes customer service and transparency, providing no long-term contracts and clear pricing for their services. Their intended clients include both residential and commercial customers in Nashville, Tennessee, looking for reliable security solutions. NCA Alarms also offers remote access options and system conversion services to enhance existing security setups. \nThe company headquarters is located in 3304 Charlotte Ave, Nashville, TN 37209, United States. 11-50 Employees"
     },
     {
       "id": "Nelson Manufacturing-45",
@@ -286,7 +382,11 @@
       "discovered": "2026-08-07T07:47:28.244Z",
       "attacked": "2026-08-06T10:52:35.000Z",
       "website": "nelsontrailers.com",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "https://images.ransomware.live/victims/1762c1ab0fd52d2c3db0e32e643159b3.png",
+      "infostealer": "[object Object]",
+      "press": "",
+      "description": "Nelson Manufacturing Company specializes in the design and production of innovative trailers and crane attachments tailored for various industries, including aerospace. Their product range includes custom-made crane attachments, hydraulic goosenecks, and specialty trailers, ensuring efficient transportation solutions for heavy equipment. The company serves clients in the aerospace sector, providing transport trailers that meet stringent quality requirements for aircraft and spacecraft components. Founded in 1947, Nelson Manufacturing is recognized as a leading manufacturer of multi-axle trailers in the United States. \nThe company headquarters is located in 6448 State Route 224, Ottawa, OH 45875, United States. 51-200 Employees"
     },
     {
       "id": "Southern Indiana Radiological Associates-46",
@@ -297,7 +397,11 @@
       "discovered": "2026-08-07T07:46:56.933Z",
       "attacked": "2026-08-06T09:39:40.000Z",
       "website": "https://www.ransomware.live/id/U291dGhlcm4gSW5kaWFuYSBSYWRpb2xvZ2ljYWwgQXNzb2NpYXRlc0BTdG9ybQ==",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "https://images.ransomware.live/victims/b5eb8e2fc366780cdd4d364646854d18.png",
+      "infostealer": "",
+      "press": "",
+      "description": "Southern Indiana Radiological Associates provides a comprehensive range of diagnostic imaging services including CT, MRI, PET scans, and various breast imaging procedures. Established in 1964, SIRA focuses on delivering high-quality medical imaging to diagnosis disease or injury while ensuring patient comfort and reassurance. Their target clients include individuals seeking imaging services in Bloomington and Southern Indiana, with a commitment to providing test results to healthcare providers within 48 hours. SIRA is recognized as a Breast Imaging Center of Excellence, emphasizing their dedication to women's health and advanced imaging technology. \nThe company headquarters is located in 500 S Landmark Ave, Bloomington, IN 47403, United States.\n51-200 Employees"
     },
     {
       "id": "Venture Logistics-0",
@@ -308,7 +412,11 @@
       "discovered": "2026-08-07T07:21:59.621Z",
       "attacked": "2026-08-07T07:21:40.126Z",
       "website": "https://www.ransomware.live/id/VmVudHVyZSBMb2dpc3RpY3NASGVsaXg=",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "https://images.ransomware.live/victims/cdba654f3b4b584642cd524063bc2b38.png",
+      "infostealer": "",
+      "press": "",
+      "description": "SharePoint libraries staged T1 (least) → T4 (most). Release countdown live on Helix. Tiers unlock by stage when each set timer reaches 0."
     },
     {
       "id": "Uber-1",
@@ -319,7 +427,11 @@
       "discovered": "2026-08-07T07:21:22.132Z",
       "attacked": "2026-08-07T07:20:58.230Z",
       "website": "uberfreight.com",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "https://images.ransomware.live/victims/9e9fe5f729ec6d1221e38d63a935981b.png",
+      "infostealer": "[object Object]",
+      "press": "",
+      "description": "SharePoint libraries staged T1 (least) → T4 (most). Release countdown live on Helix. Tiers unlock by stage when each set timer reaches 0."
     },
     {
       "id": "Highwoods Properties-2",
@@ -330,7 +442,11 @@
       "discovered": "2026-08-07T07:20:39.680Z",
       "attacked": "2026-08-07T07:20:22.602Z",
       "website": "highwoods.com",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "https://images.ransomware.live/victims/d6d39e3d47e2cdbbe20735abfb529d34.png",
+      "infostealer": "[object Object]",
+      "press": "",
+      "description": "SharePoint libraries staged T1 (least) → T4 (most). Release countdown live on Helix. Tiers unlock by stage when each set timer reaches 0."
     },
     {
       "id": "Morguard-3",
@@ -341,7 +457,11 @@
       "discovered": "2026-08-07T07:20:04.089Z",
       "attacked": "2026-08-07T07:19:46.878Z",
       "website": "morguard.com",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "https://images.ransomware.live/victims/a21ce6b755ff9b1a0c109e168c6248bf.png",
+      "infostealer": "[object Object]",
+      "press": "",
+      "description": "Morguard reached out, took extensions, then ignored the negotiation with no real offer.\n\nContacting us and stalling is not a strategy. Deadlines stand. Silence after outreach gets a private board and a countdown then publication."
     },
     {
       "id": "Westland Insurance-4",
@@ -352,7 +472,11 @@
       "discovered": "2026-08-07T07:19:28.426Z",
       "attacked": "2026-08-07T07:19:12.039Z",
       "website": "westlandinsurance.ca",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "https://images.ransomware.live/victims/41ba37adc59e7ad73f65f68e555778ce.png",
+      "infostealer": "[object Object]",
+      "press": "",
+      "description": "Westland reached out, got the full demand, then stalled with no serious number.\n\nContacting us and dragging process is not negotiation."
     },
     {
       "id": "reflet2000.fr-5",
@@ -363,7 +487,11 @@
       "discovered": "2026-08-07T02:27:04.827Z",
       "attacked": "2026-08-07T02:26:45.545Z",
       "website": "reflet2000.fr",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "https://images.ransomware.live/victims/a8e44b622388e297fcd6383928efe1b6.png",
+      "infostealer": "[object Object]",
+      "press": "",
+      "description": "REFLET 2000 is a French company founded in 1984, specializing in general building cleaning services (Nettoyage courant d..."
     },
     {
       "id": "www.actini.com-6",
@@ -374,7 +502,11 @@
       "discovered": "2026-08-07T02:26:26.648Z",
       "attacked": "2026-08-07T02:26:08.466Z",
       "website": "www.actini.com",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "https://images.ransomware.live/victims/1dafe29c646ce7a98c9f150be7c2b905.png",
+      "infostealer": "",
+      "press": "",
+      "description": "Actini Group (ACTINI SAS) is a French industrial machinery manufacturing company with over 70 years of experience, found..."
     },
     {
       "id": "www.ernat-bureau-etudes.fr-7",
@@ -385,7 +517,11 @@
       "discovered": "2026-08-07T02:25:49.603Z",
       "attacked": "2026-08-07T02:25:27.521Z",
       "website": "www.ernat-bureau-etudes.fr",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "https://images.ransomware.live/victims/738d08ce3f1d3781d8d84055f00f9e93.png",
+      "infostealer": "",
+      "press": "",
+      "description": "ERNAT (Etudes Réalisations Négoce Assistance Technique) SARL SCOP is a French worker cooperative (SCOP — Société C..."
     },
     {
       "id": "www.serengetiestates.co.za-8",
@@ -396,7 +532,11 @@
       "discovered": "2026-08-07T02:25:08.642Z",
       "attacked": "2026-08-07T02:25:05.896Z",
       "website": "www.serengetiestates.co.za",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "",
+      "infostealer": "",
+      "press": "",
+      "description": "Serengeti Estates (Serengeti Golf and Wildlife Estate) is a premier South African luxury residential golf and wildlife e..."
     },
     {
       "id": "www.hymiasa.com-9",
@@ -407,7 +547,11 @@
       "discovered": "2026-08-07T02:24:46.603Z",
       "attacked": "2026-08-07T02:24:28.670Z",
       "website": "www.hymiasa.com",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "https://images.ransomware.live/victims/acc93ff067740c7bc43a89f2c1fa54ba.png",
+      "infostealer": "",
+      "press": "",
+      "description": "HYMIASA (Hules y Mangueras Industriales y Automotrices, S.A. de C.V.) is a Mexican leading company specialized in fluid ..."
     },
     {
       "id": "Mayer Brown-10",
@@ -418,7 +562,11 @@
       "discovered": "2026-08-07T00:20:55.266Z",
       "attacked": "2026-08-07T00:20:53.716Z",
       "website": "https://www.ransomware.live/id/TWF5ZXIgQnJvd25AU2lsZW50UmFuc29tR3JvdXA=",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "",
+      "infostealer": "",
+      "press": "",
+      "description": "Mayer Brown is a distinctively global law firm, uniquely positioned to advise the world's leading comp…"
     },
     {
       "id": "Crystal Pharmatech-11",
@@ -429,7 +577,11 @@
       "discovered": "2026-08-06T23:28:03.221Z",
       "attacked": "2026-08-06T23:27:40.040Z",
       "website": "www.crystalpharmatech.com",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "https://images.ransomware.live/victims/e9d8a3d8265ead06e74fd7b84e870b3e.png",
+      "infostealer": "",
+      "press": "",
+      "description": "N/A"
     },
     {
       "id": "Signature Services-12",
@@ -440,7 +592,11 @@
       "discovered": "2026-08-06T19:56:53.076Z",
       "attacked": "2026-08-06T19:56:36.910Z",
       "website": "www.signatureservices.net",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "https://images.ransomware.live/victims/5a9cc649a5cdbe914568c5face33d1bf.png",
+      "infostealer": "",
+      "press": "",
+      "description": "United States"
     },
     {
       "id": "GCATS Investments-13",
@@ -451,7 +607,11 @@
       "discovered": "2026-08-06T19:56:18.866Z",
       "attacked": "2026-08-06T19:56:02.702Z",
       "website": "www.gcatstx.com",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "https://images.ransomware.live/victims/d693f6787042c14ae62ebdef179b1e94.png",
+      "infostealer": "",
+      "press": "",
+      "description": "United States"
     },
     {
       "id": "Platinum Group-14",
@@ -462,7 +622,11 @@
       "discovered": "2026-08-06T19:55:43.174Z",
       "attacked": "2026-08-06T19:55:24.729Z",
       "website": "www.platinum-grp.com",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "https://images.ransomware.live/victims/609f7bdf4b0d05fbbb8660f7d3e884f0.png",
+      "infostealer": "",
+      "press": "",
+      "description": "United States"
     },
     {
       "id": "www.jerryleigh.com-16",
@@ -473,7 +637,11 @@
       "discovered": "2026-08-06T17:26:56.836Z",
       "attacked": "2026-08-06T17:17:34.688Z",
       "website": "www.jerryleigh.com",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "https://images.ransomware.live/victims/e15b926360b5d1d0125d8072d11ec61a.png",
+      "infostealer": "",
+      "press": "",
+      "description": "Jerry Leigh is a family-owned women's, men's, and children's clothing manufacturer and brand management headquartered in Panorama City, CA, and established in 1962."
     },
     {
       "id": "www.talbotdes.org-15",
@@ -484,7 +652,11 @@
       "discovered": "2026-08-06T17:26:18.293Z",
       "attacked": "2026-08-06T17:21:23.803Z",
       "website": "www.talbotdes.org",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "https://images.ransomware.live/victims/b8a07ecb3492d6c56fe64adf48a204ed.png",
+      "infostealer": "",
+      "press": "",
+      "description": "Talbot County Department of Emergency Services provides essential emergency services including 9-1-1 communications, emergency medical services, and emergency management. The department aims to prepare the community for various emergencies, including natural and man-made disasters. Their intended clients include residents of Talbot County, first responders, and local businesses. They also offer resources such as CPR classes and community alerting systems to enhance public safety."
     },
     {
       "id": "King International LLC-17",
@@ -495,7 +667,11 @@
       "discovered": "2026-08-06T16:51:04.697Z",
       "attacked": "2026-08-06T16:50:38.934Z",
       "website": "www.kingsinternational.us",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "https://images.ransomware.live/victims/fb3168333cf4b47963348cc0b0081299.png",
+      "infostealer": "",
+      "press": "",
+      "description": "King International LLC (DL International) is a fresh-fruits-and-vegetables wholesaler/distributor that supplies produce for ongoing needs in retail an..."
     },
     {
       "id": "AmSpec-39",
@@ -506,7 +682,11 @@
       "discovered": "2026-08-06T15:27:38.136Z",
       "attacked": "2026-08-06T15:27:12.988Z",
       "website": "www.amspecgroup.com",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "https://images.ransomware.live/victims/0bfe169bcff5670ba71be5df3516b590.png",
+      "infostealer": "",
+      "press": "",
+      "description": "N/A"
     },
     {
       "id": "ALIZE (alize-sud.fr)-50",
@@ -517,7 +697,11 @@
       "discovered": "2026-08-06T15:26:53.663Z",
       "attacked": "2026-08-06T00:00:00.000Z",
       "website": "alize-sud.fr",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "https://images.ransomware.live/victims/cbcd91614d43de35f1668738e307e83f.png",
+      "infostealer": "[object Object]",
+      "press": "",
+      "description": "groupe-sirocco.com"
     },
     {
       "id": "Jakle & Alexander-40",
@@ -528,7 +712,11 @@
       "discovered": "2026-08-06T15:26:11.062Z",
       "attacked": "2026-08-06T15:25:47.685Z",
       "website": "www.jaklelaw.com",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "https://images.ransomware.live/victims/bd83a78e49b39b4fd7ee639526992aaa.png",
+      "infostealer": "",
+      "press": "",
+      "description": "N/A"
     },
     {
       "id": "Akuur Law Firm-42",
@@ -539,7 +727,11 @@
       "discovered": "2026-08-06T14:27:43.401Z",
       "attacked": "2026-08-06T14:27:23.389Z",
       "website": "www.akugurlaw.com",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "https://images.ransomware.live/victims/525e396e2d62a67038c2fb4e8b6d73c9.png",
+      "infostealer": "",
+      "press": "",
+      "description": "N/A"
     },
     {
       "id": "J&T Bank and Trust-51",
@@ -550,7 +742,11 @@
       "discovered": "2026-08-06T14:27:01.144Z",
       "attacked": "2026-08-06T00:00:00.000Z",
       "website": "www.jtbanktrust.com",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "https://images.ransomware.live/victims/8ed2cb8fd6edc5a655781d346195c8a7.png",
+      "infostealer": "",
+      "press": "",
+      "description": "N/A"
     },
     {
       "id": "MITC AG-43",
@@ -561,7 +757,11 @@
       "discovered": "2026-08-06T14:22:07.041Z",
       "attacked": "2026-08-06T14:21:52.275Z",
       "website": "www.mitc.ch",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "https://images.ransomware.live/victims/d4587038aaeb180af2341ad39ae67d6a.png",
+      "infostealer": "",
+      "press": "",
+      "description": "Industrial Engineering, IT Solutions and Technical Services."
     },
     {
       "id": "Basic Grain Products-52",
@@ -572,7 +772,11 @@
       "discovered": "2026-08-06T12:21:02.727Z",
       "attacked": "2026-08-06T00:00:00.000Z",
       "website": "https://www.ransomware.live/id/QmFzaWMgR3JhaW4gUHJvZHVjdHNAYWtpcmE=",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "",
+      "infostealer": "",
+      "press": "",
+      "description": "TasteMorr is a culinary platform that offers a variety of gourmet food products and cooking ser\nvices. The company aims to cater to food enthusiasts and home cooks looking for high-quality in\ngredients and unique recipes.\n\nWe will upload 104gb corporate data soon. Employee personal information (passports and SSNs, w9\nforms and so on), detailed financials, contracts and agreements, NDA, clients information and \nso on."
     },
     {
       "id": "Pharma Test Apparatebau AG-53",
@@ -583,7 +787,11 @@
       "discovered": "2026-08-06T11:51:36.054Z",
       "attacked": "2026-08-06T00:00:00.000Z",
       "website": "https://www.ransomware.live/id/UGhhcm1hIFRlc3QgQXBwYXJhdGViYXUgQUdAYWtpcmE=",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "",
+      "infostealer": "",
+      "press": "",
+      "description": "Pharma Test is an internationally leading manufacturer and household name for the development a\nnd production of high-value test devices and systems. They offer a complete product range from \nmanual, physical testing instruments to fully automated, analytical test systems to analyze the\nactive chemical composition of a dosage form as well as its release rate.\n\nWe will upload 46gb corporate data soon. Employee personal information (passports and so on), f\ninancials, contracts and agreements, NDA, clients information and so on."
     },
     {
       "id": "First Baptist Church of Belleview-54",
@@ -594,7 +802,11 @@
       "discovered": "2026-08-06T11:20:48.124Z",
       "attacked": "2026-08-06T00:00:00.000Z",
       "website": "www.fbcbelleview.org",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "https://images.ransomware.live/victims/0059d9591f3a81f0aead3693e446395d.png",
+      "infostealer": "",
+      "press": "",
+      "description": "First Baptist Church Belleview is dedicated to fostering devoted followers of Jesus Christ through worship and community engagement. They offer Sunday services at 10:45 a.m. and provide opportunities for learning and connection through various ministries and events."
     },
     {
       "id": "Hilliard's Air Conditioning & Heating Inc-55",
@@ -605,7 +817,11 @@
       "discovered": "2026-08-06T10:51:25.261Z",
       "attacked": "2026-08-06T00:00:00.000Z",
       "website": "www.hilliardsairandheat.com",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "https://images.ransomware.live/victims/1d341618beca8f183a614f4c2d16edef.png",
+      "infostealer": "",
+      "press": "",
+      "description": "Since 1988 customers have trusted Hilliard's Air Conditioning & Heating, Inc. as their air conditioning and heating specialist. As a family run business, Hilliard's takes great pride in serving Central Florida and is state licensed and insured."
     },
     {
       "id": "Gemstone UK-56",
@@ -616,7 +832,11 @@
       "discovered": "2026-08-06T10:50:52.667Z",
       "attacked": "2026-08-06T00:00:00.000Z",
       "website": "www.gemstoneuk.com",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "https://images.ransomware.live/victims/6b4c894c1fb74067ceafc4bdb5c10954.png",
+      "infostealer": "",
+      "press": "",
+      "description": "Gemstone UK was a company that operated for over 30 years before closing its doors. It served a diverse clientele, providing products and services related to gemstones. The company expressed gratitude to its loyal customers for their trust and support throughout the years."
     },
     {
       "id": "Hope's Windows-57",
@@ -627,7 +847,11 @@
       "discovered": "2026-08-06T10:23:53.002Z",
       "attacked": "2026-08-06T00:00:00.000Z",
       "website": "https://www.ransomware.live/id/SG9wZSdzIFdpbmRvd3NAY3J5MA==",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "",
+      "infostealer": "",
+      "press": "",
+      "description": "Coming soon...."
     },
     {
       "id": "St Theresa Catholic Church-58",
@@ -638,7 +862,11 @@
       "discovered": "2026-08-06T09:52:00.057Z",
       "attacked": "2026-08-06T00:00:00.000Z",
       "website": "mystcc.org",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "https://images.ransomware.live/victims/bc9034d308b3ba0d64f0b4d5d9bda9cf.png",
+      "infostealer": "[object Object]",
+      "press": "",
+      "description": "Today we have broadened our network and capability to provide services by partnering with other individuals, groups and churches through the Belleview Area Social Services (BASS) Network. BASS works to bring a coordinated approach to providing services to those in need."
     },
     {
       "id": "Stoneybrook West Master Association, Inc-59",
@@ -649,7 +877,11 @@
       "discovered": "2026-08-06T09:51:26.182Z",
       "attacked": "2026-08-06T00:00:00.000Z",
       "website": "stoneybrookwest.sites.townsq.io/0",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "https://images.ransomware.live/victims/3d9aa9cac9b64f282c6c47efec335800.png",
+      "infostealer": "",
+      "press": "",
+      "description": "At Stoneybrook West, we plan regularly scheduled group physical fitness and after school classes, personal fitness training, swimming classes, tennis instruction, and music lessons are just to name a few."
     },
     {
       "id": "Stonecrest POA-60",
@@ -660,7 +892,11 @@
       "discovered": "2026-08-06T09:50:52.937Z",
       "attacked": "2026-08-06T00:00:00.000Z",
       "website": "stonecrestpoa.com",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "https://images.ransomware.live/victims/cebb3bdb4072eb61ac687feafd981fb9.png",
+      "infostealer": "[object Object]",
+      "press": "",
+      "description": "Stonecrest POA is the mandatory property owners association for Stonecrest, a large gated 55+ residential community in Summerfield, Marion County, Florida. It is a nonprofit community-governance organization, not a conventional profit-making company."
     },
     {
       "id": "Magnolia Dental-61",
@@ -671,7 +907,11 @@
       "discovered": "2026-08-06T09:22:36.630Z",
       "attacked": "2026-08-06T00:00:00.000Z",
       "website": "www.magnoliadentalclinic.com",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "https://images.ransomware.live/victims/fc72385fbe73a8899bad6bddeeb51cd4.png",
+      "infostealer": "",
+      "press": "",
+      "description": "Our practice is dedicated to providing exceptional dental services to Summerfield, FL, and the surrounding areas. As a patient-centered practice, we treat you like family, prioritizing your comfort and well-being above all else."
     },
     {
       "id": "Country Oaks Veterinary Clinic-62",
@@ -682,7 +922,11 @@
       "discovered": "2026-08-06T09:22:03.268Z",
       "attacked": "2026-08-06T00:00:00.000Z",
       "website": "vetstopets.com",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "https://images.ransomware.live/victims/548c77427e94cd0a99b9e0cdd2dc5afc.png",
+      "infostealer": "[object Object]",
+      "press": "",
+      "description": "Country Oaks Veterinary Clinic is a full-service hospital established in 1976. We provide high-quality veterinary care in a modern, welcoming environment. Our experienced doctors and staff treat your pets like family."
     },
     {
       "id": "David King Architect-63",
@@ -693,7 +937,11 @@
       "discovered": "2026-08-06T09:21:30.061Z",
       "attacked": "2026-08-06T00:00:00.000Z",
       "website": "www.mapquest.com/us/florida/david-king-architect-427495503",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "https://images.ransomware.live/victims/0430696c6e6ab6ed618c7b6654950e8e.png",
+      "infostealer": "",
+      "press": "",
+      "description": "We are an Architectural Firm and Design and prepare plans for almost any low rise structure. We have designed Assisted Living Facilities, Offices, Warehouses, manufacturiing facilities and Car dealerships."
     },
     {
       "id": "Woodside Ranch-64",
@@ -704,7 +952,11 @@
       "discovered": "2026-08-06T09:20:58.524Z",
       "attacked": "2026-08-06T00:00:00.000Z",
       "website": "www.ricewoodside.com",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "https://images.ransomware.live/victims/473c69be57153602c0dddbbe9d69415a.png",
+      "infostealer": "",
+      "press": "",
+      "description": "Bryan and Holley Beattie Rice own and operate Woodside Ranch, a family run Thoroughbred Training Center in Ocala, Florida. Our motto is hard work and attention to detail. We are committed to giving young prospects the best possible start. We take great pride in our relentless effort to advance our methods and our facilities."
     },
     {
       "id": "Ferrell \\ Skyline Implants & Periodontics \\ Dr. Scott Ferguson-66",
@@ -715,7 +967,11 @@
       "discovered": "2026-08-06T09:03:00.556Z",
       "attacked": "2026-08-05T22:00:00.000Z",
       "website": "https://www.ransomware.live/id/RmVycmVsbCBcIFNreWxpbmUgSW1wbGFudHMgJiBQZXJpb2RvbnRpY3MgXCBEci4gU2NvdHQgRmVyZ3Vzb25AQmFycmFjdWRh",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "https://images.ransomware.live/victims/3145250deaab5caa24b625cb6f3d31f8.png",
+      "infostealer": "",
+      "press": "",
+      "description": "Full personal and servers files dumps from Skyline Implants & Periodontics company. The data files contain: medical documents of patients (including MRI scans of various parts of the body — files with the .dcm extension), personal photos, and the personal data of the doctor, Scott Ferguson, as well as documents from the company Skyline Implants & Periodontics — in particular, information on equipment and pharmaceutical procurement and other related materials. | Status: free | Size: 800 GB | Now free"
     },
     {
       "id": "RS Automation Co., Ltd.-47",
@@ -726,7 +982,11 @@
       "discovered": "2026-08-06T08:31:28.231Z",
       "attacked": "2026-08-06T08:31:10.928Z",
       "website": "cable-peeler.com",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "https://images.ransomware.live/victims/473dddb1f209305b811e4ffb59c624d5.png",
+      "infostealer": "[object Object]",
+      "press": "",
+      "description": "Full dump of all files from the servers and developers personal files and NAS. Legal documents, letters, drawings, assembly, C, and C++ source codes. Official manufacturer website: rsautomation.co.kr | Status: upcoming | Size: 637 GB | Starts at $50000.00"
     },
     {
       "id": "clubonecasino.com-48",
@@ -737,7 +997,11 @@
       "discovered": "2026-08-06T08:22:00.228Z",
       "attacked": "2026-08-06T08:21:42.300Z",
       "website": "clubonecasino.com",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "https://images.ransomware.live/victims/30e281e5d5890ca0f60b5e1d7edac51a.png",
+      "infostealer": "[object Object]",
+      "press": "",
+      "description": "Club One Casino is the premier poker room in Central California, featuring 51 table games, a 24-hour restaurant, and extensive non-gaming entertainment options such as sporting events and e-Sports. Catering to both seasoned players and newcomers,"
     },
     {
       "id": "vprj.org-65",
@@ -748,7 +1012,11 @@
       "discovered": "2026-08-05T23:53:43.993Z",
       "attacked": "2026-08-05T23:00:00.000Z",
       "website": "vprj.org",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "https://images.ransomware.live/victims/5be74d6d8a200bc68a1c7f8000d5e425.png",
+      "infostealer": "[object Object]",
+      "press": "",
+      "description": "The Virginia Peninsula Regional Jail (VPRJ) is a state-authorized, regional correctional facility located in Williamsburg, Virginia, USA. Opened in 1997, VPRJ provides short-to-medium-term detention services, ensuring public safety and order across the Virginia Peninsula region under the governance of a multi-jurisdictional jail board."
     },
     {
       "id": "nuv*******-67",
@@ -759,7 +1027,11 @@
       "discovered": "2026-08-05T21:00:53.612Z",
       "attacked": "2026-08-05T21:00:39.483Z",
       "website": "https://www.ransomware.live/id/bnV2KioqKioqKkBjbG9w",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "https://images.ransomware.live/victims/6102061631e2489ca2c213c1c254aba3.png",
+      "infostealer": "",
+      "press": "",
+      "description": "[CVE‑2026‑12569] Data exfiltrated included the following: Project, Soft"
     },
     {
       "id": "ipm*******-68",
@@ -770,7 +1042,11 @@
       "discovered": "2026-08-05T21:00:20.711Z",
       "attacked": "2026-08-05T21:00:07.153Z",
       "website": "https://www.ransomware.live/id/aXBtKioqKioqKkBjbG9w",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "https://images.ransomware.live/victims/6102061631e2489ca2c213c1c254aba3.png",
+      "infostealer": "",
+      "press": "",
+      "description": "[CVE‑2026‑12569] Data exfiltrated included the following: PDF files, Cad-files, Soft"
     },
     {
       "id": "ecc*******-69",
@@ -781,7 +1057,11 @@
       "discovered": "2026-08-05T20:59:48.465Z",
       "attacked": "2026-08-05T20:59:32.663Z",
       "website": "https://www.ransomware.live/id/ZWNjKioqKioqKkBjbG9w",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "https://images.ransomware.live/victims/6102061631e2489ca2c213c1c254aba3.png",
+      "infostealer": "",
+      "press": "",
+      "description": "[CVE‑2026‑12569] Data exfiltrated included the following: DBF files, Cad-files, Project, Soft, Backups"
     },
     {
       "id": "st*******-70",
@@ -792,7 +1072,11 @@
       "discovered": "2026-08-05T20:59:14.466Z",
       "attacked": "2026-08-05T20:58:59.815Z",
       "website": "https://www.ransomware.live/id/c3QqKioqKioqQGNsb3A=",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "https://images.ransomware.live/victims/6102061631e2489ca2c213c1c254aba3.png",
+      "infostealer": "",
+      "press": "",
+      "description": "[CVE‑2026‑12569] Data exfiltrated included the following: Database, Project"
     },
     {
       "id": "qc*******-71",
@@ -803,7 +1087,11 @@
       "discovered": "2026-08-05T20:58:41.728Z",
       "attacked": "2026-08-05T20:58:26.572Z",
       "website": "https://www.ransomware.live/id/cWMqKioqKioqQGNsb3A=",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "https://images.ransomware.live/victims/6102061631e2489ca2c213c1c254aba3.png",
+      "infostealer": "",
+      "press": "",
+      "description": "[CVE‑2026‑12569] Data exfiltrated included the following: Database, Project"
     },
     {
       "id": "flu*******-72",
@@ -814,7 +1102,11 @@
       "discovered": "2026-08-05T20:58:08.460Z",
       "attacked": "2026-08-05T20:57:55.703Z",
       "website": "https://www.ransomware.live/id/Zmx1KioqKioqKkBjbG9w",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "https://images.ransomware.live/victims/6102061631e2489ca2c213c1c254aba3.png",
+      "infostealer": "",
+      "press": "",
+      "description": "[CVE‑2026‑12569] Data exfiltrated included the following: Database, Project,Cad-files"
     },
     {
       "id": "mid*******-73",
@@ -825,7 +1117,11 @@
       "discovered": "2026-08-05T20:57:37.590Z",
       "attacked": "2026-08-05T20:57:22.969Z",
       "website": "https://www.ransomware.live/id/bWlkKioqKioqKkBjbG9w",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "https://images.ransomware.live/victims/6102061631e2489ca2c213c1c254aba3.png",
+      "infostealer": "",
+      "press": "",
+      "description": "[CVE‑2026‑12569] Data exfiltrated included the following: Database, Project"
     },
     {
       "id": "itk*******-74",
@@ -836,7 +1132,11 @@
       "discovered": "2026-08-05T20:57:00.825Z",
       "attacked": "2026-08-05T20:56:48.021Z",
       "website": "https://www.ransomware.live/id/aXRrKioqKioqKkBjbG9w",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "https://images.ransomware.live/victims/6102061631e2489ca2c213c1c254aba3.png",
+      "infostealer": "",
+      "press": "",
+      "description": "[CVE‑2026‑12569] Data exfiltrated included the following: Database, Projects"
     },
     {
       "id": "G3A*******-75",
@@ -847,7 +1147,11 @@
       "discovered": "2026-08-05T20:56:29.913Z",
       "attacked": "2026-08-05T20:56:16.672Z",
       "website": "https://www.ransomware.live/id/RzNBKioqKioqKkBjbG9w",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "https://images.ransomware.live/victims/6102061631e2489ca2c213c1c254aba3.png",
+      "infostealer": "",
+      "press": "",
+      "description": "[CVE‑2026‑12569] Data exfiltrated included the following: Database, Projects"
     },
     {
       "id": "arc*******-76",
@@ -858,7 +1162,11 @@
       "discovered": "2026-08-05T20:55:58.667Z",
       "attacked": "2026-08-05T20:55:45.355Z",
       "website": "https://www.ransomware.live/id/YXJjKioqKioqKkBjbG9w",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "https://images.ransomware.live/victims/6102061631e2489ca2c213c1c254aba3.png",
+      "infostealer": "",
+      "press": "",
+      "description": "[CVE‑2026‑12569] Data exfiltrated included the following: Database, Projects"
     },
     {
       "id": "omn*******-77",
@@ -869,7 +1177,11 @@
       "discovered": "2026-08-05T20:55:27.272Z",
       "attacked": "2026-08-05T20:55:13.265Z",
       "website": "https://www.ransomware.live/id/b21uKioqKioqKkBjbG9w",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "https://images.ransomware.live/victims/6102061631e2489ca2c213c1c254aba3.png",
+      "infostealer": "",
+      "press": "",
+      "description": "[CVE‑2026‑12569] Data exfiltrated included the following: Database, Projects, SQL Backups, Soft installers, Jpeg, Png, PDF - files"
     },
     {
       "id": "lif*******-78",
@@ -880,7 +1192,11 @@
       "discovered": "2026-08-05T20:54:55.196Z",
       "attacked": "2026-08-05T20:54:41.658Z",
       "website": "https://www.ransomware.live/id/bGlmKioqKioqKkBjbG9w",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "https://images.ransomware.live/victims/6102061631e2489ca2c213c1c254aba3.png",
+      "infostealer": "",
+      "press": "",
+      "description": "[CVE‑2026‑12569] Data exfiltrated included the following: Database, Projects, Backups, Logs, Soft installers, PDF, TXT, XML - files"
     },
     {
       "id": "sp*******-79",
@@ -891,7 +1207,11 @@
       "discovered": "2026-08-05T20:54:23.648Z",
       "attacked": "2026-08-05T20:54:11.052Z",
       "website": "https://www.ransomware.live/id/c3AqKioqKioqQGNsb3A=",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "https://images.ransomware.live/victims/6102061631e2489ca2c213c1c254aba3.png",
+      "infostealer": "",
+      "press": "",
+      "description": "[CVE‑2026‑12569] Data exfiltrated included the following: Database, Projects"
     },
     {
       "id": "iva*******-80",
@@ -902,7 +1222,11 @@
       "discovered": "2026-08-05T20:53:53.076Z",
       "attacked": "2026-08-05T20:53:40.976Z",
       "website": "https://www.ransomware.live/id/aXZhKioqKioqKkBjbG9w",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "https://images.ransomware.live/victims/6102061631e2489ca2c213c1c254aba3.png",
+      "infostealer": "",
+      "press": "",
+      "description": "[CVE‑2026‑12569] Data exfiltrated included the following: Database, Projects, Backups"
     },
     {
       "id": "nuo*******-81",
@@ -913,7 +1237,11 @@
       "discovered": "2026-08-05T20:53:22.977Z",
       "attacked": "2026-08-05T20:53:09.446Z",
       "website": "https://www.ransomware.live/id/bnVvKioqKioqKkBjbG9w",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "https://images.ransomware.live/victims/6102061631e2489ca2c213c1c254aba3.png",
+      "infostealer": "",
+      "press": "",
+      "description": "[CVE‑2026‑12569] Data exfiltrated included the following: Database, Projects, Soft installers"
     },
     {
       "id": "the*******-82",
@@ -924,7 +1252,11 @@
       "discovered": "2026-08-05T20:52:51.427Z",
       "attacked": "2026-08-05T20:52:38.958Z",
       "website": "https://www.ransomware.live/id/dGhlKioqKioqKkBjbG9w",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "https://images.ransomware.live/victims/6102061631e2489ca2c213c1c254aba3.png",
+      "infostealer": "",
+      "press": "",
+      "description": "[CVE‑2026‑12569] Data exfiltrated included the following: Database, Projects, Soft installers"
     },
     {
       "id": "wat*******-83",
@@ -935,7 +1267,11 @@
       "discovered": "2026-08-05T20:52:19.834Z",
       "attacked": "2026-08-05T20:52:05.252Z",
       "website": "https://www.ransomware.live/id/d2F0KioqKioqKkBjbG9w",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "https://images.ransomware.live/victims/6102061631e2489ca2c213c1c254aba3.png",
+      "infostealer": "",
+      "press": "",
+      "description": "[CVE‑2026‑12569] Data exfiltrated included the following: Database, Projects, Project Backups, SQL Database Backup"
     },
     {
       "id": "9al*******-84",
@@ -946,7 +1282,11 @@
       "discovered": "2026-08-05T20:51:47.183Z",
       "attacked": "2026-08-05T20:51:35.004Z",
       "website": "https://www.ransomware.live/id/OWFsKioqKioqKkBjbG9w",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "https://images.ransomware.live/victims/6102061631e2489ca2c213c1c254aba3.png",
+      "infostealer": "",
+      "press": "",
+      "description": "[CVE‑2026‑12569] Data exfiltrated included the following: Database, Projects, Project Backups, SQL Database Backup"
     },
     {
       "id": "int*******-85",
@@ -957,7 +1297,11 @@
       "discovered": "2026-08-05T20:51:16.886Z",
       "attacked": "2026-08-05T20:51:03.586Z",
       "website": "https://www.ransomware.live/id/aW50KioqKioqKkBjbG9w",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "https://images.ransomware.live/victims/6102061631e2489ca2c213c1c254aba3.png",
+      "infostealer": "",
+      "press": "",
+      "description": "[CVE‑2026‑12569] Data exfiltrated included the following: Database, Project, PDF, XLSX, XLS, DOCX - files"
     },
     {
       "id": "hon*******-86",
@@ -968,7 +1312,11 @@
       "discovered": "2026-08-05T20:50:45.458Z",
       "attacked": "2026-08-05T20:50:29.637Z",
       "website": "https://www.ransomware.live/id/aG9uKioqKioqKkBjbG9w",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "https://images.ransomware.live/victims/6102061631e2489ca2c213c1c254aba3.png",
+      "infostealer": "",
+      "press": "",
+      "description": "[CVE‑2026‑12569] Data exfiltrated included the following: Database, Project - files"
     },
     {
       "id": "ato*******-87",
@@ -979,7 +1327,11 @@
       "discovered": "2026-08-05T20:50:11.638Z",
       "attacked": "2026-08-05T20:49:57.662Z",
       "website": "https://www.ransomware.live/id/YXRvKioqKioqKkBjbG9w",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "https://images.ransomware.live/victims/6102061631e2489ca2c213c1c254aba3.png",
+      "infostealer": "",
+      "press": "",
+      "description": "[CVE‑2026‑12569] Data exfiltrated included the following: Database, Project - files"
     },
     {
       "id": "clo*******-88",
@@ -990,7 +1342,11 @@
       "discovered": "2026-08-05T20:49:39.582Z",
       "attacked": "2026-08-05T20:49:26.511Z",
       "website": "https://www.ransomware.live/id/Y2xvKioqKioqKkBjbG9w",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "https://images.ransomware.live/victims/6102061631e2489ca2c213c1c254aba3.png",
+      "infostealer": "",
+      "press": "",
+      "description": "[CVE‑2026‑12569] Data exfiltrated included the following: Database, Project - files"
     },
     {
       "id": "jpm*******-89",
@@ -1001,7 +1357,11 @@
       "discovered": "2026-08-05T20:49:08.463Z",
       "attacked": "2026-08-05T20:48:55.827Z",
       "website": "https://www.ransomware.live/id/anBtKioqKioqKkBjbG9w",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "https://images.ransomware.live/victims/6102061631e2489ca2c213c1c254aba3.png",
+      "infostealer": "",
+      "press": "",
+      "description": "[CVE‑2026‑12569] Data exfiltrated included the following: Database, Project - files"
     },
     {
       "id": "bri*******-90",
@@ -1012,7 +1372,11 @@
       "discovered": "2026-08-05T20:48:37.793Z",
       "attacked": "2026-08-05T20:48:25.189Z",
       "website": "https://www.ransomware.live/id/YnJpKioqKioqKkBjbG9w",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "https://images.ransomware.live/victims/6102061631e2489ca2c213c1c254aba3.png",
+      "infostealer": "",
+      "press": "",
+      "description": "[CVE‑2026‑12569] Data exfiltrated included the following: Database, Project - files"
     },
     {
       "id": "suu*******-91",
@@ -1023,7 +1387,11 @@
       "discovered": "2026-08-05T20:48:07.101Z",
       "attacked": "2026-08-05T20:47:54.344Z",
       "website": "https://www.ransomware.live/id/c3V1KioqKioqKkBjbG9w",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "https://images.ransomware.live/victims/6102061631e2489ca2c213c1c254aba3.png",
+      "infostealer": "",
+      "press": "",
+      "description": "[CVE‑2026‑12569] Data exfiltrated included the following: Database, Project - files"
     },
     {
       "id": "sma*******-92",
@@ -1034,7 +1402,11 @@
       "discovered": "2026-08-05T20:47:36.266Z",
       "attacked": "2026-08-05T20:47:22.243Z",
       "website": "https://www.ransomware.live/id/c21hKioqKioqKkBjbG9w",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "https://images.ransomware.live/victims/6102061631e2489ca2c213c1c254aba3.png",
+      "infostealer": "",
+      "press": "",
+      "description": "[CVE‑2026‑12569] Data exfiltrated included the following: Database, Project - files"
     },
     {
       "id": "tri*******-93",
@@ -1045,7 +1417,11 @@
       "discovered": "2026-08-05T20:47:01.283Z",
       "attacked": "2026-08-05T20:46:47.791Z",
       "website": "https://www.ransomware.live/id/dHJpKioqKioqKkBjbG9w",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "https://images.ransomware.live/victims/6102061631e2489ca2c213c1c254aba3.png",
+      "infostealer": "",
+      "press": "",
+      "description": "[CVE‑2026‑12569] Data exfiltrated included the following: Database, Project - files"
     },
     {
       "id": "cor*******-94",
@@ -1056,7 +1432,11 @@
       "discovered": "2026-08-05T20:46:29.784Z",
       "attacked": "2026-08-05T20:46:15.655Z",
       "website": "https://www.ransomware.live/id/Y29yKioqKioqKkBjbG9w",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "https://images.ransomware.live/victims/6102061631e2489ca2c213c1c254aba3.png",
+      "infostealer": "",
+      "press": "",
+      "description": "[CVE‑2026‑12569] Data exfiltrated included the following: Database, Project, PDF, TXT, DOC - files"
     },
     {
       "id": "mam*******-95",
@@ -1067,7 +1447,11 @@
       "discovered": "2026-08-05T20:45:57.579Z",
       "attacked": "2026-08-05T20:45:45.016Z",
       "website": "https://www.ransomware.live/id/bWFtKioqKioqKkBjbG9w",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "https://images.ransomware.live/victims/6102061631e2489ca2c213c1c254aba3.png",
+      "infostealer": "",
+      "press": "",
+      "description": "[CVE‑2026‑12569] Data exfiltrated included the following: .png files, files Windchil"
     },
     {
       "id": "par*******-96",
@@ -1078,7 +1462,11 @@
       "discovered": "2026-08-05T20:45:27.004Z",
       "attacked": "2026-08-05T20:45:14.065Z",
       "website": "https://www.ransomware.live/id/cGFyKioqKioqKkBjbG9w",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "https://images.ransomware.live/victims/6102061631e2489ca2c213c1c254aba3.png",
+      "infostealer": "",
+      "press": "",
+      "description": "[CVE‑2026‑12569] Data exfiltrated included the following: Database, Project, Cad-files, Backups"
     },
     {
       "id": "sta*******-97",
@@ -1089,7 +1477,11 @@
       "discovered": "2026-08-05T20:44:56.033Z",
       "attacked": "2026-08-05T20:44:42.842Z",
       "website": "https://www.ransomware.live/id/c3RhKioqKioqKkBjbG9w",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "https://images.ransomware.live/victims/6102061631e2489ca2c213c1c254aba3.png",
+      "infostealer": "",
+      "press": "",
+      "description": "[CVE‑2026‑12569] Data exfiltrated included the following: Database, Project"
     },
     {
       "id": "lar*******-98",
@@ -1100,7 +1492,11 @@
       "discovered": "2026-08-05T20:44:24.742Z",
       "attacked": "2026-08-05T20:44:12.109Z",
       "website": "https://www.ransomware.live/id/bGFyKioqKioqKkBjbG9w",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "https://images.ransomware.live/victims/6102061631e2489ca2c213c1c254aba3.png",
+      "infostealer": "",
+      "press": "",
+      "description": "[CVE‑2026‑12569] Data exfiltrated included the following: Project, Soft"
     },
     {
       "id": "toa*******-99",
@@ -1111,7 +1507,11 @@
       "discovered": "2026-08-05T20:43:54.060Z",
       "attacked": "2026-08-05T20:43:41.095Z",
       "website": "https://www.ransomware.live/id/dG9hKioqKioqKkBjbG9w",
-      "sourceUrl": ""
+      "sourceUrl": "",
+      "screenshot": "https://images.ransomware.live/victims/6102061631e2489ca2c213c1c254aba3.png",
+      "infostealer": "",
+      "press": "",
+      "description": "[CVE‑2026‑12569] Data exfiltrated included the following: project, backup database, logs"
     }
   ]
 }
