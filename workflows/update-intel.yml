@@ -1,0 +1,36 @@
+name: Update Threat Intelligence
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '*/15 * * * *'
+
+permissions:
+  contents: write
+
+jobs:
+  update-cisa-kev:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Collect CISA KEV
+        run: node scripts/fetch-cisa-kev.js
+
+      - name: Commit changed intelligence data
+        run: |
+          git config user.name "cti-intel-bot"
+          git config user.email "cti-intel-bot@users.noreply.github.com"
+          git add data/kev.json
+          if git diff --cached --quiet; then
+            echo "No intelligence changes to commit."
+          else
+            git commit -m "chore: update CISA KEV intelligence"
+            git push
+          fi
