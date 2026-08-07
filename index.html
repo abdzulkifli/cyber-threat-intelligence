@@ -12,11 +12,11 @@
   <main class="shell">
     <header class="hero" id="overview">
       <div class="hero-copy">
-        <div class="eyebrow"><span class="eyebrow-mark"></span>PHASE 1A–1E · EXTERNAL + REGIONAL CYBER THREAT INTELLIGENCE</div>
+        <div class="eyebrow"><span class="eyebrow-mark"></span>PHASE 1A–1F · LIVE EXTERNAL + REGIONAL CYBER THREAT INTELLIGENCE</div>
         <h1>Cyber Threat Intelligence <span>Command Centre</span></h1>
         <p class="sub">Known exploitation, vulnerability severity, exploitation probability and ransomware activity — continuously collected, correlated and presented with source traceability.</p>
         <nav class="section-nav">
-          <a href="#overview">Overview</a><a href="#ransomware-intel">Ransomware</a><a href="#regional-intel">Malaysia & ASEAN</a><a href="#vulnerability-intel">Vulnerabilities</a><a href="#source-health">Sources</a>
+          <a href="#overview">Overview</a><a href="#live-intel">Live Feed</a><a href="#ransomware-intel">Ransomware</a><a href="#regional-intel">Malaysia & ASEAN</a><a href="#vulnerability-intel">Vulnerabilities</a><a href="#source-health">Sources</a>
         </nav>
       </div>
       <div class="hero-status">
@@ -61,6 +61,56 @@
           <div class="source-item"><span class="source-icon source-my">MY</span><div><strong>MyCERT Malaysia</strong><small id="mycertCollectedAt">—</small></div><span class="health-dot" id="mycertHealthDot"></span></div>
         </div>
       </article>
+    </section>
+
+
+    <section id="live-intel" class="section-block live-intel-section">
+      <div class="section-title">
+        <div><div class="section-kicker">PHASE 1F</div><h2>Unified Live Intelligence Feed</h2><p>CISA, NVD, FIRST EPSS, ransomware OSINT and MyCERT signals merged into one chronological operational view.</p></div>
+        <span class="section-badge live-feed-badge"><i></i> LIVE CORRELATION</span>
+      </div>
+
+      <div class="card intel-ticker">
+        <span class="ticker-live"><i></i>LIVE</span>
+        <div class="ticker-copy"><span id="tickerSource">INTELLIGENCE</span><strong id="latestSignalTicker">Waiting for source data…</strong></div>
+        <div class="ticker-time"><span>Last dashboard check</span><strong id="feedUpdatedAt">—</strong></div>
+      </div>
+
+      <div class="live-intel-grid">
+        <article class="card unified-feed-card">
+          <div class="panel-head feed-head">
+            <div><h3>Operational intelligence stream</h3><span class="tiny" id="intelFeedCount">Building correlated signals…</span></div>
+            <div class="feed-filter-bar" id="feedFilters">
+              <button class="feed-filter active" data-feed-filter="all">All</button>
+              <button class="feed-filter" data-feed-filter="critical">Critical</button>
+              <button class="feed-filter" data-feed-filter="ransomware">Ransomware</button>
+              <button class="feed-filter" data-feed-filter="malaysia">Malaysia</button>
+              <button class="feed-filter" data-feed-filter="vulnerability">Vulnerabilities</button>
+            </div>
+          </div>
+          <div id="unifiedIntelFeed" class="unified-intel-feed"><div class="empty-state">Waiting for intelligence datasets…</div></div>
+          <div class="feed-footer"><button id="feedMore" class="feed-more">Show more signals</button><span id="feedWindowHint">Newest signals first</span></div>
+        </article>
+
+        <aside class="live-side-stack">
+          <article class="card signal-snapshot">
+            <div class="panel-head"><div><div class="section-kicker">SIGNAL SNAPSHOT</div><h3>What changed recently</h3></div><span class="source-chip" id="activeSourceCount">— SOURCES</span></div>
+            <div class="signal-kpi-grid">
+              <div><span>Signals ≤24h</span><strong id="signals24h">—</strong><small>Across timestamped feeds</small></div>
+              <div><span>Critical signals</span><strong id="criticalSignals">—</strong><small>Current feed window</small></div>
+              <div><span>Ransomware signals</span><strong id="ransomwareSignals">—</strong><small>Claims + ransomware KEV</small></div>
+              <div><span>Malaysia signals</span><strong id="malaysiaSignals">—</strong><small>MyCERT + MY claims</small></div>
+            </div>
+            <div class="latest-source-row"><span>Latest timestamped source</span><strong id="latestSignalSource">—</strong></div>
+          </article>
+
+          <article class="card freshness-card">
+            <div class="panel-head"><div><div class="section-kicker">DATA FRESHNESS</div><h3>Collector recency</h3></div><span class="tiny">Auto-assessed</span></div>
+            <div id="freshnessList" class="freshness-list"></div>
+            <div class="freshness-note">Freshness thresholds follow each source's collection cadence; EPSS is expected to refresh daily.</div>
+          </article>
+        </aside>
+      </div>
     </section>
 
     <section id="ransomware-intel" class="section-block">
@@ -204,7 +254,7 @@
     </section>
 
     <div class="notice"><strong>Data caveat:</strong> Ransomware victim entries originate from public leak-site monitoring and represent claimed victims, not automatically independently verified incidents. ASEAN counts are calculated from the currently loaded ransomware feed and are not complete national incident totals. The Malaysia signal score is dashboard-derived OSINT, not an official MyCERT/CyberSecurity Malaysia threat level. EPSS is provided by FIRST. This product uses the NVD API but is not endorsed or certified by NVD.</div>
-    <footer><div>Phase 1: CISA + NVD + FIRST EPSS + Ransomware OSINT + MyCERT → Scheduled Collectors → Regional Correlation → Normalised JSON → GitHub Pages.</div><div>Developed by <strong>Abdullah Zulkifli</strong></div></footer>
+    <footer><div>Phase 1: CISA + NVD + FIRST EPSS + Ransomware OSINT + MyCERT → Scheduled Collectors → Unified Live Feed → Regional Correlation → Normalised JSON → GitHub Pages.</div><div>Developed by <strong>Abdullah Zulkifli</strong></div></footer>
   </main>
   <script src="js/app.js"></script>
 </body>
