@@ -221,3 +221,13 @@ input,select{font-size:14px!important;min-height:42px}
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}
 }
+
+/* Phase 1H.4 — ransomware freshness verification */
+.rw-sync-strip{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:0 0 16px}
+.rw-sync-strip>div{padding:14px 16px;border:1px solid rgba(116,155,190,.16);border-radius:15px;background:linear-gradient(180deg,rgba(20,38,58,.78),rgba(9,22,36,.74));min-width:0}
+.rw-sync-strip span{display:block;font-size:.78rem;font-weight:800;letter-spacing:.08em;color:var(--muted,#91a7bd);margin-bottom:7px}
+.rw-sync-strip strong{display:block;font-size:clamp(1rem,1.35vw,1.28rem);line-height:1.15;color:var(--text,#eef7ff);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rw-sync-strip small{display:block;margin-top:6px;color:var(--muted,#91a7bd);font-size:.84rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rw-sync-state.fresh{color:#59e6ad}.rw-sync-state.aging{color:#ffca66}.rw-sync-state.stale{color:#ff6b7a}.rw-sync-state.unknown{color:#91a7bd}
+@media(max-width:980px){.rw-sync-strip{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.rw-sync-strip{grid-template-columns:1fr}.rw-sync-strip strong,.rw-sync-strip small{white-space:normal}}
