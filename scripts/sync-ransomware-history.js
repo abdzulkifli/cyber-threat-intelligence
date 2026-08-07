@@ -170,13 +170,33 @@ async function main() {
   add(current.victims || []);
 
   const years = [];
+  const currentMonth = new Date().getUTCMonth() + 1;
+
+  // ransomware.live requires month whenever year is supplied.
+  // Sync month-by-month so we can build a complete historical mirror.
   for (let year = START_YEAR; year <= CURRENT_YEAR; year++) {
     console.log(`\n=== Historical sync ${year} ===`);
-    const rows = await fetchVictims({ year: String(year), date: 'discovered' });
-    console.log(`${year}: ${rows.length} victim records`);
-    add(rows);
-    years.push({ year, count: rows.length });
-    await sleep(600);
+    const maxMonth = year === CURRENT_YEAR ? currentMonth : 12;
+    let yearCount = 0;
+    const months = [];
+
+    for (let month = 1; month <= maxMonth; month++) {
+      const mm = String(month).padStart(2, '0');
+      console.log(`--- ${year}-${mm} ---`);
+      const rows = await fetchVictims({
+        year: String(year),
+        month: mm,
+        date: 'discovered'
+      });
+      console.log(`${year}-${mm}: ${rows.length} victim records`);
+      add(rows);
+      yearCount += rows.length;
+      months.push({ month: mm, count: rows.length });
+      await sleep(250);
+    }
+
+    console.log(`${year}: ${yearCount} victim records across ${maxMonth} month(s)`);
+    years.push({ year, count: yearCount, months });
   }
 
   // Verify ASEAN independently so Malaysia/ASEAN counts do not depend on a country-name mapping guess.
