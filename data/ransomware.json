@@ -6,17 +6,17 @@
     "upstream": "ransomware.live",
     "mode": "direct-v2",
     "authentication": "none",
-    "collectedAt": "2026-08-07T23:20:47.573Z",
-    "checkedAt": "2026-08-07T23:20:47.573Z",
+    "collectedAt": "2026-08-07T23:52:24.706Z",
+    "checkedAt": "2026-08-07T23:52:24.706Z",
     "dataUpdatedAt": "2026-08-07T23:20:47.573Z",
     "lastSourceUpdate": "2026-08-07T22:52:10.874Z",
     "latestVictimDiscovered": "2026-08-07T22:52:10.874Z",
     "latestVictimName": "MEDICOS",
     "latestVictimGroup": "bravox",
     "latestVictimCountry": "FR",
-    "sourceDataAgeMinutes": 29,
+    "sourceDataAgeMinutes": 60,
     "feedFreshness": "fresh",
-    "newClaimsSincePreviousCollection": 1,
+    "newClaimsSincePreviousCollection": 0,
     "selectedBy": "freshest-latest-victim",
     "candidates": [
       {
@@ -41,8 +41,8 @@
     "activeGroups": 380,
     "recentClaims": 100,
     "retainedClaims": 30612,
-    "claims24h": 88,
-    "newClaimsSincePreviousCollection": 1,
+    "claims24h": 87,
+    "newClaimsSincePreviousCollection": 0,
     "countriesRecent": 23,
     "sectorsRecent": 13
   },
@@ -2125,8 +2125,8 @@
       "description": "AuditTeam is a small ransomware group with approximately 5 known victims, primarily targeting organizations in East and Southeast Asia across technology and manufacturing sectors, operating a data leak site consistent with double-extortion methodology.",
       "locationCount": 2,
       "locations": [
-        "[ SYSTEM ERROR ]",
-        "/// DATA EXPOSURE TERMINAL ///"
+        "/// DATA EXPOSURE TERMINAL ///",
+        "[ SYSTEM ERROR ]"
       ],
       "victims": 0,
       "firstSeen": null,
@@ -4228,7 +4228,7 @@
       "locationCount": 5,
       "locations": [
         "This Website Has Been Seized",
-        "Where Winds Meet | Official Website",
+        "Redirecting...",
         "Error Response Page",
         "Security Verification"
       ],
