@@ -35,7 +35,7 @@
   <main class="app-shell">
     <section class="page-hero">
       <div>
-        <div class="eyebrow"><span></span>PHASE 1H · LIVE EXTERNAL + REGIONAL THREAT INTELLIGENCE</div>
+        <div class="eyebrow"><span></span>PHASE 1H.2 · INTERACTIVE GLOBAL + REGIONAL THREAT INTELLIGENCE</div>
         <h1>See what matters. <em>Act on evidence.</em></h1>
         <p>Known exploitation, CVSS severity, EPSS probability, ransomware activity and Malaysia/ASEAN signals — correlated with direct source traceability.</p>
       </div>
@@ -153,17 +153,40 @@
 
     <!-- RANSOMWARE -->
     <section class="tab-panel" data-panel="ransomware">
-      <div class="section-heading"><div><span>RANSOMWARE INTELLIGENCE</span><h2>Activity, actors and targeting</h2><p>Public leak-site claims are treated as OSINT signals, not automatically as confirmed incidents.</p></div><a class="source-link" href="https://www.ransomware.live/" target="_blank" rel="noopener">Open source ↗</a></div>
-      <div class="five-kpis"><div><span>Recent claims</span><strong id="rwRecentClaims">—</strong></div><div><span>≤24h</span><strong id="rw24hCard">—</strong></div><div><span>Tracked groups</span><strong id="rwTrackedGroups">—</strong></div><div><span>Countries</span><strong id="rwCountriesCard">—</strong></div><div><span>Sectors</span><strong id="rwSectors">—</strong></div></div>
-      <div class="overview-grid">
-        <article class="panel"><div class="panel-head"><div><h3>Recent claim activity</h3><small>Discovery-date distribution</small></div><span class="micro-pill" id="rwTrendLabel2">LIVE</span></div><div id="activityChartFull" class="chart-area"></div></article>
-        <article class="panel"><div class="panel-head"><div><h3>Most active groups</h3><small id="rwGroupSample">Latest claims</small></div></div><div id="rwTopGroups" class="ranking-list"></div></article>
+      <div class="section-heading ransomware-heading">
+        <div><span>RANSOMWARE INTELLIGENCE</span><h2>Global Activity Map & Explorer</h2><p>Ransomware.live public claim intelligence mapped across the retained rolling archive. Click countries, groups or victim claims to drill into the evidence.</p></div>
+        <div class="heading-actions"><div class="rw-window-tabs" id="rwWindowTabs"><button data-rw-window="30">30D</button><button class="active" data-rw-window="90">90D</button><button data-rw-window="365">365D</button><button data-rw-window="all">ALL</button></div><a class="source-link" href="https://www.ransomware.live/" target="_blank" rel="noopener">Open ransomware.live ↗</a></div>
       </div>
-      <div class="three-grid">
-        <article class="panel"><div class="panel-head"><h3>Targeted countries</h3><span class="section-label">LATEST</span></div><div id="rwCountriesList" class="ranking-list"></div></article>
-        <article class="panel"><div class="panel-head"><h3>Targeted sectors</h3><span class="section-label">LATEST</span></div><div id="rwSectorsList" class="ranking-list"></div></article>
-        <article class="panel"><div class="panel-head"><h3>Recent victim claims</h3><span class="live-chip"><i></i>OSINT</span></div><div id="rwLiveFeed" class="claim-feed"></div></article>
+
+      <div class="five-kpis ransomware-kpis">
+        <div><span>Retained archive</span><strong id="rwRetainedClaims">—</strong><small>Rolling history</small></div>
+        <div><span id="rwWindowKpiLabel">Claims · 90D</span><strong id="rwWindowClaims">—</strong><small>Selected window</small></div>
+        <div><span>Claims ≤24h</span><strong id="rw24hCard">—</strong><small>Latest activity</small></div>
+        <div><span>Active groups</span><strong id="rwTrackedGroups">—</strong><small>In selected window</small></div>
+        <div><span>Countries</span><strong id="rwCountriesCard">—</strong><small>With mapped claims</small></div>
       </div>
+
+      <article class="panel world-map-panel">
+        <div class="panel-head map-panel-head"><div><span class="section-label">GLOBAL TARGETING</span><h3>Ransomware claim concentration</h3><small id="rwMapWindowLabel">Rolling archive · 90 days</small></div><div class="map-legend"><span><i class="heat h1"></i>Low</span><span><i class="heat h2"></i></span><span><i class="heat h3"></i></span><span><i class="heat h4"></i>High</span></div></div>
+        <div class="world-map-stage" id="rwWorldMap"><div class="skeleton chart"></div></div>
+        <div class="world-map-foot"><span>Click any country for claim history, top group and targeted sectors.</span><span id="rwMapCoverage">Mapping retained claims…</span></div>
+      </article>
+
+      <div class="overview-grid ransomware-analytics-grid">
+        <article class="panel"><div class="panel-head"><div><span class="section-label">ACTIVITY MOMENTUM</span><h3>Claim trend</h3><small id="rwActivityHint">Selected history window</small></div><span class="micro-pill" id="rwTrendLabel2">LIVE</span></div><div id="activityChartFull" class="chart-area"></div></article>
+        <article class="panel"><div class="panel-head"><div><span class="section-label">ACTOR CONCENTRATION</span><h3>Most active groups</h3><small id="rwGroupSample">Click a group for profile</small></div><span class="context-badge">DRILL-DOWN</span></div><div id="rwTopGroups" class="ranking-list interactive-ranking"></div></article>
+      </div>
+
+      <div class="three-grid ransomware-breakdown">
+        <article class="panel"><div class="panel-head"><div><h3>Targeted countries</h3><small>Click to inspect claims</small></div><span class="section-label">MAPPED</span></div><div id="rwCountriesList" class="ranking-list interactive-ranking"></div></article>
+        <article class="panel"><div class="panel-head"><div><h3>Targeted sectors</h3><small>Selected window</small></div><span class="section-label">TARGETING</span></div><div id="rwSectorsList" class="ranking-list"></div></article>
+        <article class="panel"><div class="panel-head"><div><h3>Recent victim claims</h3><small>Click for evidence view</small></div><span class="live-chip"><i></i>OSINT</span></div><div id="rwLiveFeed" class="claim-feed"></div></article>
+      </div>
+
+      <article class="panel group-explorer-panel">
+        <div class="panel-head"><div><span class="section-label">THREAT ACTOR EXPLORER</span><h3>Ransomware group profiles</h3><small>Activity, countries, sectors and any TTP/CVE/tool metadata exposed by the public source.</small></div><span class="context-badge" id="rwGroupCountBadge">— GROUPS</span></div>
+        <div id="rwGroupExplorer" class="group-explorer-grid"></div>
+      </article>
     </section>
 
     <!-- VULNERABILITIES -->
@@ -199,8 +222,8 @@
       <article class="panel methodology"><div><span class="section-label">TRANSPARENT SCORING</span><h3>CTI Priority = CVSS + EPSS + ransomware use + recency</h3><p>CVSS up to 30 + EPSS up to 35 + known ransomware use up to 25 + recent KEV addition up to 10 = 100. This is external-intelligence prioritisation, not organisational risk.</p></div><strong>0–100</strong></article>
     </section>
 
-    <div class="data-caveat"><strong>Data caveat:</strong> ransomware victim entries are public claims and not automatically independently verified incidents. ASEAN counts reflect the currently loaded feed, not complete national incident totals. The Malaysia signal score is dashboard-derived OSINT. EPSS is provided by FIRST. This product uses NVD data but is not endorsed or certified by NVD.</div>
-    <footer><span>Phase 1H · Automated external CTI command centre</span><span>Developed by <strong>Abdullah Zulkifli</strong></span></footer>
+    <div class="data-caveat"><strong>Data caveat:</strong> ransomware victim entries are public claims and not automatically independently verified incidents. Ransomware map and ASEAN counts reflect the retained rolling public-claim archive, not complete national incident totals. The archive grows from the time rolling retention is enabled. The Malaysia signal score is dashboard-derived OSINT. EPSS is provided by FIRST. This product uses NVD data but is not endorsed or certified by NVD.</div>
+    <footer><span>Phase 1H.2 · Interactive ransomware intelligence explorer</span><span>Developed by <strong>Abdullah Zulkifli</strong></span></footer>
   </main>
 
   <!-- CVE DETAIL DRAWER -->
