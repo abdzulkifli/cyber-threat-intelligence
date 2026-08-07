@@ -6,17 +6,17 @@
     "upstream": "ransomware.live",
     "mode": "direct-v2",
     "authentication": "none",
-    "collectedAt": "2026-08-07T16:49:43.439Z",
-    "checkedAt": "2026-08-07T16:49:43.439Z",
+    "collectedAt": "2026-08-07T17:36:29.232Z",
+    "checkedAt": "2026-08-07T17:36:29.232Z",
     "dataUpdatedAt": "2026-08-07T16:49:43.439Z",
     "lastSourceUpdate": "2026-08-07T16:30:41.713Z",
     "latestVictimDiscovered": "2026-08-07T16:30:41.713Z",
     "latestVictimName": "Hitech Distribuzione Informatica S.r.l. (HTDI)",
     "latestVictimGroup": "spacebears",
     "latestVictimCountry": "IT",
-    "sourceDataAgeMinutes": 19,
+    "sourceDataAgeMinutes": 66,
     "feedFreshness": "fresh",
-    "newClaimsSincePreviousCollection": 1,
+    "newClaimsSincePreviousCollection": 0,
     "selectedBy": "freshest-latest-victim",
     "candidates": [
       {
@@ -28,21 +28,21 @@
       {
         "mode": "direct-legacy",
         "source": "ransomware.live public API",
-        "latestVictimDiscovered": "2026-08-07T12:27:11.963Z",
+        "latestVictimDiscovered": "2026-08-07T13:32:41.706Z",
         "victimCount": 100
       }
     ],
     "methodology": "Victim records are public ransomware/extortion leak-site claims and are not independently verified incidents."
   },
   "stats": {
-    "totalVictims": 30585,
+    "totalVictims": 30586,
     "sourceAttacksMetric": 0,
     "trackedGroups": 380,
     "activeGroups": 380,
     "recentClaims": 100,
     "retainedClaims": 30611,
-    "claims24h": 93,
-    "newClaimsSincePreviousCollection": 1,
+    "claims24h": 90,
+    "newClaimsSincePreviousCollection": 0,
     "countriesRecent": 23,
     "sectorsRecent": 13
   },
@@ -2999,8 +2999,8 @@
       "locationCount": 3,
       "locations": [
         "CONTI.News",
-        "Access Blocked",
-        "Error Response Page"
+        "Error Response Page",
+        "Access Blocked"
       ],
       "victims": 0,
       "firstSeen": null,
@@ -4230,7 +4230,7 @@
       "locationCount": 5,
       "locations": [
         "This Website Has Been Seized",
-        "Die große Internet-Finanz-Umfrage",
+        "Redirecting...",
         "Error Response Page",
         "Security Verification"
       ],
@@ -4474,8 +4474,8 @@
       "locationCount": 7,
       "locations": [
         "Disclosures",
-        "INC Ransom",
-        "Error Response Page"
+        "Error Response Page",
+        "INC Ransom"
       ],
       "victims": 0,
       "firstSeen": null,
@@ -4785,8 +4785,8 @@
       "description": "",
       "locationCount": 2,
       "locations": [
-        "Posts | L Blog",
-        "Home | L Blog"
+        "Home | L Blog",
+        "Posts | L Blog"
       ],
       "victims": 0,
       "firstSeen": null,
@@ -5746,10 +5746,10 @@
       "description": "NightSpire is a ransomware group that first emerged in March 2025 and rapidly claimed over 250 victims across retail, manufacturing, healthcare, finance, and education sectors in the US, France, India, Taiwan, and Japan, using aggressive double-extortion with ransom deadlines as short as two days.",
       "locationCount": 6,
       "locations": [
-        "RaaS Service Started",
-        "NightSpire",
         "Verify human - NightSpire",
-        "Database | NightSpire"
+        "NightSpire",
+        "Database | NightSpire",
+        "RaaS Service Started"
       ],
       "victims": 0,
       "firstSeen": null,
