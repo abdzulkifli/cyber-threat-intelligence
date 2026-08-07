@@ -3,8 +3,8 @@ name: Sync Full Ransomware History
 on:
   workflow_dispatch:
   schedule:
-    # Full historical reconciliation once per day. The separate 5-minute workflow
-    # keeps the newest claims fresh between these full syncs.
+    # Daily full historical reconciliation. The separate recent-feed workflow
+    # continues to keep new ransomware claims fresh between full syncs.
     - cron: "25 3 * * *"
 
 permissions:
@@ -17,7 +17,7 @@ concurrency:
 jobs:
   sync-ransomware-history:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 35
     env:
       RANSOMWARE_LIVE_API_KEY: ${{ secrets.RANSOMWARE_LIVE_API_KEY }}
 
@@ -30,20 +30,22 @@ jobs:
         with:
           node-version: "24"
 
-      - name: Validate ransomware.live API secret
+      - name: Check ransomware.live API secret exists
+        shell: bash
         run: |
           if [ -z "$RANSOMWARE_LIVE_API_KEY" ]; then
             echo "RANSOMWARE_LIVE_API_KEY is not configured."
-            echo "The 5-minute recent feed remains keyless; this key is only for the full historical mirror."
+            echo "Repository → Settings → Secrets and variables → Actions → New repository secret"
             exit 1
           fi
+          echo "API secret is configured. The sync script will validate it against the Pro API before collecting history."
 
       - name: Sync full ransomware.live victim history
         run: node scripts/sync-ransomware-history.js
 
       - name: Show regional verification
         run: |
-          node -e "const d=require('./data/ransomware-history.json'); console.log('Full sync:',d.meta.fullSync); console.log('Claims:',d.stats.retainedClaims); console.log('Malaysia:',d.stats.malaysiaClaims); console.log('ASEAN:',d.stats.aseanClaims); console.log('ASEAN verification:',d.meta.aseanVerification);"
+          node -e "const d=require('./data/ransomware-history.json'); console.log('Full sync:',d.meta.fullSync); console.log('API:',d.meta.apiBase); console.log('Claims:',d.stats.retainedClaims); console.log('Malaysia:',d.stats.malaysiaClaims); console.log('ASEAN:',d.stats.aseanClaims); console.log('ASEAN verification:',d.meta.aseanVerification);"
 
       - name: Commit full historical mirror
         run: |
