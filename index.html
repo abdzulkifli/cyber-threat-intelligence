@@ -4,297 +4,212 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta name="theme-color" content="#07111f" />
   <title>Cyber Threat Intelligence Command Centre</title>
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-  <div class="ambient ambient-a"></div><div class="ambient ambient-b"></div>
-  <main class="shell">
-    <header class="hero" id="overview">
-      <div class="hero-copy">
-        <div class="eyebrow"><span class="eyebrow-mark"></span>PHASE 1A–1G · LIVE EXTERNAL + REGIONAL CYBER THREAT INTELLIGENCE</div>
-        <h1>Cyber Threat Intelligence <span>Command Centre</span></h1>
-        <p class="sub">Known exploitation, vulnerability severity, exploitation probability and ransomware activity — continuously collected, correlated and presented with source traceability.</p>
-        <nav class="section-nav">
-          <a href="#overview">Overview</a><a href="#executive-brief">Briefing</a><a href="#live-intel">Live Feed</a><a href="#ransomware-intel">Ransomware</a><a href="#regional-intel">Malaysia & ASEAN</a><a href="#vulnerability-intel">Vulnerabilities</a><a href="#source-health">Sources</a>
-        </nav>
-      </div>
-      <div class="hero-status">
-        <div class="live"><span class="dot" id="liveDot"></span><strong id="feedStatus">LOADING</strong></div>
-        <div class="hero-time"><span>Dashboard refresh</span><strong>Every 5 min</strong></div>
-      </div>
-    </header>
+  <div class="aurora aurora-a"></div><div class="aurora aurora-b"></div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
-    <section class="command-strip">
-      <div class="metric glow-cyan"><span>Total KEV</span><strong id="total">—</strong><small>Known exploited vulnerabilities</small></div>
-      <div class="metric glow-red"><span>Critical CTI Priority</span><strong id="priorityCriticalTop">—</strong><small>External intelligence score</small></div>
-      <div class="metric glow-amber"><span>EPSS ≥ 50%</span><strong id="epss50Top">—</strong><small>High exploitation probability</small></div>
-      <div class="metric glow-violet"><span>Ransomware KEV</span><strong id="ransomware">—</strong><small>Known campaign use</small></div>
-      <div class="metric glow-green"><span>Recorded Victims</span><strong id="rwTotalVictims">—</strong><small>Ransomware source metric</small></div>
-      <div class="metric glow-blue"><span>Active Groups</span><strong id="rwActiveGroups">—</strong><small>Tracked as active</small></div>
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-mark"><span></span><i></i></div>
+      <div><strong>CYBER THREAT INTELLIGENCE</strong><small>Command Centre</small></div>
+    </div>
+    <nav class="topnav" id="topnav" aria-label="Dashboard sections">
+      <button class="nav-btn active" data-tab="overview">Overview</button>
+      <button class="nav-btn" data-tab="briefing">Briefing</button>
+      <button class="nav-btn" data-tab="regional">Malaysia & ASEAN</button>
+      <button class="nav-btn" data-tab="ransomware">Ransomware</button>
+      <button class="nav-btn" data-tab="vulnerabilities">Vulnerabilities</button>
+      <button class="nav-btn" data-tab="live">Live Feed</button>
+      <button class="nav-btn" data-tab="sources">Sources</button>
+    </nav>
+    <div class="topbar-status">
+      <span class="status-led" id="liveDot"></span>
+      <div><strong id="feedStatus">LOADING</strong><small id="lastRefresh">Checking sources…</small></div>
+    </div>
+  </header>
+
+  <main class="app-shell">
+    <section class="page-hero">
+      <div>
+        <div class="eyebrow"><span></span>PHASE 1H · LIVE EXTERNAL + REGIONAL THREAT INTELLIGENCE</div>
+        <h1>See what matters. <em>Act on evidence.</em></h1>
+        <p>Known exploitation, CVSS severity, EPSS probability, ransomware activity and Malaysia/ASEAN signals — correlated with direct source traceability.</p>
+      </div>
+      <div class="hero-actions">
+        <button class="soft-btn" data-tab-jump="live">View live feed</button>
+        <button class="primary-btn" data-tab-jump="briefing">Executive brief</button>
+      </div>
     </section>
 
-    <section class="executive-grid">
-      <article class="card threat-pulse">
-        <div class="panel-head">
-          <div><div class="section-kicker">EXECUTIVE THREAT PULSE</div><h2>External threat situation</h2></div>
-          <span class="status-pill" id="pulseStatus">ASSESSING</span>
-        </div>
-        <div class="pulse-content">
-          <div class="pulse-score"><div class="orb"><span id="pulseScore">—</span><small>CTI</small></div><div><strong id="pulseLabel">Loading intelligence</strong><p id="pulseNarrative">Combining CISA, NVD, FIRST EPSS and ransomware activity.</p></div></div>
-          <div class="pulse-stats">
-            <div><span>Critical CVSS</span><strong id="critical">—</strong></div>
-            <div><span>High CVSS</span><strong id="high">—</strong></div>
-            <div><span>Claims in latest feed ≤24h</span><strong id="rw24h">—</strong></div>
-            <div><span>Countries in latest feed</span><strong id="rwCountries">—</strong></div>
+    <!-- OVERVIEW -->
+    <section class="tab-panel active" data-panel="overview">
+      <div class="posture-strip">
+        <article class="posture-card">
+          <div class="gauge-wrap">
+            <div class="posture-gauge" id="postureGauge"><div><strong id="pulseScore">—</strong><span>CTI</span></div></div>
           </div>
+          <div class="posture-copy">
+            <span class="section-label">CURRENT EXTERNAL POSTURE</span>
+            <div class="posture-title"><h2 id="pulseLabel">Assessing intelligence</h2><span class="posture-pill" id="pulseStatus">ASSESSING</span></div>
+            <p id="pulseNarrative">Correlating CISA, NVD, FIRST EPSS, ransomware and MyCERT intelligence.</p>
+            <div class="source-orbit" id="sourceOrbit"></div>
+          </div>
+        </article>
+
+        <div class="kpi-rail">
+          <button class="kpi-card" data-tab-jump="vulnerabilities"><span>Critical CTI</span><strong id="priorityCriticalTop">—</strong><small>Priority ≥75</small><i>↗</i></button>
+          <button class="kpi-card" data-tab-jump="vulnerabilities"><span>EPSS ≥50%</span><strong id="epss50Top">—</strong><small>High exploit probability</small><i>↗</i></button>
+          <button class="kpi-card" data-tab-jump="ransomware"><span>Ransomware KEV</span><strong id="ransomware">—</strong><small>Known campaign use</small><i>↗</i></button>
+          <button class="kpi-card" data-tab-jump="regional"><span>Malaysia ≤30d</span><strong id="myClaims30Top">—</strong><small>Loaded OSINT claims</small><i>↗</i></button>
         </div>
+      </div>
+
+      <div class="section-heading compact-heading">
+        <div><span>DECISION LAYER</span><h2>Top 3 things that matter now</h2></div>
+        <small>Click any card for details or its authoritative source.</small>
+      </div>
+      <div id="topThree" class="top-three"><div class="skeleton tall"></div><div class="skeleton tall"></div><div class="skeleton tall"></div></div>
+
+      <div class="overview-grid">
+        <article class="panel threat-trend-panel">
+          <div class="panel-head"><div><span class="section-label">30-DAY SIGNAL</span><h3>Known exploitation momentum</h3></div><button class="icon-link" data-tab-jump="vulnerabilities" aria-label="Open vulnerabilities">↗</button></div>
+          <div id="kevTrendChart" class="chart-area"><div class="skeleton chart"></div></div>
+          <div class="chart-caption"><span><i class="legend-dot cyan"></i>KEV additions</span><span><i class="legend-dot red"></i>Ransomware-related additions</span></div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-head"><div><span class="section-label">RISK LANDSCAPE</span><h3>Exploit Risk Matrix</h3></div><button class="icon-link" data-tab-jump="vulnerabilities">↗</button></div>
+          <p class="panel-sub">Top-priority KEVs plotted by CVSS and EPSS. Click a point to drill down.</p>
+          <div id="riskScatter" class="risk-scatter"><div class="skeleton chart"></div></div>
+        </article>
+      </div>
+
+      <div class="overview-grid secondary-grid">
+        <article class="panel">
+          <div class="panel-head"><div><span class="section-label">RANSOMWARE PULSE</span><h3>Recent claim activity</h3></div><span class="micro-pill" id="rwTrendLabel">LOADING</span></div>
+          <div id="activityChart" class="mini-activity"><div class="skeleton chart"></div></div>
+        </article>
+        <article class="panel regional-glance">
+          <div class="panel-head"><div><span class="section-label">REGIONAL GLANCE</span><h3>ASEAN signal concentration</h3></div><button class="icon-link" data-tab-jump="regional">↗</button></div>
+          <div id="aseanGlance" class="asean-glance"></div>
+        </article>
+      </div>
+
+      <article class="panel latest-panel">
+        <div class="panel-head"><div><span class="section-label">LATEST INTELLIGENCE</span><h3>Newest correlated signals</h3></div><button class="soft-btn small" data-tab-jump="live">Open full feed</button></div>
+        <div id="overviewLiveFeed" class="overview-live-feed"><div class="skeleton row"></div><div class="skeleton row"></div><div class="skeleton row"></div></div>
       </article>
+    </section>
 
-      <article class="card source-mini" id="source-health">
-        <div class="panel-head"><div><div class="section-kicker">SOURCE HEALTH</div><h2>Intelligence collection</h2></div><span class="tiny">Direct + upstream-traceable</span></div>
-        <div class="source-grid">
-          <div class="source-item"><span class="source-icon">C</span><div><strong>CISA KEV</strong><small id="cisaCollectedAt">—</small></div><span class="health-dot" id="cisaHealthDot"></span></div>
-          <div class="source-item"><span class="source-icon">N</span><div><strong>NVD CVE API</strong><small id="nvdCollectedAt">—</small></div><span class="health-dot" id="nvdHealthDot"></span></div>
-          <div class="source-item"><span class="source-icon">E</span><div><strong>FIRST EPSS</strong><small id="epssCollectedAt">—</small></div><span class="health-dot" id="epssHealthDot"></span></div>
-          <div class="source-item"><span class="source-icon">R</span><div><strong>Ransomware Feed</strong><small id="rwCollectedAt">—</small></div><span class="health-dot" id="rwHealthDot"></span></div>
-          <div class="source-item"><span class="source-icon source-my">MY</span><div><strong>MyCERT Malaysia</strong><small id="mycertCollectedAt">—</small></div><span class="health-dot" id="mycertHealthDot"></span></div>
-        </div>
+    <!-- BRIEFING -->
+    <section class="tab-panel" data-panel="briefing">
+      <div class="section-heading"><div><span>EXECUTIVE INTELLIGENCE</span><h2>Management situation brief</h2><p>A concise, evidence-based summary generated from the five live intelligence sources.</p></div><div class="heading-actions"><button class="soft-btn" id="copyBrief">Copy brief</button><button class="primary-btn" id="printBrief">Print</button></div></div>
+      <article class="brief-hero panel">
+        <div><span class="section-label">CURRENT SITUATION</span><h2 id="briefHeadline">Generating briefing…</h2><p id="briefSummary">Waiting for correlated intelligence.</p></div>
+        <div class="brief-meta"><span id="briefConfidence">Confidence —</span><small id="briefGeneratedAt">—</small><small id="briefWindow">—</small></div>
       </article>
+      <div id="briefPriorities" class="brief-priorities"></div>
+      <div class="brief-grid">
+        <article class="panel"><div class="panel-head"><h3>What changed</h3><span class="section-label">LATEST SIGNALS</span></div><div id="briefChanges" class="brief-list"></div></article>
+        <article class="panel"><div class="panel-head"><h3>What to watch</h3><span class="section-label">NEXT ACTION</span></div><div id="briefWatch" class="brief-list"></div></article>
+      </div>
+      <div class="brief-grid">
+        <article class="panel"><div class="panel-head"><h3>Top KEV watchlist</h3><span class="section-label">CLICK TO DRILL DOWN</span></div><div id="executiveWatchlist" class="watchlist"></div></article>
+        <article class="panel"><div class="panel-head"><h3>Regional picture</h3><button class="icon-link" data-tab-jump="regional">↗</button></div><div id="regionalBrief"></div></article>
+      </div>
+      <article class="panel source-confidence"><div class="panel-head"><div><h3>Source confidence</h3><span class="tiny" id="briefSourceState">—</span></div><button class="soft-btn small" data-tab-jump="sources">View health</button></div><div id="briefSourceHealth" class="brief-source-health"></div></article>
     </section>
 
-
-    <section id="executive-brief" class="section-block executive-brief-section">
-      <div class="section-title">
-        <div><div class="section-kicker">PHASE 1G</div><h2>Executive Intelligence Briefing</h2><p>Automatically generated from the current CISA, NVD, FIRST EPSS, ransomware and MyCERT datasets — focused on what matters, why it matters and what to watch.</p></div>
-        <span class="section-badge brief-badge"><i></i> AUTO-GENERATED</span>
-      </div>
-
-      <div class="brief-hero-grid">
-        <article class="card executive-brief-card">
-          <div class="brief-topline">
-            <div><span class="brief-label">EXECUTIVE SITUATION BRIEF</span><h3 id="briefHeadline">Building current threat picture…</h3></div>
-            <div class="brief-actions"><button id="copyBrief" type="button">Copy brief</button><button id="printBrief" type="button">Print</button></div>
-          </div>
-          <div class="brief-meta"><span id="briefGeneratedAt">Generated —</span><span id="briefWindow">Current intelligence window</span><span id="briefConfidence">Confidence —</span></div>
-          <p class="brief-summary" id="briefSummary">The dashboard is correlating current intelligence sources.</p>
-          <div class="brief-priority-grid" id="briefPriorities"></div>
-          <div class="brief-bottom-grid">
-            <div class="brief-column"><span class="brief-column-label">WHAT CHANGED</span><div id="briefChanges" class="brief-list"></div></div>
-            <div class="brief-column"><span class="brief-column-label">WHAT TO WATCH</span><div id="briefWatch" class="brief-list"></div></div>
-          </div>
-        </article>
-
-        <aside class="brief-side-stack">
-          <article class="card watchlist-card">
-            <div class="panel-head"><div><div class="section-kicker">PRIORITY WATCHLIST</div><h3>Highest CTI priority</h3></div><span class="tiny">Top 5 KEVs</span></div>
-            <div id="executiveWatchlist" class="executive-watchlist"><div class="empty-state">Waiting for vulnerability intelligence…</div></div>
-          </article>
-          <article class="card regional-brief-card">
-            <div class="panel-head"><div><div class="section-kicker">REGIONAL WATCH</div><h3>Malaysia & ASEAN</h3></div><span class="source-chip">MY / ASEAN</span></div>
-            <div id="regionalBrief" class="regional-brief"><div class="empty-state">Waiting for regional intelligence…</div></div>
-          </article>
-          <article class="card source-confidence-card">
-            <div class="panel-head"><div><div class="section-kicker">SOURCE CONFIDENCE</div><h3>Collection assurance</h3></div><span id="briefSourceState" class="tiny">Assessing</span></div>
-            <div id="briefSourceHealth" class="brief-source-health"></div>
-          </article>
-        </aside>
-      </div>
-    </section>
-
-
-    <section id="live-intel" class="section-block live-intel-section">
-      <div class="section-title">
-        <div><div class="section-kicker">PHASE 1F</div><h2>Unified Live Intelligence Feed</h2><p>CISA, NVD, FIRST EPSS, ransomware OSINT and MyCERT signals merged into one chronological operational view.</p></div>
-        <span class="section-badge live-feed-badge"><i></i> LIVE CORRELATION</span>
-      </div>
-
-      <div class="card intel-ticker">
-        <span class="ticker-live"><i></i>LIVE</span>
-        <div class="ticker-copy"><span id="tickerSource">INTELLIGENCE</span><strong id="latestSignalTicker">Waiting for source data…</strong></div>
-        <div class="ticker-time"><span>Last dashboard check</span><strong id="feedUpdatedAt">—</strong></div>
-      </div>
-
-      <div class="live-intel-grid">
-        <article class="card unified-feed-card">
-          <div class="panel-head feed-head">
-            <div><h3>Operational intelligence stream</h3><span class="tiny" id="intelFeedCount">Building correlated signals…</span></div>
-            <div class="feed-filter-bar" id="feedFilters">
-              <button class="feed-filter active" data-feed-filter="all">All</button>
-              <button class="feed-filter" data-feed-filter="critical">Critical</button>
-              <button class="feed-filter" data-feed-filter="ransomware">Ransomware</button>
-              <button class="feed-filter" data-feed-filter="malaysia">Malaysia</button>
-              <button class="feed-filter" data-feed-filter="vulnerability">Vulnerabilities</button>
-            </div>
-          </div>
-          <div id="unifiedIntelFeed" class="unified-intel-feed"><div class="empty-state">Waiting for intelligence datasets…</div></div>
-          <div class="feed-footer"><button id="feedMore" class="feed-more">Show more signals</button><span id="feedWindowHint">Newest signals first</span></div>
-        </article>
-
-        <aside class="live-side-stack">
-          <article class="card signal-snapshot">
-            <div class="panel-head"><div><div class="section-kicker">SIGNAL SNAPSHOT</div><h3>What changed recently</h3></div><span class="source-chip" id="activeSourceCount">— SOURCES</span></div>
-            <div class="signal-kpi-grid">
-              <div><span>Signals ≤24h</span><strong id="signals24h">—</strong><small>Across timestamped feeds</small></div>
-              <div><span>Critical signals</span><strong id="criticalSignals">—</strong><small>Current feed window</small></div>
-              <div><span>Ransomware signals</span><strong id="ransomwareSignals">—</strong><small>Claims + ransomware KEV</small></div>
-              <div><span>Malaysia signals</span><strong id="malaysiaSignals">—</strong><small>MyCERT + MY claims</small></div>
-            </div>
-            <div class="latest-source-row"><span>Latest timestamped source</span><strong id="latestSignalSource">—</strong></div>
-          </article>
-
-          <article class="card freshness-card">
-            <div class="panel-head"><div><div class="section-kicker">DATA FRESHNESS</div><h3>Collector recency</h3></div><span class="tiny">Auto-assessed</span></div>
-            <div id="freshnessList" class="freshness-list"></div>
-            <div class="freshness-note">Freshness thresholds follow each source's collection cadence; EPSS is expected to refresh daily.</div>
-          </article>
-        </aside>
-      </div>
-    </section>
-
-    <section id="ransomware-intel" class="section-block">
-      <div class="section-title"><div><div class="section-kicker">PHASE 1D</div><h2>Ransomware Intelligence</h2><p>Public leak-site claims are treated as OSINT signals, not automatically as confirmed incidents.</p></div><span class="section-badge">LIVE ACTIVITY</span></div>
-
-      <div class="rw-kpis">
-        <div class="card mini-kpi"><span>Recent claims loaded</span><strong id="rwRecentClaims">—</strong><small>Latest feed sample</small></div>
-        <div class="card mini-kpi"><span>Claims ≤24h</span><strong id="rw24hCard">—</strong><small>Within latest feed</small></div>
-        <div class="card mini-kpi"><span>Tracked groups</span><strong id="rwTrackedGroups">—</strong><small>Source group catalogue</small></div>
-        <div class="card mini-kpi"><span>Countries represented</span><strong id="rwCountriesCard">—</strong><small>Latest claims</small></div>
-        <div class="card mini-kpi"><span>Sectors represented</span><strong id="rwSectors">—</strong><small>Latest claims</small></div>
-      </div>
-
-      <div class="rw-main-grid">
-        <article class="card activity-card">
-          <div class="panel-head"><div><h3>Recent claims activity</h3><span class="tiny">Distribution of the latest available claims by discovery date</span></div><span class="trend-pill" id="rwTrendLabel">LIVE</span></div>
-          <div id="activityChart" class="activity-chart"><div class="empty-state">Waiting for ransomware intelligence…</div></div>
-        </article>
-        <article class="card top-groups-card">
-          <div class="panel-head"><div><h3>Most active groups</h3><span class="tiny">Among latest claims</span></div><span class="tiny" id="rwGroupSample">—</span></div>
-          <div id="rwTopGroups" class="ranking-list"></div>
-        </article>
-      </div>
-
-      <div class="three-panels">
-        <article class="card"><div class="panel-head"><h3>Targeted countries</h3><span class="tiny">Latest claims</span></div><div id="rwCountriesList" class="compact-bars"></div></article>
-        <article class="card"><div class="panel-head"><h3>Targeted sectors</h3><span class="tiny">Latest claims</span></div><div id="rwSectorsList" class="compact-bars"></div></article>
-        <article class="card feed-card"><div class="panel-head"><h3>Live claim feed</h3><span class="feed-live"><i></i>OSINT</span></div><div id="rwLiveFeed" class="claim-feed"></div></article>
-      </div>
-    </section>
-
-
-    <section id="regional-intel" class="section-block regional-section">
-      <div class="section-title">
-        <div><div class="section-kicker">PHASE 1E</div><h2>Malaysia & ASEAN Threat Intelligence</h2><p>Regional ransomware signals from the loaded public-claim feed, combined with Malaysian national cyber advisories from MyCERT.</p></div>
-        <span class="section-badge regional-badge">REGIONAL LENS</span>
-      </div>
-
+    <!-- REGIONAL -->
+    <section class="tab-panel" data-panel="regional">
+      <div class="section-heading"><div><span>MALAYSIA & ASEAN</span><h2>Regional Threat Intelligence</h2><p>Malaysia-focused cyber signals with ASEAN ransomware activity from the currently loaded public intelligence feed.</p></div><span class="context-badge">REGIONAL LENS</span></div>
       <div class="regional-hero-grid">
-        <article class="card malaysia-focus">
-          <div class="panel-head">
-            <div><div class="section-kicker">MALAYSIA FOCUS</div><h3>National cyber signal picture</h3></div>
-            <span class="status-pill" id="malaysiaSignalLevel">ASSESSING</span>
+        <article class="panel malaysia-card">
+          <div class="panel-head"><div><span class="section-label">MALAYSIA FOCUS</span><h3>National cyber signal picture</h3></div><span class="posture-pill" id="malaysiaSignalLevel">ASSESSING</span></div>
+          <div class="malaysia-visual">
+            <div class="radar"><span class="radar-ring r1"></span><span class="radar-ring r2"></span><span class="radar-ring r3"></span><i></i><b>MY</b></div>
+            <div><span class="section-label">DASHBOARD SIGNAL SCORE</span><strong class="regional-score" id="malaysiaSignalScore">—</strong><p id="malaysiaNarrative">Waiting for Malaysia intelligence.</p><small>Derived OSINT signal — not an official national threat level.</small></div>
           </div>
-          <div class="malaysia-core">
-            <div class="malaysia-radar"><div class="radar-ring r1"></div><div class="radar-ring r2"></div><div class="radar-ring r3"></div><div class="radar-sweep"></div><div class="radar-center"><span>MY</span><small>CYBER</small></div></div>
-            <div class="malaysia-narrative">
-              <span class="regional-label">REGIONAL SIGNAL SCORE</span>
-              <strong class="regional-score" id="malaysiaSignalScore">—</strong>
-              <p id="malaysiaNarrative">Combining Malaysia ransomware claims in the loaded feed with recent MyCERT advisories.</p>
-              <div class="signal-note">Dashboard-derived OSINT signal — not an official national threat level.</div>
-            </div>
-          </div>
-          <div class="regional-kpi-row">
-            <div><span>MY claims ≤24h</span><strong id="myClaims24">—</strong></div>
-            <div><span>MY claims ≤7d</span><strong id="myClaims7">—</strong></div>
-            <div><span>MY claims ≤30d</span><strong id="myClaims30">—</strong></div>
-            <div><span>Top group in loaded feed</span><strong class="text-kpi" id="myTopGroup">—</strong></div>
-          </div>
+          <div class="regional-kpis"><div><span>≤24h</span><strong id="myClaims24">—</strong></div><div><span>≤7d</span><strong id="myClaims7">—</strong></div><div><span>≤30d</span><strong id="myClaims30">—</strong></div><div><span>Top group</span><strong id="myTopGroup">—</strong></div></div>
         </article>
-
-        <article class="card asean-pulse">
-          <div class="panel-head">
-            <div><div class="section-kicker">ASEAN PULSE</div><h3>Regional ransomware activity</h3></div>
-            <span class="source-chip">11 MEMBERS</span>
-          </div>
-          <div class="asean-scoreboard">
-            <div class="asean-big"><span>ASEAN claims</span><strong id="aseanClaimsLoaded">—</strong><small>in currently loaded claim feed</small></div>
-            <div class="asean-side-stats">
-              <div><span>≤24h</span><strong id="aseanClaims24">—</strong></div>
-              <div><span>≤7d</span><strong id="aseanClaims7">—</strong></div>
-              <div><span>Countries active</span><strong id="aseanCountriesActive">—</strong></div>
-              <div><span>Top country</span><strong class="text-kpi" id="aseanTopCountry">—</strong></div>
-            </div>
-          </div>
-          <div class="asean-share"><span>ASEAN share of loaded ransomware claims</span><strong id="aseanShare">—</strong></div>
+        <article class="panel asean-overview-card">
+          <div class="panel-head"><div><span class="section-label">ASEAN PULSE</span><h3>Regional ransomware activity</h3></div><span class="context-badge">11 MEMBERS</span></div>
+          <div class="asean-big-number"><strong id="aseanClaimsLoaded">—</strong><span>claims in loaded feed</span></div>
+          <div class="regional-kpis"><div><span>≤24h</span><strong id="aseanClaims24">—</strong></div><div><span>≤7d</span><strong id="aseanClaims7">—</strong></div><div><span>Active countries</span><strong id="aseanCountriesActive">—</strong></div><div><span>Top country</span><strong id="aseanTopCountry">—</strong></div></div>
+          <div class="share-row"><span>ASEAN share of loaded claims</span><strong id="aseanShare">—</strong></div>
         </article>
       </div>
-
-      <article class="card asean-matrix-card">
-        <div class="panel-head">
-          <div><h3>ASEAN Regional Signal Matrix</h3><span class="tiny">Ransomware claims in the currently loaded public feed · all 11 ASEAN member states</span></div>
-          <span class="tiny" id="aseanMatrixHint">Latest-feed sample</span>
-        </div>
-        <div id="aseanCountryGrid" class="asean-country-grid"></div>
-      </article>
-
-      <div class="regional-three-panels">
-        <article class="card"><div class="panel-head"><div><h3>ASEAN threat groups</h3><span class="tiny">Groups appearing in regional claims</span></div><span class="tiny" id="aseanGroupCount">—</span></div><div id="aseanTopGroups" class="ranking-list"></div></article>
-        <article class="card"><div class="panel-head"><div><h3>ASEAN targeted sectors</h3><span class="tiny">Sector labels in regional claims</span></div><span class="tiny">OSINT</span></div><div id="aseanTopSectors" class="compact-bars"></div></article>
-        <article class="card mycert-card">
-          <div class="panel-head"><div><h3>Latest MyCERT advisories</h3><span class="tiny" id="mycertStatusText">National advisory feed</span></div><span class="feed-live"><i></i>MYCERT</span></div>
-          <div id="mycertFeed" class="mycert-feed"><div class="empty-state">Waiting for MyCERT collection…</div></div>
-        </article>
+      <article class="panel"><div class="panel-head"><div><span class="section-label">REGIONAL HEAT MATRIX</span><h3>ASEAN claim concentration</h3></div><small id="aseanMatrixHint">Latest-feed sample</small></div><div id="aseanCountryGrid" class="asean-country-grid"></div></article>
+      <div class="three-grid">
+        <article class="panel"><div class="panel-head"><h3>Regional threat groups</h3><small id="aseanGroupCount">—</small></div><div id="aseanTopGroups" class="ranking-list"></div></article>
+        <article class="panel"><div class="panel-head"><h3>Targeted sectors</h3><span class="section-label">OSINT</span></div><div id="aseanTopSectors" class="ranking-list"></div></article>
+        <article class="panel"><div class="panel-head"><div><h3>Latest MyCERT advisories</h3><small id="mycertStatusText">National advisory feed</small></div><a class="source-link" href="https://mycert.org.my/portal/index" target="_blank" rel="noopener">MyCERT ↗</a></div><div id="mycertFeed" class="mycert-feed"></div></article>
       </div>
     </section>
 
-    <section id="vulnerability-intel" class="section-block">
-      <div class="section-title"><div><div class="section-kicker">PHASE 1A–1C</div><h2>Vulnerability & Exploitation Intelligence</h2><p>CISA KEV enriched with NVD CVSS and FIRST EPSS probability.</p></div><span class="section-badge neutral">CORRELATED</span></div>
-
-      <div class="intel-summary-grid">
-        <article class="card epss-card">
-          <div class="panel-head"><div><h3>FIRST EPSS</h3><span class="tiny" id="epssScoreDate">Waiting for collection</span></div><span class="source-chip">FIRST</span></div>
-          <div class="epss-mini-grid">
-            <div><span>Coverage</span><strong id="epssCoverage">—</strong><small id="epssCoverageHint">—</small></div>
-            <div><span>EPSS ≥10%</span><strong id="epss10">—</strong><small>Elevated probability</small></div>
-            <div><span>Top 1%</span><strong id="epss99">—</strong><small>≥99th percentile</small></div>
-          </div>
-        </article>
-        <article class="card severity-card">
-          <div class="panel-head"><div><h3>NVD severity distribution</h3><span class="tiny" id="severityCoverage">Waiting for NVD</span></div><span class="source-chip">NVD</span></div>
-          <div class="severity-stack" id="severityStack"></div>
-          <div class="severity-legend"><span><i class="sev-critical"></i>Critical <b id="sevCritical">—</b></span><span><i class="sev-high"></i>High <b id="sevHigh">—</b></span><span><i class="sev-medium"></i>Medium <b id="sevMedium">—</b></span><span><i class="sev-low"></i>Low <b id="sevLow">—</b></span></div>
-        </article>
+    <!-- RANSOMWARE -->
+    <section class="tab-panel" data-panel="ransomware">
+      <div class="section-heading"><div><span>RANSOMWARE INTELLIGENCE</span><h2>Activity, actors and targeting</h2><p>Public leak-site claims are treated as OSINT signals, not automatically as confirmed incidents.</p></div><a class="source-link" href="https://www.ransomware.live/" target="_blank" rel="noopener">Open source ↗</a></div>
+      <div class="five-kpis"><div><span>Recent claims</span><strong id="rwRecentClaims">—</strong></div><div><span>≤24h</span><strong id="rw24hCard">—</strong></div><div><span>Tracked groups</span><strong id="rwTrackedGroups">—</strong></div><div><span>Countries</span><strong id="rwCountriesCard">—</strong></div><div><span>Sectors</span><strong id="rwSectors">—</strong></div></div>
+      <div class="overview-grid">
+        <article class="panel"><div class="panel-head"><div><h3>Recent claim activity</h3><small>Discovery-date distribution</small></div><span class="micro-pill" id="rwTrendLabel2">LIVE</span></div><div id="activityChartFull" class="chart-area"></div></article>
+        <article class="panel"><div class="panel-head"><div><h3>Most active groups</h3><small id="rwGroupSample">Latest claims</small></div></div><div id="rwTopGroups" class="ranking-list"></div></article>
       </div>
-
-      <div class="card vendor-panel">
-        <div class="panel-head"><div><h3>Technology concentration in CISA KEV</h3><span class="tiny">Top vendors represented in the exploited-vulnerability catalogue</span></div><span class="tiny" id="vendorCount"></span></div>
-        <div class="vendor-list" id="vendors"></div>
+      <div class="three-grid">
+        <article class="panel"><div class="panel-head"><h3>Targeted countries</h3><span class="section-label">LATEST</span></div><div id="rwCountriesList" class="ranking-list"></div></article>
+        <article class="panel"><div class="panel-head"><h3>Targeted sectors</h3><span class="section-label">LATEST</span></div><div id="rwSectorsList" class="ranking-list"></div></article>
+        <article class="panel"><div class="panel-head"><h3>Recent victim claims</h3><span class="live-chip"><i></i>OSINT</span></div><div id="rwLiveFeed" class="claim-feed"></div></article>
       </div>
+    </section>
 
-      <div class="card intelligence-table-card">
-        <div class="table-title-row">
-          <div><h3>Live KEV + NVD + EPSS Intelligence</h3><span class="tiny" id="resultLabel">Loading intelligence…</span></div>
-          <div class="toolbar">
-            <input id="search" placeholder="Search CVE, vendor, product…" />
-            <select id="severityFilter"><option value="all">All severity</option><option value="CRITICAL">Critical</option><option value="HIGH">High</option><option value="MEDIUM">Medium</option><option value="LOW">Low</option><option value="UNKNOWN">Unknown</option></select>
-            <select id="epssFilter"><option value="all">All EPSS</option><option value="50">EPSS ≥ 50%</option><option value="10">EPSS ≥ 10%</option><option value="1">EPSS ≥ 1%</option><option value="lt1">EPSS &lt; 1%</option></select>
-            <select id="priorityFilter"><option value="all">All priority</option><option value="CRITICAL">Critical priority</option><option value="HIGH">High priority</option><option value="MEDIUM">Medium priority</option><option value="LOW">Low priority</option></select>
-            <select id="ransomFilter"><option value="all">All KEVs</option><option value="yes">Ransomware related</option><option value="no">Not known ransomware</option></select>
-          </div>
-        </div>
-        <div class="table-wrap"><table><thead><tr><th>CVE</th><th>Vendor / Product</th><th>CVSS</th><th>EPSS</th><th>Ransomware</th><th>CTI Priority</th><th>Intelligence</th><th>Action</th></tr></thead><tbody id="rows"></tbody></table></div>
+    <!-- VULNERABILITIES -->
+    <section class="tab-panel" data-panel="vulnerabilities">
+      <div class="section-heading"><div><span>VULNERABILITY & EXPLOITATION</span><h2>CISA KEV + NVD + FIRST EPSS</h2><p>Known exploitation enriched with severity, probability and ransomware association.</p></div><div class="source-links"><a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" target="_blank" rel="noopener">CISA ↗</a><a href="https://nvd.nist.gov/" target="_blank" rel="noopener">NVD ↗</a><a href="https://www.first.org/epss/" target="_blank" rel="noopener">EPSS ↗</a></div></div>
+      <div class="vuln-visual-grid">
+        <article class="panel"><div class="panel-head"><div><span class="section-label">NVD SEVERITY</span><h3>CVSS distribution</h3></div><small id="severityCoverage">—</small></div><div class="donut-wrap"><div id="severityDonut" class="severity-donut"><div><strong id="severityDonutTotal">—</strong><span>scored</span></div></div><div class="donut-legend"><span><i class="critical"></i>Critical <b id="sevCritical">—</b></span><span><i class="high"></i>High <b id="sevHigh">—</b></span><span><i class="medium"></i>Medium <b id="sevMedium">—</b></span><span><i class="low"></i>Low <b id="sevLow">—</b></span></div></div></article>
+        <article class="panel"><div class="panel-head"><div><span class="section-label">FIRST EPSS</span><h3>Exploit probability bands</h3></div><small id="epssScoreDate">—</small></div><div id="epssBandChart" class="epss-band-chart"></div><div class="epss-inline"><div><span>Coverage</span><strong id="epssCoverage">—</strong><small id="epssCoverageHint">—</small></div><div><span>EPSS ≥10%</span><strong id="epss10">—</strong></div><div><span>Top 1%</span><strong id="epss99">—</strong></div></div></article>
+      </div>
+      <article class="panel"><div class="panel-head"><div><span class="section-label">EXPLOIT RISK MATRIX</span><h3>CVSS × EPSS × CTI Priority</h3></div><small>Click a point to open CVE details</small></div><div id="riskScatterFull" class="risk-scatter large"></div></article>
+      <article class="panel"><div class="panel-head"><div><span class="section-label">TECHNOLOGY CONCENTRATION</span><h3>Top vendors in CISA KEV</h3></div><small id="vendorCount">—</small></div><div id="vendors" class="vendor-list"></div></article>
+      <article class="panel table-card">
+        <div class="table-toolbar"><div><h3>Live KEV intelligence</h3><small id="resultLabel">Loading…</small></div><div class="filters"><input id="search" placeholder="Search CVE, vendor, product…"/><select id="severityFilter"><option value="all">All severity</option><option value="CRITICAL">Critical</option><option value="HIGH">High</option><option value="MEDIUM">Medium</option><option value="LOW">Low</option><option value="UNKNOWN">Unknown</option></select><select id="epssFilter"><option value="all">All EPSS</option><option value="50">EPSS ≥ 50%</option><option value="10">EPSS ≥ 10%</option><option value="1">EPSS ≥ 1%</option><option value="lt1">EPSS &lt; 1%</option></select><select id="priorityFilter"><option value="all">All priority</option><option value="CRITICAL">Critical</option><option value="HIGH">High</option><option value="MEDIUM">Medium</option><option value="LOW">Low</option></select><select id="ransomFilter"><option value="all">All KEVs</option><option value="yes">Ransomware related</option><option value="no">Not known ransomware</option></select></div></div>
+        <div class="table-wrap"><table><thead><tr><th>CVE</th><th>Vendor / Product</th><th>CVSS</th><th>EPSS</th><th>Ransomware</th><th>CTI</th><th>Intelligence</th><th>Source</th></tr></thead><tbody id="rows"></tbody></table></div>
         <div class="pagination"><button id="prevPage">← Previous</button><span id="pageLabel">Page 1</span><button id="nextPage">Next →</button></div>
+      </article>
+    </section>
+
+    <!-- LIVE FEED -->
+    <section class="tab-panel" data-panel="live">
+      <div class="section-heading"><div><span>UNIFIED INTELLIGENCE</span><h2>Live operational feed</h2><p>Newest CISA, NVD, EPSS, ransomware and MyCERT signals in one chronological stream.</p></div><span class="live-chip"><i></i>LIVE CORRELATION</span></div>
+      <article class="ticker panel"><span class="ticker-live"><i></i>LIVE</span><div><small id="tickerSource">INTELLIGENCE</small><strong id="latestSignalTicker">Waiting for source data…</strong></div><time id="feedUpdatedAt">—</time></article>
+      <div class="live-layout">
+        <article class="panel feed-panel"><div class="feed-toolbar"><div><h3>Operational stream</h3><small id="intelFeedCount">Building signals…</small></div><div class="feed-filters" id="feedFilters"><button class="active" data-feed-filter="all">All</button><button data-feed-filter="critical">Critical</button><button data-feed-filter="ransomware">Ransomware</button><button data-feed-filter="malaysia">Malaysia</button><button data-feed-filter="vulnerability">Vulnerabilities</button></div></div><div id="unifiedIntelFeed" class="unified-feed"></div><div class="feed-footer"><button id="feedMore" class="soft-btn small">Show more</button><span id="feedWindowHint">Newest first</span></div></article>
+        <aside class="live-aside"><article class="panel"><div class="panel-head"><div><span class="section-label">SIGNAL SNAPSHOT</span><h3>Recent changes</h3></div><span class="context-badge" id="activeSourceCount">— SOURCES</span></div><div class="snapshot-grid"><div><span>≤24h</span><strong id="signals24h">—</strong></div><div><span>Critical</span><strong id="criticalSignals">—</strong></div><div><span>Ransomware</span><strong id="ransomwareSignals">—</strong></div><div><span>Malaysia</span><strong id="malaysiaSignals">—</strong></div></div><div class="latest-source"><span>Latest source</span><strong id="latestSignalSource">—</strong></div></article><article class="panel"><div class="panel-head"><div><span class="section-label">DATA FRESHNESS</span><h3>Collector recency</h3></div></div><div id="freshnessList" class="freshness-list"></div></article></aside>
       </div>
     </section>
 
-    <section class="card methodology">
-      <div><div class="section-kicker">SCORING LOGIC</div><h3>Transparent CTI prioritisation</h3><p>CVSS up to 30 + EPSS up to 35 + known ransomware use up to 25 + recent KEV addition up to 10 = 100.</p></div>
-      <div class="score-chip">0–100</div>
+    <!-- SOURCES -->
+    <section class="tab-panel" data-panel="sources">
+      <div class="section-heading"><div><span>SOURCE ASSURANCE</span><h2>Collection health & traceability</h2><p>Every intelligence item retains its originating source and collection state.</p></div></div>
+      <div id="sourceCards" class="source-cards"></div>
+      <article class="panel methodology"><div><span class="section-label">TRANSPARENT SCORING</span><h3>CTI Priority = CVSS + EPSS + ransomware use + recency</h3><p>CVSS up to 30 + EPSS up to 35 + known ransomware use up to 25 + recent KEV addition up to 10 = 100. This is external-intelligence prioritisation, not organisational risk.</p></div><strong>0–100</strong></article>
     </section>
 
-    <div class="notice"><strong>Data caveat:</strong> Ransomware victim entries originate from public leak-site monitoring and represent claimed victims, not automatically independently verified incidents. ASEAN counts are calculated from the currently loaded ransomware feed and are not complete national incident totals. The Malaysia signal score is dashboard-derived OSINT, not an official MyCERT/CyberSecurity Malaysia threat level. EPSS is provided by FIRST. This product uses the NVD API but is not endorsed or certified by NVD.</div>
-    <footer><div>Phase 1: CISA + NVD + FIRST EPSS + Ransomware OSINT + MyCERT → Scheduled Collectors → Executive Briefing + Unified Live Feed → Regional Correlation → Normalised JSON → GitHub Pages.</div><div>Developed by <strong>Abdullah Zulkifli</strong></div></footer>
+    <div class="data-caveat"><strong>Data caveat:</strong> ransomware victim entries are public claims and not automatically independently verified incidents. ASEAN counts reflect the currently loaded feed, not complete national incident totals. The Malaysia signal score is dashboard-derived OSINT. EPSS is provided by FIRST. This product uses NVD data but is not endorsed or certified by NVD.</div>
+    <footer><span>Phase 1H · Automated external CTI command centre</span><span>Developed by <strong>Abdullah Zulkifli</strong></span></footer>
   </main>
+
+  <!-- CVE DETAIL DRAWER -->
+  <div class="drawer-backdrop" id="drawerBackdrop"></div>
+  <aside class="detail-drawer" id="detailDrawer" aria-hidden="true" aria-label="Vulnerability detail">
+    <button class="drawer-close" id="drawerClose" aria-label="Close">×</button>
+    <div id="drawerContent"></div>
+  </aside>
+
   <script src="js/app.js"></script>
 </body>
 </html>
