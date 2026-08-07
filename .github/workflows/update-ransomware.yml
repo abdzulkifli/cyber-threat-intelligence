@@ -1,0 +1,37 @@
+name: Update Ransomware Intelligence
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "7,17,27,37,47,57 * * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ransomware-intelligence
+  cancel-in-progress: false
+
+jobs:
+  update-ransomware:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: "24"
+
+      - name: Collect ransomware intelligence
+        run: node scripts/fetch-ransomware.js
+
+      - name: Commit changed ransomware intelligence
+        run: |
+          git config --global user.name "Cyber Intelligence Bot"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/ransomware.json
+          git diff --cached --quiet || git commit -m "Update ransomware intelligence"
+          git push
