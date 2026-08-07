@@ -13,7 +13,7 @@ function ctiPriority(v){const sev=String(v.nvd?.cvss?.severity||'UNKNOWN').toUpp
 function buildUnified(){return(KEV?.vulnerabilities||[]).map(v=>{const x={...v,nvd:NVD_BY_ID.get(v.id)||null,epss:EPSS_BY_ID.get(v.id)||null};x.priority=ctiPriority(x);return x;});}
 function sourceReady(x){return x?.meta?.status==='ok';}
 function setHealth(id,state){const el=$(id);if(!el)return;const cls=state===true||state==='ok'?'ok':state==='warn'?'warn':'';el.className=`health-dot ${cls}`;}
-function renderHeader(){const states=[sourceReady(KEV),sourceReady(NVD),sourceReady(EPSS),sourceReady(RW),sourceReady(MYCERT)];const n=states.filter(Boolean).length;const myDegraded=sourceReady(MYCERT)&&MYCERT?.meta?.lastAttemptStatus==='failed';$('feedStatus').textContent=n===5&&!myDegraded?'5 SOURCES LIVE':myDegraded?`${n} SOURCES · 1 DEGRADED`:`${n} SOURCE${n===1?'':'S'} LIVE`;$('liveDot').className=`dot ${n===5&&!myDegraded?'':'amber-dot'}`;setHealth('cisaHealthDot',states[0]);setHealth('nvdHealthDot',states[1]);setHealth('epssHealthDot',states[2]);setHealth('rwHealthDot',states[3]);setHealth('mycertHealthDot',myDegraded?'warn':states[4]);$('cisaCollectedAt').textContent=fmtDateTime(KEV?.meta?.collectedAt);$('nvdCollectedAt').textContent=fmtDateTime(NVD?.meta?.collectedAt);$('epssCollectedAt').textContent=fmtDateTime(EPSS?.meta?.collectedAt);$('rwCollectedAt').textContent=fmtDateTime(RW?.meta?.collectedAt);$('mycertCollectedAt').textContent=sourceReady(MYCERT)?fmtDateTime(MYCERT?.meta?.collectedAt):'Not collected';}
+function renderHeader(){const states=[sourceReady(KEV),sourceReady(NVD),sourceReady(EPSS),sourceReady(RW),sourceReady(MYCERT)];const n=states.filter(Boolean).length;const myDegraded=sourceReady(MYCERT)&&MYCERT?.meta?.lastAttemptStatus==='failed';const liveCount=myDegraded?Math.max(0,n-1):n;$('feedStatus').textContent=n===5&&!myDegraded?'5 SOURCES LIVE':myDegraded?`${liveCount} LIVE · 1 DEGRADED`:`${n} SOURCE${n===1?'':'S'} LIVE`;$('feedStatus').title=myDegraded?'Degraded source: MyCERT Malaysia':'';$('liveDot').className=`dot ${n===5&&!myDegraded?'':'amber-dot'}`;setHealth('cisaHealthDot',states[0]);setHealth('nvdHealthDot',states[1]);setHealth('epssHealthDot',states[2]);setHealth('rwHealthDot',states[3]);setHealth('mycertHealthDot',myDegraded?'warn':states[4]);$('cisaCollectedAt').textContent=fmtDateTime(KEV?.meta?.collectedAt);$('nvdCollectedAt').textContent=fmtDateTime(NVD?.meta?.collectedAt);$('epssCollectedAt').textContent=fmtDateTime(EPSS?.meta?.collectedAt);$('rwCollectedAt').textContent=fmtDateTime(RW?.meta?.collectedAt);$('mycertCollectedAt').textContent=sourceReady(MYCERT)?fmtDateTime(MYCERT?.meta?.collectedAt):'Not collected';}
 function renderTopMetrics(){const unified=buildUnified();const criticalPriority=unified.filter(x=>x.priority.label==='CRITICAL').length;$('total').textContent=fmt(KEV?.stats?.total);$('ransomware').textContent=fmt(KEV?.stats?.ransomwareRelated);$('critical').textContent=fmt(NVD?.stats?.critical);$('high').textContent=fmt(NVD?.stats?.high);$('priorityCriticalTop').textContent=fmt(criticalPriority);$('epss50Top').textContent=fmt(EPSS?.stats?.epssGe50);$('rwTotalVictims').textContent=sourceReady(RW)?fmt(RW.stats.totalVictims):'—';$('rwActiveGroups').textContent=sourceReady(RW)?fmt(RW.stats.activeGroups):'—';$('rw24h').textContent=sourceReady(RW)?fmt(RW.stats.claims24h):'—';$('rwCountries').textContent=sourceReady(RW)?fmt(RW.stats.countriesRecent):'—';const epssHigh=Number(EPSS?.stats?.epssGe50||0);const rw24=Number(RW?.stats?.claims24h||0);const score=Math.min(100,Math.round((criticalPriority/Math.max(unified.length,1))*1500 + Math.min(35,epssHigh/8) + Math.min(30,rw24*2)));$('pulseScore').textContent=score||'—';const label=score>=75?'HEIGHTENED':score>=50?'ELEVATED':score>=25?'GUARDED':'NORMAL';$('pulseLabel').textContent=`${label} external threat posture`;$('pulseStatus').textContent=label;$('pulseStatus').dataset.level=label.toLowerCase();$('pulseNarrative').textContent=sourceReady(RW)?`${fmt(criticalPriority)} KEVs currently rank Critical by CTI priority, while ${fmt(rw24)} ransomware claims in the latest feed were discovered within 24 hours.`:'Vulnerability intelligence is live. Ransomware activity enrichment is waiting for its first collection.';}
 function renderEpss(){if(!sourceReady(EPSS)){['epssCoverage','epss10','epss99'].forEach(id=>$(id).textContent='—');return;}$('epssCoverage').textContent=`${Number(EPSS.stats.coveragePercent||0).toFixed(1)}%`;$('epssCoverageHint').textContent=`${fmt(EPSS.stats.matched)} KEVs scored`;$('epss10').textContent=fmt(EPSS.stats.epssGe10);$('epss99').textContent=fmt(EPSS.stats.percentileGe99);$('epssScoreDate').textContent=`Score date ${EPSS.meta.scoreDate||'current'}`;}
 function renderSeverity(){if(!sourceReady(NVD)){return;}const s=NVD.stats;$('sevCritical').textContent=fmt(s.critical);$('sevHigh').textContent=fmt(s.high);$('sevMedium').textContent=fmt(s.medium);$('sevLow').textContent=fmt(s.low);$('severityCoverage').textContent=`${Number(s.coveragePercent||0).toFixed(1)}% CVSS coverage`;const total=Math.max(1,Number(s.total||0));$('severityStack').innerHTML=[['critical',s.critical],['high',s.high],['medium',s.medium],['low',s.low],['unknown',s.unknown]].map(([k,n])=>`<span class="stack-${k}" style="width:${Number(n||0)/total*100}%" title="${k}: ${fmt(n)}"></span>`).join('');}
@@ -122,13 +122,123 @@ function renderUnifiedFeed(){
   KNOWN_FEED_IDS=currentIds;renderFreshness();
 }
 
+
+function executiveSourceStates(){
+  const myDegraded=sourceReady(MYCERT)&&MYCERT?.meta?.lastAttemptStatus==='failed';
+  return [
+    {code:'C',name:'CISA KEV',ready:sourceReady(KEV),degraded:false,collected:KEV?.meta?.collectedAt},
+    {code:'N',name:'NVD CVE API',ready:sourceReady(NVD),degraded:false,collected:NVD?.meta?.collectedAt},
+    {code:'E',name:'FIRST EPSS',ready:sourceReady(EPSS),degraded:false,collected:EPSS?.meta?.collectedAt},
+    {code:'R',name:'Ransomware OSINT',ready:sourceReady(RW),degraded:false,collected:RW?.meta?.collectedAt},
+    {code:'MY',name:'MyCERT Malaysia',ready:sourceReady(MYCERT),degraded:myDegraded,collected:MYCERT?.meta?.collectedAt}
+  ];
+}
+function regionalSnapshot(){
+  const victims=sourceReady(RW)?(RW.victims||[]):[];
+  const tagged=victims.map(v=>({v,member:aseanMember(v.country)})).filter(x=>x.member);
+  const malaysia=tagged.filter(x=>x.member.code==='MY').map(x=>x.v);
+  const asean=tagged.map(x=>x.v);
+  const topCountry=countBy(tagged,x=>x.member.name)[0]||null;
+  const topGroup=countBy(asean,v=>v.group||'Unknown')[0]||null;
+  return {
+    my24:malaysia.filter(v=>withinDays(v.discovered,1)).length,
+    my7:malaysia.filter(v=>withinDays(v.discovered,7)).length,
+    my30:malaysia.filter(v=>withinDays(v.discovered,30)).length,
+    aseanLoaded:asean.length,
+    asean24:asean.filter(v=>withinDays(v.discovered,1)).length,
+    topCountry,topGroup,latestMycert:MYCERT?.advisories?.[0]||null
+  };
+}
+function executivePosture(){
+  const unified=buildUnified();
+  const critical=unified.filter(x=>x.priority.label==='CRITICAL').length;
+  const epssHigh=Number(EPSS?.stats?.epssGe50||0);
+  const rw24=Number(RW?.stats?.claims24h||0);
+  const score=Math.min(100,Math.round((critical/Math.max(unified.length,1))*1500+Math.min(35,epssHigh/8)+Math.min(30,rw24*2)));
+  return {score,label:score>=75?'HEIGHTENED':score>=50?'ELEVATED':score>=25?'GUARDED':'NORMAL',critical,epssHigh,rw24};
+}
+function topPriorityKevs(limit=5){
+  return buildUnified().sort((a,b)=>b.priority.score-a.priority.score||Number(b.epss?.epss||0)-Number(a.epss?.epss||0)).slice(0,limit);
+}
+function renderExecutiveBriefing(){
+  if(!$('executiveWatchlist'))return;
+  const posture=executivePosture(),regional=regionalSnapshot(),events=buildIntelligenceEvents(),sources=executiveSourceStates(),top=topPriorityKevs(5);
+  const healthy=sources.filter(x=>x.ready&&!x.degraded).length,degraded=sources.filter(x=>x.degraded).length,unavailable=sources.filter(x=>!x.ready).length;
+  const confidence=unavailable>=2?'LIMITED':degraded||unavailable?'MODERATE':'HIGH';
+  const latest=events[0];
+  const topKev=top[0];
+  const topGroup=(RW?.topGroups||[])[0]||regional.topGroup;
+  $('briefHeadline').textContent=`${posture.label} external threat posture · ${fmt(posture.critical)} critical-priority KEVs`;
+  $('briefGeneratedAt').textContent=`Generated ${new Date().toLocaleString()}`;
+  $('briefWindow').textContent=latest?`Latest signal: ${feedTime(latest)}`:'Current intelligence window';
+  $('briefConfidence').textContent=`Confidence ${confidence}`;
+  $('briefConfidence').dataset.level=confidence.toLowerCase();
+  $('briefSummary').textContent=`Current external intelligence shows ${fmt(posture.critical)} CISA-known exploited vulnerabilities at Critical CTI priority. ${fmt(posture.epssHigh)} KEVs have EPSS probability at or above 50%, and the latest ransomware feed contains ${fmt(posture.rw24)} public victim claim${posture.rw24===1?'':'s'} discovered within 24 hours. ${regional.my30?`${fmt(regional.my30)} Malaysia claim${regional.my30===1?'':'s'} appear within 30 days in the loaded feed.`:'No Malaysia ransomware claim appears within 30 days in the currently loaded feed.'}`;
+
+  const priorities=[
+    {tone:'critical',num:'01',title:'Exploit-priority vulnerabilities',value:fmt(posture.critical),text:topKev?`${topKev.id} currently leads the watchlist at ${topKev.priority.score}/100${topKev.epss?`, EPSS ${(Number(topKev.epss.epss)*100).toFixed(1)}%`:''}${topKev.ransomware?', with known ransomware use':''}.`:'Waiting for correlated KEV intelligence.'},
+    {tone:'ransomware',num:'02',title:'Ransomware activity',value:fmt(posture.rw24),text:topGroup?`${topGroup.name||'Unknown'} is the leading group in the currently loaded ranking${topGroup.count!=null?` with ${fmt(topGroup.count)} claim${topGroup.count===1?'':'s'}`:''}. Public leak-site entries are treated as claims, not confirmed incidents.`:'Waiting for ransomware intelligence.'},
+    {tone:'regional',num:'03',title:'Malaysia / ASEAN watch',value:fmt(regional.my30),text:regional.latestMycert?`Latest MyCERT signal: ${regional.latestMycert.title}. ASEAN loaded-feed activity currently totals ${fmt(regional.aseanLoaded)} claims.`:`ASEAN loaded-feed activity currently totals ${fmt(regional.aseanLoaded)} claims. MyCERT advisory collection is pending.`}
+  ];
+  $('briefPriorities').innerHTML=priorities.map(x=>`<div class="brief-priority tone-${x.tone}"><span class="brief-num">${x.num}</span><div><span>${esc(x.title)}</span><strong>${esc(x.value)}</strong><p>${esc(x.text)}</p></div></div>`).join('');
+
+  const recentEvents=events.slice(0,4);
+  $('briefChanges').innerHTML=recentEvents.length?recentEvents.map(e=>`<div class="brief-list-item"><i class="brief-dot sev-${e.severity}"></i><div><strong>${esc(e.title)}</strong><small>${esc(e.source)} · ${esc(feedTime(e))}</small></div></div>`).join(''):'<div class="empty-state">No timestamped changes available.</div>';
+
+  const watch=[];
+  if(topKev)watch.push(`${topKev.id}: CTI ${topKev.priority.score}/100${topKev.epss?`, EPSS ${(Number(topKev.epss.epss)*100).toFixed(1)}%`:''}${topKev.ransomware?', ransomware-related':''}.`);
+  if(topGroup)watch.push(`Monitor ${topGroup.name||topGroup.group||'the leading ransomware group'} activity and changes in country/sector targeting.`);
+  if(regional.latestMycert)watch.push(`Review MyCERT: ${regional.latestMycert.title}.`);
+  if(degraded)watch.push(`Collection assurance: ${sources.filter(x=>x.degraded).map(x=>x.name).join(', ')} is degraded; last good data is retained.`);
+  else if(unavailable)watch.push(`Restore unavailable source${unavailable===1?'':'s'}: ${sources.filter(x=>!x.ready).map(x=>x.name).join(', ')}.`);
+  else watch.push('All five collection sources are currently healthy; continue automated monitoring.');
+  $('briefWatch').innerHTML=watch.slice(0,4).map((x,i)=>`<div class="brief-list-item watch"><span>${String(i+1).padStart(2,'0')}</span><div><strong>${esc(x)}</strong></div></div>`).join('');
+
+  $('executiveWatchlist').innerHTML=top.length?top.map((v,i)=>{const cv=v.nvd?.cvss||{},ep=v.epss?`${(Number(v.epss.epss)*100).toFixed(1)}%`:'—';return `<div class="watchlist-row"><span class="watch-rank">${String(i+1).padStart(2,'0')}</span><div class="watch-main"><div><strong>${esc(v.id)}</strong><span class="priority p-${v.priority.label.toLowerCase()}">${v.priority.label}</span></div><small>${esc(v.vendor)} · ${esc(v.product)}</small><div class="watch-metrics"><span>CTI <b>${v.priority.score}</b></span><span>CVSS <b>${cv.score==null?'—':Number(cv.score).toFixed(1)}</b></span><span>EPSS <b>${ep}</b></span>${v.ransomware?'<span class="rw-flag">RANSOMWARE</span>':''}</div></div></div>`;}).join(''):'<div class="empty-state">Waiting for vulnerability intelligence…</div>';
+
+  $('regionalBrief').innerHTML=`<div class="regional-brief-kpis"><div><span>Malaysia ≤30d</span><strong>${fmt(regional.my30)}</strong></div><div><span>ASEAN loaded</span><strong>${fmt(regional.aseanLoaded)}</strong></div><div><span>ASEAN ≤24h</span><strong>${fmt(regional.asean24)}</strong></div></div><div class="regional-brief-lines"><p><span>Top country</span><strong>${esc(regional.topCountry?.name||'—')}</strong></p><p><span>Top group</span><strong>${esc(regional.topGroup?.name||'—')}</strong></p><p><span>Latest MyCERT</span><strong>${esc(regional.latestMycert?.title||'Pending collection')}</strong></p></div>`;
+
+  $('briefSourceState').textContent=unavailable?`${healthy} healthy · ${unavailable} unavailable`:degraded?`${healthy} live · ${degraded} degraded`:`${healthy} / 5 healthy`;
+  $('briefSourceHealth').innerHTML=sources.map(x=>{const state=!x.ready?'OFFLINE':x.degraded?'DEGRADED':'LIVE';const cls=!x.ready?'offline':x.degraded?'degraded':'live';return `<div class="brief-source-row"><span class="brief-source-code">${x.code}</span><div><strong>${esc(x.name)}</strong><small>${esc(x.collected?relTime(x.collected):'Not collected')}</small></div><b class="brief-source-state ${cls}">${state}</b></div>`;}).join('');
+}
+function buildExecutiveBriefText(){
+  const posture=executivePosture(),regional=regionalSnapshot(),top=topPriorityKevs(3),sources=executiveSourceStates();
+  const latest=buildIntelligenceEvents().slice(0,4);
+  return [
+    'CYBER THREAT INTELLIGENCE — EXECUTIVE BRIEF',
+    `Generated: ${new Date().toLocaleString()}`,
+    '',
+    `Posture: ${posture.label} (${posture.score}/100 external CTI signal)`,
+    `Critical-priority KEVs: ${posture.critical}`,
+    `KEVs with EPSS ≥50%: ${posture.epssHigh}`,
+    `Ransomware claims ≤24h in latest feed: ${posture.rw24}`,
+    `Malaysia claims ≤30d in loaded feed: ${regional.my30}`,
+    '',
+    'TOP WATCHLIST',
+    ...top.map((v,i)=>`${i+1}. ${v.id} — CTI ${v.priority.score}/100; CVSS ${v.nvd?.cvss?.score??'—'}; EPSS ${v.epss?`${(Number(v.epss.epss)*100).toFixed(1)}%`:'—'}; ransomware ${v.ransomware?'known':'not known'}`),
+    '',
+    'LATEST SIGNALS',
+    ...latest.map((e,i)=>`${i+1}. ${e.source}: ${e.title} (${feedTime(e)})`),
+    '',
+    'SOURCE HEALTH',
+    ...sources.map(x=>`${x.name}: ${!x.ready?'OFFLINE':x.degraded?'DEGRADED':'LIVE'}`),
+    '',
+    'Note: public ransomware leak-site entries are claims, not automatically verified incidents. CTI priority is external intelligence prioritisation, not organisational risk.'
+  ].join('\n');
+}
+async function copyExecutiveBrief(){
+  const btn=$('copyBrief');
+  try{await navigator.clipboard.writeText(buildExecutiveBriefText());btn.textContent='Copied';setTimeout(()=>btn.textContent='Copy brief',1600);}catch{btn.textContent='Copy failed';setTimeout(()=>btn.textContent='Copy brief',1600);}
+}
+
 function renderRanking(id,list,limit,numbered){const max=Math.max(...list.map(x=>x.count),1);$(id).innerHTML=list.slice(0,limit).map((x,i)=>`<div class="rank-row">${numbered?`<span class="rank-num">${String(i+1).padStart(2,'0')}</span>`:''}<div class="rank-main"><div><strong>${esc(x.name)}</strong><span>${fmt(x.count)}</span></div><div class="rank-bar"><i style="width:${Math.max(5,x.count/max*100)}%"></i></div></div></div>`).join('')||'<div class="empty-state">No activity data.</div>';}
 function renderActivity(data){if(!data.length){$('activityChart').innerHTML='<div class="empty-state">No dated claims in the latest feed.</div>';return;}const w=820,h=230,p=28,max=Math.max(...data.map(x=>x.count),1);const pts=data.map((d,i)=>{const x=p+(i*(w-2*p)/Math.max(data.length-1,1));const y=h-p-(d.count/max)*(h-2*p);return{x,y,d};});const poly=pts.map(p=>`${p.x},${p.y}`).join(' ');const bars=pts.map((p,i)=>{const bw=Math.max(8,(w-2*p)/(data.length*1.8));return`<rect x="${p.x-bw/2}" y="${p.y}" width="${bw}" height="${h-p-p.y}" rx="4" class="chart-bar"/><circle cx="${p.x}" cy="${p.y}" r="4" class="chart-dot"/>`;}).join('');const labels=pts.map((p,i)=>i%Math.ceil(data.length/6)===0||i===data.length-1?`<text x="${p.x}" y="${h-5}" text-anchor="middle">${p.d.date.slice(5)}</text>`:'').join('');$('activityChart').innerHTML=`<svg viewBox="0 0 ${w} ${h}" role="img" aria-label="Recent ransomware claims activity"><defs><linearGradient id="area" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#56e6ff" stop-opacity=".28"/><stop offset="1" stop-color="#56e6ff" stop-opacity="0"/></linearGradient></defs><polyline points="${poly}" class="chart-line"/>${bars}${labels}</svg>`;const first=data[0]?.count||0,last=data[data.length-1]?.count||0;$('rwTrendLabel').textContent=last>first?'RISING':last<first?'EASING':'STEADY';}
 function epssMatch(x,f){const p=x.epss?.epss;if(f==='all')return true;if(p==null)return false;return f==='50'?p>=.5:f==='10'?p>=.1:f==='1'?p>=.01:f==='lt1'?p<.01:true;}
 function getFiltered(){const q=$('search').value.trim().toLowerCase(),sev=$('severityFilter').value,ep=$('epssFilter').value,pri=$('priorityFilter').value,ran=$('ransomFilter').value;return buildUnified().filter(v=>{const s=String(v.nvd?.cvss?.severity||'UNKNOWN').toUpperCase();const hay=`${v.id} ${v.vendor} ${v.product} ${v.vulnerabilityName} ${v.nvd?.description||''}`.toLowerCase();return(!q||hay.includes(q))&&(sev==='all'||s===sev)&&epssMatch(v,ep)&&(pri==='all'||v.priority.label===pri)&&(ran==='all'||(ran==='yes'?v.ransomware:!v.ransomware));});}
 function renderTable(){const items=getFiltered();const pages=Math.max(1,Math.ceil(items.length/PAGE_SIZE));PAGE=Math.min(PAGE,pages);const slice=items.slice((PAGE-1)*PAGE_SIZE,PAGE*PAGE_SIZE);$('resultLabel').textContent=`${fmt(items.length)} matching records · 50 per page`;$('pageLabel').textContent=`Page ${PAGE} of ${pages}`;$('prevPage').disabled=PAGE<=1;$('nextPage').disabled=PAGE>=pages;$('rows').innerHTML=slice.map(v=>{const cv=v.nvd?.cvss||{},score=cv.score==null?'—':Number(cv.score).toFixed(1),sev=String(cv.severity||'UNKNOWN').toUpperCase(),ep=v.epss?`${(Number(v.epss.epss)*100).toFixed(2)}%`:'—';return`<tr><td><strong class="cve">${esc(v.id)}</strong><small>${esc(v.dateAdded||'')}</small></td><td><strong>${esc(v.vendor)}</strong><small>${esc(v.product)}</small></td><td><b class="cvss">${score}</b><span class="sev-badge sev-${sev.toLowerCase()}">${esc(sev)}</span></td><td><strong class="epss">${ep}</strong><small>${v.epss?`${(Number(v.epss.percentile)*100).toFixed(1)} percentile`:''}</small></td><td><span class="pill ${v.ransomware?'pill-red':'pill-green'}">${v.ransomware?'KNOWN':'NOT KNOWN'}</span></td><td><span class="priority p-${v.priority.label.toLowerCase()}">${v.priority.label}</span><small>${v.priority.score}/100</small></td><td class="intel-cell"><strong>${esc(v.vulnerabilityName)}</strong><small>${esc(v.nvd?.description||v.description||'')}</small></td><td class="action-cell">${esc(v.requiredAction||'—')}</td></tr>`;}).join('')||'<tr><td colspan="8" class="empty-state">No records match your filters.</td></tr>';}
 async function fetchJson(path){const r=await fetch(`${path}?t=${Date.now()}`,{cache:'no-store'});if(!r.ok)throw new Error(`${path}: HTTP ${r.status}`);return r.json();}
-async function load(){const res=await Promise.allSettled(['data/kev.json','data/nvd.json','data/epss.json','data/ransomware.json','data/mycert.json'].map(fetchJson));[KEV,NVD,EPSS,RW,MYCERT]=res.map(x=>x.status==='fulfilled'?x.value:null);NVD_BY_ID=sourceReady(NVD)?new Map((NVD.vulnerabilities||[]).map(v=>[v.id,v])):new Map();EPSS_BY_ID=sourceReady(EPSS)?new Map((EPSS.vulnerabilities||[]).map(v=>[v.id,v])):new Map();renderHeader();renderTopMetrics();renderEpss();renderSeverity();renderVendors();renderRansomware();renderRegional();renderUnifiedFeed();renderTable();}
+async function load(){const res=await Promise.allSettled(['data/kev.json','data/nvd.json','data/epss.json','data/ransomware.json','data/mycert.json'].map(fetchJson));[KEV,NVD,EPSS,RW,MYCERT]=res.map(x=>x.status==='fulfilled'?x.value:null);NVD_BY_ID=sourceReady(NVD)?new Map((NVD.vulnerabilities||[]).map(v=>[v.id,v])):new Map();EPSS_BY_ID=sourceReady(EPSS)?new Map((EPSS.vulnerabilities||[]).map(v=>[v.id,v])):new Map();renderHeader();renderTopMetrics();renderEpss();renderSeverity();renderVendors();renderRansomware();renderRegional();renderUnifiedFeed();renderExecutiveBriefing();renderTable();}
 ['search','severityFilter','epssFilter','priorityFilter','ransomFilter'].forEach(id=>$(id).addEventListener(id==='search'?'input':'change',()=>{PAGE=1;renderTable();}));
 $('feedFilters').addEventListener('click',e=>{const b=e.target.closest('[data-feed-filter]');if(!b)return;FEED_FILTER=b.dataset.feedFilter;FEED_LIMIT=18;document.querySelectorAll('.feed-filter').forEach(x=>x.classList.toggle('active',x===b));renderUnifiedFeed();});$('feedMore').addEventListener('click',()=>{FEED_LIMIT+=18;renderUnifiedFeed();});$('prevPage').addEventListener('click',()=>{if(PAGE>1){PAGE--;renderTable();document.querySelector('.intelligence-table-card').scrollIntoView({behavior:'smooth',block:'start'});}});$('nextPage').addEventListener('click',()=>{PAGE++;renderTable();document.querySelector('.intelligence-table-card').scrollIntoView({behavior:'smooth',block:'start'});});
+if($('copyBrief'))$('copyBrief').addEventListener('click',copyExecutiveBrief);if($('printBrief'))$('printBrief').addEventListener('click',()=>window.print());
 load();setInterval(load,5*60*1000);

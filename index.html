@@ -12,11 +12,11 @@
   <main class="shell">
     <header class="hero" id="overview">
       <div class="hero-copy">
-        <div class="eyebrow"><span class="eyebrow-mark"></span>PHASE 1A–1F · LIVE EXTERNAL + REGIONAL CYBER THREAT INTELLIGENCE</div>
+        <div class="eyebrow"><span class="eyebrow-mark"></span>PHASE 1A–1G · LIVE EXTERNAL + REGIONAL CYBER THREAT INTELLIGENCE</div>
         <h1>Cyber Threat Intelligence <span>Command Centre</span></h1>
         <p class="sub">Known exploitation, vulnerability severity, exploitation probability and ransomware activity — continuously collected, correlated and presented with source traceability.</p>
         <nav class="section-nav">
-          <a href="#overview">Overview</a><a href="#live-intel">Live Feed</a><a href="#ransomware-intel">Ransomware</a><a href="#regional-intel">Malaysia & ASEAN</a><a href="#vulnerability-intel">Vulnerabilities</a><a href="#source-health">Sources</a>
+          <a href="#overview">Overview</a><a href="#executive-brief">Briefing</a><a href="#live-intel">Live Feed</a><a href="#ransomware-intel">Ransomware</a><a href="#regional-intel">Malaysia & ASEAN</a><a href="#vulnerability-intel">Vulnerabilities</a><a href="#source-health">Sources</a>
         </nav>
       </div>
       <div class="hero-status">
@@ -61,6 +61,45 @@
           <div class="source-item"><span class="source-icon source-my">MY</span><div><strong>MyCERT Malaysia</strong><small id="mycertCollectedAt">—</small></div><span class="health-dot" id="mycertHealthDot"></span></div>
         </div>
       </article>
+    </section>
+
+
+    <section id="executive-brief" class="section-block executive-brief-section">
+      <div class="section-title">
+        <div><div class="section-kicker">PHASE 1G</div><h2>Executive Intelligence Briefing</h2><p>Automatically generated from the current CISA, NVD, FIRST EPSS, ransomware and MyCERT datasets — focused on what matters, why it matters and what to watch.</p></div>
+        <span class="section-badge brief-badge"><i></i> AUTO-GENERATED</span>
+      </div>
+
+      <div class="brief-hero-grid">
+        <article class="card executive-brief-card">
+          <div class="brief-topline">
+            <div><span class="brief-label">EXECUTIVE SITUATION BRIEF</span><h3 id="briefHeadline">Building current threat picture…</h3></div>
+            <div class="brief-actions"><button id="copyBrief" type="button">Copy brief</button><button id="printBrief" type="button">Print</button></div>
+          </div>
+          <div class="brief-meta"><span id="briefGeneratedAt">Generated —</span><span id="briefWindow">Current intelligence window</span><span id="briefConfidence">Confidence —</span></div>
+          <p class="brief-summary" id="briefSummary">The dashboard is correlating current intelligence sources.</p>
+          <div class="brief-priority-grid" id="briefPriorities"></div>
+          <div class="brief-bottom-grid">
+            <div class="brief-column"><span class="brief-column-label">WHAT CHANGED</span><div id="briefChanges" class="brief-list"></div></div>
+            <div class="brief-column"><span class="brief-column-label">WHAT TO WATCH</span><div id="briefWatch" class="brief-list"></div></div>
+          </div>
+        </article>
+
+        <aside class="brief-side-stack">
+          <article class="card watchlist-card">
+            <div class="panel-head"><div><div class="section-kicker">PRIORITY WATCHLIST</div><h3>Highest CTI priority</h3></div><span class="tiny">Top 5 KEVs</span></div>
+            <div id="executiveWatchlist" class="executive-watchlist"><div class="empty-state">Waiting for vulnerability intelligence…</div></div>
+          </article>
+          <article class="card regional-brief-card">
+            <div class="panel-head"><div><div class="section-kicker">REGIONAL WATCH</div><h3>Malaysia & ASEAN</h3></div><span class="source-chip">MY / ASEAN</span></div>
+            <div id="regionalBrief" class="regional-brief"><div class="empty-state">Waiting for regional intelligence…</div></div>
+          </article>
+          <article class="card source-confidence-card">
+            <div class="panel-head"><div><div class="section-kicker">SOURCE CONFIDENCE</div><h3>Collection assurance</h3></div><span id="briefSourceState" class="tiny">Assessing</span></div>
+            <div id="briefSourceHealth" class="brief-source-health"></div>
+          </article>
+        </aside>
+      </div>
     </section>
 
 
@@ -254,7 +293,7 @@
     </section>
 
     <div class="notice"><strong>Data caveat:</strong> Ransomware victim entries originate from public leak-site monitoring and represent claimed victims, not automatically independently verified incidents. ASEAN counts are calculated from the currently loaded ransomware feed and are not complete national incident totals. The Malaysia signal score is dashboard-derived OSINT, not an official MyCERT/CyberSecurity Malaysia threat level. EPSS is provided by FIRST. This product uses the NVD API but is not endorsed or certified by NVD.</div>
-    <footer><div>Phase 1: CISA + NVD + FIRST EPSS + Ransomware OSINT + MyCERT → Scheduled Collectors → Unified Live Feed → Regional Correlation → Normalised JSON → GitHub Pages.</div><div>Developed by <strong>Abdullah Zulkifli</strong></div></footer>
+    <footer><div>Phase 1: CISA + NVD + FIRST EPSS + Ransomware OSINT + MyCERT → Scheduled Collectors → Executive Briefing + Unified Live Feed → Regional Correlation → Normalised JSON → GitHub Pages.</div><div>Developed by <strong>Abdullah Zulkifli</strong></div></footer>
   </main>
   <script src="js/app.js"></script>
 </body>
