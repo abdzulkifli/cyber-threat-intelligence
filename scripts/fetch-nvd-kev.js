@@ -3,37 +3,64 @@ const path = require('path');
 
 const BASE_URL = 'https://services.nvd.nist.gov/rest/json/cves/2.0';
 const OUTPUT = path.join(__dirname, '..', 'data', 'nvd.json');
-const RESULTS_PER_PAGE = 2000;
-const PAGE_DELAY_MS = 6500; // NVD recommends ~6 seconds between iterative requests.
-const MAX_RETRIES = 3;
+const REQUEST_TIMEOUT_MS = 240000; // NVD bulk KEV responses can take > 60s.
+const PAGE_DELAY_MS = 6500;
+const MAX_RETRIES = 4;
 const API_KEY = (process.env.NVD_API_KEY || '').trim();
 
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
+function waitForAttempt(attempt, retryAfterSeconds = 0) {
+  return Math.max(retryAfterSeconds * 1000, 15000 * attempt);
+}
+
 async function fetchJson(url, attempt = 1) {
   const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), 60000);
+  const timer = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
+  const started = Date.now();
+
   const headers = {
-    'User-Agent': 'CTI-Phase1B/1.0 (+GitHub Actions; public vulnerability intelligence collector)',
+    'User-Agent': 'CTI-Phase1B/1.1 (+GitHub Actions; public vulnerability intelligence collector)',
     'Accept': 'application/json'
   };
   if (API_KEY) headers.apiKey = API_KEY;
 
   try {
+    console.log(`NVD request attempt ${attempt}/${MAX_RETRIES}`);
     const res = await fetch(url, { headers, signal: controller.signal });
+    const elapsed = Math.round((Date.now() - started) / 1000);
+    console.log(`NVD responded HTTP ${res.status} after ${elapsed}s`);
+
     if (!res.ok) {
       const message = res.headers.get('message') || `${res.status} ${res.statusText}`;
       const retryAfter = Number(res.headers.get('retry-after') || 0);
-      const retryable = res.status === 403 || res.status === 429 || res.status >= 500;
+      const retryable = res.status === 403 || res.status === 408 || res.status === 429 || res.status >= 500;
+
       if (retryable && attempt < MAX_RETRIES) {
-        const wait = Math.max(retryAfter * 1000, 10000 * attempt);
+        const wait = waitForAttempt(attempt, retryAfter);
         console.warn(`NVD request failed (${message}). Retrying in ${Math.round(wait / 1000)}s...`);
         await sleep(wait);
         return fetchJson(url, attempt + 1);
       }
       throw new Error(`NVD API HTTP ${message}`);
     }
+
     return await res.json();
+  } catch (err) {
+    const isAbort = err?.name === 'AbortError';
+    const isNetwork = err instanceof TypeError || ['ECONNRESET', 'ETIMEDOUT', 'ENOTFOUND', 'EAI_AGAIN'].includes(err?.cause?.code);
+
+    if ((isAbort || isNetwork) && attempt < MAX_RETRIES) {
+      const wait = waitForAttempt(attempt);
+      console.warn(`${isAbort ? 'NVD request timed out' : 'NVD network error'} on attempt ${attempt}. Retrying in ${Math.round(wait / 1000)}s...`);
+      await sleep(wait);
+      return fetchJson(url, attempt + 1);
+    }
+
+    if (isAbort) {
+      throw new Error(`NVD request timed out after ${REQUEST_TIMEOUT_MS / 1000}s on all attempts.`);
+    }
+    throw err;
   } finally {
     clearTimeout(timer);
   }
@@ -46,7 +73,6 @@ function englishText(entries) {
 
 function pickMetric(metrics = {}) {
   const candidates = [
-    ['metricsCvssMetricV40', '4.0'],
     ['cvssMetricV40', '4.0'],
     ['cvssMetricV31', '3.1'],
     ['cvssMetricV30', '3.0'],
@@ -56,10 +82,12 @@ function pickMetric(metrics = {}) {
   for (const [key, fallbackVersion] of candidates) {
     const list = Array.isArray(metrics[key]) ? metrics[key] : [];
     if (!list.length) continue;
+
     const metric = list.find(x => x.type === 'Primary' && x.source === 'nvd@nist.gov')
       || list.find(x => x.type === 'Primary')
       || list.find(x => x.source === 'nvd@nist.gov')
       || list[0];
+
     const d = metric.cvssData || {};
     return {
       version: d.version || fallbackVersion,
@@ -101,7 +129,11 @@ function normalise(wrapper) {
   const cvss = pickMetric(cve.metrics || {});
   const references = (Array.isArray(cve.references) ? cve.references : [])
     .slice(0, 12)
-    .map(r => ({ url: r.url || '', source: r.source || '', tags: Array.isArray(r.tags) ? r.tags : [] }));
+    .map(r => ({
+      url: r.url || '',
+      source: r.source || '',
+      tags: Array.isArray(r.tags) ? r.tags : []
+    }));
 
   return {
     id,
@@ -126,8 +158,8 @@ function normalise(wrapper) {
 function severityStats(items) {
   const base = { CRITICAL: 0, HIGH: 0, MEDIUM: 0, LOW: 0, UNKNOWN: 0 };
   for (const item of items) {
-    const s = base[item.cvss.severity] === undefined ? 'UNKNOWN' : item.cvss.severity;
-    base[s] += 1;
+    const severity = base[item.cvss.severity] === undefined ? 'UNKNOWN' : item.cvss.severity;
+    base[severity] += 1;
   }
   return base;
 }
@@ -140,22 +172,25 @@ async function main() {
   let requestCount = 0;
 
   do {
-    const params = new URLSearchParams({
-      resultsPerPage: String(RESULTS_PER_PAGE),
-      startIndex: String(startIndex)
-    });
-    // NVD flag parameters are intentionally valueless.
-    const url = `${BASE_URL}?hasKev&${params.toString()}`;
+    // NVD recommends its optimized default resultsPerPage. The current KEV set
+    // is below the default 2,000-page ceiling, so this normally completes in one request.
+    const query = startIndex === 0 ? '?hasKev' : `?hasKev&startIndex=${startIndex}`;
+    const url = `${BASE_URL}${query}`;
     console.log(`Fetching NVD KEV enrichment: startIndex=${startIndex}`);
+
     const raw = await fetchJson(url);
     requestCount += 1;
 
     const page = Array.isArray(raw.vulnerabilities) ? raw.vulnerabilities : [];
     collected.push(...page);
-    totalResults = Number(raw.totalResults || collected.length);
+
+    totalResults = Number(raw.totalResults ?? collected.length);
     nvdTimestamp = raw.timestamp || nvdTimestamp;
-    const pageSize = Number(raw.resultsPerPage || page.length || RESULTS_PER_PAGE);
-    startIndex = Number(raw.startIndex || startIndex) + pageSize;
+    const pageSize = Number(raw.resultsPerPage || page.length || 2000);
+    const returnedStart = Number(raw.startIndex ?? startIndex);
+    startIndex = returnedStart + pageSize;
+
+    console.log(`Received ${page.length} records (${Math.min(startIndex, totalResults)}/${totalResults}).`);
 
     if (startIndex < totalResults) await sleep(PAGE_DELAY_MS);
   } while (startIndex < totalResults);
@@ -165,9 +200,14 @@ async function main() {
     .filter(v => v.id)
     .sort((a, b) => a.id.localeCompare(b.id));
 
+  if (!vulnerabilities.length) {
+    throw new Error('NVD returned zero KEV records. Existing data/nvd.json was preserved.');
+  }
+
   const severity = severityStats(vulnerabilities);
   const withCvss = vulnerabilities.filter(v => v.cvss.score !== null).length;
   const versions = {};
+
   for (const v of vulnerabilities) {
     const key = v.cvss.version || 'Unknown';
     versions[key] = (versions[key] || 0) + 1;
@@ -187,7 +227,7 @@ async function main() {
       baseUrl: BASE_URL,
       query: 'hasKev',
       refreshPolicy: 'Every 2 hours',
-      attribution: 'This product uses the NVD API but is not endorsed or certified by the NVD.'
+      attribution: 'This product uses data from the NVD API but is not endorsed or certified by the NVD.'
     },
     stats: {
       total: vulnerabilities.length,
@@ -205,11 +245,12 @@ async function main() {
 
   await fs.mkdir(path.dirname(OUTPUT), { recursive: true });
   await fs.writeFile(OUTPUT, JSON.stringify(output, null, 2) + '\n', 'utf8');
+
   console.log(`Saved ${vulnerabilities.length} NVD KEV records to ${OUTPUT}`);
   console.log(`CVSS coverage: ${withCvss}/${vulnerabilities.length} (${output.stats.coveragePercent}%)`);
 }
 
 main().catch(err => {
-  console.error(err);
+  console.error('NVD collector failed:', err?.stack || err);
   process.exit(1);
 });
