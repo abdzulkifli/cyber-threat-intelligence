@@ -1,0 +1,19 @@
+{
+  "meta": {
+    "dataset": "CISA Known Exploited Vulnerabilities",
+    "phase": 1,
+    "status": "not_yet_collected",
+    "collectedAt": null,
+    "count": 0
+  },
+  "stats": {
+    "total": 0,
+    "addedToday": 0,
+    "added7d": 0,
+    "added30d": 0,
+    "ransomwareRelated": 0,
+    "ransomwareAdded30d": 0,
+    "topVendors": []
+  },
+  "vulnerabilities": []
+}

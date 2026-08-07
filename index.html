@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <title>Cyber Threat Intelligence Command Centre — Phase 1</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <main class="shell">
+    <header class="header">
+      <div>
+        <div class="eyebrow">PHASE 1 · EXTERNAL THREAT INTELLIGENCE</div>
+        <h1>Cyber Threat Intelligence Command Centre</h1>
+        <div class="sub">Automated CISA Known Exploited Vulnerabilities intelligence. Source evidence, ransomware association and collection health are preserved for every refresh.</div>
+      </div>
+      <div class="live"><span class="dot"></span><strong id="feedStatus">LOADING</strong></div>
+    </header>
+
+    <section class="grid">
+      <div class="card metric"><div class="label">Total KEV</div><div class="value" id="total">—</div><div class="hint">Known exploited vulnerabilities</div></div>
+      <div class="card metric"><div class="label">Added Today</div><div class="value" id="today">—</div><div class="hint">New catalog additions</div></div>
+      <div class="card metric"><div class="label">Added 7 Days</div><div class="value" id="week">—</div><div class="hint">Recent exploitation signal</div></div>
+      <div class="card metric"><div class="label">Added 30 Days</div><div class="value" id="month">—</div><div class="hint">Monthly change</div></div>
+      <div class="card metric"><div class="label">Ransomware Related</div><div class="value" id="ransomware">—</div><div class="hint">CISA campaign-use flag</div></div>
+      <div class="card metric"><div class="label">Ransomware +30D</div><div class="value" id="ransomware30">—</div><div class="hint">Recently added</div></div>
+    </section>
+
+    <section class="two">
+      <div class="card panel">
+        <div class="panel-head"><h2>Top Vendors in CISA KEV</h2><span class="muted" id="vendorCount"></span></div>
+        <div class="vendor-list" id="vendors"></div>
+      </div>
+      <div class="card panel">
+        <div class="panel-head"><h2>Source Health</h2><span class="badge green" id="sourceBadge">CHECKING</span></div>
+        <div class="status-box">
+          <div>Dataset: <strong>CISA KEV</strong></div>
+          <div>Collected: <strong id="collectedAt">—</strong></div>
+          <div>Mode: <strong id="sourceMode">—</strong></div>
+          <div>Catalog version: <strong id="catalogVersion">—</strong></div>
+          <div>Records: <strong id="recordCount">—</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card panel">
+      <div class="panel-head">
+        <div><h2>Live KEV Intelligence</h2><div class="muted" id="resultLabel">Loading intelligence…</div></div>
+        <div class="toolbar">
+          <input id="search" placeholder="Search CVE, vendor, product…" />
+          <select id="ransomFilter"><option value="all">All KEVs</option><option value="yes">Ransomware related</option><option value="no">Not known ransomware</option></select>
+          <select id="periodFilter"><option value="all">All dates</option><option value="7">Added ≤ 7 days</option><option value="30">Added ≤ 30 days</option><option value="90">Added ≤ 90 days</option></select>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Date Added</th><th>CVE</th><th>Vendor</th><th>Product</th><th>Ransomware</th><th>Vulnerability</th><th>Required Action</th></tr></thead>
+          <tbody id="rows"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <div class="footer">Phase 1 architecture: Source → Collector → Normalised JSON → GitHub Pages Dashboard. Database and organisational exposure layers are intentionally deferred to later phases.</div>
+  </main>
+  <script src="js/app.js"></script>
+</body>
+</html>
