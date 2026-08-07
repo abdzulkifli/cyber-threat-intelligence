@@ -3,7 +3,7 @@ name: Update Ransomware Intelligence
 on:
   workflow_dispatch:
   schedule:
-    - cron: "7,17,27,37,47,57 * * * *"
+    - cron: "*/5 * * * *"
 
 permissions:
   contents: write
@@ -28,6 +28,10 @@ jobs:
 
       - name: Collect ransomware intelligence (public API, no key)
         run: node scripts/fetch-ransomware.js
+
+      - name: Show ransomware freshness summary
+        run: |
+          node -e "const d=require('./data/ransomware.json'); console.log('Source:',d.meta.source,d.meta.mode); console.log('Latest claim:',d.meta.latestVictimDiscovered,d.meta.latestVictimName); console.log('Feed freshness:',d.meta.feedFreshness,'age(min):',d.meta.sourceDataAgeMinutes); console.log('New claims:',d.meta.newClaimsSincePreviousCollection);"
 
       - name: Commit changed ransomware intelligence
         run: |
