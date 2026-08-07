@@ -35,7 +35,7 @@
   <main class="app-shell">
     <section class="page-hero">
       <div>
-        <div class="eyebrow"><span></span>PHASE 1H.2 · INTERACTIVE GLOBAL + REGIONAL THREAT INTELLIGENCE</div>
+        <div class="eyebrow"><span></span>PHASE 1H.7 · VISUAL CYBER INTELLIGENCE EXPERIENCE</div>
         <h1>See what matters. <em>Act on evidence.</em></h1>
         <p>Known exploitation, CVSS severity, EPSS probability, ransomware activity and Malaysia/ASEAN signals — correlated with direct source traceability.</p>
       </div>
@@ -214,16 +214,107 @@
 
     <!-- VULNERABILITIES -->
     <section class="tab-panel" data-panel="vulnerabilities">
-      <div class="section-heading"><div><span>VULNERABILITY & EXPLOITATION</span><h2>CISA KEV + NVD + FIRST EPSS</h2><p>Known exploitation enriched with severity, probability and ransomware association.</p></div><div class="source-links"><a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" target="_blank" rel="noopener">CISA ↗</a><a href="https://nvd.nist.gov/" target="_blank" rel="noopener">NVD ↗</a><a href="https://www.first.org/epss/" target="_blank" rel="noopener">EPSS ↗</a></div></div>
-      <div class="vuln-visual-grid">
-        <article class="panel"><div class="panel-head"><div><span class="section-label">NVD SEVERITY</span><h3>CVSS distribution</h3></div><small id="severityCoverage">—</small></div><div class="donut-wrap"><div id="severityDonut" class="severity-donut"><div><strong id="severityDonutTotal">—</strong><span>scored</span></div></div><div class="donut-legend"><span><i class="critical"></i>Critical <b id="sevCritical">—</b></span><span><i class="high"></i>High <b id="sevHigh">—</b></span><span><i class="medium"></i>Medium <b id="sevMedium">—</b></span><span><i class="low"></i>Low <b id="sevLow">—</b></span></div></div></article>
-        <article class="panel"><div class="panel-head"><div><span class="section-label">FIRST EPSS</span><h3>Exploit probability bands</h3></div><small id="epssScoreDate">—</small></div><div id="epssBandChart" class="epss-band-chart"></div><div class="epss-inline"><div><span>Coverage</span><strong id="epssCoverage">—</strong><small id="epssCoverageHint">—</small></div><div><span>EPSS ≥10%</span><strong id="epss10">—</strong></div><div><span>Top 1%</span><strong id="epss99">—</strong></div></div></article>
+      <div class="section-heading vuln-heading">
+        <div>
+          <span>VULNERABILITY INTELLIGENCE</span>
+          <h2>Exploit Priority & Exposure Signals</h2>
+          <p>Known exploitation from CISA KEV, severity from NVD and exploit probability from FIRST EPSS — visualised for fast decision-making.</p>
+        </div>
+        <div class="source-links vuln-source-links">
+          <a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" target="_blank" rel="noopener">CISA KEV ↗</a>
+          <a href="https://nvd.nist.gov/" target="_blank" rel="noopener">NVD ↗</a>
+          <a href="https://www.first.org/epss/" target="_blank" rel="noopener">FIRST EPSS ↗</a>
+        </div>
       </div>
-      <article class="panel"><div class="panel-head"><div><span class="section-label">EXPLOIT RISK MATRIX</span><h3>CVSS × EPSS × CTI Priority</h3></div><small>Click a point to open CVE details</small></div><div id="riskScatterFull" class="risk-scatter large"></div></article>
-      <article class="panel"><div class="panel-head"><div><span class="section-label">TECHNOLOGY CONCENTRATION</span><h3>Top vendors in CISA KEV</h3></div><small id="vendorCount">—</small></div><div id="vendors" class="vendor-list"></div></article>
-      <article class="panel table-card">
-        <div class="table-toolbar"><div><h3>Live KEV intelligence</h3><small id="resultLabel">Loading…</small></div><div class="filters"><input id="search" placeholder="Search CVE, vendor, product…"/><select id="severityFilter"><option value="all">All severity</option><option value="CRITICAL">Critical</option><option value="HIGH">High</option><option value="MEDIUM">Medium</option><option value="LOW">Low</option><option value="UNKNOWN">Unknown</option></select><select id="epssFilter"><option value="all">All EPSS</option><option value="50">EPSS ≥ 50%</option><option value="10">EPSS ≥ 10%</option><option value="1">EPSS ≥ 1%</option><option value="lt1">EPSS &lt; 1%</option></select><select id="priorityFilter"><option value="all">All priority</option><option value="CRITICAL">Critical</option><option value="HIGH">High</option><option value="MEDIUM">Medium</option><option value="LOW">Low</option></select><select id="ransomFilter"><option value="all">All KEVs</option><option value="yes">Ransomware related</option><option value="no">Not known ransomware</option></select></div></div>
-        <div class="table-wrap"><table><thead><tr><th>CVE</th><th>Vendor / Product</th><th>CVSS</th><th>EPSS</th><th>Ransomware</th><th>CTI</th><th>Intelligence</th><th>Source</th></tr></thead><tbody id="rows"></tbody></table></div>
+
+      <div class="vuln-command-deck">
+        <article class="panel vuln-pressure-card">
+          <div class="vuln-pressure-visual">
+            <div class="vuln-orb" id="vulnPressureOrb"><div><strong id="vulnPressureScore">—</strong><span>PRESSURE</span></div></div>
+          </div>
+          <div class="vuln-pressure-copy">
+            <span class="section-label">CURRENT VULNERABILITY PRESSURE</span>
+            <div class="vuln-pressure-title"><h3 id="vulnPressureLabel">Assessing exploit signals</h3><span class="posture-pill" id="vulnPressurePill">ASSESSING</span></div>
+            <p id="vulnPressureNarrative">Correlating actively exploited KEVs, CVSS severity, EPSS probability and ransomware association.</p>
+            <div class="vuln-source-state" id="vulnSourceState"></div>
+          </div>
+        </article>
+
+        <div class="vuln-kpi-grid">
+          <button class="vuln-kpi danger" type="button" data-vuln-preset="critical"><span>Critical CTI</span><strong id="vulnCriticalKpi">—</strong><small>Priority ≥75</small><i>↗</i></button>
+          <button class="vuln-kpi hot" type="button" data-vuln-preset="epss50"><span>EPSS ≥50%</span><strong id="vulnHighEpssKpi">—</strong><small>High exploit probability</small><i>↗</i></button>
+          <button class="vuln-kpi ransomware" type="button" data-vuln-preset="ransomware"><span>Ransomware KEV</span><strong id="vulnRansomKpi">—</strong><small>Known campaign use</small><i>↗</i></button>
+          <button class="vuln-kpi fresh" type="button" data-vuln-preset="new7"><span>New KEV · 7D</span><strong id="vulnNew7Kpi">—</strong><small>Recently added</small><i>↗</i></button>
+          <div class="vuln-kpi coverage"><span>CVSS Coverage</span><strong id="vulnCoverageKpi">—</strong><small>NVD enriched</small></div>
+          <div class="vuln-kpi coverage"><span>EPSS Coverage</span><strong id="vulnEpssCoverageKpi">—</strong><small>FIRST scored</small></div>
+        </div>
+      </div>
+
+      <div class="section-heading compact-heading vuln-watch-heading">
+        <div><span>PRIORITY WATCHLIST</span><h2>Top vulnerabilities to watch now</h2></div>
+        <small>Click a card to open correlated evidence and authoritative source links.</small>
+      </div>
+      <div id="vulnWatchlist" class="vuln-watchlist"><div class="skeleton tall"></div><div class="skeleton tall"></div><div class="skeleton tall"></div></div>
+
+      <div class="vuln-primary-grid">
+        <article class="panel vuln-risk-panel">
+          <div class="panel-head">
+            <div><span class="section-label">EXPLOIT RISK MATRIX</span><h3>CVSS × EPSS × CTI Priority</h3><small>Upper-right means severe + highly likely exploitation. Click a point for evidence.</small></div>
+            <div class="risk-legend"><span><i class="risk-dot critical"></i>Critical</span><span><i class="risk-dot high"></i>High</span><span><i class="risk-dot medium"></i>Medium</span></div>
+          </div>
+          <div id="riskScatterFull" class="risk-scatter vuln-scatter"></div>
+        </article>
+
+        <article class="panel vuln-mix-panel">
+          <div class="panel-head"><div><span class="section-label">RISK COMPOSITION</span><h3>Severity & exploit probability</h3></div><small id="severityCoverage">—</small></div>
+          <div class="vuln-mix-body">
+            <div class="donut-wrap vuln-donut-wrap">
+              <div id="severityDonut" class="severity-donut"><div><strong id="severityDonutTotal">—</strong><span>scored</span></div></div>
+              <div class="donut-legend"><span><i class="critical"></i>Critical <b id="sevCritical">—</b></span><span><i class="high"></i>High <b id="sevHigh">—</b></span><span><i class="medium"></i>Medium <b id="sevMedium">—</b></span><span><i class="low"></i>Low <b id="sevLow">—</b></span></div>
+            </div>
+            <div class="epss-block">
+              <div class="epss-block-head"><span>FIRST EPSS probability bands</span><small id="epssScoreDate">—</small></div>
+              <div id="epssBandChart" class="epss-band-chart"></div>
+              <div class="epss-inline"><div><span>Coverage</span><strong id="epssCoverage">—</strong><small id="epssCoverageHint">—</small></div><div><span>EPSS ≥10%</span><strong id="epss10">—</strong></div><div><span>Top 1%</span><strong id="epss99">—</strong></div></div>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div class="vuln-secondary-grid">
+        <article class="panel vuln-momentum-panel">
+          <div class="panel-head"><div><span class="section-label">90-DAY MOMENTUM</span><h3>New exploited vulnerabilities</h3><small>CISA KEV additions vs ransomware-associated additions</small></div><span class="micro-pill" id="vulnMomentumBadge">LIVE DATA</span></div>
+          <div id="vulnMomentumChart" class="chart-area vuln-momentum-chart"><div class="skeleton chart"></div></div>
+          <div class="chart-caption"><span><i class="legend-dot cyan"></i>KEV additions</span><span><i class="legend-dot red"></i>Ransomware-related</span></div>
+        </article>
+
+        <article class="panel vuln-vendor-panel">
+          <div class="panel-head"><div><span class="section-label">TECHNOLOGY CONCENTRATION</span><h3>Most represented vendors</h3><small>Click a vendor to filter the live KEV table</small></div><small id="vendorCount">—</small></div>
+          <div id="vendors" class="vendor-list vuln-vendor-list"></div>
+        </article>
+      </div>
+
+      <article class="panel table-card vuln-table-card">
+        <div class="vuln-table-intro">
+          <div><span class="section-label">LIVE CORRELATED RECORDS</span><h3>Known exploited vulnerability intelligence</h3><small id="resultLabel">Loading…</small></div>
+          <div class="vuln-preset-row" id="vulnPresetRow">
+            <button type="button" data-vuln-preset="all" class="active">All</button>
+            <button type="button" data-vuln-preset="critical">Critical CTI</button>
+            <button type="button" data-vuln-preset="epss50">EPSS ≥50%</button>
+            <button type="button" data-vuln-preset="ransomware">Ransomware</button>
+            <button type="button" data-vuln-preset="new7">New 7D</button>
+          </div>
+        </div>
+        <div class="table-toolbar">
+          <div class="filters vuln-filters">
+            <input id="search" placeholder="Search CVE, vendor, product…"/>
+            <select id="severityFilter"><option value="all">All severity</option><option value="CRITICAL">Critical</option><option value="HIGH">High</option><option value="MEDIUM">Medium</option><option value="LOW">Low</option><option value="UNKNOWN">Unknown</option></select>
+            <select id="epssFilter"><option value="all">All EPSS</option><option value="50">EPSS ≥ 50%</option><option value="10">EPSS ≥ 10%</option><option value="1">EPSS ≥ 1%</option><option value="lt1">EPSS &lt; 1%</option></select>
+            <select id="priorityFilter"><option value="all">All priority</option><option value="CRITICAL">Critical</option><option value="HIGH">High</option><option value="MEDIUM">Medium</option><option value="LOW">Low</option></select>
+            <select id="ransomFilter"><option value="all">All KEVs</option><option value="yes">Ransomware related</option><option value="no">Not known ransomware</option></select>
+          </div>
+        </div>
+        <div class="table-wrap"><table><thead><tr><th>CVE</th><th>Vendor / Product</th><th>CVSS</th><th>EPSS</th><th>Ransomware</th><th>CTI</th><th>Intelligence</th><th>Evidence</th></tr></thead><tbody id="rows"></tbody></table></div>
         <div class="pagination"><button id="prevPage">← Previous</button><span id="pageLabel">Page 1</span><button id="nextPage">Next →</button></div>
       </article>
     </section>
@@ -245,8 +336,8 @@
       <article class="panel methodology"><div><span class="section-label">TRANSPARENT SCORING</span><h3>CTI Priority = CVSS + EPSS + ransomware use + recency</h3><p>CVSS up to 30 + EPSS up to 35 + known ransomware use up to 25 + recent KEV addition up to 10 = 100. This is external-intelligence prioritisation, not organisational risk.</p></div><strong>0–100</strong></article>
     </section>
 
-    <div class="data-caveat"><strong>Data caveat:</strong> ransomware victim entries are public claims and not automatically independently verified incidents. Ransomware map and ASEAN counts reflect the retained rolling public-claim archive, not complete national incident totals. The archive grows from the time rolling retention is enabled. The Malaysia signal score is dashboard-derived OSINT. EPSS is provided by FIRST. This product uses NVD data but is not endorsed or certified by NVD.</div>
-    <footer><span>Phase 1H.2 · Interactive ransomware intelligence explorer</span><span>Developed by <strong>Abdullah Zulkifli</strong></span></footer>
+    <div class="data-caveat"><strong>Data caveat:</strong> ransomware victim entries are public claims and not automatically independently verified incidents. Ransomware map and ASEAN counts use the retained Ransomware.live historical mirror when available and fall back to recent public-claim data; they are OSINT claims, not complete national incident totals. The Malaysia signal score is dashboard-derived OSINT. EPSS is provided by FIRST. This product uses NVD data but is not endorsed or certified by NVD.</div>
+    <footer><span>Phase 1H.7 · Visual ransomware + vulnerability intelligence</span><span>Developed by <strong>Abdullah Zulkifli</strong></span></footer>
   </main>
 
   <!-- CVE DETAIL DRAWER -->

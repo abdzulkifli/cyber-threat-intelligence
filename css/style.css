@@ -242,3 +242,81 @@ input,select{font-size:14px!important;min-height:42px}
 @media(max-width:1280px){.rw-live-pulse{grid-template-columns:repeat(3,minmax(0,1fr))}.live-pulse-title{grid-column:span 2}.rw-map-layout{grid-template-columns:minmax(0,1.7fr) minmax(270px,.8fr)}}
 @media(max-width:900px){.rw-map-layout{grid-template-columns:1fr}.rw-live-claims-panel{border-left:0;border-top:1px solid rgba(51,92,117,.25)}.rw-map-live-list{max-height:320px}.rw-live-pulse{grid-template-columns:repeat(2,minmax(0,1fr))}.live-pulse-title{grid-column:span 2}.map-legend{gap:7px}}
 @media(max-width:560px){.rw-live-pulse{grid-template-columns:1fr}.live-pulse-title{grid-column:auto}.rw-live-pulse strong,.rw-live-pulse small{white-space:normal}.rw-window-tabs{overflow-x:auto;justify-content:flex-start!important}.rw-window-tabs button{min-width:max-content}.rw-live-claim strong,.rw-live-claim small{white-space:normal}.live-marker-count,.malaysia-live-label{display:none}}
+
+/* ========================================================================
+   Phase 1H.7 — Vulnerability Intelligence + Final Visual Balance
+   Visual-first decision support without adding new feeds or collectors.
+   ======================================================================== */
+
+/* final global polish */
+:root{
+  --critical-soft:rgba(255,104,122,.13);
+  --warning-soft:rgba(243,189,88,.12);
+  --cyan-soft:rgba(57,215,232,.11);
+  --violet-soft:rgba(169,140,255,.11);
+  --green-soft:rgba(61,214,165,.11);
+}
+.page-hero{border-bottom:1px solid rgba(83,130,157,.13);margin-bottom:18px}
+.page-hero h1{max-width:1000px}
+.tab-panel{padding-top:2px}
+.panel-head h3{font-size:clamp(17px,.42vw + 15px,21px)}
+.section-heading p,.panel-sub{color:#9ab0bf}
+.source-links a,.source-link{min-height:40px;display:inline-flex;align-items:center}
+
+/* vulnerability command deck */
+.vuln-heading{margin-top:0}
+.vuln-source-links{justify-content:flex-end}
+.vuln-command-deck{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(500px,.9fr);gap:18px;margin-bottom:10px}
+.vuln-pressure-card{display:grid;grid-template-columns:190px minmax(0,1fr);align-items:center;min-height:250px;padding:26px;overflow:hidden;background:radial-gradient(circle at 8% 55%,rgba(255,104,122,.1),transparent 30%),linear-gradient(120deg,rgba(15,34,51,.98),rgba(8,23,36,.98))}
+.vuln-pressure-card:after{content:"";position:absolute;inset:auto -70px -120px auto;width:320px;height:320px;border:1px solid rgba(57,215,232,.08);border-radius:50%;box-shadow:0 0 70px rgba(57,215,232,.035);pointer-events:none}
+.vuln-pressure-visual{display:grid;place-items:center}
+.vuln-orb{--vscore:0deg;width:158px;height:158px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(var(--red) 0 var(--vscore),rgba(66,101,124,.18) var(--vscore) 360deg);position:relative;filter:drop-shadow(0 0 18px rgba(255,104,122,.12))}
+.vuln-orb:before{content:"";position:absolute;inset:12px;border-radius:50%;background:radial-gradient(circle at 50% 36%,#173247,#0a1927 72%);border:1px solid rgba(78,125,153,.4)}
+.vuln-orb:after{content:"";position:absolute;inset:-9px;border-radius:50%;border:1px solid rgba(255,104,122,.12);border-top-color:rgba(57,215,232,.72);animation:orbit 13s linear infinite}
+.vuln-orb>div{position:relative;z-index:2;text-align:center}.vuln-orb strong{display:block;font-size:clamp(38px,3vw,50px);line-height:1}.vuln-orb span{display:block;margin-top:5px;font-size:11px;font-weight:800;letter-spacing:.14em;color:#8ba7b8}
+.vuln-pressure-copy{position:relative;z-index:2}.vuln-pressure-title{display:flex;align-items:center;gap:12px;flex-wrap:wrap}.vuln-pressure-title h3{font-size:clamp(23px,1.8vw,31px);margin:7px 0}.vuln-pressure-copy>p{max-width:760px;color:#a0b4c2;line-height:1.7;margin:5px 0 17px}
+.vuln-source-state{display:flex;gap:8px;flex-wrap:wrap}.vuln-source-chip{display:inline-flex;align-items:center;gap:7px;padding:7px 10px;border:1px solid rgba(63,103,129,.45);border-radius:999px;background:#0a1b29;color:#aac0cd;font-size:12px;font-weight:650}.vuln-source-chip i{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 9px var(--green)}.vuln-source-chip.degraded i{background:var(--amber);box-shadow:0 0 9px var(--amber)}.vuln-source-chip.offline i{background:var(--red);box-shadow:0 0 9px var(--red)}
+
+.vuln-kpi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.vuln-kpi{appearance:none;position:relative;min-width:0;border:1px solid rgba(63,106,134,.34);border-radius:16px;background:linear-gradient(180deg,#102438,#0b1b2a);color:inherit;padding:18px;text-align:left;transition:.18s;box-shadow:var(--shadow)}
+button.vuln-kpi{cursor:pointer}.vuln-kpi:hover{transform:translateY(-2px);border-color:#397794}.vuln-kpi:before{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;border-radius:0 0 16px 16px;background:var(--cyan);opacity:.72}.vuln-kpi.danger:before{background:var(--red)}.vuln-kpi.hot:before{background:var(--orange)}.vuln-kpi.ransomware:before{background:var(--violet)}.vuln-kpi.fresh:before{background:var(--cyan)}.vuln-kpi.coverage:before{background:var(--green)}
+.vuln-kpi span{display:block;color:#99adbb;font-size:12px;font-weight:800;letter-spacing:.07em;text-transform:uppercase}.vuln-kpi strong{display:block;font-size:clamp(25px,2vw,34px);line-height:1.15;margin:7px 0 3px}.vuln-kpi small{display:block;color:#7890a1;font-size:12px}.vuln-kpi>i{position:absolute;right:13px;top:12px;color:#5f8297;font-style:normal}
+
+/* top vulnerability watchlist */
+.vuln-watch-heading{align-items:end}.vuln-watchlist{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-bottom:18px}
+.vuln-watch-card{position:relative;overflow:hidden;border:1px solid rgba(67,111,139,.36);border-radius:17px;background:linear-gradient(145deg,#102438,#0a1b2a);padding:19px;cursor:pointer;transition:.18s;min-width:0;box-shadow:var(--shadow)}
+.vuln-watch-card:before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--red),var(--orange))}.vuln-watch-card:after{content:"";position:absolute;width:140px;height:140px;right:-55px;bottom:-75px;border-radius:50%;background:radial-gradient(circle,rgba(255,104,122,.09),transparent 68%);pointer-events:none}.vuln-watch-card:hover{transform:translateY(-3px);border-color:#3b7c9a;box-shadow:0 22px 52px rgba(0,0,0,.3)}
+.vuln-watch-top{display:flex;align-items:center;justify-content:space-between;gap:10px}.watch-index{font-size:11px;color:#66869a;font-weight:850;letter-spacing:.1em}.vuln-watch-card h3{font-size:clamp(19px,1vw,23px);margin:15px 0 4px;color:#effaff}.vuln-watch-card>p{margin:0;color:#8ea6b6;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.vuln-watch-card .watch-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:15px}.vuln-watch-card .watch-metrics>div{border:1px solid rgba(57,93,117,.3);border-radius:11px;background:#0a1a28;padding:10px}.vuln-watch-card .watch-metrics span,.vuln-watch-card .watch-metrics small{display:block;color:#7390a2;font-size:10px}.vuln-watch-card .watch-metrics strong{display:block;margin:4px 0 2px;font-size:18px}.watch-probability{margin-top:12px}.watch-probability>span{display:block;color:#7e99a9;font-size:10px;text-transform:uppercase;letter-spacing:.07em}.watch-probability>div{height:5px;margin-top:6px;background:#102d40;border-radius:999px;overflow:hidden}.watch-probability i{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,var(--cyan),var(--orange),var(--red));box-shadow:0 0 10px rgba(255,104,122,.22)}.watch-footer{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:13px;padding-top:11px;border-top:1px solid rgba(57,91,113,.28);font-size:11px;color:#718b9c}.watch-footer a{color:#75e4f2;text-decoration:none}.watch-footer a:hover{text-decoration:underline}.text-red{color:#ff8b99!important}.text-green{color:#65e6b6!important}
+
+/* vulnerability visual analytics */
+.vuln-primary-grid{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(390px,.75fr);gap:18px;margin-bottom:18px}.vuln-secondary-grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(390px,.8fr);gap:18px;margin-bottom:18px}.vuln-risk-panel,.vuln-mix-panel,.vuln-momentum-panel,.vuln-vendor-panel{min-height:420px}.vuln-scatter{min-height:390px;padding:4px 12px 14px}.vuln-scatter svg{width:100%;height:auto;min-height:350px}.risk-legend{display:flex;gap:10px;align-items:center;flex-wrap:wrap;color:#829bab;font-size:11px}.risk-legend span{display:flex;align-items:center;gap:6px}.risk-dot{width:8px;height:8px;border-radius:50%;display:inline-block}.risk-dot.critical{background:var(--red);box-shadow:0 0 8px rgba(255,104,122,.65)}.risk-dot.high{background:var(--orange)}.risk-dot.medium{background:var(--amber)}
+.vuln-mix-body{display:grid;gap:18px;padding:12px 20px 20px}.vuln-donut-wrap{padding:4px 0 13px;border-bottom:1px solid rgba(66,104,129,.25)}.epss-block{padding-top:2px}.epss-block-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:10px}.epss-block-head>span{font-size:13px;font-weight:750;color:#c8d9e3}.epss-block-head small{color:#7993a5}.vuln-momentum-chart{padding:4px 13px 13px}.vuln-momentum-chart svg{width:100%;height:auto}.vuln-vendor-list{padding:8px 18px 18px;display:grid;gap:5px}.vendor-button{appearance:none;width:100%;display:grid!important;grid-template-columns:30px minmax(0,1fr) auto;align-items:center;gap:10px;border:0!important;border-radius:10px;padding:8px 9px!important;background:transparent!important;color:inherit!important;cursor:pointer!important;text-align:left;transition:.15s}.vendor-button:hover{background:rgba(57,215,232,.05)!important;transform:translateX(3px)}.vendor-rank{color:#5e8094;font-size:11px;font-weight:850}.vendor-main{min-width:0}.vendor-button>i{font-style:normal;color:#5f8498}.vendor-name span{font-size:11px!important;color:#7c96a7!important}
+
+/* vulnerability table and presets */
+.vuln-table-card{overflow:visible;scroll-margin-top:105px}.vuln-table-intro{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;padding:20px 20px 12px}.vuln-table-intro h3{font-size:clamp(19px,1vw,23px);margin:4px 0}.vuln-table-intro small{color:#8199a9}.vuln-preset-row{display:flex;gap:6px;align-items:center;flex-wrap:wrap}.vuln-preset-row button{border:1px solid #294c61;border-radius:999px;background:#0b1d2b;color:#90a9b8;padding:8px 11px;font-size:12px;font-weight:700;cursor:pointer}.vuln-preset-row button:hover{border-color:#3c7c96;color:#e4fbff}.vuln-preset-row button.active{background:linear-gradient(135deg,#1d687c,#155369);border-color:#48bdd3;color:white;box-shadow:0 0 18px rgba(57,215,232,.11)}.vuln-table-card .table-toolbar{padding-top:4px}.vuln-filters{width:100%;display:grid!important;grid-template-columns:minmax(260px,1.5fr) repeat(4,minmax(150px,.65fr));gap:8px}.vuln-filters input,.vuln-filters select{width:100%}.evidence-links{display:flex;gap:5px;flex-wrap:wrap}.evidence-links a{display:inline-flex;align-items:center;justify-content:center;border:1px solid #28516a;border-radius:7px;background:#0b2231;padding:5px 7px;color:#86deec;text-decoration:none;font-size:10px;font-weight:700}.evidence-links a:hover{border-color:#45a6bf;color:#e9fdff}.vuln-table-card tbody tr{cursor:pointer}.vuln-table-card tbody tr:hover td{background:rgba(57,215,232,.025)}
+
+/* richer CVE evidence drawer */
+.drawer-title-row{display:flex;align-items:flex-start;justify-content:space-between;gap:15px;flex-wrap:wrap}.drawer-title-row .drawer-title{margin-bottom:3px}.drawer-score-grid.four{grid-template-columns:repeat(4,1fr)}.drawer-score-grid.four small{display:block;color:#7290a2;font-size:10px;margin-top:4px}.signal-meter-section{background:linear-gradient(135deg,rgba(255,104,122,.055),rgba(57,215,232,.035))}.signal-meter-head{display:flex;align-items:center;justify-content:space-between;gap:12px}.signal-meter-head h4{margin:0}.signal-meter-head strong{font-size:20px;color:#fff}.signal-meter{height:8px;border-radius:999px;background:#102c3e;overflow:hidden;margin:10px 0}.signal-meter i{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,var(--cyan),var(--amber),var(--red));box-shadow:0 0 13px rgba(255,104,122,.22)}.signal-meter-section p{font-size:12px!important;color:#849dad!important}.action-section{border-color:rgba(243,189,88,.28)!important;background:rgba(243,189,88,.04)!important}
+.evidence-timeline{position:relative;display:grid;gap:0;margin-top:5px}.evidence-timeline:before{content:"";position:absolute;left:8px;top:8px;bottom:8px;width:1px;background:#294a60}.evidence-event{position:relative;display:grid;grid-template-columns:18px 1fr;gap:10px;padding:7px 0}.evidence-event>i{width:9px;height:9px;margin-top:5px;border-radius:50%;background:var(--cyan);box-shadow:0 0 9px rgba(57,215,232,.45);z-index:2}.evidence-event.red>i{background:var(--red);box-shadow:0 0 9px rgba(255,104,122,.45)}.evidence-event.amber>i{background:var(--amber);box-shadow:0 0 9px rgba(243,189,88,.45)}.evidence-event.green>i{background:var(--green);box-shadow:0 0 9px rgba(61,214,165,.45)}.evidence-event.blue>i{background:var(--blue);box-shadow:0 0 9px rgba(103,151,255,.45)}.evidence-event time,.evidence-event strong,.evidence-event span{display:block}.evidence-event time{font-size:10px;color:#668599}.evidence-event strong{font-size:13px;color:#dfeef5;margin-top:1px}.evidence-event span{font-size:11px;color:#839bab;margin-top:2px}.evidence-source-links{display:grid;grid-template-columns:repeat(3,1fr)}.evidence-source-links a{text-align:center;justify-content:center}
+
+@media(max-width:1380px){
+  .vuln-command-deck{grid-template-columns:1fr}.vuln-kpi-grid{grid-template-columns:repeat(6,1fr)}
+  .vuln-watchlist{grid-template-columns:repeat(2,1fr)}
+  .vuln-primary-grid{grid-template-columns:1.25fr .75fr}.vuln-secondary-grid{grid-template-columns:1fr 1fr}
+  .vuln-filters{grid-template-columns:1.2fr repeat(2,1fr)}
+}
+@media(max-width:1050px){
+  .vuln-kpi-grid{grid-template-columns:repeat(3,1fr)}
+  .vuln-primary-grid,.vuln-secondary-grid{grid-template-columns:1fr}
+  .vuln-risk-panel,.vuln-mix-panel,.vuln-momentum-panel,.vuln-vendor-panel{min-height:0}
+  .vuln-watchlist{grid-template-columns:repeat(2,1fr)}
+  .vuln-filters{grid-template-columns:1fr 1fr}
+  .drawer-score-grid.four{grid-template-columns:1fr 1fr}
+}
+@media(max-width:760px){
+  .vuln-command-deck{display:block}.vuln-pressure-card{grid-template-columns:1fr;text-align:center;padding:22px 18px}.vuln-pressure-copy{margin-top:14px}.vuln-pressure-title,.vuln-source-state{justify-content:center}.vuln-kpi-grid{grid-template-columns:1fr 1fr;margin-top:12px}.vuln-watchlist{grid-template-columns:1fr}.vuln-watch-card .watch-metrics{grid-template-columns:1fr 1fr 1fr}.vuln-table-intro{display:block}.vuln-preset-row{margin-top:13px}.vuln-filters{grid-template-columns:1fr}.vuln-scatter{min-height:300px;padding:0}.vuln-scatter svg{min-height:280px}.evidence-source-links{grid-template-columns:1fr}.vuln-source-links{justify-content:flex-start}
+}
+@media(max-width:480px){
+  .vuln-kpi-grid{grid-template-columns:1fr}.vuln-watch-card .watch-metrics{grid-template-columns:1fr}.drawer-score-grid.four{grid-template-columns:1fr 1fr}.vuln-watch-card{padding:17px}.vuln-orb{width:140px;height:140px}.vuln-preset-row button{flex:1}.vuln-preset-row{display:grid;grid-template-columns:1fr 1fr}.vuln-preset-row button:first-child{grid-column:1/-1}
+}
