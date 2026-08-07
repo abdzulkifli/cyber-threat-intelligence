@@ -14,3 +14,210 @@
 .country-claim-button{width:100%;font:inherit;color:inherit;text-align:left;cursor:pointer}.country-claim-button:hover{border-color:#2d6580;background:#0a2232}.intel-chipset{display:flex;flex-wrap:wrap;gap:6px}.intel-chip{display:inline-flex;border:1px solid #22536b;border-radius:999px;padding:5px 8px;background:#0a2333;color:#87ddeb;font-size:8px;text-decoration:none}.intel-chip:hover{border-color:#4bbbd5;color:#d9fbff}.drawer-links button{border:1px solid #285069;background:#0c2535;color:#8be5f4;border-radius:9px;padding:9px 11px;font:inherit;font-size:10px;cursor:pointer}.drawer-links button:hover{border-color:#3c7e9e;color:#d7faff}.drawer-long-value{font-size:13px!important;line-height:1.2}
 @media(max-width:1180px){.group-explorer-grid{grid-template-columns:repeat(2,1fr)}.world-map-stage{min-height:350px}}
 @media(max-width:720px){.ransomware-heading .heading-actions{align-items:flex-start}.rw-window-tabs{width:100%;justify-content:space-between}.rw-window-tabs button{flex:1}.world-map-stage{min-height:240px}.world-map-foot{display:block}.world-map-foot span{display:block;margin-top:4px}.map-panel-head{align-items:flex-start}.map-legend{margin-top:7px}.group-explorer-grid{grid-template-columns:1fr}.ransomware-kpis{grid-template-columns:1fr 1fr!important}}
+
+/* ========================================================================
+   Phase 1H.3 — Responsive Readability + Unified Colour System
+   Goal: larger legible type, calmer hierarchy, consistent enterprise palette.
+   ======================================================================== */
+:root{
+  --bg:#07111d;
+  --bg2:#0a1726;
+  --panel:#0d1c2b;
+  --panel2:#102235;
+  --surface:#12283c;
+  --surface-soft:#0a1927;
+  --line:#24465d;
+  --line2:#315c75;
+  --text:#f3f8fc;
+  --muted:#a4b5c3;
+  --muted2:#7f96a8;
+  --cyan:#39d7e8;
+  --cyan2:#21b9cc;
+  --blue:#6797ff;
+  --green:#3dd6a5;
+  --amber:#f3bd58;
+  --orange:#f49a59;
+  --red:#ff687a;
+  --violet:#a98cff;
+  --shadow:0 18px 46px rgba(0,0,0,.24);
+  --radius:18px;
+  --font-ui:"Segoe UI Variable","Aptos","Inter",ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  font-family:var(--font-ui);
+}
+html{font-size:16px}
+body{
+  font-family:var(--font-ui);
+  font-size:clamp(15px,.22vw + 14px,17px);
+  line-height:1.55;
+  background:
+    radial-gradient(circle at 12% -8%,rgba(20,100,138,.28),transparent 30%),
+    radial-gradient(circle at 88% 8%,rgba(69,79,150,.18),transparent 27%),
+    linear-gradient(180deg,var(--bg),#081522 58%,#07111d);
+  color:var(--text);
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+::selection{background:rgba(57,215,232,.25);color:#fff}
+
+/* calmer surfaces + consistent contrast */
+.panel,.posture-card,.kpi-card,.priority-card,.brief-hero,.brief-priority,.source-card,.group-card{
+  border-color:rgba(76,125,153,.34)!important;
+  box-shadow:var(--shadow);
+}
+.panel{background:linear-gradient(180deg,rgba(15,31,47,.96),rgba(9,23,36,.96))}
+.kpi-card,.priority-card,.group-card{background:linear-gradient(180deg,#102438,#0b1b2a)}
+.panel:before{opacity:.7}
+
+/* typography scale */
+.brand strong{font-size:clamp(12px,.18vw + 11px,14px);letter-spacing:.13em}
+.brand small{font-size:clamp(11px,.14vw + 10px,13px);color:var(--muted)}
+.nav-btn{font-size:clamp(13px,.14vw + 12px,15px);font-weight:650;padding:10px 13px}
+.topbar-status strong{font-size:clamp(12px,.16vw + 11px,14px)}
+.topbar-status small{font-size:clamp(11px,.12vw + 10px,13px)}
+.eyebrow,.section-label,.section-heading>div>span{font-size:clamp(11px,.12vw + 10px,13px);letter-spacing:.13em}
+.page-hero h1{font-size:clamp(34px,3.5vw,58px);line-height:1.04}
+.page-hero p{font-size:clamp(15px,.2vw + 14px,17px);color:var(--muted);line-height:1.7}
+.section-heading h2{font-size:clamp(25px,1.7vw,32px)}
+.section-heading p{font-size:clamp(14px,.18vw + 13px,16px);color:var(--muted);line-height:1.65}
+.panel-head h2,.panel-head h3{font-size:clamp(17px,.5vw + 15px,21px)}
+.panel-head small,.tiny,.section-heading>small{font-size:clamp(11px,.12vw + 10px,13px);color:var(--muted2)}
+.posture-title h2{font-size:clamp(24px,1.4vw,31px)}
+.posture-copy p{font-size:clamp(14px,.18vw + 13px,16px);color:var(--muted)}
+.posture-gauge strong{font-size:clamp(44px,3vw,58px)}
+.posture-gauge span{font-size:12px}
+.kpi-card span,.kpi-card small{font-size:clamp(11px,.1vw + 10px,13px)}
+.kpi-card strong{font-size:clamp(28px,1.8vw,38px)}
+.priority-card h3{font-size:clamp(17px,.5vw + 15px,21px)}
+.priority-card p{font-size:clamp(13px,.16vw + 12px,15px);line-height:1.6}
+.priority-index,.priority-value{font-size:clamp(11px,.1vw + 10px,13px)}
+.posture-pill,.context-badge,.micro-pill,.live-chip{font-size:clamp(10px,.08vw + 9px,12px);padding:6px 10px}
+.orbit-source{font-size:clamp(11px,.1vw + 10px,13px);padding:8px 10px}
+.soft-btn,.primary-btn,.source-link,.source-links a{font-size:clamp(12px,.12vw + 11px,14px);min-height:40px;display:inline-flex;align-items:center;justify-content:center}
+.icon-link{min-width:40px;min-height:40px}
+
+/* charts + labels */
+.chart-area svg text,.risk-scatter svg text,.mini-activity svg text{font-family:var(--font-ui);font-size:12px;fill:#98adbc}
+.axis-label{font-size:12px!important;fill:#a9becb!important;font-weight:650}
+.quadrant-label{font-size:10px!important;fill:#ff8795!important;font-weight:750;letter-spacing:.04em}
+.chart-grid{stroke:rgba(111,156,181,.16)!important}
+.chart-line{stroke:var(--cyan)!important}
+.chart-line-rw{stroke:var(--red)!important}
+
+/* readable module content */
+.regional-kpis span,.five-kpis span,.share-row span,.ranking-list small,.mycert-feed small,.brief-list small,.watchlist small,.source-card small,.live-feed small,.overview-live-feed small{
+  font-size:clamp(11px,.12vw + 10px,13px)!important;
+}
+.regional-kpis strong,.five-kpis strong{font-size:clamp(20px,1vw,27px)}
+.asean-big-number strong,.regional-score{font-size:clamp(42px,3.3vw,58px)}
+.asean-big-number span{font-size:13px}
+.country-click,.asean-country,.ranking-list,.mycert-feed,.claim-button,.country-claim-button{font-size:clamp(13px,.13vw + 12px,15px)}
+.country-claim strong{font-size:14px}.country-claim small,.country-claim time{font-size:12px}
+.drawer-note{font-size:12px}
+.rw-window-tabs button{font-size:12px;min-height:38px}
+.ransomware-kpis small{font-size:11px}
+.map-legend,.world-map-foot{font-size:12px}
+.map-tooltip strong{font-size:13px}.map-tooltip span{font-size:12px}
+.rank-head small,.group-state,.group-card-metrics{font-size:11px}
+.group-card h4{font-size:17px}.group-card p{font-size:13px}.group-card-open{font-size:12px}
+.intel-chip{font-size:12px;padding:6px 10px}
+.drawer-links button{font-size:13px;min-height:40px}
+
+/* data tables */
+.table-wrap{overflow:auto;border-radius:14px;scrollbar-color:#315c75 #091724}
+table{font-size:clamp(13px,.12vw + 12px,15px)}
+th,td{padding:13px 14px!important;line-height:1.45}
+th{font-size:clamp(11px,.1vw + 10px,13px)!important;letter-spacing:.06em;color:#b7c7d3!important;position:sticky;top:0;z-index:2;background:#102235!important}
+td{color:#dbe7ef}
+input,select{font-size:14px!important;min-height:42px}
+
+/* layout breathing room */
+.app-shell{max-width:1680px;padding:clamp(22px,2.1vw,38px) clamp(18px,2.25vw,42px) 80px}
+.page-hero{padding:24px 3px 32px}
+.panel-head{padding:22px 22px 0}
+.posture-strip,.overview-grid,.three-grid,.brief-grid,.regional-hero-grid,.vuln-visual-grid{gap:18px}
+.top-three{gap:16px}
+.priority-card{padding:22px;min-height:210px}
+.kpi-card{padding:21px}
+.source-cards,.group-explorer-grid{gap:14px}
+
+/* stronger but calmer colour semantics */
+.posture-pill[data-level="heightened"]{color:#ff9aa6;border-color:rgba(255,104,122,.55);background:rgba(84,25,36,.52)}
+.posture-pill[data-level="elevated"]{color:#ffd58a;border-color:rgba(243,189,88,.5);background:rgba(76,54,15,.46)}
+.posture-pill[data-level="guarded"]{color:#8eeefa;border-color:rgba(57,215,232,.45);background:rgba(18,67,79,.5)}
+.status-led{width:10px;height:10px}
+
+/* responsive header */
+.topbar{min-height:78px;height:auto;padding:10px clamp(16px,2vw,30px);gap:18px;background:rgba(6,17,29,.92)}
+.brand{min-width:235px}
+.topnav{gap:5px}
+
+/* drawers */
+.detail-drawer{width:min(560px,94vw)}
+.drawer-body{font-size:14px}
+
+/* Map scales on every screen without feeling tiny */
+.world-map-stage{min-height:clamp(310px,34vw,520px)}
+.world-country{stroke-width:.8}
+
+@media(max-width:1200px){
+  .topbar{grid-template-columns:1fr auto;align-items:center}
+  .topnav{grid-column:1/-1;justify-content:flex-start;width:100%;padding:2px 0 1px}
+  .brand{min-width:0}
+  .posture-strip{grid-template-columns:1fr}
+  .kpi-rail{grid-template-columns:repeat(4,1fr)}
+  .overview-grid,.secondary-grid,.regional-hero-grid,.brief-grid,.vuln-visual-grid{grid-template-columns:1fr 1fr}
+  .group-explorer-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:900px){
+  html{font-size:16px}
+  body{font-size:15.5px}
+  .app-shell{padding:20px 16px 64px}
+  .page-hero{display:block;padding-top:20px}
+  .hero-actions,.heading-actions,.source-links{margin-top:16px;flex-wrap:wrap}
+  .posture-card{grid-template-columns:150px 1fr;padding:22px}
+  .posture-gauge{width:132px;height:132px}
+  .kpi-rail{grid-template-columns:repeat(2,1fr)}
+  .top-three,.three-grid,.brief-grid,.overview-grid,.secondary-grid,.regional-hero-grid,.vuln-visual-grid,.source-cards{grid-template-columns:1fr!important}
+  .five-kpis{grid-template-columns:repeat(2,1fr)!important}
+  .asean-country-grid{grid-template-columns:repeat(2,1fr)!important}
+  .group-explorer-grid{grid-template-columns:1fr 1fr}
+  .section-heading{align-items:flex-start}
+  .world-map-stage{min-height:320px}
+  .map-panel-head{flex-direction:column}
+  .map-legend{margin-top:8px;flex-wrap:wrap}
+}
+@media(max-width:640px){
+  body{font-size:15px}
+  .topbar{grid-template-columns:1fr auto;gap:10px;padding:10px 12px}
+  .brand strong{font-size:12px}.brand small{font-size:11px}
+  .brand-mark{width:32px;height:32px}
+  .topbar-status{min-width:auto}.topbar-status small{display:none}
+  .topnav{margin:0 -4px;padding-bottom:2px}
+  .nav-btn{font-size:13px;padding:9px 11px;min-height:42px}
+  .page-hero h1{font-size:clamp(32px,11vw,43px)}
+  .posture-card{grid-template-columns:1fr;text-align:center;padding:22px 18px}
+  .posture-title,.source-orbit{justify-content:center}
+  .posture-copy p{margin-left:auto;margin-right:auto}
+  .kpi-rail,.five-kpis,.group-explorer-grid{grid-template-columns:1fr!important}
+  .regional-kpis{grid-template-columns:1fr 1fr!important}
+  .asean-country-grid{grid-template-columns:1fr 1fr!important}
+  .section-heading h2{font-size:25px}
+  .priority-card{min-height:0}
+  .world-map-stage{min-height:260px}
+  .world-map-foot{display:block;font-size:11px}
+  .world-map-foot span{display:block;margin-top:6px}
+  .rw-window-tabs{width:100%}.rw-window-tabs button{flex:1}
+  .panel-head{padding:18px 17px 0}
+  th,td{padding:12px 12px!important;white-space:nowrap}
+  .detail-drawer{width:100vw;max-width:100vw;border-radius:18px 18px 0 0}
+}
+@media(max-width:420px){
+  .asean-country-grid,.regional-kpis{grid-template-columns:1fr!important}
+  .page-hero p{font-size:15px}
+  .topbar-status strong{font-size:11px}
+}
+
+/* Accessibility: honour reduced motion */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}
+}
