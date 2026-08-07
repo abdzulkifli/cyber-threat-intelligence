@@ -320,3 +320,30 @@ button.vuln-kpi{cursor:pointer}.vuln-kpi:hover{transform:translateY(-2px);border
 @media(max-width:480px){
   .vuln-kpi-grid{grid-template-columns:1fr}.vuln-watch-card .watch-metrics{grid-template-columns:1fr}.drawer-score-grid.four{grid-template-columns:1fr 1fr}.vuln-watch-card{padding:17px}.vuln-orb{width:140px;height:140px}.vuln-preset-row button{flex:1}.vuln-preset-row{display:grid;grid-template-columns:1fr 1fr}.vuln-preset-row button:first-child{grid-column:1/-1}
 }
+
+/* Phase 1H.8 — colourful global map + browser-side ransomware auto sync */
+.world-country{opacity:.88;stroke:rgba(176,220,238,.28);stroke-width:.7;filter:saturate(.92);}
+.world-country.map-color-0{fill:#16324b}
+.world-country.map-color-1{fill:#26335a}
+.world-country.map-color-2{fill:#174b50}
+.world-country.map-color-3{fill:#4a3156}
+.world-country.map-color-4{fill:#53442e}
+.world-country.map-color-5{fill:#284a39}
+.world-country.map-color-6{fill:#47394f}
+.world-country.map-color-7{fill:#244659}
+.world-country:not(.has-claims){opacity:.86}
+.world-country.has-claims{opacity:1;filter:saturate(1.15) brightness(1.03)}
+.world-country.heat-1{fill:#22b8cf;stroke:#77efff}
+.world-country.heat-2{fill:#6fd34e;stroke:#c1ff94}
+.world-country.heat-3{fill:#ffb340;stroke:#ffe1a3}
+.world-country.heat-4{fill:#ff4f72;stroke:#ffd0d8;filter:drop-shadow(0 0 7px rgba(255,79,114,.42))}
+.world-country.malaysia-focus{stroke:#7dffd8!important;stroke-width:1.7!important;filter:drop-shadow(0 0 5px rgba(90,244,201,.55))}
+.world-country:hover,.world-country:focus-visible{filter:saturate(1.3) brightness(1.18) drop-shadow(0 0 7px rgba(128,236,255,.6));}
+.map-legend .heat{background:#22b8cf}.map-legend .h2{background:#6fd34e}.map-legend .h3{background:#ffb340}.map-legend .h4{background:#ff4f72}
+.browser-sync-badge{display:inline-flex;align-items:center;min-height:28px;padding:5px 9px;border-radius:999px;border:1px solid rgba(95,242,197,.28);background:rgba(31,99,82,.18);color:#8ff8d9;font-weight:800;letter-spacing:.04em;white-space:nowrap;transition:.2s}
+.browser-sync-badge:before{content:"";width:7px;height:7px;border-radius:50%;background:#5ff2c5;box-shadow:0 0 0 4px rgba(95,242,197,.09);margin-right:7px}
+.browser-sync-badge.flash{border-color:rgba(126,244,255,.75);background:rgba(45,137,156,.24);color:#d4fbff;box-shadow:0 0 22px rgba(80,221,241,.16)}
+.live-marker.marker-new .live-marker-pulse{stroke:#fff;stroke-width:2;animation:rw-map-new-pulse .72s ease-out infinite}
+.live-marker.marker-new .live-marker-core{stroke:#fff;stroke-width:2;filter:drop-shadow(0 0 10px rgba(255,255,255,.95))}
+@keyframes rw-map-new-pulse{0%{transform:scale(.45);opacity:1}75%{transform:scale(2.05);opacity:.08}100%{transform:scale(2.05);opacity:0}}
+@media(max-width:900px){.browser-sync-badge{font-size:.72rem;min-height:26px}.map-legend{align-items:center}}

@@ -166,7 +166,7 @@
       </div>
 
       <div class="rw-live-pulse" id="rwLivePulse">
-        <div class="live-pulse-title"><span><i></i>LIVE RANSOMWARE PULSE</span><small>Victim-claim intelligence · auto refresh every 5 minutes</small></div>
+        <div class="live-pulse-title"><span><i></i>LIVE RANSOMWARE PULSE</span><small>Victim-claim intelligence · browser auto-sync every 60 seconds · source collector every 5 minutes</small></div>
         <div><span>LATEST CLAIM</span><strong id="rwPulseLatest">—</strong><small id="rwPulseLatestMeta">Waiting for source data</small></div>
         <div><span>CLAIMS ≤24H</span><strong id="rwPulse24">—</strong><small>Current live window</small></div>
         <div><span>COUNTRIES ≤24H</span><strong id="rwPulseCountries">—</strong><small>Mapped countries</small></div>
@@ -183,7 +183,7 @@
       </div>
 
       <article class="panel world-map-panel">
-        <div class="panel-head map-panel-head"><div><span class="section-label">GLOBAL LIVE TARGETING</span><h3>Where ransomware claims are appearing now</h3><small id="rwMapWindowLabel">LIVE · last 24 hours</small></div><div class="map-legend"><span><i class="heat h1"></i>Low</span><span><i class="heat h2"></i></span><span><i class="heat h3"></i></span><span><i class="heat h4"></i>High</span><span class="live-marker-key"><i></i>Latest ≤24h</span></div></div>
+        <div class="panel-head map-panel-head"><div><span class="section-label">GLOBAL LIVE TARGETING</span><h3>Where ransomware claims are appearing now</h3><small id="rwMapWindowLabel">LIVE · last 24 hours</small></div><div class="map-legend"><span><i class="heat h1"></i>Low</span><span><i class="heat h2"></i></span><span><i class="heat h3"></i></span><span><i class="heat h4"></i>High</span><span class="live-marker-key"><i></i>Latest ≤24h</span><span class="browser-sync-badge" id="rwBrowserSync">AUTO SYNC · 60s</span></div></div>
         <div class="rw-map-layout">
           <div class="world-map-stage" id="rwWorldMap"><div class="skeleton chart"></div></div>
           <aside class="rw-live-claims-panel">
@@ -192,7 +192,7 @@
             <button class="live-panel-more" type="button" data-tab-jump="ransomware">Map uses victim-claim discovery time · click any item for detail</button>
           </aside>
         </div>
-        <div class="world-map-foot"><span>Country heat = selected time window. Pulsing markers = latest claims discovered within 24 hours.</span><span id="rwMapCoverage">Mapping retained claims…</span></div>
+        <div class="world-map-foot"><span>Colourful base map = visual geography. Bright heat colours = claim volume in the selected window. Pulsing markers = latest claims discovered within 24 hours.</span><span id="rwMapCoverage">Mapping retained claims…</span></div>
       </article>
 
       <div class="overview-grid ransomware-analytics-grid">
