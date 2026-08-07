@@ -1,0 +1,33 @@
+name: Update Threat Intelligence
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/15 * * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  update-intelligence:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Fetch CISA KEV intelligence
+        run: node scripts/fetch-cisa-kev.js
+
+      - name: Commit updated intelligence
+        run: |
+          git config --global user.name "Cyber Intelligence Bot"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/kev.json
+          git diff --cached --quiet || git commit -m "Update CISA threat intelligence"
+          git push
