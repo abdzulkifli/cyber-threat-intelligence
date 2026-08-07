@@ -1,0 +1,18 @@
+{
+  "meta": {
+    "status": "pending",
+    "source": "MyCERT / CyberSecurity Malaysia",
+    "sourceUrl": "https://mycert.org.my/portal/index",
+    "collectedAt": null,
+    "lastAttemptAt": null,
+    "lastAttemptStatus": "pending",
+    "note": "Run the MyCERT intelligence workflow to populate this file."
+  },
+  "stats": {
+    "totalLoaded": 0,
+    "last30d": 0,
+    "criticalSignals": 0,
+    "ransomwareSignals": 0
+  },
+  "advisories": []
+}
