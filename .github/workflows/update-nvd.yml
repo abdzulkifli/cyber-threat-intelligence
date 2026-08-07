@@ -3,24 +3,29 @@ name: Enrich NVD Vulnerability Intelligence
 on:
   workflow_dispatch:
   schedule:
-    # NVD recommends automated maintenance no more than once every two hours.
-    # Minute 17 avoids the busy top-of-hour GitHub Actions window.
     - cron: '17 */2 * * *'
 
 permissions:
   contents: write
 
+concurrency:
+  group: nvd-intelligence-update
+  cancel-in-progress: false
+
 jobs:
   update-nvd:
     runs-on: ubuntu-latest
+    timeout-minutes: 12
+
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: '24'
+          package-manager-cache: false
 
       - name: Collect NVD KEV enrichment
         env:
