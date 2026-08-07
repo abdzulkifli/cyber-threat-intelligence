@@ -1,0 +1,54 @@
+name: Sync Full Ransomware History
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Full historical reconciliation once per day. The separate 5-minute workflow
+    # keeps the newest claims fresh between these full syncs.
+    - cron: "25 3 * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ransomware-full-history
+  cancel-in-progress: false
+
+jobs:
+  sync-ransomware-history:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      RANSOMWARE_LIVE_API_KEY: ${{ secrets.RANSOMWARE_LIVE_API_KEY }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: "24"
+
+      - name: Validate ransomware.live API secret
+        run: |
+          if [ -z "$RANSOMWARE_LIVE_API_KEY" ]; then
+            echo "RANSOMWARE_LIVE_API_KEY is not configured."
+            echo "The 5-minute recent feed remains keyless; this key is only for the full historical mirror."
+            exit 1
+          fi
+
+      - name: Sync full ransomware.live victim history
+        run: node scripts/sync-ransomware-history.js
+
+      - name: Show regional verification
+        run: |
+          node -e "const d=require('./data/ransomware-history.json'); console.log('Full sync:',d.meta.fullSync); console.log('Claims:',d.stats.retainedClaims); console.log('Malaysia:',d.stats.malaysiaClaims); console.log('ASEAN:',d.stats.aseanClaims); console.log('ASEAN verification:',d.meta.aseanVerification);"
+
+      - name: Commit full historical mirror
+        run: |
+          git config --global user.name "Cyber Intelligence Bot"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/ransomware-history.json
+          git diff --cached --quiet || git commit -m "Sync full ransomware history"
+          git push
