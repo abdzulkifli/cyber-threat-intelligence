@@ -1,0 +1,25 @@
+{
+  "meta": {
+    "status": "pending",
+    "source": "Ransomwhere.org proxy",
+    "upstream": "ransomware.live",
+    "collectedAt": null,
+    "lastSourceUpdate": null,
+    "note": "Run the ransomware intelligence workflow to populate this file. Victim entries are public leak-site claims and are not independently verified incidents."
+  },
+  "stats": {
+    "totalVictims": 0,
+    "trackedGroups": 0,
+    "activeGroups": 0,
+    "recentClaims": 0,
+    "claims24h": 0,
+    "countriesRecent": 0,
+    "sectorsRecent": 0
+  },
+  "topGroups": [],
+  "topCountries": [],
+  "topSectors": [],
+  "dailyActivity": [],
+  "victims": [],
+  "groups": []
+}
