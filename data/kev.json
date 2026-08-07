@@ -3,7 +3,7 @@
     "dataset": "CISA Known Exploited Vulnerabilities",
     "phase": 1,
     "status": "ok",
-    "collectedAt": "2026-08-07T16:11:02.590Z",
+    "collectedAt": "2026-08-07T17:11:04.661Z",
     "sourcePublished": "2026-08-06T18:15:23.8295Z",
     "catalogVersion": "2026.08.06",
     "count": 1661,
