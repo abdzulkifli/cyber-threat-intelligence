@@ -1,4 +1,7 @@
-let DATA = null;
+let KEV = null;
+let NVD = null;
+let NVD_BY_ID = new Map();
+
 const $ = id => document.getElementById(id);
 const esc = value => String(value ?? '').replace(/[&<>'"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
 const fmt = n => Number(n || 0).toLocaleString();
@@ -9,17 +12,43 @@ function ageDays(dateStr) {
   return (Date.now() - d.getTime()) / 86400000;
 }
 
-function renderMetrics(d) {
-  $('total').textContent = fmt(d.stats.total);
-  $('today').textContent = fmt(d.stats.addedToday);
-  $('week').textContent = fmt(d.stats.added7d);
-  $('month').textContent = fmt(d.stats.added30d);
-  $('ransomware').textContent = fmt(d.stats.ransomwareRelated);
-  $('ransomware30').textContent = fmt(d.stats.ransomwareAdded30d);
+function fmtDateTime(value) {
+  if (!value) return 'Not collected yet';
+  const d = new Date(value);
+  return Number.isNaN(d.getTime()) ? '—' : d.toLocaleString();
 }
 
-function renderVendors(d) {
-  const list = d.stats.topVendors || [];
+function severityClass(severity) {
+  const s = String(severity || 'UNKNOWN').toUpperCase();
+  return `severity severity-${['CRITICAL','HIGH','MEDIUM','LOW'].includes(s) ? s.toLowerCase() : 'unknown'}`;
+}
+
+function renderMetrics() {
+  if (KEV) {
+    $('total').textContent = fmt(KEV.stats.total);
+    $('today').textContent = fmt(KEV.stats.addedToday);
+    $('week').textContent = fmt(KEV.stats.added7d);
+    $('month').textContent = fmt(KEV.stats.added30d);
+    $('ransomware').textContent = fmt(KEV.stats.ransomwareRelated);
+  }
+
+  const ready = NVD?.meta?.status === 'ok';
+  if (ready) {
+    $('nvdCoverage').textContent = `${Number(NVD.stats.coveragePercent || 0).toFixed(1)}%`;
+    $('nvdCoverageHint').textContent = `${fmt(NVD.stats.withCvss)} of ${fmt(NVD.stats.total)} records with CVSS`;
+    $('critical').textContent = fmt(NVD.stats.critical);
+    $('high').textContent = fmt(NVD.stats.high);
+  } else {
+    $('nvdCoverage').textContent = 'PENDING';
+    $('nvdCoverageHint').textContent = 'Run the NVD enrichment workflow';
+    $('critical').textContent = '—';
+    $('high').textContent = '—';
+  }
+}
+
+function renderVendors() {
+  if (!KEV) return;
+  const list = KEV.stats.topVendors || [];
   const max = Math.max(...list.map(x => x.count), 1);
   $('vendors').innerHTML = list.map(v => `
     <div class="vendor-row">
@@ -29,62 +58,131 @@ function renderVendors(d) {
   $('vendorCount').textContent = `${list.length} shown`;
 }
 
-function renderHealth(d) {
-  const ok = d.meta.status === 'ok';
-  $('feedStatus').textContent = ok ? 'LIVE DATA' : 'NO DATA';
-  $('sourceBadge').textContent = ok ? 'ONLINE' : 'NOT READY';
-  $('sourceBadge').className = `badge ${ok ? 'green' : 'red'}`;
-  $('collectedAt').textContent = d.meta.collectedAt ? new Date(d.meta.collectedAt).toLocaleString() : 'Not collected yet';
-  $('sourceMode').textContent = d.meta.sourceMode ? `${d.meta.sourceMode}${d.meta.fallbackUsed ? ' (official mirror)' : ''}` : '—';
-  $('catalogVersion').textContent = d.meta.catalogVersion || '—';
-  $('recordCount').textContent = fmt(d.meta.count);
+function setBadge(id, ready, readyText = 'ONLINE', waitingText = 'NOT READY') {
+  const el = $(id);
+  el.textContent = ready ? readyText : waitingText;
+  el.className = `badge ${ready ? 'green' : 'amber'}`;
+}
+
+function renderHealth() {
+  const cisaOk = KEV?.meta?.status === 'ok';
+  const nvdOk = NVD?.meta?.status === 'ok';
+
+  setBadge('cisaSourceBadge', cisaOk, 'ONLINE');
+  setBadge('nvdSourceBadge', nvdOk, 'ONLINE', 'PENDING');
+
+  $('cisaCollectedAt').textContent = cisaOk ? fmtDateTime(KEV.meta.collectedAt) : 'Not collected yet';
+  $('sourceMode').textContent = cisaOk ? `${KEV.meta.sourceMode || '—'}${KEV.meta.fallbackUsed ? ' (official mirror)' : ''}` : '—';
+  $('catalogVersion').textContent = cisaOk ? (KEV.meta.catalogVersion || '—') : '—';
+  $('recordCount').textContent = cisaOk ? fmt(KEV.meta.count) : '—';
+
+  $('nvdCollectedAt').textContent = nvdOk ? fmtDateTime(NVD.meta.collectedAt) : 'Not collected yet';
+  $('nvdRecordCount').textContent = nvdOk ? fmt(NVD.meta.count) : '—';
+  $('nvdCvssCount').textContent = nvdOk ? fmt(NVD.stats.withCvss) : '—';
+
+  if (cisaOk && nvdOk) {
+    $('feedStatus').textContent = '2 SOURCES LIVE';
+    $('liveDot').className = 'dot';
+  } else if (cisaOk) {
+    $('feedStatus').textContent = 'CISA LIVE · NVD PENDING';
+    $('liveDot').className = 'dot amber-dot';
+  } else {
+    $('feedStatus').textContent = 'DATA NOT READY';
+    $('liveDot').className = 'dot red-dot';
+  }
+}
+
+function renderSeverity() {
+  const ready = NVD?.meta?.status === 'ok';
+  if (!ready) {
+    ['sevCritical','sevHigh','sevMedium','sevLow','sevUnknown'].forEach(id => $(id).textContent = '—');
+    $('severityCoverage').textContent = 'Run NVD enrichment to populate severity';
+    return;
+  }
+  $('sevCritical').textContent = fmt(NVD.stats.critical);
+  $('sevHigh').textContent = fmt(NVD.stats.high);
+  $('sevMedium').textContent = fmt(NVD.stats.medium);
+  $('sevLow').textContent = fmt(NVD.stats.low);
+  $('sevUnknown').textContent = fmt(NVD.stats.unknown);
+  $('severityCoverage').textContent = `${Number(NVD.stats.coveragePercent || 0).toFixed(1)}% CVSS coverage`;
 }
 
 function renderTable() {
-  if (!DATA) return;
+  if (!KEV) return;
   const q = $('search').value.trim().toLowerCase();
   const ransom = $('ransomFilter').value;
   const period = $('periodFilter').value;
+  const severity = $('severityFilter').value;
 
-  let items = DATA.vulnerabilities.filter(v => {
-    const hay = `${v.id} ${v.vendor} ${v.product} ${v.vulnerabilityName} ${v.description}`.toLowerCase();
+  const items = KEV.vulnerabilities.map(v => ({ ...v, nvd: NVD_BY_ID.get(v.id) || null })).filter(v => {
+    const nvd = v.nvd;
+    const hay = `${v.id} ${v.vendor} ${v.product} ${v.vulnerabilityName} ${v.description} ${nvd?.description || ''} ${nvd?.cvss?.severity || ''}`.toLowerCase();
     if (q && !hay.includes(q)) return false;
     if (ransom === 'yes' && !v.ransomware) return false;
     if (ransom === 'no' && v.ransomware) return false;
     if (period !== 'all' && ageDays(v.dateAdded) > Number(period)) return false;
+    const sev = String(nvd?.cvss?.severity || 'UNKNOWN').toUpperCase();
+    if (severity !== 'all' && sev !== severity) return false;
     return true;
   });
 
-  $('resultLabel').textContent = `${fmt(items.length)} matching records · newest first`;
-  $('rows').innerHTML = items.slice(0, 1000).map(v => `
-    <tr>
-      <td>${esc(v.dateAdded || '—')}</td>
-      <td><strong class="source">${esc(v.id)}</strong></td>
-      <td>${esc(v.vendor)}</td>
-      <td>${esc(v.product)}</td>
-      <td><span class="badge ${v.ransomware ? 'red' : 'green'}">${v.ransomware ? 'KNOWN' : 'NOT KNOWN'}</span></td>
-      <td><strong>${esc(v.vulnerabilityName)}</strong><br><span class="muted">${esc(v.description)}</span></td>
-      <td>${esc(v.requiredAction)}</td>
-    </tr>`).join('') || '<tr><td colspan="7" class="muted">No records match the current filters.</td></tr>';
+  const nvdState = NVD?.meta?.status === 'ok' ? 'NVD enriched' : 'NVD pending';
+  $('resultLabel').textContent = `${fmt(items.length)} matching records · newest first · ${nvdState}`;
+  $('rows').innerHTML = items.slice(0, 1000).map(v => {
+    const nvd = v.nvd;
+    const cvss = nvd?.cvss || {};
+    const sev = String(cvss.severity || 'UNKNOWN').toUpperCase();
+    const score = cvss.score === null || cvss.score === undefined ? '—' : Number(cvss.score).toFixed(1);
+    const description = nvd?.description || v.description;
+    const nvdLink = nvd?.sourceUrl ? `<a class="source-link" href="${esc(nvd.sourceUrl)}" target="_blank" rel="noopener">NVD ↗</a>` : '';
+    return `
+      <tr>
+        <td>${esc(v.dateAdded || '—')}</td>
+        <td><strong class="source">${esc(v.id)}</strong><div class="source-links">${nvdLink}</div></td>
+        <td><strong>${esc(v.vendor)}</strong><br><span class="muted">${esc(v.product)}</span></td>
+        <td><span class="cvss-score">${score}</span>${cvss.version ? `<small class="cvss-version">v${esc(cvss.version)}</small>` : ''}</td>
+        <td><span class="${severityClass(sev)}">${esc(sev)}</span></td>
+        <td><span class="badge ${v.ransomware ? 'red' : 'green'}">${v.ransomware ? 'KNOWN' : 'NOT KNOWN'}</span></td>
+        <td><strong>${esc(v.vulnerabilityName)}</strong><br><span class="muted">${esc(description)}</span>${cvss.vector ? `<div class="vector">${esc(cvss.vector)}</div>` : ''}</td>
+        <td>${esc(v.requiredAction)}</td>
+      </tr>`;
+  }).join('') || '<tr><td colspan="8" class="muted">No records match the current filters.</td></tr>';
+}
+
+async function fetchJson(path) {
+  const res = await fetch(`${path}?t=${Date.now()}`, { cache: 'no-store' });
+  if (!res.ok) throw new Error(`${path}: HTTP ${res.status}`);
+  return res.json();
 }
 
 async function load() {
-  try {
-    const res = await fetch(`data/kev.json?t=${Date.now()}`, { cache: 'no-store' });
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    DATA = await res.json();
-    renderMetrics(DATA);
-    renderVendors(DATA);
-    renderHealth(DATA);
-    renderTable();
-  } catch (err) {
-    $('feedStatus').textContent = 'ERROR';
-    $('sourceBadge').textContent = 'ERROR';
-    $('sourceBadge').className = 'badge red';
-    $('resultLabel').textContent = `Unable to load data: ${err.message}`;
+  const [kevResult, nvdResult] = await Promise.allSettled([
+    fetchJson('data/kev.json'),
+    fetchJson('data/nvd.json')
+  ]);
+
+  if (kevResult.status === 'fulfilled') KEV = kevResult.value;
+  if (nvdResult.status === 'fulfilled') NVD = nvdResult.value;
+  if (NVD?.meta?.status === 'ok') {
+    NVD_BY_ID = new Map((NVD.vulnerabilities || []).map(v => [v.id, v]));
+  } else {
+    NVD_BY_ID = new Map();
   }
+
+  if (!KEV) {
+    $('feedStatus').textContent = 'CISA DATA ERROR';
+    $('liveDot').className = 'dot red-dot';
+    $('resultLabel').textContent = kevResult.reason?.message || 'Unable to load CISA KEV data.';
+    return;
+  }
+
+  renderMetrics();
+  renderVendors();
+  renderHealth();
+  renderSeverity();
+  renderTable();
 }
 
-['search','ransomFilter','periodFilter'].forEach(id => $(id).addEventListener(id === 'search' ? 'input' : 'change', renderTable));
+['search','severityFilter','ransomFilter','periodFilter'].forEach(id => $(id).addEventListener(id === 'search' ? 'input' : 'change', renderTable));
 load();
 setInterval(load, 5 * 60 * 1000);

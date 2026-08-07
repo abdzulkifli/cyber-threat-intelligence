@@ -1,10 +1,12 @@
 {
   "name": "cti-phase1",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": true,
-  "description": "Phase 1 cyber threat intelligence dashboard using CISA KEV",
+  "description": "Phase 1 cyber threat intelligence dashboard using CISA KEV and NVD CVSS enrichment",
   "scripts": {
-    "collect:cisa": "node scripts/fetch-cisa-kev.js"
+    "collect:cisa": "node scripts/fetch-cisa-kev.js",
+    "collect:nvd": "node scripts/fetch-nvd-kev.js",
+    "collect:all": "node scripts/fetch-cisa-kev.js && node scripts/fetch-nvd-kev.js"
   },
   "engines": {
     "node": ">=20"

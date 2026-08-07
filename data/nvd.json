@@ -1,0 +1,29 @@
+{
+  "meta": {
+    "dataset": "NVD CVE API — CISA KEV Enrichment",
+    "phase": "1B",
+    "status": "not-collected",
+    "collectedAt": null,
+    "nvdTimestamp": null,
+    "count": 0,
+    "totalResults": 0,
+    "requestCount": 0,
+    "apiKeyUsed": false,
+    "baseUrl": "https://services.nvd.nist.gov/rest/json/cves/2.0",
+    "query": "hasKev",
+    "refreshPolicy": "Every 2 hours",
+    "attribution": "This product uses the NVD API but is not endorsed or certified by the NVD."
+  },
+  "stats": {
+    "total": 0,
+    "withCvss": 0,
+    "coveragePercent": 0,
+    "critical": 0,
+    "high": 0,
+    "medium": 0,
+    "low": 0,
+    "unknown": 0,
+    "cvssVersions": {}
+  },
+  "vulnerabilities": []
+}
