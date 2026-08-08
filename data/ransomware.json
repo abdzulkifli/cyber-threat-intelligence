@@ -6,15 +6,15 @@
     "upstream": "ransomware.live",
     "mode": "direct-v2",
     "authentication": "none",
-    "collectedAt": "2026-08-08T05:26:56.458Z",
-    "checkedAt": "2026-08-08T05:26:56.458Z",
+    "collectedAt": "2026-08-08T06:04:48.961Z",
+    "checkedAt": "2026-08-08T06:04:48.961Z",
     "dataUpdatedAt": "2026-08-07T23:20:47.573Z",
     "lastSourceUpdate": "2026-08-07T22:52:10.874Z",
     "latestVictimDiscovered": "2026-08-07T22:52:10.874Z",
     "latestVictimName": "MEDICOS",
     "latestVictimGroup": "bravox",
     "latestVictimCountry": "FR",
-    "sourceDataAgeMinutes": 395,
+    "sourceDataAgeMinutes": 433,
     "feedFreshness": "fresh",
     "newClaimsSincePreviousCollection": 0,
     "selectedBy": "freshest-latest-victim",
@@ -2497,9 +2497,7 @@
       "status": "active",
       "description": "Blackout is a ransomware group that first appeared in early 2024, initially claiming attacks against healthcare entities in Canada, France, and Germany before expanding to telecommunications, mining, and manufacturing sectors, operating a double-extortion model with a data leak site.",
       "locationCount": 1,
-      "locations": [
-        "Blackout Blog"
-      ],
+      "locations": [],
       "victims": 0,
       "firstSeen": null,
       "lastSeen": null,
@@ -3721,7 +3719,7 @@
       "description": "Dread is a ransomware group that appears in tracking databases but has no publicly documented attacks or confirmed TTPs from major security vendors.",
       "locationCount": 1,
       "locations": [
-        "Frontpage - Dread"
+        "dread Access Queue"
       ],
       "victims": 0,
       "firstSeen": null,
@@ -4230,7 +4228,7 @@
       "locationCount": 5,
       "locations": [
         "This Website Has Been Seized",
-        "Seraphine23 Cam Model: Free Live Sex Show & Chat | Stripchat",
+        "Loading https://m.ntesgsght.com/c/jtck6n?network_click_id=85d6f2be617549809a826debaa3503a1&site_id=4601&sub_site_id=handala.to&campaign=pwn_h72na_youdao_all_gb_install_conversion_event_pc_20260121&ad=&ad_name=&ad_group=",
         "Error Response Page",
         "Security Verification"
       ],
@@ -4579,6 +4577,7 @@
       "description": "Karakurt is a pure data-extortion group (no encryption) assessed with high confidence to be the extortion arm of the Conti ransomware group, active from 2021, that steals data and threatens to auction or publish it unless ransoms ranging from $25,000 to $13 million are paid.",
       "locationCount": 3,
       "locations": [
+        "Where Winds Meet | Official Website",
         "Magazine",
         "Chat"
       ],
