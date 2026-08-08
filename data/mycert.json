@@ -4,7 +4,7 @@
     "source": "MyCERT / CyberSecurity Malaysia",
     "sourceUrl": "https://mycert.org.my/portal/index",
     "collectedAt": "2026-08-07T10:00:00.000Z",
-    "lastAttemptAt": "2026-08-08T00:03:50.448Z",
+    "lastAttemptAt": "2026-08-08T02:18:27.940Z",
     "lastAttemptStatus": "failed",
     "collectionMode": "bootstrap",
     "note": "Refresh failed, so the last known-good MyCERT dataset was preserved.",
