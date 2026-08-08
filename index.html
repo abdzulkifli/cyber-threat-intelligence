@@ -242,6 +242,34 @@
     </section>
 
     <!-- RANSOMWARE -->
+    
+    <section class="tab-panel standalone-view threatmap-view" data-panel="threatmap">
+      <div class="view-banner">
+        <div><span class="view-kicker">DISCOVERY · GLOBAL THREAT MAP</span><h2>Global Threat Landscape</h2><p>Explore geolocated ransomware and threat-actor activity across the world. Vulnerability signals remain global unless the upstream source provides defensible geography.</p></div>
+        <div class="view-note"><strong>LIVE GEOSPATIAL INTELLIGENCE</strong><p id="threatMapCoverage">Building map…</p></div>
+      </div>
+
+      <div class="th-map-toolbar standalone-map-toolbar" aria-label="Global threat map filters">
+        <div class="th-filter-group"><span class="th-filter-label">Scope</span><span class="th-scope-pill">GLOBAL</span></div>
+        <div class="th-filter-group th-filter-segment"><span class="th-filter-label">Signal</span><button class="active" type="button" data-overview-type="all">All</button><button type="button" data-overview-type="ransomware">Ransomware</button><button type="button" data-overview-type="actors">Threat Actors</button><button type="button" data-overview-type="vulnerabilities">Vulnerabilities</button></div>
+        <div class="th-filter-group th-filter-segment"><span class="th-filter-label">Window</span><button type="button" data-overview-window="1">24H</button><button type="button" data-overview-window="7">7D</button><button class="active" type="button" data-overview-window="30">30D</button><button type="button" data-overview-window="all">ALL</button></div>
+      </div>
+
+      <div class="standalone-map-grid">
+        <article class="panel world-map-panel standalone-map-panel">
+          <div class="panel-head map-panel-head"><div><span class="section-label">WORLD MAP</span><h3>Geolocated threat activity</h3></div><small id="threatMapUpdated">Waiting for render…</small></div>
+          <div class="world-map-stage threat-world-map" id="threatWorldMap"><div class="skeleton chart"></div></div>
+          <div id="threatMapNotice" class="th-map-notice" hidden></div>
+          <div class="th-map-legend"><span><i class="dot critical"></i>Highest activity</span><span><i class="dot orange"></i>Elevated</span><span><i class="dot cyan"></i>Observed</span><span><i class="dot purple"></i>Actor / ransomware lens</span><span><i class="dot live"></i>Latest ≤24h</span></div>
+        </article>
+
+        <aside class="standalone-map-aside">
+          <article class="panel"><div class="panel-head"><div><span class="section-label">TOP COUNTRIES</span><h3>Activity concentration</h3></div></div><div id="threatMapCountries" class="th-mini-ranking"><div class="skeleton row"></div></div></article>
+          <article class="panel view-note"><strong>Evidence rule</strong><p>ThreadHub only paints geography when the source contains a defensible country relationship. Global CVE signals are never assigned to a country just for visual effect.</p></article>
+        </aside>
+      </div>
+    </section>
+
     <section class="tab-panel" data-panel="ransomware">
       <div class="section-heading ransomware-heading">
         <div><span>RANSOMWARE INTELLIGENCE</span><h2>Victims, Groups, Targeting & Evidence</h2><p>Investigate public ransomware/extortion claims across the retained historical archive — from global activity and actor concentration down to victim, country, sector and source traceability.</p></div>
@@ -331,6 +359,14 @@
     </section>
 
     <!-- VULNERABILITIES -->
+    
+    <section class="tab-panel standalone-view actors-view" data-panel="actors">
+      <div class="view-banner"><div><span class="view-kicker">INTELLIGENCE · THREAT ACTORS</span><h2>Threat Actor Intelligence</h2><p>Track ransomware and extortion groups observed in ThreadHub intelligence, with activity, country and sector context.</p></div></div>
+      <div class="kpi-grid actor-kpis"><article><span>ACTIVE · 30D</span><strong id="actorActive30">—</strong></article><article><span>ACTIVE · 7D</span><strong id="actorActive7">—</strong></article><article><span>TOP ACTOR</span><strong id="actorTopName">—</strong><small id="actorTopMeta">Waiting for data</small></article><article><span>COUNTRIES · 30D</span><strong id="actorCountryCount">—</strong></article></div>
+      <article class="panel"><div class="panel-head"><div><span class="section-label">ACTOR DIRECTORY</span><h3>Most active groups · 30D</h3></div></div><div id="actorDirectory" class="group-grid actor-directory"><div class="skeleton row"></div></div></article>
+      <div class="analytics-grid"><article class="panel"><div class="panel-head"><div><span class="section-label">TARGET COUNTRIES</span><h3>Actor geography</h3></div></div><div id="actorCountries" class="th-mini-ranking"></div></article><article class="panel"><div class="panel-head"><div><span class="section-label">TARGET SECTORS</span><h3>Sector concentration</h3></div></div><div id="actorSectors" class="ranking-list"></div></article></div>
+    </section>
+
     <section class="tab-panel" data-panel="vulnerabilities">
       <div class="section-heading vuln-heading">
         <div>
