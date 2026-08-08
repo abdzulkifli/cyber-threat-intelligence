@@ -6,15 +6,15 @@
     "upstream": "ransomware.live",
     "mode": "direct-v2",
     "authentication": "none",
-    "collectedAt": "2026-08-08T06:04:48.961Z",
-    "checkedAt": "2026-08-08T06:04:48.961Z",
+    "collectedAt": "2026-08-08T07:08:54.556Z",
+    "checkedAt": "2026-08-08T07:08:54.556Z",
     "dataUpdatedAt": "2026-08-07T23:20:47.573Z",
     "lastSourceUpdate": "2026-08-07T22:52:10.874Z",
     "latestVictimDiscovered": "2026-08-07T22:52:10.874Z",
     "latestVictimName": "MEDICOS",
     "latestVictimGroup": "bravox",
     "latestVictimCountry": "FR",
-    "sourceDataAgeMinutes": 433,
+    "sourceDataAgeMinutes": 497,
     "feedFreshness": "fresh",
     "newClaimsSincePreviousCollection": 0,
     "selectedBy": "freshest-latest-victim",
@@ -2497,7 +2497,9 @@
       "status": "active",
       "description": "Blackout is a ransomware group that first appeared in early 2024, initially claiming attacks against healthcare entities in Canada, France, and Germany before expanding to telecommunications, mining, and manufacturing sectors, operating a double-extortion model with a data leak site.",
       "locationCount": 1,
-      "locations": [],
+      "locations": [
+        "Blackout Blog"
+      ],
       "victims": 0,
       "firstSeen": null,
       "lastSeen": null,
@@ -3719,7 +3721,7 @@
       "description": "Dread is a ransomware group that appears in tracking databases but has no publicly documented attacks or confirmed TTPs from major security vendors.",
       "locationCount": 1,
       "locations": [
-        "dread Access Queue"
+        "Frontpage - Dread"
       ],
       "victims": 0,
       "firstSeen": null,
@@ -4110,8 +4112,8 @@
       "description": "GLOBAL GROUP is a ransomware-as-a-service operation that emerged in June 2025, reportedly launched by a known Russian-speaking threat actor, featuring AI-driven ransom negotiation and a mobile control panel for affiliates, targeting healthcare, oil and gas, industrial engineering, and automotive sectors.",
       "locationCount": 2,
       "locations": [
-        "GLOBAL | Client Portal",
-        "GLOBAL | Blog"
+        "GLOBAL | Blog",
+        "GLOBAL | Client Portal"
       ],
       "victims": 0,
       "firstSeen": null,
@@ -4228,7 +4230,7 @@
       "locationCount": 5,
       "locations": [
         "This Website Has Been Seized",
-        "Loading https://m.ntesgsght.com/c/jtck6n?network_click_id=85d6f2be617549809a826debaa3503a1&site_id=4601&sub_site_id=handala.to&campaign=pwn_h72na_youdao_all_gb_install_conversion_event_pc_20260121&ad=&ad_name=&ad_group=",
+        "Where Winds Meet | Official Website",
         "Error Response Page",
         "Security Verification"
       ],
