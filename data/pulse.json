@@ -1,0 +1,16 @@
+{
+  "meta": {
+    "status": "pending",
+    "schemaVersion": 1,
+    "collectedAt": null,
+    "collector": "ThreadHub Internet Signal Collector V1",
+    "retentionDays": 30,
+    "sourcesConfigured": 3,
+    "sourcesHealthy": 0,
+    "items": 0,
+    "topics": 0
+  },
+  "sources": [],
+  "topics": [],
+  "items": []
+}

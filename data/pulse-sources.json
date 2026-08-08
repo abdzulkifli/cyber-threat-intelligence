@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "description": "ThreadHub Pulse Internet Signal Collector V1. Curated public feeds only; add sources deliberately and preserve original-source attribution.",
+  "sources": [
+    {
+      "id": "google-threat-intelligence",
+      "name": "Google Threat Intelligence",
+      "type": "rss",
+      "url": "https://feeds.feedburner.com/threatintelligence/pvexyqv7v0v",
+      "homepage": "https://cloud.google.com/blog/topics/threat-intelligence",
+      "sourceType": "research",
+      "credibility": 0.98,
+      "enabled": true
+    },
+    {
+      "id": "google-cloud-security-bulletins",
+      "name": "Google Cloud Security Bulletins",
+      "type": "rss",
+      "url": "https://cloud.google.com/feeds/google-cloud-security-bulletins.xml",
+      "homepage": "https://docs.cloud.google.com/support/bulletins",
+      "sourceType": "vendor",
+      "credibility": 0.99,
+      "enabled": true
+    },
+    {
+      "id": "redhat-security-advisories",
+      "name": "Red Hat Security Advisories",
+      "type": "rss",
+      "url": "https://security.access.redhat.com/data/meta/v1/rhsa.rss",
+      "homepage": "https://access.redhat.com/security/data",
+      "sourceType": "vendor",
+      "credibility": 0.99,
+      "enabled": true
+    }
+  ]
+}
