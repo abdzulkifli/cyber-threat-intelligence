@@ -1,0 +1,42 @@
+name: Update ThreadHub Pulse
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/15 * * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: threadhub-pulse-update
+  cancel-in-progress: true
+
+jobs:
+  update-pulse:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Validate Pulse source registry
+        run: node scripts/sync-pulse.js --validate
+
+      - name: Collect public Internet security signals
+        run: node scripts/sync-pulse.js
+
+      - name: Commit Pulse intelligence
+        run: |
+          git config --global user.name "ThreadHub Pulse Bot"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/pulse.json
+          git diff --cached --quiet || git commit -m "Update ThreadHub Pulse signals"
+          git pull --rebase
+          git push
