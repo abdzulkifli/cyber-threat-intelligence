@@ -211,7 +211,7 @@
 
     <!-- THREADHUB PULSE -->
     <section class="tab-panel pulse-panel" data-panel="pulse">
-      <div class="section-heading pulse-heading"><div><span>DISCOVERY · THREADHUB PULSE</span><h2>What the cyber world is signaling now</h2><p>Rank source-backed ransomware, exploited-vulnerability and advisory signals by significance, momentum and recency — then pivot directly into ThreadHub or the original internet evidence.</p></div><div class="pulse-heading-actions"><span class="live-chip"><i></i>LIVE RANKING</span><span class="context-badge" id="pulseScopeBadge">V1 · LOADED CTI SOURCES</span></div></div>
+      <div class="section-heading pulse-heading"><div><span>DISCOVERY · THREADHUB PULSE</span><h2>What the cyber world is signaling now</h2><p>Rank curated public-internet security signals together with ThreadHub ransomware, exploited-vulnerability and advisory intelligence — then pivot into investigation or the original source evidence.</p></div><div class="pulse-heading-actions"><span class="live-chip"><i></i>LIVE RANKING</span><span class="context-badge" id="pulseScopeBadge">V2 · INTERNET + CTI SOURCES</span></div></div>
 
       <article class="panel pulse-v1-note"><div><strong>Pulse V1 is evidence-first.</strong><span>It ranks the intelligence sources already collected by ThreadHub. The web-wide conversation collector can be added as the next backend layer without changing this UI.</span></div><button class="soft-btn small" type="button" data-tab-jump="sources">View source health →</button></article>
 
@@ -236,7 +236,7 @@
 
       <article class="panel pulse-table-card">
         <div class="panel-head"><div><span class="section-label">ALL TOPICS</span><h3>Ranked discovery queue</h3><small>Investigate internally or open original evidence ↗</small></div><button id="pulseExport" class="soft-btn small" type="button">Export CSV</button></div>
-        <div class="pulse-filterbar" id="pulseFilters"><button class="active" data-pulse-filter="all">All</button><button data-pulse-filter="ransomware">Ransomware</button><button data-pulse-filter="vulnerability">Vulnerabilities</button><button data-pulse-filter="advisory">Advisories</button><input id="pulseSearch" placeholder="Search topics…" /></div>
+        <div class="pulse-filterbar" id="pulseFilters"><button class="active" data-pulse-filter="all">All</button><button data-pulse-filter="ransomware">Ransomware</button><button data-pulse-filter="vulnerability">Vulnerabilities</button><button data-pulse-filter="advisory">Advisories</button><button data-pulse-filter="malware">Malware</button><button data-pulse-filter="breach">Breaches</button><button data-pulse-filter="threat-actor">Threat Actors</button><input id="pulseSearch" placeholder="Search topics…" /></div>
         <div class="table-wrap"><table class="pulse-table"><thead><tr><th>Rank</th><th>Topic</th><th>Category</th><th>Score</th><th>Momentum</th><th>Signals</th><th>Latest</th><th>Actions</th></tr></thead><tbody id="pulseRows"></tbody></table></div>
       </article>
     </section>
