@@ -4,105 +4,146 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-  <meta name="theme-color" content="#07111d" />
-  <title>Cyber Threat Intelligence Command Centre</title>
+  <meta name="theme-color" content="#020812" />
+  <title>ThreadHub · Global Cyber Threat Intelligence</title>
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
   <div class="aurora aurora-a"></div><div class="aurora aurora-b"></div>
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
-  <header class="topbar">
-    <div class="brand">
-      <div class="brand-mark"><span></span><i></i></div>
-      <div><strong>CYBER THREAT INTELLIGENCE</strong><small>Command Centre</small></div>
+  <header class="topbar threadhub-topbar">
+    <div class="brand threadhub-brand">
+      <div class="brand-mark threadhub-mark"><span></span><i></i></div>
+      <div><strong>THREADHUB</strong><small>GLOBAL CYBER THREAT INTELLIGENCE</small></div>
     </div>
-    <nav class="topnav" id="topnav" aria-label="Dashboard sections">
-      <button class="nav-btn active" data-tab="overview">Overview</button>
-      <button class="nav-btn" data-tab="briefing">Briefing</button>
-      <button class="nav-btn" data-tab="regional">Malaysia & ASEAN</button>
-      <button class="nav-btn" data-tab="ransomware">Ransomware</button>
-      <button class="nav-btn" data-tab="vulnerabilities">Vulnerabilities</button>
-      <button class="nav-btn" data-tab="live">Live Feed</button>
-      <button class="nav-btn" data-tab="sources">Sources</button>
-    </nav>
-    <div class="topbar-status">
-      <span class="status-led" id="liveDot"></span>
-      <div><strong id="feedStatus">LOADING</strong><small id="lastRefresh">Checking sources…</small></div>
+    <label class="global-search" aria-label="Global intelligence search">
+      <span aria-hidden="true">⌕</span>
+      <input id="globalSearch" autocomplete="off" placeholder="Search CVE, ransomware group, victim, actor, IP, domain or country…" />
+      <kbd>ENTER</kbd>
+    </label>
+    <div class="threadhub-top-actions">
+      <span class="live-chip top-live"><i></i>LIVE</span>
+      <div class="topbar-status">
+        <span class="status-led" id="liveDot"></span>
+        <div><strong id="feedStatus">LOADING</strong><small id="lastRefresh">Checking sources…</small></div>
+      </div>
+      <button class="top-icon-btn" type="button" data-tab-jump="live" aria-label="Open live intelligence">◉</button>
+      <button class="top-icon-btn" type="button" data-tab-jump="sources" aria-label="Open source health">⚙</button>
+      <div class="admin-chip"><span class="admin-avatar">TH</span><div><strong>ThreadHub</strong><small>Intelligence Console</small></div><i></i></div>
     </div>
   </header>
 
+  <div class="threadhub-layout">
+    <aside class="side-rail" aria-label="ThreadHub navigation">
+      <div class="side-section-label">OVERVIEW</div>
+      <button class="nav-btn active" data-tab="overview"><span>▦</span>Overview</button>
+
+      <div class="side-section-label">INTELLIGENCE</div>
+      <button class="nav-btn" data-tab-jump="ransomware" data-scroll-target="rwWorldMap"><span>◎</span>Global Threat Map</button>
+      <button class="nav-btn" data-tab="live"><span>ϟ</span>Live Intelligence</button>
+      <button class="nav-btn" data-tab="ransomware"><span>☠</span>Ransomware</button>
+      <button class="nav-btn" data-tab="vulnerabilities"><span>⬡</span>Vulnerabilities</button>
+      <button class="nav-btn" data-tab-jump="ransomware" data-scroll-target="rwGroupExplorer"><span>♟</span>Threat Actors</button>
+
+      <div class="side-section-label">ANALYSIS</div>
+      <button class="nav-btn" data-tab="briefing"><span>▥</span>Executive Brief</button>
+      <button class="nav-btn" data-tab="regional"><span>◫</span>Regional Lens</button>
+
+      <div class="side-section-label">DATA & SOURCES</div>
+      <button class="nav-btn" data-tab="sources"><span>⌁</span>Intelligence Sources</button>
+      <button class="nav-btn" data-tab-jump="sources"><span>⌁</span>Feed Status</button>
+
+      <div class="side-health-card" data-tab-jump="sources" role="button" tabindex="0">
+        <div><i></i><span>System Status</span></div>
+        <strong id="sideHealth">Checking…</strong>
+        <small id="sideHealthMeta">Loading intelligence sources</small>
+      </div>
+    </aside>
   <main class="app-shell">
-    <section class="page-hero">
+    <section class="page-hero threadhub-hero">
       <div>
-        <div class="eyebrow"><span></span>PHASE 1H.7 · VISUAL CYBER INTELLIGENCE EXPERIENCE</div>
-        <h1>See what matters. <em>Act on evidence.</em></h1>
-        <p>Known exploitation, CVSS severity, EPSS probability, ransomware activity and Malaysia/ASEAN signals — correlated with direct source traceability.</p>
+        <div class="eyebrow"><span></span>THREADHUB · GLOBAL CYBER THREAT INTELLIGENCE</div>
+        <h1>See the threat. <em>Understand the risk.</em> Act with confidence.</h1>
+        <p>Ransomware activity, exploited vulnerabilities, CVSS severity, EPSS probability, threat actors and emerging cyber signals worldwide — correlated into one intelligence view with direct source traceability.</p>
       </div>
       <div class="hero-actions">
-        <button class="soft-btn" data-tab-jump="live">View live feed</button>
+        <button class="soft-btn" data-tab-jump="live">Open live intelligence</button>
         <button class="primary-btn" data-tab-jump="briefing">Executive brief</button>
       </div>
     </section>
 
     <!-- OVERVIEW -->
-    <section class="tab-panel active" data-panel="overview">
-      <div class="posture-strip">
-        <article class="posture-card">
-          <div class="gauge-wrap">
-            <div class="posture-gauge" id="postureGauge"><div><strong id="pulseScore">—</strong><span>CTI</span></div></div>
+    <section class="tab-panel active threadhub-overview" data-panel="overview">
+      <div class="th-kpi-grid">
+        <button class="th-kpi th-kpi-red" type="button" data-tab-jump="live">
+          <div class="th-kpi-icon">⌖</div><div class="th-kpi-copy"><span>ACTIVE THREATS</span><strong id="thActiveThreats">—</strong><small id="thActiveThreatsMeta">Correlating signals…</small><div class="th-spark"><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+        </button>
+        <button class="th-kpi th-kpi-purple" type="button" data-tab-jump="ransomware">
+          <div class="th-kpi-icon">☠</div><div class="th-kpi-copy"><span>RANSOMWARE VICTIMS</span><strong id="thRansomwareVictims">—</strong><small id="thRansomwareVictimsMeta">Last 30 days</small><div class="th-spark"><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+        </button>
+        <button class="th-kpi th-kpi-orange" type="button" data-tab-jump="vulnerabilities">
+          <div class="th-kpi-icon">ϟ</div><div class="th-kpi-copy"><span>CRITICAL CVEs</span><strong id="thCriticalCves">—</strong><small id="thCriticalCvesMeta">CTI priority ≥75</small><div class="th-spark"><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+        </button>
+        <button class="th-kpi th-kpi-blue" type="button" data-tab-jump="ransomware" data-scroll-target="rwGroupExplorer">
+          <div class="th-kpi-icon">♟</div><div class="th-kpi-copy"><span>THREAT ACTORS</span><strong id="thThreatActors">—</strong><small id="thThreatActorsMeta">Observed ransomware groups</small><div class="th-spark"><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+        </button>
+        <button class="th-kpi th-kpi-green" type="button" data-tab-jump="sources">
+          <div class="th-kpi-icon">▤</div><div class="th-kpi-copy"><span>DATA SOURCES</span><strong id="thDataSources">—</strong><small id="thDataSourcesMeta">Checking collectors…</small><div class="th-spark"><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+        </button>
+      </div>
+
+      <div class="th-command-grid">
+        <article class="panel th-map-panel">
+          <div class="panel-head th-panel-head">
+            <div><span class="section-label">GLOBAL THREAT LANDSCAPE</span><h3>Ransomware targeting & live cyber signals</h3><small id="overviewMapCoverage">Building global intelligence view…</small></div>
+            <div class="th-map-actions"><span class="micro-pill">30 DAYS</span><button class="soft-btn small" data-tab-jump="ransomware" data-scroll-target="rwWorldMap">View full map ↗</button></div>
           </div>
-          <div class="posture-copy">
-            <span class="section-label">CURRENT EXTERNAL POSTURE</span>
-            <div class="posture-title"><h2 id="pulseLabel">Assessing intelligence</h2><span class="posture-pill" id="pulseStatus">ASSESSING</span></div>
-            <p id="pulseNarrative">Correlating CISA, NVD, FIRST EPSS, ransomware and MyCERT intelligence.</p>
-            <div class="source-orbit" id="sourceOrbit"></div>
+          <div class="th-map-stage world-map-stage" id="overviewWorldMap"><div class="skeleton chart"></div></div>
+          <div class="th-map-legend">
+            <span><i class="dot critical"></i>Critical / high activity</span><span><i class="dot orange"></i>Elevated</span><span><i class="dot cyan"></i>Observed</span><span><i class="dot purple"></i>Ransomware</span><span><i class="dot live"></i>Latest ≤24h</span>
           </div>
         </article>
 
-        <div class="kpi-rail">
-          <button class="kpi-card" data-tab-jump="vulnerabilities"><span>Critical CTI</span><strong id="priorityCriticalTop">—</strong><small>Priority ≥75</small><i>↗</i></button>
-          <button class="kpi-card" data-tab-jump="vulnerabilities"><span>EPSS ≥50%</span><strong id="epss50Top">—</strong><small>High exploit probability</small><i>↗</i></button>
-          <button class="kpi-card" data-tab-jump="ransomware"><span>Ransomware KEV</span><strong id="ransomware">—</strong><small>Known campaign use</small><i>↗</i></button>
-          <button class="kpi-card" data-tab-jump="regional"><span>Malaysia ≤30d</span><strong id="myClaims30Top">—</strong><small>Loaded OSINT claims</small><i>↗</i></button>
-        </div>
-      </div>
-
-      <div class="section-heading compact-heading">
-        <div><span>DECISION LAYER</span><h2>Top 3 things that matter now</h2></div>
-        <small>Click any card for details or its authoritative source.</small>
-      </div>
-      <div id="topThree" class="top-three"><div class="skeleton tall"></div><div class="skeleton tall"></div><div class="skeleton tall"></div></div>
-
-      <div class="overview-grid">
-        <article class="panel threat-trend-panel">
-          <div class="panel-head"><div><span class="section-label">30-DAY SIGNAL</span><h3>Known exploitation momentum</h3></div><button class="icon-link" data-tab-jump="vulnerabilities" aria-label="Open vulnerabilities">↗</button></div>
-          <div id="kevTrendChart" class="chart-area"><div class="skeleton chart"></div></div>
-          <div class="chart-caption"><span><i class="legend-dot cyan"></i>KEV additions</span><span><i class="legend-dot red"></i>Ransomware-related additions</span></div>
-        </article>
-
-        <article class="panel">
-          <div class="panel-head"><div><span class="section-label">RISK LANDSCAPE</span><h3>Exploit Risk Matrix</h3></div><button class="icon-link" data-tab-jump="vulnerabilities">↗</button></div>
-          <p class="panel-sub">Top-priority KEVs plotted by CVSS and EPSS. Click a point to drill down.</p>
-          <div id="riskScatter" class="risk-scatter"><div class="skeleton chart"></div></div>
+        <article class="panel th-live-panel">
+          <div class="panel-head th-panel-head"><div><span class="section-label">LIVE INTELLIGENCE FEED</span><h3>Newest correlated signals</h3></div><button class="icon-link" data-tab-jump="live" aria-label="Open full live feed">↗</button></div>
+          <div id="overviewLiveFeed" class="th-live-feed"><div class="skeleton row"></div><div class="skeleton row"></div><div class="skeleton row"></div></div>
+          <button class="th-feed-more" type="button" data-tab-jump="live">View all intelligence →</button>
         </article>
       </div>
 
-      <div class="overview-grid secondary-grid">
-        <article class="panel">
-          <div class="panel-head"><div><span class="section-label">RANSOMWARE PULSE</span><h3>Recent claim activity</h3></div><span class="micro-pill" id="rwTrendLabel">LOADING</span></div>
-          <div id="activityChart" class="mini-activity"><div class="skeleton chart"></div></div>
+      <div class="th-analytics-grid">
+        <article class="panel th-analytics-card">
+          <div class="panel-head"><div><span class="section-label">TOP RANSOMWARE GROUPS</span><h3>Actor concentration</h3></div><small>30D</small></div>
+          <div class="th-donut-layout"><div class="th-donut" id="thGroupDonut"><div><strong id="thGroupTotal">—</strong><span>claims</span></div></div><div id="thRansomwareGroups" class="th-mini-ranking"></div></div>
+          <button class="th-card-link" type="button" data-tab-jump="ransomware">View ransomware dashboard →</button>
         </article>
-        <article class="panel regional-glance">
-          <div class="panel-head"><div><span class="section-label">REGIONAL GLANCE</span><h3>ASEAN signal concentration</h3></div><button class="icon-link" data-tab-jump="regional">↗</button></div>
-          <div id="aseanGlance" class="asean-glance"></div>
+
+        <article class="panel th-analytics-card">
+          <div class="panel-head"><div><span class="section-label">VULNERABILITY INTELLIGENCE</span><h3>Exploit pressure</h3></div><small>LIVE</small></div>
+          <div id="thVulnSummary" class="th-vuln-summary"></div>
+          <div class="th-vuln-tiles"><div><span>Known Exploited</span><strong id="thKevCount">—</strong></div><div><span>EPSS &gt; 50%</span><strong id="thEpssCount">—</strong></div><div><span>Ransomware KEV</span><strong id="thRansomKev">—</strong></div><div><span>Total KEVs</span><strong id="thTotalKev">—</strong></div></div>
+          <button class="th-card-link" type="button" data-tab-jump="vulnerabilities">View vulnerabilities →</button>
+        </article>
+
+        <article class="panel th-analytics-card">
+          <div class="panel-head"><div><span class="section-label">TOP TARGETED COUNTRIES</span><h3>Ransomware claim geography</h3></div><small>30D</small></div>
+          <div id="thTopCountries" class="th-mini-ranking country-ranking"></div>
+          <button class="th-card-link" type="button" data-tab-jump="ransomware" data-scroll-target="rwWorldMap">View country intelligence →</button>
+        </article>
+
+        <article class="panel th-analytics-card">
+          <div class="panel-head"><div><span class="section-label">THREAT ACTOR ACTIVITY</span><h3>Most active groups</h3></div><small>7D</small></div>
+          <div id="thActorActivity" class="th-actor-list"></div>
+          <button class="th-card-link" type="button" data-tab-jump="ransomware" data-scroll-target="rwGroupExplorer">View threat actors →</button>
         </article>
       </div>
 
-      <article class="panel latest-panel">
-        <div class="panel-head"><div><span class="section-label">LATEST INTELLIGENCE</span><h3>Newest correlated signals</h3></div><button class="soft-btn small" data-tab-jump="live">Open full feed</button></div>
-        <div id="overviewLiveFeed" class="overview-live-feed"><div class="skeleton row"></div><div class="skeleton row"></div><div class="skeleton row"></div></div>
-      </article>
+      <div class="legacy-overview-hooks" aria-hidden="true">
+        <div id="postureGauge"><strong id="pulseScore"></strong></div><span id="pulseLabel"></span><span id="pulseStatus"></span><span id="pulseNarrative"></span><span id="sourceOrbit"></span>
+        <span id="priorityCriticalTop"></span><span id="epss50Top"></span><span id="ransomware"></span><span id="myClaims30Top"></span>
+        <div id="topThree"></div><div id="kevTrendChart"></div><div id="riskScatter"></div><div id="activityChart"></div><span id="rwTrendLabel"></span><div id="aseanGlance"></div>
+      </div>
     </section>
 
     <!-- BRIEFING -->
@@ -337,8 +378,9 @@
     </section>
 
     <div class="data-caveat"><strong>Data caveat:</strong> ransomware victim entries are public claims and not automatically independently verified incidents. Ransomware map and ASEAN counts use the retained Ransomware.live historical mirror when available and fall back to recent public-claim data; they are OSINT claims, not complete national incident totals. The Malaysia signal score is dashboard-derived OSINT. EPSS is provided by FIRST. This product uses NVD data but is not endorsed or certified by NVD.</div>
-    <footer><span>Phase 1H.7 · Visual ransomware + vulnerability intelligence</span><span>Developed by <strong>Abdullah Zulkifli</strong></span></footer>
+    <footer><span>THREADHUB · Global Cyber Threat Intelligence</span><span>Evidence-led intelligence · direct source traceability</span></footer>
   </main>
+  </div>
 
   <!-- CVE DETAIL DRAWER -->
   <div class="drawer-backdrop" id="drawerBackdrop"></div>
