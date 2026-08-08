@@ -1,4 +1,4 @@
-name: Update ThreadHub Pulse
+name: Update ThreadHub Pulse · Wave 1B
 
 on:
   workflow_dispatch:
