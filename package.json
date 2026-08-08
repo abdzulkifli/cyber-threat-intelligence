@@ -7,7 +7,9 @@
     "collect:cisa": "node scripts/fetch-cisa-kev.js",
     "collect:nvd": "node scripts/fetch-nvd-kev.js",
     "collect:epss": "node scripts/fetch-epss.js",
-    "collect:all": "node scripts/fetch-cisa-kev.js && node scripts/fetch-nvd-kev.js && node scripts/fetch-epss.js"
+    "collect:all": "node scripts/fetch-cisa-kev.js && node scripts/fetch-nvd-kev.js && node scripts/fetch-epss.js",
+    "collect:pulse": "node scripts/sync-pulse.js",
+    "validate:pulse": "node scripts/sync-pulse.js --validate"
   },
   "engines": {
     "node": ">=20"
