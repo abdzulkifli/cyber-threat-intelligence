@@ -12,7 +12,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png?v=threadhub-20260808" />
   <link rel="shortcut icon" href="favicon-32x32.png?v=threadhub-20260808" />
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=threadhub-20260808" />
-  <link rel="stylesheet" href="css/style.css?v=sourcefix-threadhub-20260808-pulse1" />
+  <link rel="stylesheet" href="css/style.css?v=threadhub-wave3-20260808" />
 </head>
 <body>
   <div class="aurora aurora-a"></div><div class="aurora aurora-b"></div>
@@ -47,13 +47,13 @@
 
       <div class="side-section-label">DISCOVERY</div>
       <button class="nav-btn pulse-nav" data-tab="pulse"><span>ϟ</span>ThreadHub Pulse <b>NEW</b></button>
-      <button class="nav-btn" data-tab-jump="ransomware" data-scroll-target="rwWorldMap"><span>◎</span>Global Threat Map</button>
+      <button class="nav-btn" data-tab="threatmap"><span>◎</span>Global Threat Map</button>
       <button class="nav-btn" data-tab="live"><span>ϟ</span>Live Intelligence</button>
 
       <div class="side-section-label">INTELLIGENCE</div>
       <button class="nav-btn" data-tab="ransomware"><span>☠</span>Ransomware</button>
       <button class="nav-btn" data-tab="vulnerabilities"><span>⬡</span>Vulnerabilities</button>
-      <button class="nav-btn" data-tab-jump="ransomware" data-scroll-target="rwGroupExplorer"><span>♟</span>Threat Actors</button>
+      <button class="nav-btn" data-tab="actors"><span>♟</span>Threat Actors</button>
 
       <div class="side-section-label">ANALYSIS</div>
       <button class="nav-btn" data-tab="briefing"><span>▥</span>Executive Brief</button>
@@ -61,7 +61,7 @@
 
       <div class="side-section-label">DATA & SOURCES</div>
       <button class="nav-btn" data-tab="sources"><span>⌁</span>Intelligence Sources</button>
-      <button class="nav-btn" data-tab-jump="sources"><span>⌁</span>Feed Status</button>
+      <button class="nav-btn" data-tab="feedstatus"><span>●</span>Feed Status</button>
 
       <div class="side-health-card" data-tab-jump="sources" role="button" tabindex="0">
         <div><i></i><span>System Status</span></div>
@@ -70,7 +70,7 @@
       </div>
     </aside>
   <main class="app-shell">
-    <section class="page-hero threadhub-hero">
+    <section class="page-hero threadhub-hero" id="mainHero">
       <div>
         <div class="eyebrow"><span></span>THREADHUB · GLOBAL CYBER THREAT INTELLIGENCE</div>
         <h1>See the threat. <em>Understand the risk.</em> Act with confidence.</h1>
@@ -211,15 +211,15 @@
 
     <!-- THREADHUB PULSE -->
     <section class="tab-panel pulse-panel" data-panel="pulse">
-      <div class="section-heading pulse-heading"><div><span>DISCOVERY · THREADHUB PULSE</span><h2>What the cyber world is signaling now</h2><p>Rank curated public-internet security signals together with ThreadHub ransomware, exploited-vulnerability and advisory intelligence — then pivot into investigation or the original source evidence.</p></div><div class="pulse-heading-actions"><span class="live-chip"><i></i>LIVE RANKING</span><span class="context-badge" id="pulseScopeBadge">V2 · INTERNET + CTI SOURCES</span></div></div>
+      <div class="section-heading pulse-heading"><div><span>DISCOVERY · THREADHUB PULSE</span><h2>What the cyber world is signaling now</h2><p>Rank curated public-internet security signals together with ThreadHub ransomware, exploited-vulnerability and advisory intelligence — then pivot into investigation or the original source evidence.</p></div><div class="pulse-heading-actions"><span class="live-chip"><i></i>LIVE RANKING</span><span class="context-badge" id="pulseScopeBadge">V3 · INTERNET + MALWARE + IOC</span></div></div>
 
-      <article class="panel pulse-v1-note"><div><strong>Pulse V1 is evidence-first.</strong><span>It ranks the intelligence sources already collected by ThreadHub. The web-wide conversation collector can be added as the next backend layer without changing this UI.</span></div><button class="soft-btn small" type="button" data-tab-jump="sources">View source health →</button></article>
+      <article class="panel pulse-v1-note"><div><strong>Pulse Wave 3 adds live malware + IOC telemetry.</strong><span>MalwareBazaar, URLhaus and ThreatFox use the abuse.ch Auth-Key configured in GitHub Secrets; OpenPhish Community Feed works without a key. Original evidence links remain preserved.</span></div><button class="soft-btn small" type="button" data-tab-jump="sources">View source health →</button></article>
 
       <div class="pulse-kpi-grid">
         <article class="pulse-kpi"><span>SIGNALS ANALYZED</span><strong id="pulseSignals">—</strong><small>Loaded source-backed records</small></article>
-        <article class="pulse-kpi"><span>SOURCE CLASSES</span><strong id="pulseSources">—</strong><small>Authoritative + OSINT collectors</small></article>
+        <article class="pulse-kpi"><span>ACTIVE SOURCES</span><strong id="pulseSources">—</strong><small>Healthy collectors</small></article>
         <article class="pulse-kpi"><span>TOPICS IDENTIFIED</span><strong id="pulseTopics">—</strong><small>Clustered & deduplicated</small></article>
-        <article class="pulse-kpi"><span>EVENTS ≤24H</span><strong id="pulse24h">—</strong><small>Fresh activity</small></article>
+        <article class="pulse-kpi"><span>IOC SIGNALS</span><strong id="pulseIocs">—</strong><small>Malware / phishing indicators</small></article>
         <article class="pulse-kpi"><span>AVG SIGNAL SCORE</span><strong id="pulseAverage">—</strong><small>Across ranked topics</small></article>
       </div>
 
@@ -236,7 +236,7 @@
 
       <article class="panel pulse-table-card">
         <div class="panel-head"><div><span class="section-label">ALL TOPICS</span><h3>Ranked discovery queue</h3><small>Investigate internally or open original evidence ↗</small></div><button id="pulseExport" class="soft-btn small" type="button">Export CSV</button></div>
-        <div class="pulse-filterbar" id="pulseFilters"><button class="active" data-pulse-filter="all">All</button><button data-pulse-filter="ransomware">Ransomware</button><button data-pulse-filter="vulnerability">Vulnerabilities</button><button data-pulse-filter="advisory">Advisories</button><button data-pulse-filter="malware">Malware</button><button data-pulse-filter="breach">Breaches</button><button data-pulse-filter="threat-actor">Threat Actors</button><input id="pulseSearch" placeholder="Search topics…" /></div>
+        <div class="pulse-filterbar" id="pulseFilters"><button class="active" data-pulse-filter="all">All</button><button data-pulse-filter="ransomware">Ransomware</button><button data-pulse-filter="vulnerability">Vulnerabilities</button><button data-pulse-filter="advisory">Advisories</button><button data-pulse-filter="malware">Malware</button><button data-pulse-filter="phishing">Phishing</button><button data-pulse-filter="breach">Breaches</button><button data-pulse-filter="threat-actor">Threat Actors</button><input id="pulseSearch" placeholder="Search topics…" /></div>
         <div class="table-wrap"><table class="pulse-table"><thead><tr><th>Rank</th><th>Topic</th><th>Category</th><th>Score</th><th>Momentum</th><th>Signals</th><th>Latest</th><th>Actions</th></tr></thead><tbody id="pulseRows"></tbody></table></div>
       </article>
     </section>
@@ -462,15 +462,23 @@
       </div>
     </section>
 
+
+    <!-- FEED STATUS -->
+    <section class="tab-panel standalone-view feedstatus-view" data-panel="feedstatus">
+      <div class="view-banner"><div><span class="view-kicker">OPERATIONS · COLLECTION ASSURANCE</span><h2>Feed Status</h2><p>Operational health for every core and Pulse collector. Use Intelligence Sources for provenance; use this page to find what is healthy, degraded or offline.</p></div><span class="live-chip"><i></i>HEALTH MONITOR</span></div>
+      <div class="source-health-kpis feedstatus-kpis"><article><span>TOTAL COLLECTORS</span><strong id="feedTotal">—</strong><small>Core + Internet</small></article><article><span>HEALTHY</span><strong id="feedHealthy">—</strong><small>Successful collection</small></article><article><span>ATTENTION</span><strong id="feedAttention">—</strong><small>Degraded / failed / auth</small></article><article><span>LAST PULSE RUN</span><strong id="feedLastRun">—</strong><small>Internet signal collector</small></article></div>
+      <article class="panel feedstatus-panel"><div class="panel-head"><div><span class="section-label">COLLECTOR OPERATIONS</span><h3>Live feed health</h3><small id="feedStatusSummary">Checking collectors…</small></div><button class="soft-btn small" type="button" data-tab-jump="sources">View source registry</button></div><div id="feedStatusTable" class="feed-status-table"></div></article>
+    </section>
+
     <!-- SOURCES -->
     <section class="tab-panel" data-panel="sources">
-      <div class="section-heading"><div><span>SOURCE ASSURANCE</span><h2>Collection health & traceability</h2><p>Every intelligence item retains its originating source and collection state.</p></div><span class="context-badge" id="sourceRegistryBadge">WAVE 2 · PULSE SOURCES</span></div>
+      <div class="section-heading"><div><span>SOURCE ASSURANCE</span><h2>Collection health & traceability</h2><p>Every intelligence item retains its originating source and collection state.</p></div><span class="context-badge" id="sourceRegistryBadge">WAVE 3 · PULSE SOURCES</span></div>
 
       <div class="source-health-kpis">
         <article><span>ACTIVE SOURCES</span><strong id="sourceActiveTotal">—</strong><small>Core + Internet collectors</small></article>
         <article><span>HEALTHY</span><strong id="sourceHealthyTotal">—</strong><small>Successful collection</small></article>
         <article><span>DEGRADED / FAILED</span><strong id="sourceFailedTotal">—</strong><small>Needs attention</small></article>
-        <article><span>SOURCE CLASSES</span><strong id="sourceClassTotal">—</strong><small>Official · Vendor · Research · News</small></article>
+        <article><span>SOURCE CLASSES</span><strong id="sourceClassTotal">—</strong><small>Official · Vendor · Research · News · IOC</small></article>
       </div>
 
       <article class="panel source-registry-panel">
@@ -511,6 +519,6 @@
     <div id="drawerContent"></div>
   </aside>
 
-  <script src="js/app.js?v=threadhub-20260808-pulse1"></script>
+  <script src="js/app.js?v=threadhub-refined-nav-20260808"></script>
 </body>
 </html>
