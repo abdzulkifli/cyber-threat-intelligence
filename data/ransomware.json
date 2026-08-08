@@ -6,17 +6,17 @@
     "upstream": "ransomware.live",
     "mode": "direct-v2",
     "authentication": "none",
-    "collectedAt": "2026-08-08T09:57:48.936Z",
-    "checkedAt": "2026-08-08T09:57:48.936Z",
+    "collectedAt": "2026-08-08T10:31:21.740Z",
+    "checkedAt": "2026-08-08T10:31:21.740Z",
     "dataUpdatedAt": "2026-08-08T09:57:48.936Z",
     "lastSourceUpdate": "2026-08-08T09:21:21.811Z",
     "latestVictimDiscovered": "2026-08-08T09:21:21.811Z",
     "latestVictimName": "United Group of Companies",
     "latestVictimGroup": "Storm",
     "latestVictimCountry": "US",
-    "sourceDataAgeMinutes": 36,
+    "sourceDataAgeMinutes": 70,
     "feedFreshness": "fresh",
-    "newClaimsSincePreviousCollection": 2,
+    "newClaimsSincePreviousCollection": 0,
     "selectedBy": "freshest-latest-victim",
     "candidates": [
       {
@@ -42,7 +42,7 @@
     "recentClaims": 100,
     "retainedClaims": 30616,
     "claims24h": 19,
-    "newClaimsSincePreviousCollection": 2,
+    "newClaimsSincePreviousCollection": 0,
     "countriesRecent": 23,
     "sectorsRecent": 13
   },
@@ -4958,9 +4958,9 @@
       "description": "LockBit, also recognized as LockBit Black or Lockbit 3.0, is one of the largest Ransomware Groups in the world and has orchestrated extensive cyberattacks across various industries, impacting thousands of organizations globally with its relentless and adaptive strategies.",
       "locationCount": 36,
       "locations": [
-        "Title",
-        "LockBit LOGIN",
         "LockBit BLOG",
+        "LockBit LOGIN",
+        "Title",
         "Humanity check",
         "504 Gateway Time-out"
       ],
