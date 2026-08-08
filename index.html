@@ -12,7 +12,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png?v=threadhub-20260808" />
   <link rel="shortcut icon" href="favicon-32x32.png?v=threadhub-20260808" />
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=threadhub-20260808" />
-  <link rel="stylesheet" href="css/style.css?v=threadhub-20260808-vuln2" />
+  <link rel="stylesheet" href="css/style.css?v=threadhub-20260808-pulse1" />
 </head>
 <body>
   <div class="aurora aurora-a"></div><div class="aurora aurora-b"></div>
@@ -43,11 +43,14 @@
   <div class="threadhub-layout">
     <aside class="side-rail" aria-label="ThreadHub navigation">
       <div class="side-section-label">OVERVIEW</div>
-      <button class="nav-btn active" data-tab="overview"><span>▦</span>Overview</button>
+      <button class="nav-btn active" data-tab="overview"><span>▦</span>Command Centre</button>
 
-      <div class="side-section-label">INTELLIGENCE</div>
+      <div class="side-section-label">DISCOVERY</div>
+      <button class="nav-btn pulse-nav" data-tab="pulse"><span>ϟ</span>ThreadHub Pulse <b>NEW</b></button>
       <button class="nav-btn" data-tab-jump="ransomware" data-scroll-target="rwWorldMap"><span>◎</span>Global Threat Map</button>
       <button class="nav-btn" data-tab="live"><span>ϟ</span>Live Intelligence</button>
+
+      <div class="side-section-label">INTELLIGENCE</div>
       <button class="nav-btn" data-tab="ransomware"><span>☠</span>Ransomware</button>
       <button class="nav-btn" data-tab="vulnerabilities"><span>⬡</span>Vulnerabilities</button>
       <button class="nav-btn" data-tab-jump="ransomware" data-scroll-target="rwGroupExplorer"><span>♟</span>Threat Actors</button>
@@ -204,6 +207,38 @@
         <article class="panel"><div class="panel-head"><h3>Targeted sectors</h3><span class="section-label">OSINT</span></div><div id="aseanTopSectors" class="ranking-list"></div></article>
         <article class="panel"><div class="panel-head"><div><h3>Latest MyCERT advisories</h3><small id="mycertStatusText">National advisory feed</small></div><a class="source-link" href="https://mycert.org.my/portal/index" target="_blank" rel="noopener">MyCERT ↗</a></div><div id="mycertFeed" class="mycert-feed"></div></article>
       </div>
+    </section>
+
+    <!-- THREADHUB PULSE -->
+    <section class="tab-panel pulse-panel" data-panel="pulse">
+      <div class="section-heading pulse-heading"><div><span>DISCOVERY · THREADHUB PULSE</span><h2>What the cyber world is signaling now</h2><p>Rank source-backed ransomware, exploited-vulnerability and advisory signals by significance, momentum and recency — then pivot directly into ThreadHub or the original internet evidence.</p></div><div class="pulse-heading-actions"><span class="live-chip"><i></i>LIVE RANKING</span><span class="context-badge" id="pulseScopeBadge">V1 · LOADED CTI SOURCES</span></div></div>
+
+      <article class="panel pulse-v1-note"><div><strong>Pulse V1 is evidence-first.</strong><span>It ranks the intelligence sources already collected by ThreadHub. The web-wide conversation collector can be added as the next backend layer without changing this UI.</span></div><button class="soft-btn small" type="button" data-tab-jump="sources">View source health →</button></article>
+
+      <div class="pulse-kpi-grid">
+        <article class="pulse-kpi"><span>SIGNALS ANALYZED</span><strong id="pulseSignals">—</strong><small>Loaded source-backed records</small></article>
+        <article class="pulse-kpi"><span>SOURCE CLASSES</span><strong id="pulseSources">—</strong><small>Authoritative + OSINT collectors</small></article>
+        <article class="pulse-kpi"><span>TOPICS IDENTIFIED</span><strong id="pulseTopics">—</strong><small>Clustered & deduplicated</small></article>
+        <article class="pulse-kpi"><span>EVENTS ≤24H</span><strong id="pulse24h">—</strong><small>Fresh activity</small></article>
+        <article class="pulse-kpi"><span>AVG SIGNAL SCORE</span><strong id="pulseAverage">—</strong><small>Across ranked topics</small></article>
+      </div>
+
+      <div class="pulse-layout">
+        <article class="panel pulse-trending-card">
+          <div class="panel-head"><div><span class="section-label">TRENDING NOW</span><h3>Highest-significance cyber topics</h3><small id="pulseUpdated">Building ranking…</small></div><div class="pulse-tabs" id="pulseViewTabs"><button class="active" data-pulse-view="trending">Trending</button><button data-pulse-view="emerging">Emerging</button><button data-pulse-view="verified">Verified</button></div></div>
+          <div id="pulseTrendingList" class="pulse-trending-list"><div class="skeleton row"></div><div class="skeleton row"></div></div>
+        </article>
+        <aside class="pulse-side">
+          <article class="panel"><div class="panel-head"><div><span class="section-label">EMERGING SIGNALS</span><h3>Acceleration watch</h3></div></div><div id="pulseEmerging" class="pulse-emerging"><div class="skeleton row"></div></div></article>
+          <article class="panel"><div class="panel-head"><div><span class="section-label">TOP CATEGORIES</span><h3>Current signal mix</h3></div></div><div id="pulseCategories" class="pulse-category-list"></div></article>
+        </aside>
+      </div>
+
+      <article class="panel pulse-table-card">
+        <div class="panel-head"><div><span class="section-label">ALL TOPICS</span><h3>Ranked discovery queue</h3><small>Investigate internally or open original evidence ↗</small></div><button id="pulseExport" class="soft-btn small" type="button">Export CSV</button></div>
+        <div class="pulse-filterbar" id="pulseFilters"><button class="active" data-pulse-filter="all">All</button><button data-pulse-filter="ransomware">Ransomware</button><button data-pulse-filter="vulnerability">Vulnerabilities</button><button data-pulse-filter="advisory">Advisories</button><input id="pulseSearch" placeholder="Search topics…" /></div>
+        <div class="table-wrap"><table class="pulse-table"><thead><tr><th>Rank</th><th>Topic</th><th>Category</th><th>Score</th><th>Momentum</th><th>Signals</th><th>Latest</th><th>Actions</th></tr></thead><tbody id="pulseRows"></tbody></table></div>
+      </article>
     </section>
 
     <!-- RANSOMWARE -->
@@ -458,6 +493,6 @@
     <div id="drawerContent"></div>
   </aside>
 
-  <script src="js/app.js?v=threadhub-20260808-vuln2"></script>
+  <script src="js/app.js?v=threadhub-20260808-pulse1"></script>
 </body>
 </html>
