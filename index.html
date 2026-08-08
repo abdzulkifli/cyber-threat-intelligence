@@ -361,10 +361,53 @@
     <!-- VULNERABILITIES -->
     
     <section class="tab-panel standalone-view actors-view" data-panel="actors">
-      <div class="view-banner"><div><span class="view-kicker">INTELLIGENCE · THREAT ACTORS</span><h2>Threat Actor Intelligence</h2><p>Track ransomware and extortion groups observed in ThreadHub intelligence, with activity, country and sector context.</p></div></div>
-      <div class="kpi-grid actor-kpis"><article><span>ACTIVE · 30D</span><strong id="actorActive30">—</strong></article><article><span>ACTIVE · 7D</span><strong id="actorActive7">—</strong></article><article><span>TOP ACTOR</span><strong id="actorTopName">—</strong><small id="actorTopMeta">Waiting for data</small></article><article><span>COUNTRIES · 30D</span><strong id="actorCountryCount">—</strong></article></div>
-      <article class="panel"><div class="panel-head"><div><span class="section-label">ACTOR DIRECTORY</span><h3>Most active groups · 30D</h3></div></div><div id="actorDirectory" class="group-grid actor-directory"><div class="skeleton row"></div></div></article>
-      <div class="analytics-grid"><article class="panel"><div class="panel-head"><div><span class="section-label">TARGET COUNTRIES</span><h3>Actor geography</h3></div></div><div id="actorCountries" class="th-mini-ranking"></div></article><article class="panel"><div class="panel-head"><div><span class="section-label">TARGET SECTORS</span><h3>Sector concentration</h3></div></div><div id="actorSectors" class="ranking-list"></div></article></div>
+      <div class="view-banner actor-banner">
+        <div><span class="view-kicker">INTELLIGENCE · THREAT ACTORS</span><h2>Threat Actor Intelligence</h2><p>Prioritise the most active ransomware and extortion groups, understand their targeting patterns, and pivot directly into source-backed actor evidence.</p></div>
+        <div class="actor-banner-status"><span><i></i>LIVE ACTOR LENS</span><small id="actorUpdatedAt">Waiting for intelligence…</small></div>
+      </div>
+
+      <div class="actor-kpis actor-kpis-v2">
+        <article class="actor-kpi-card"><div class="actor-kpi-icon">♟</div><div><span>ACTIVE GROUPS · 30D</span><strong id="actorActive30">—</strong><small>Groups with observed victim claims</small></div></article>
+        <article class="actor-kpi-card"><div class="actor-kpi-icon hot">ϟ</div><div><span>ACTIVE GROUPS · 7D</span><strong id="actorActive7">—</strong><small>Recent operational activity</small></div></article>
+        <article class="actor-kpi-card spotlight"><div class="actor-kpi-icon crown">◆</div><div><span>MOST ACTIVE · 30D</span><strong id="actorTopName">—</strong><small id="actorTopMeta">Waiting for data</small></div></article>
+        <article class="actor-kpi-card"><div class="actor-kpi-icon globe">◎</div><div><span>COUNTRIES TARGETED · 30D</span><strong id="actorCountryCount">—</strong><small>Observed geographic reach</small></div></article>
+      </div>
+
+      <div class="actor-command-grid">
+        <article class="panel actor-spotlight-panel">
+          <div class="panel-head"><div><span class="section-label">ACTOR SPOTLIGHT</span><h3 id="actorSpotlightName">Most active actor</h3><small id="actorSpotlightDesc">Building actor profile from retained claims…</small></div><button class="soft-btn small" id="actorSpotlightOpen" type="button" disabled>Investigate ↗</button></div>
+          <div class="actor-spotlight-body">
+            <div class="actor-radar-orb"><div><strong id="actorSpotlightInitials">—</strong><span>THREAT ACTOR</span></div></div>
+            <div class="actor-spotlight-metrics">
+              <div><span>30D CLAIMS</span><strong id="actorSpotlightClaims">—</strong></div>
+              <div><span>7D ACTIVITY</span><strong id="actorSpotlight7d">—</strong></div>
+              <div><span>TOP COUNTRY</span><strong id="actorSpotlightCountry">—</strong></div>
+              <div><span>TOP SECTOR</span><strong id="actorSpotlightSector">—</strong></div>
+            </div>
+          </div>
+          <div class="actor-spotlight-note"><span class="status-led"></span><span>Actor activity is derived from source-backed ransomware victim claims; ThreadHub does not infer attribution beyond the loaded source metadata.</span></div>
+        </article>
+
+        <article class="panel actor-momentum-panel">
+          <div class="panel-head"><div><span class="section-label">ACTOR MOMENTUM</span><h3>Most active groups</h3><small>30-day claim volume with 7-day activity context</small></div><span class="context-badge">30D</span></div>
+          <div id="actorMomentum" class="actor-momentum-list"><div class="skeleton row"></div></div>
+        </article>
+      </div>
+
+      <article class="panel actor-directory-panel">
+        <div class="panel-head actor-directory-head"><div><span class="section-label">ACTOR DIRECTORY</span><h3>Observed ransomware & extortion groups</h3><small>Search, compare and investigate current actor activity.</small></div><span class="context-badge" id="actorDirectoryCount">— ACTORS</span></div>
+        <div class="actor-toolbar"><label><span>Search actor</span><input id="actorSearch" type="search" placeholder="Search group name…" autocomplete="off"/></label><div class="actor-toolbar-note"><span class="status-led"></span><span>Sorted by 30-day activity</span></div></div>
+        <div class="actor-table-wrap">
+          <div class="actor-table-head"><span>ACTOR</span><span>30D</span><span>7D</span><span>MOMENTUM</span><span>TOP COUNTRY</span><span>TOP SECTOR</span><span></span></div>
+          <div id="actorDirectory" class="actor-directory-table"><div class="skeleton row"></div></div>
+        </div>
+      </article>
+
+      <div class="actor-insight-grid">
+        <article class="panel"><div class="panel-head"><div><span class="section-label">TARGET COUNTRIES</span><h3>Geographic concentration</h3><small>Countries appearing most often across 30-day actor claims</small></div></div><div id="actorCountries" class="th-mini-ranking"></div></article>
+        <article class="panel"><div class="panel-head"><div><span class="section-label">TARGET SECTORS</span><h3>Sector concentration</h3><small>Industries with the highest observed claim volume</small></div></div><div id="actorSectors" class="ranking-list"></div></article>
+        <article class="panel"><div class="panel-head"><div><span class="section-label">LATEST ACTOR ACTIVITY</span><h3>Recent victim claims</h3><small>Newest retained ransomware disclosures</small></div></div><div id="actorRecentClaims" class="actor-recent-feed"></div></article>
+      </div>
     </section>
 
     <section class="tab-panel" data-panel="vulnerabilities">
