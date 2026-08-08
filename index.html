@@ -12,7 +12,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png?v=threadhub-20260808" />
   <link rel="shortcut icon" href="favicon-32x32.png?v=threadhub-20260808" />
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=threadhub-20260808" />
-  <link rel="stylesheet" href="css/style.css?v=threadhub-20260808-3" />
+  <link rel="stylesheet" href="css/style.css?v=threadhub-20260808-4" />
 </head>
 <body>
   <div class="aurora aurora-a"></div><div class="aurora aurora-b"></div>
@@ -209,7 +209,7 @@
     <!-- RANSOMWARE -->
     <section class="tab-panel" data-panel="ransomware">
       <div class="section-heading ransomware-heading">
-        <div><span>RANSOMWARE INTELLIGENCE</span><h2>Global Activity Map & Explorer</h2><p>Ransomware.live public claim intelligence mapped across the retained rolling archive. Click countries, groups or victim claims to drill into the evidence.</p></div>
+        <div><span>RANSOMWARE INTELLIGENCE</span><h2>Victims, Groups, Targeting & Evidence</h2><p>Investigate public ransomware/extortion claims across the retained historical archive — from global activity and actor concentration down to victim, country, sector and source traceability.</p></div>
         <div class="heading-actions"><div class="rw-window-tabs" id="rwWindowTabs"><button class="active live-window" data-rw-window="1"><i></i>LIVE 24H</button><button data-rw-window="7">7D</button><button data-rw-window="30">30D</button><button data-rw-window="90">90D</button><button data-rw-window="all">ALL</button></div><a class="source-link" href="https://www.ransomware.live/" target="_blank" rel="noopener">Open ransomware.live ↗</a></div>
       </div>
 
@@ -231,11 +231,25 @@
 
       <div class="five-kpis ransomware-kpis">
         <div><span>Retained archive</span><strong id="rwRetainedClaims">—</strong><small>Rolling history</small></div>
-        <div><span id="rwWindowKpiLabel">Claims · 90D</span><strong id="rwWindowClaims">—</strong><small>Selected window</small></div>
+        <div><span id="rwWindowKpiLabel">Claims · 90D</span><strong id="rwWindowClaims">—</strong><small id="rwWindowClaimsMeta">Selected window</small></div>
         <div><span>Claims ≤24h</span><strong id="rw24hCard">—</strong><small>Latest activity</small></div>
-        <div><span>Active groups</span><strong id="rwTrackedGroups">—</strong><small>In selected window</small></div>
+        <div><span>Active groups</span><strong id="rwTrackedGroups">—</strong><small>In current view</small></div>
         <div><span>Countries</span><strong id="rwCountriesCard">—</strong><small>With mapped claims</small></div>
       </div>
+
+      <article class="panel rw-investigation-toolbar">
+        <div class="panel-head">
+          <div><span class="section-label">INVESTIGATION WORKBENCH</span><h3>Find and narrow ransomware intelligence</h3><small>Search victim, domain, ransomware group, country or sector. Filters update the map, analytics and claim explorer together.</small></div>
+          <div class="rw-workbench-actions"><button class="soft-btn small" id="rwExportCsv" type="button">Export current view ↓</button><button class="soft-btn small" id="rwClearFilters" type="button">Clear filters</button></div>
+        </div>
+        <div class="rw-investigation-controls">
+          <label class="rw-search-control"><span>Search intelligence</span><div><b>⌕</b><input id="rwInvestigationSearch" autocomplete="off" placeholder="Victim, domain, group, country or sector…" /></div></label>
+          <label><span>Ransomware group</span><select id="rwGroupFilter"><option value="all">All groups</option></select></label>
+          <label><span>Country</span><select id="rwCountryFilter"><option value="all">All countries</option></select></label>
+          <label><span>Sector</span><select id="rwSectorFilter"><option value="all">All sectors</option></select></label>
+        </div>
+        <div class="rw-filter-context"><div id="rwActiveFilterChips" class="rw-filter-chips"><span class="rw-filter-empty">No investigation filters applied</span></div><strong id="rwFilterSummary">Loading intelligence…</strong></div>
+      </article>
 
       <article class="panel world-map-panel">
         <div class="panel-head map-panel-head"><div><span class="section-label">GLOBAL LIVE TARGETING</span><h3>Where ransomware claims are appearing now</h3><small id="rwMapWindowLabel">LIVE · last 24 hours</small></div><div class="map-legend"><span><i class="heat h1"></i>Low</span><span><i class="heat h2"></i></span><span><i class="heat h3"></i></span><span><i class="heat h4"></i>High</span><span class="live-marker-key"><i></i>Latest ≤24h</span><span class="browser-sync-badge" id="rwBrowserSync">AUTO SYNC · 60s</span></div></div>
@@ -260,6 +274,20 @@
         <article class="panel"><div class="panel-head"><div><h3>Targeted sectors</h3><small>Selected window</small></div><span class="section-label">TARGETING</span></div><div id="rwSectorsList" class="ranking-list"></div></article>
         <article class="panel"><div class="panel-head"><div><h3>Recent victim claims</h3><small>Click for evidence view</small></div><span class="live-chip"><i></i>OSINT</span></div><div id="rwLiveFeed" class="claim-feed"></div></article>
       </div>
+
+      <article class="panel rw-victim-explorer">
+        <div class="panel-head rw-victim-head">
+          <div><span class="section-label">VICTIM CLAIM EXPLORER</span><h3>Investigate retained ransomware claims</h3><small>Every row preserves the victim → group → country → sector → discovery time → source-evidence path.</small></div>
+          <span class="context-badge" id="rwResultBadge">— MATCHES</span>
+        </div>
+        <div class="rw-table-wrap">
+          <table class="rw-claim-table">
+            <thead><tr><th>Victim</th><th>Group</th><th>Country</th><th>Sector</th><th>Discovered</th><th>Evidence</th></tr></thead>
+            <tbody id="rwVictimTableBody"><tr><td colspan="6"><div class="empty-state">Loading retained ransomware intelligence…</div></td></tr></tbody>
+          </table>
+        </div>
+        <div class="rw-table-footer"><span id="rwTableRange">—</span><div><button class="soft-btn small" id="rwPrevPage" type="button">← Previous</button><span id="rwPageLabel">Page 1</span><button class="soft-btn small" id="rwNextPage" type="button">Next →</button></div></div>
+      </article>
 
       <article class="panel group-explorer-panel">
         <div class="panel-head"><div><span class="section-label">THREAT ACTOR EXPLORER</span><h3>Ransomware group profiles</h3><small>Activity, countries, sectors and any TTP/CVE/tool metadata exposed by the public source.</small></div><span class="context-badge" id="rwGroupCountBadge">— GROUPS</span></div>
@@ -415,6 +443,6 @@
     <div id="drawerContent"></div>
   </aside>
 
-  <script src="js/app.js?v=threadhub-20260808-3"></script>
+  <script src="js/app.js?v=threadhub-20260808-4"></script>
 </body>
 </html>
