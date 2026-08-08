@@ -6,17 +6,17 @@
     "upstream": "ransomware.live",
     "mode": "direct-v2",
     "authentication": "none",
-    "collectedAt": "2026-08-08T12:51:20.826Z",
-    "checkedAt": "2026-08-08T12:51:20.826Z",
+    "collectedAt": "2026-08-08T13:35:08.359Z",
+    "checkedAt": "2026-08-08T13:35:08.359Z",
     "dataUpdatedAt": "2026-08-08T12:51:20.826Z",
     "lastSourceUpdate": "2026-08-08T12:30:30.169Z",
     "latestVictimDiscovered": "2026-08-08T12:30:30.169Z",
     "latestVictimName": "Clausing",
     "latestVictimGroup": "qilin",
     "latestVictimCountry": "DE",
-    "sourceDataAgeMinutes": 21,
+    "sourceDataAgeMinutes": 65,
     "feedFreshness": "fresh",
-    "newClaimsSincePreviousCollection": 2,
+    "newClaimsSincePreviousCollection": 0,
     "selectedBy": "freshest-latest-victim",
     "candidates": [
       {
@@ -28,7 +28,7 @@
       {
         "mode": "direct-legacy",
         "source": "ransomware.live public API",
-        "latestVictimDiscovered": "2026-08-07T22:52:10.874Z",
+        "latestVictimDiscovered": "2026-08-08T09:21:21.811Z",
         "victimCount": 100
       }
     ],
@@ -41,8 +41,8 @@
     "activeGroups": 380,
     "recentClaims": 100,
     "retainedClaims": 30618,
-    "claims24h": 17,
-    "newClaimsSincePreviousCollection": 2,
+    "claims24h": 9,
+    "newClaimsSincePreviousCollection": 0,
     "countriesRecent": 24,
     "sectorsRecent": 13
   },
@@ -3064,8 +3064,8 @@
       "description": "CRPxO is actively recruiting affiliates, offering:\n🔹 70% revenue share\n🔹 XMR/BTC payouts\n🔹 Claimed payouts within 24 hours\n🔹 $333 one-time affiliate access",
       "locationCount": 4,
       "locations": [
-        "CRPxO – Data Leak Blog - We publish what they hide",
-        "CRPX0 C2 Login"
+        "CRPX0 C2 Login",
+        "CRPxO – Data Leak Blog - We publish what they hide"
       ],
       "victims": 0,
       "firstSeen": null,
@@ -4041,7 +4041,8 @@
       "locations": [
         "New Address Blog",
         "Funksec",
-        "Funksec v3.0"
+        "Funksec v3.0",
+        "..."
       ],
       "victims": 0,
       "firstSeen": null,
@@ -5742,9 +5743,9 @@
       "description": "NightSpire is a ransomware group that first emerged in March 2025 and rapidly claimed over 250 victims across retail, manufacturing, healthcare, finance, and education sectors in the US, France, India, Taiwan, and Japan, using aggressive double-extortion with ransom deadlines as short as two days.",
       "locationCount": 6,
       "locations": [
-        "RaaS Service Started",
-        "Verify human - NightSpire",
         "NightSpire",
+        "Verify human - NightSpire",
+        "RaaS Service Started",
         "Database | NightSpire"
       ],
       "victims": 0,
@@ -7609,10 +7610,10 @@
       "description": "Pro-Palestinian Group",
       "locationCount": 4,
       "locations": [
-        "Cyber Toufan",
-        "Telegram: Contact @CyberToufan02",
         "Telegram: Contact @CyberToufanBackup",
-        "Telegram: Contact @CyberToufan"
+        "Telegram: Contact @CyberToufan02",
+        "Telegram: Contact @CyberToufan",
+        "Cyber Toufan"
       ],
       "victims": 0,
       "firstSeen": null,
