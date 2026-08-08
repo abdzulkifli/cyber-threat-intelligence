@@ -1,6 +1,6 @@
 {
-  "version": 3,
-  "description": "ThreadHub Pulse Wave 1B source registry: authoritative CISA/CERT-EU adapters plus vendor and threat-research feeds, with source-class and health metadata.",
+  "version": 4,
+  "description": "ThreadHub Pulse Wave 2 source registry: authoritative, vendor, threat-research and cyber-news feeds for cross-source clustering and momentum detection.",
   "sources": [
     {
       "id": "cisa-kev",
@@ -231,6 +231,114 @@
       "enabled": true,
       "tier": 1,
       "sourceClass": "Threat Research"
+    },
+    {
+      "id": "bleepingcomputer-news",
+      "name": "BleepingComputer News",
+      "type": "rss",
+      "url": "https://www.bleepingcomputer.com/feed/",
+      "homepage": "https://www.bleepingcomputer.com/",
+      "sourceType": "news",
+      "sourceClass": "Cyber News",
+      "credibility": 0.82,
+      "enabled": true,
+      "tier": 2
+    },
+    {
+      "id": "helpnetsecurity-news",
+      "name": "Help Net Security",
+      "type": "rss",
+      "url": "https://www.helpnetsecurity.com/feed/",
+      "homepage": "https://www.helpnetsecurity.com/",
+      "sourceType": "news",
+      "sourceClass": "Cyber News",
+      "credibility": 0.8,
+      "enabled": true,
+      "tier": 2
+    },
+    {
+      "id": "krebs-on-security",
+      "name": "KrebsOnSecurity",
+      "type": "rss",
+      "url": "https://krebsonsecurity.com/feed/",
+      "homepage": "https://krebsonsecurity.com/",
+      "sourceType": "news",
+      "sourceClass": "Cyber News",
+      "credibility": 0.86,
+      "enabled": true,
+      "tier": 2
+    },
+    {
+      "id": "the-hacker-news",
+      "name": "The Hacker News",
+      "type": "rss",
+      "url": "https://feeds.feedburner.com/TheHackersNews",
+      "homepage": "https://thehackernews.com/",
+      "sourceType": "news",
+      "sourceClass": "Cyber News",
+      "credibility": 0.78,
+      "enabled": true,
+      "tier": 2
+    },
+    {
+      "id": "securityweek-news",
+      "name": "SecurityWeek",
+      "type": "rss",
+      "url": "https://www.securityweek.com/feed/",
+      "homepage": "https://www.securityweek.com/",
+      "sourceType": "news",
+      "sourceClass": "Cyber News",
+      "credibility": 0.82,
+      "enabled": true,
+      "tier": 2
+    },
+    {
+      "id": "cyberscoop-news",
+      "name": "CyberScoop",
+      "type": "rss",
+      "url": "https://cyberscoop.com/feed/",
+      "homepage": "https://cyberscoop.com/",
+      "sourceType": "news",
+      "sourceClass": "Cyber News",
+      "credibility": 0.82,
+      "enabled": true,
+      "tier": 2
+    },
+    {
+      "id": "darkreading-news",
+      "name": "Dark Reading",
+      "type": "rss",
+      "url": "https://www.darkreading.com/rss.xml",
+      "homepage": "https://www.darkreading.com/",
+      "sourceType": "news",
+      "sourceClass": "Cyber News",
+      "credibility": 0.8,
+      "enabled": true,
+      "tier": 2
+    },
+    {
+      "id": "sc-media-news",
+      "name": "SC Media",
+      "type": "rss",
+      "url": "https://www.scworld.com/feed",
+      "homepage": "https://www.scworld.com/",
+      "sourceType": "news",
+      "sourceClass": "Cyber News",
+      "credibility": 0.79,
+      "enabled": true,
+      "tier": 2
+    },
+    {
+      "id": "infosecurity-magazine-news",
+      "name": "Infosecurity Magazine",
+      "type": "rss",
+      "url": "https://www.infosecurity-magazine.com/rss/news/",
+      "homepage": "https://www.infosecurity-magazine.com/",
+      "sourceType": "news",
+      "sourceClass": "Cyber News",
+      "credibility": 0.78,
+      "enabled": true,
+      "tier": 2
     }
   ]
 }
