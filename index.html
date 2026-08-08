@@ -12,7 +12,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png?v=threadhub-20260808" />
   <link rel="shortcut icon" href="favicon-32x32.png?v=threadhub-20260808" />
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=threadhub-20260808" />
-  <link rel="stylesheet" href="css/style.css?v=threadhub-20260808-4" />
+  <link rel="stylesheet" href="css/style.css?v=threadhub-20260808-vuln2" />
 </head>
 <body>
   <div class="aurora aurora-a"></div><div class="aurora aurora-b"></div>
@@ -300,8 +300,8 @@
       <div class="section-heading vuln-heading">
         <div>
           <span>VULNERABILITY INTELLIGENCE</span>
-          <h2>Exploit Priority & Exposure Signals</h2>
-          <p>Known exploitation from CISA KEV, severity from NVD and exploit probability from FIRST EPSS — visualised for fast decision-making.</p>
+          <h2>Vulnerability Intelligence 2.0</h2>
+          <p>Correlate known exploitation, CVSS severity, EPSS probability, ransomware association, affected technology and authoritative evidence — then understand why a CVE deserves attention.</p>
         </div>
         <div class="source-links vuln-source-links">
           <a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" target="_blank" rel="noopener">CISA KEV ↗</a>
@@ -332,6 +332,21 @@
           <div class="vuln-kpi coverage"><span>EPSS Coverage</span><strong id="vulnEpssCoverageKpi">—</strong><small>FIRST scored</small></div>
         </div>
       </div>
+
+      <article class="panel vuln-workbench">
+        <div class="panel-head vuln-workbench-head">
+          <div><span class="section-label">EXPLOIT INTELLIGENCE WORKBENCH</span><h3>Filter, prioritise and verify known exploited vulnerabilities</h3><small>CISA KEV confirms exploitation. ThreadHub adds NVD severity, FIRST EPSS probability, ransomware-use flags and recency without inventing actor attribution.</small></div>
+          <div class="vuln-workbench-actions"><span class="vuln-confirmed-chip"><i></i>CISA KEV · EXPLOITATION CONFIRMED</span><button class="soft-btn small" id="vulnExportBtn" type="button">Export filtered CSV ↗</button></div>
+        </div>
+        <div class="vuln-workbench-controls">
+          <label><span>Search intelligence</span><input id="vulnWorkbenchSearch" placeholder="CVE, vendor, product, keyword…" autocomplete="off"/></label>
+          <label><span>Vendor</span><select id="vulnVendorFilter"><option value="all">All vendors</option></select></label>
+          <label><span>KEV recency</span><select id="vulnDateFilter"><option value="all">All KEV dates</option><option value="7">Added ≤ 7 days</option><option value="30">Added ≤ 30 days</option><option value="90">Added ≤ 90 days</option></select></label>
+          <label><span>Exploit probability</span><select id="vulnWorkbenchEpss"><option value="all">All EPSS</option><option value="80">EPSS ≥ 80%</option><option value="50">EPSS ≥ 50%</option><option value="10">EPSS ≥ 10%</option></select></label>
+          <label><span>Ransomware use</span><select id="vulnWorkbenchRansom"><option value="all">All records</option><option value="yes">Known ransomware use</option><option value="no">No known ransomware use</option></select></label>
+        </div>
+        <div class="vuln-workbench-context"><div id="vulnActiveFilterChips" class="vuln-filter-chips"><span class="vuln-filter-empty">No investigation filters applied</span></div><strong id="vulnFilterSummary">Loading correlated vulnerability intelligence…</strong></div>
+      </article>
 
       <div class="section-heading compact-heading vuln-watch-heading">
         <div><span>PRIORITY WATCHLIST</span><h2>Top vulnerabilities to watch now</h2></div>
@@ -392,7 +407,7 @@
           <div class="filters vuln-filters">
             <input id="search" placeholder="Search CVE, vendor, product…"/>
             <select id="severityFilter"><option value="all">All severity</option><option value="CRITICAL">Critical</option><option value="HIGH">High</option><option value="MEDIUM">Medium</option><option value="LOW">Low</option><option value="UNKNOWN">Unknown</option></select>
-            <select id="epssFilter"><option value="all">All EPSS</option><option value="50">EPSS ≥ 50%</option><option value="10">EPSS ≥ 10%</option><option value="1">EPSS ≥ 1%</option><option value="lt1">EPSS &lt; 1%</option></select>
+            <select id="epssFilter"><option value="all">All EPSS</option><option value="80">EPSS ≥ 80%</option><option value="50">EPSS ≥ 50%</option><option value="10">EPSS ≥ 10%</option><option value="1">EPSS ≥ 1%</option><option value="lt1">EPSS &lt; 1%</option></select>
             <select id="priorityFilter"><option value="all">All priority</option><option value="CRITICAL">Critical</option><option value="HIGH">High</option><option value="MEDIUM">Medium</option><option value="LOW">Low</option></select>
             <select id="ransomFilter"><option value="all">All KEVs</option><option value="yes">Ransomware related</option><option value="no">Not known ransomware</option></select>
           </div>
@@ -443,6 +458,6 @@
     <div id="drawerContent"></div>
   </aside>
 
-  <script src="js/app.js?v=threadhub-20260808-4"></script>
+  <script src="js/app.js?v=threadhub-20260808-vuln2"></script>
 </body>
 </html>
