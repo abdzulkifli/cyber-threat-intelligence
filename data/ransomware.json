@@ -6,15 +6,15 @@
     "upstream": "ransomware.live",
     "mode": "direct-v2",
     "authentication": "none",
-    "collectedAt": "2026-08-08T15:13:09.343Z",
-    "checkedAt": "2026-08-08T15:13:09.343Z",
+    "collectedAt": "2026-08-08T15:46:19.793Z",
+    "checkedAt": "2026-08-08T15:46:19.793Z",
     "dataUpdatedAt": "2026-08-08T14:47:56.665Z",
     "lastSourceUpdate": "2026-08-08T14:25:56.891Z",
     "latestVictimDiscovered": "2026-08-08T14:25:56.891Z",
     "latestVictimName": "Louisville Bar Association",
     "latestVictimGroup": "incransom",
     "latestVictimCountry": "US",
-    "sourceDataAgeMinutes": 47,
+    "sourceDataAgeMinutes": 80,
     "feedFreshness": "fresh",
     "newClaimsSincePreviousCollection": 0,
     "selectedBy": "freshest-latest-victim",
@@ -1750,8 +1750,7 @@
       "description": "0mega is a double-extortion ransomware group that emerged in May 2022, targeting businesses across multiple sectors worldwide by encrypting files and threatening to leak stolen data; it also pivoted to cloud-based extortion by compromising Microsoft 365 admin accounts.",
       "locationCount": 2,
       "locations": [
-        "0mega | Blog",
-        "kelkoogroup.net"
+        "0mega | Blog"
       ],
       "victims": 0,
       "firstSeen": null,
@@ -4958,10 +4957,10 @@
       "description": "LockBit, also recognized as LockBit Black or Lockbit 3.0, is one of the largest Ransomware Groups in the world and has orchestrated extensive cyberattacks across various industries, impacting thousands of organizations globally with its relentless and adaptive strategies.",
       "locationCount": 36,
       "locations": [
-        "Humanity check",
-        "LockBit LOGIN",
         "Title",
+        "LockBit LOGIN",
         "LockBit BLOG",
+        "Humanity check",
         "504 Gateway Time-out"
       ],
       "victims": 0,
@@ -5744,9 +5743,9 @@
       "description": "NightSpire is a ransomware group that first emerged in March 2025 and rapidly claimed over 250 victims across retail, manufacturing, healthcare, finance, and education sectors in the US, France, India, Taiwan, and Japan, using aggressive double-extortion with ransom deadlines as short as two days.",
       "locationCount": 6,
       "locations": [
-        "RaaS Service Started",
-        "Verify human - NightSpire",
         "NightSpire",
+        "Verify human - NightSpire",
+        "RaaS Service Started",
         "Database | NightSpire"
       ],
       "victims": 0,
