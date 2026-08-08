@@ -11,7 +11,7 @@ const OUT_PATH = process.env.PULSE_OUTPUT || path.join(ROOT, 'data', 'pulse.json
 const MAX_PER_SOURCE = Math.max(10, Number(process.env.PULSE_MAX_PER_SOURCE || 120));
 const RETENTION_DAYS = Math.max(1, Number(process.env.PULSE_RETENTION_DAYS || 30));
 const FETCH_TIMEOUT_MS = Math.max(5000, Number(process.env.PULSE_FETCH_TIMEOUT_MS || 20000));
-const USER_AGENT = process.env.PULSE_USER_AGENT || 'ThreadHub-Pulse/3.0 (+https://futurelogic.my/)';
+const USER_AGENT = process.env.PULSE_USER_AGENT || 'ThreadHub-Pulse/4.0 (+https://futurelogic.my/)';
 const VALIDATE_ONLY = process.argv.includes('--validate');
 
 const STOP = new Set('a an and are as at be been by for from has have in into is it its latest new of on or over security the this to update updates vulnerability vulnerabilities with'.split(' '));
@@ -138,14 +138,15 @@ function clusterItems(items){
   const clusters=[];
   const ordered=items.slice().sort((a,b)=>new Date(b.published)-new Date(a.published));
   for(const item of ordered){
-    const cve=item.entities.cves[0];
-    let target=cve?clusters.find(c=>c.key===`cve:${cve}`):null;
+    const cves=item.entities.cves||[],rw=item.entities.ransomwareGroups||[];
+    const strongKey=cves[0]?`cve:${cves[0]}`:(rw[0]?`rw:${rw[0]}`:'');
+    let target=strongKey?clusters.find(c=>c.key===strongKey && Math.abs(new Date(c.latest)-new Date(item.published))<=3*86400000):null;
     if(!target){
       const tokens=itemTokens(item);
-      target=clusters.find(c=>c.category===item.category && Math.abs(new Date(c.latest)-new Date(item.published))<=7*86400000 && jaccard(c.tokens,tokens)>=0.58);
+      target=clusters.find(c=>c.category===item.category && Math.abs(new Date(c.latest)-new Date(item.published))<=4*86400000 && jaccard(c.tokens,tokens)>=0.42);
     }
     if(!target){
-      target={key:cve?`cve:${cve}`:`topic:${sha(normalizeTitle(item.title))}`,category:item.category,title:item.title,tokens:itemTokens(item),items:[],firstSeen:item.published,latest:item.published};
+      target={key:strongKey||`topic:${sha(normalizeTitle(item.title))}`,category:item.category,title:item.title,tokens:itemTokens(item),items:[],firstSeen:item.published,latest:item.published};
       clusters.push(target);
     }
     target.items.push(item);
@@ -154,29 +155,55 @@ function clusterItems(items){
   }
   return clusters;
 }
-function topicFromCluster(c){
+function windowCount(items,minHours,maxHours){
+  return items.filter(x=>{const h=(Date.now()-new Date(x.published).getTime())/3600000;return h>=minHours&&h<maxHours}).length;
+}
+function growthPct(cur,prev){
+  if(prev>0)return clamp(Math.round(((cur-prev)/prev)*100),-100,9999);
+  if(cur<=0)return 0;
+  return clamp(cur===1?50:cur===2?100:cur===3?200:cur*100,-100,9999);
+}
+function sourceMix(items){
+  const mix={};
+  for(const x of items){const k=x.sourceClass||x.sourceType||'OSINT';mix[k]=(mix[k]||0)+1}
+  return mix;
+}
+function topicFromCluster(c,previousTopic=null){
   const items=c.items.slice().sort((a,b)=>new Date(b.published)-new Date(a.published));
-  const sources=[...new Set(items.map(x=>x.sourceId))],mentions=items.length;
-  const last24=items.filter(x=>daysAgo(x.published)<=1).length,prev24=items.filter(x=>{const d=daysAgo(x.published);return d>1&&d<=2}).length;
-  const ratio=prev24?last24/prev24:(last24?1+last24:1),velocity=clamp(Math.round((ratio-1)*100),-100,9999);
+  const sourceIds=[...new Set(items.map(x=>x.sourceId))],mentions=items.length;
+  const h1=windowCount(items,0,1),p1=windowCount(items,1,2),h6=windowCount(items,0,6),p6=windowCount(items,6,12),h24=windowCount(items,0,24),p24=windowCount(items,24,48);
+  const v1=growthPct(h1,p1),v6=growthPct(h6,p6),v24=growthPct(h24,p24);
+  const velocity=Math.max(v1,v6,v24);
   const credibilityAvg=items.reduce((s,x)=>s+x.credibility,0)/Math.max(1,items.length);
+  const classes=[...new Set(items.map(x=>x.sourceClass).filter(Boolean))],types=[...new Set(items.map(x=>x.sourceType).filter(Boolean))];
+  const authoritative=items.some(x=>x.sourceType==='official'||x.sourceType==='vendor');
+  const researchConfirmed=items.some(x=>x.sourceType==='research');
+  const newsConfirmed=items.some(x=>x.sourceType==='news');
+  const crossSourceConfirmed=sourceIds.length>=2 && (classes.length>=2 || types.length>=2);
+  const verified=authoritative || (researchConfirmed && sourceIds.length>=2) || (sourceIds.length>=3 && classes.length>=2);
   const volumeScore=clamp(Math.round(Math.log2(mentions+1)*6),0,20);
-  const velocityScore=clamp(Math.round((ratio<=1?0:Math.log2(ratio+1)*7)),0,20);
-  const diversityScore=clamp(sources.length*5,0,15);
+  const velocityScore=clamp(Math.round(velocity<=0?0:Math.log2((velocity/100)+1)*9),0,20);
+  const diversityScore=clamp(sourceIds.length*4 + Math.max(0,classes.length-1)*2,0,15);
   const credibilityScore=clamp(Math.round(credibilityAvg*15),0,15);
   const severityScore=clamp(Math.max(...items.map(x=>x.severityHint),0),0,10);
-  const exploitScore=items.some(x=>/zero.day|zero day|actively exploited|exploited in the wild|active exploitation/i.test(`${x.title} ${x.summary}`))?10:0;
-  const recencyScore=daysAgo(c.latest)<=1?10:daysAgo(c.latest)<=3?8:daysAgo(c.latest)<=7?6:daysAgo(c.latest)<=14?3:1;
-  const score=clamp(volumeScore+velocityScore+diversityScore+credibilityScore+severityScore+exploitScore+recencyScore,0,100);
+  const exploitScore=items.some(x=>/zero.day|zero day|actively exploited|exploited in the wild|active exploitation|known exploited/i.test(`${x.title} ${x.summary}`))?10:0;
+  const recencyScore=daysAgo(c.latest)<=0.25?5:daysAgo(c.latest)<=1?4:daysAgo(c.latest)<=3?3:daysAgo(c.latest)<=7?2:1;
+  const crossSourceScore=crossSourceConfirmed?5:sourceIds.length>=2?3:0;
+  const score=clamp(volumeScore+velocityScore+diversityScore+credibilityScore+severityScore+exploitScore+recencyScore+crossSourceScore,0,100);
   const cves=[...new Set(items.flatMap(x=>x.entities.cves))],rw=[...new Set(items.flatMap(x=>x.entities.ransomwareGroups))];
-  const momentum=velocity>=200?'surging':velocity>=50?'rising':last24?'active':daysAgo(c.latest)<=7?'active':'cooling';
+  const emerging=(daysAgo(c.latest)<=1 && sourceIds.length>=2 && (v6>=100||v1>=100)) || (daysAgo(c.latest)<=0.5 && sourceIds.length>=3 && h24>=3);
+  const momentum=emerging&&velocity>=200?'surging':velocity>=200?'surging':velocity>=50?'rising':h24?'active':daysAgo(c.latest)<=7?'active':'cooling';
+  const prevMentions=Number(previousTopic?.mentions||0),runDelta=mentions-prevMentions;
   return {
-    id:c.key, title:c.title, category:c.category, score, momentum, mentions, uniqueSources:sources.length,
-    velocityPct:velocity, firstSeen:c.firstSeen, latest:c.latest,
+    id:c.key, title:c.title, category:c.category, score, momentum, mentions, uniqueSources:sourceIds.length,
+    velocityPct:velocity, firstSeen:c.firstSeen, latest:c.latest, emerging, verified, authoritativeConfirmed:authoritative,
+    crossSourceConfirmed, runDeltaMentions:runDelta,
+    windows:{h1,p1,h6,p6,h24,p24,velocity1hPct:v1,velocity6hPct:v6,velocity24hPct:v24},
+    sourceMix:sourceMix(items), sourceClasses:classes,
     summary:items[0]?.summary||'', entities:{cves,ransomwareGroups:rw},
     primaryUrl:items[0]?.url||'', sourceLabel:items[0]?.sourceName||'',
-    evidence:items.slice(0,20).map(x=>({label:x.sourceName,title:x.title,url:x.url,time:x.published,sourceType:x.sourceType,credibility:x.credibility})),
-    scoreBreakdown:{volume:volumeScore,velocity:velocityScore,diversity:diversityScore,credibility:credibilityScore,severity:severityScore,exploitation:exploitScore,recency:recencyScore}
+    evidence:items.slice(0,30).map(x=>({label:x.sourceName,title:x.title,url:x.url,time:x.published,sourceType:x.sourceType,sourceClass:x.sourceClass,credibility:x.credibility})),
+    scoreBreakdown:{volume:volumeScore,velocity:velocityScore,diversity:diversityScore,credibility:credibilityScore,severity:severityScore,exploitation:exploitScore,recency:recencyScore,crossSource:crossSourceScore}
   };
 }
 async function fetchText(url){
@@ -196,6 +223,9 @@ function loadConfig(){
 async function main(){
   const cfg=loadConfig();
   if(VALIDATE_ONLY){ console.log(`Validated ${cfg.sources.length} Pulse sources.`); return; }
+  let previous={topics:[]};
+  try{ if(fs.existsSync(OUT_PATH)) previous=JSON.parse(fs.readFileSync(OUT_PATH,'utf8')); }catch{}
+  const previousById=new Map((previous.topics||[]).map(t=>[t.id,t]));
   const statuses=[],all=[];
   for(const source of cfg.sources.filter(s=>s.enabled!==false)){
     const started=Date.now();
@@ -203,25 +233,27 @@ async function main(){
       console.log(`Pulse: fetching ${source.name} -> ${source.url}`);
       const payload=await fetchText(source.url),items=parseByAdapter(payload,source).filter(x=>daysAgo(x.published)<=RETENTION_DAYS);
       all.push(...items);
-      statuses.push({id:source.id,name:source.name,status:'ok',items:items.length,url:source.homepage||source.url,sourceType:source.sourceType||'research',sourceClass:source.sourceClass||source.sourceType||'OSINT',credibility:source.credibility??0.7,collectorType:source.type||'rss',collectedAt:nowIso(),durationMs:Date.now()-started,lastSuccessAt:nowIso(),error:''});
+      statuses.push({id:source.id,name:source.name,status:'ok',items:items.length,url:source.homepage||source.url,feedUrl:source.url,sourceType:source.sourceType||'research',sourceClass:source.sourceClass||source.sourceType||'OSINT',credibility:source.credibility??0.7,collectorType:source.type||'rss',collectedAt:nowIso(),durationMs:Date.now()-started,lastSuccessAt:nowIso(),error:''});
       console.log(`Pulse: ${source.name}: ${items.length} retained items`);
     }catch(err){
-      statuses.push({id:source.id,name:source.name,status:'failed',items:0,url:source.homepage||source.url,sourceType:source.sourceType||'research',sourceClass:source.sourceClass||source.sourceType||'OSINT',credibility:source.credibility??0.7,collectorType:source.type||'rss',collectedAt:nowIso(),durationMs:Date.now()-started,lastSuccessAt:'',error:String(err.message||err)});
+      statuses.push({id:source.id,name:source.name,status:'failed',items:0,url:source.homepage||source.url,feedUrl:source.url,sourceType:source.sourceType||'research',sourceClass:source.sourceClass||source.sourceType||'OSINT',credibility:source.credibility??0.7,collectorType:source.type||'rss',collectedAt:nowIso(),durationMs:Date.now()-started,lastSuccessAt:'',error:String(err.message||err)});
       console.error(`Pulse: ${source.name} failed: ${err.message||err}`);
     }
   }
   const seen=new Map(); for(const x of all){ const k=x.url.replace(/[?#].*$/,''); if(!seen.has(k)) seen.set(k,x); }
   const items=[...seen.values()].sort((a,b)=>new Date(b.published)-new Date(a.published));
-  const topics=clusterItems(items).map(topicFromCluster).sort((a,b)=>b.score-a.score||new Date(b.latest)-new Date(a.latest));
+  const topics=clusterItems(items).map(c=>topicFromCluster(c,previousById.get(c.key))).sort((a,b)=>b.score-a.score||new Date(b.latest)-new Date(a.latest));
   const ok=statuses.filter(x=>x.status==='ok').length;
   const classes=[...new Set(statuses.map(x=>x.sourceClass).filter(Boolean))];
   const failed=statuses.length-ok;
+  const newsHealthy=statuses.filter(x=>x.sourceClass==='Cyber News'&&x.status==='ok').length;
+  const emergingCount=topics.filter(t=>t.emerging).length,verifiedCount=topics.filter(t=>t.verified).length,crossConfirmed=topics.filter(t=>t.crossSourceConfirmed).length;
   const out={
-    meta:{status:ok?'ok':'failed',schemaVersion:2,collectedAt:nowIso(),collector:'ThreadHub Internet Signal Collector V3 · Wave 1B',retentionDays:RETENTION_DAYS,sourcesConfigured:statuses.length,sourcesHealthy:ok,sourcesFailed:failed,sourceClasses:classes.length,sourceClassNames:classes,items:items.length,topics:topics.length},
-    sources:statuses, topics, items:items.slice(0,500)
+    meta:{status:ok?'ok':'failed',schemaVersion:3,collectedAt:nowIso(),collector:'ThreadHub Internet Signal Collector V4 · Wave 2',retentionDays:RETENTION_DAYS,sourcesConfigured:statuses.length,sourcesHealthy:ok,sourcesFailed:failed,newsSourcesHealthy:newsHealthy,sourceClasses:classes.length,sourceClassNames:classes,items:items.length,topics:topics.length,emergingTopics:emergingCount,verifiedTopics:verifiedCount,crossSourceConfirmedTopics:crossConfirmed},
+    sources:statuses, topics, items:items.slice(0,1000)
   };
   fs.writeFileSync(OUT_PATH,JSON.stringify(out,null,2)+'\n');
-  console.log(`Pulse: wrote ${topics.length} topics / ${items.length} items from ${ok}/${statuses.length} healthy sources to ${path.relative(ROOT,OUT_PATH)}`);
+  console.log(`Pulse: wrote ${topics.length} topics / ${items.length} items from ${ok}/${statuses.length} healthy sources (${emergingCount} emerging, ${verifiedCount} verified) to ${path.relative(ROOT,OUT_PATH)}`);
   if(!ok) process.exitCode=1;
 }
 
