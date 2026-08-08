@@ -1,7 +1,69 @@
 {
-  "version": 2,
-  "description": "ThreadHub Pulse Wave 1 source registry: authoritative vendor advisories and high-confidence threat research feeds. Expand deliberately; preserve original attribution and source-health status.",
+  "version": 3,
+  "description": "ThreadHub Pulse Wave 1B source registry: authoritative CISA/CERT-EU adapters plus vendor and threat-research feeds, with source-class and health metadata.",
   "sources": [
+    {
+      "id": "cisa-kev",
+      "name": "CISA Known Exploited Vulnerabilities",
+      "type": "cisa-kev-json",
+      "url": "https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json",
+      "homepage": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
+      "sourceType": "official",
+      "sourceClass": "Official / CERT",
+      "credibility": 1.0,
+      "enabled": true,
+      "tier": 0
+    },
+    {
+      "id": "cisa-cybersecurity-advisories",
+      "name": "CISA Cybersecurity Advisories",
+      "type": "cisa-advisories-html",
+      "url": "https://www.cisa.gov/news-events/cybersecurity-advisories",
+      "homepage": "https://www.cisa.gov/news-events/cybersecurity-advisories",
+      "sourceType": "official",
+      "sourceClass": "Official / CERT",
+      "credibility": 1.0,
+      "enabled": true,
+      "tier": 0
+    },
+    {
+      "id": "cisa-ics-advisories",
+      "name": "CISA ICS Advisories",
+      "type": "cisa-ics-html",
+      "url": "https://www.cisa.gov/news-events/ics-advisories",
+      "homepage": "https://www.cisa.gov/news-events/ics-advisories",
+      "sourceType": "official",
+      "sourceClass": "Official / CERT",
+      "credibility": 1.0,
+      "enabled": true,
+      "tier": 0
+    },
+    {
+      "id": "cert-eu-security-advisories",
+      "name": "CERT-EU Security Advisories",
+      "type": "cert-eu-html",
+      "url": "https://cert.europa.eu/publications/security-advisories/2026",
+      "homepage": "https://cert.europa.eu/publications/security-advisories/2026",
+      "sourceType": "official",
+      "sourceClass": "Official / CERT",
+      "credibility": 1.0,
+      "enabled": true,
+      "tier": 0,
+      "matchPath": "/publications/security-advisories/"
+    },
+    {
+      "id": "cert-eu-threat-intelligence",
+      "name": "CERT-EU Threat Intelligence",
+      "type": "cert-eu-html",
+      "url": "https://cert.europa.eu/publications/threat-intelligence/2026",
+      "homepage": "https://cert.europa.eu/publications/threat-intelligence/2026",
+      "sourceType": "official",
+      "sourceClass": "Official / CERT",
+      "credibility": 1.0,
+      "enabled": true,
+      "tier": 0,
+      "matchPath": "/publications/threat-intelligence/"
+    },
     {
       "id": "google-threat-intelligence",
       "name": "Google Threat Intelligence",
@@ -11,7 +73,8 @@
       "sourceType": "research",
       "credibility": 0.98,
       "enabled": true,
-      "tier": 1
+      "tier": 1,
+      "sourceClass": "Threat Research"
     },
     {
       "id": "google-cloud-security-bulletins",
@@ -22,7 +85,8 @@
       "sourceType": "vendor",
       "credibility": 0.99,
       "enabled": true,
-      "tier": 1
+      "tier": 1,
+      "sourceClass": "Vendor"
     },
     {
       "id": "redhat-security-advisories",
@@ -33,7 +97,8 @@
       "sourceType": "vendor",
       "credibility": 0.99,
       "enabled": true,
-      "tier": 1
+      "tier": 1,
+      "sourceClass": "Vendor"
     },
     {
       "id": "microsoft-security-blog",
@@ -44,7 +109,8 @@
       "sourceType": "research",
       "credibility": 0.98,
       "enabled": true,
-      "tier": 1
+      "tier": 1,
+      "sourceClass": "Threat Research"
     },
     {
       "id": "microsoft-msrc",
@@ -55,7 +121,8 @@
       "sourceType": "vendor",
       "credibility": 1.0,
       "enabled": true,
-      "tier": 1
+      "tier": 1,
+      "sourceClass": "Vendor"
     },
     {
       "id": "cisco-psirt",
@@ -66,7 +133,8 @@
       "sourceType": "vendor",
       "credibility": 1.0,
       "enabled": true,
-      "tier": 1
+      "tier": 1,
+      "sourceClass": "Vendor"
     },
     {
       "id": "paloalto-psirt",
@@ -77,7 +145,8 @@
       "sourceType": "vendor",
       "credibility": 1.0,
       "enabled": true,
-      "tier": 1
+      "tier": 1,
+      "sourceClass": "Vendor"
     },
     {
       "id": "paloalto-unit42",
@@ -88,7 +157,8 @@
       "sourceType": "research",
       "credibility": 0.96,
       "enabled": true,
-      "tier": 1
+      "tier": 1,
+      "sourceClass": "Threat Research"
     },
     {
       "id": "rapid7-blog",
@@ -99,7 +169,8 @@
       "sourceType": "research",
       "credibility": 0.94,
       "enabled": true,
-      "tier": 1
+      "tier": 1,
+      "sourceClass": "Threat Research"
     },
     {
       "id": "sentinellabs",
@@ -110,7 +181,8 @@
       "sourceType": "research",
       "credibility": 0.94,
       "enabled": true,
-      "tier": 1
+      "tier": 1,
+      "sourceClass": "Threat Research"
     },
     {
       "id": "checkpoint-research",
@@ -121,7 +193,8 @@
       "sourceType": "research",
       "credibility": 0.93,
       "enabled": true,
-      "tier": 1
+      "tier": 1,
+      "sourceClass": "Threat Research"
     },
     {
       "id": "eset-welivesecurity",
@@ -132,7 +205,8 @@
       "sourceType": "research",
       "credibility": 0.93,
       "enabled": true,
-      "tier": 1
+      "tier": 1,
+      "sourceClass": "Threat Research"
     },
     {
       "id": "sophos-threat-research",
@@ -143,7 +217,8 @@
       "sourceType": "research",
       "credibility": 0.93,
       "enabled": true,
-      "tier": 1
+      "tier": 1,
+      "sourceClass": "Threat Research"
     },
     {
       "id": "google-project-zero",
@@ -154,7 +229,8 @@
       "sourceType": "research",
       "credibility": 0.97,
       "enabled": true,
-      "tier": 1
+      "tier": 1,
+      "sourceClass": "Threat Research"
     }
   ]
 }
