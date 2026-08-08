@@ -6,15 +6,15 @@
     "upstream": "ransomware.live",
     "mode": "direct-v2",
     "authentication": "none",
-    "collectedAt": "2026-08-08T08:36:05.799Z",
-    "checkedAt": "2026-08-08T08:36:05.799Z",
+    "collectedAt": "2026-08-08T09:19:34.696Z",
+    "checkedAt": "2026-08-08T09:19:34.696Z",
     "dataUpdatedAt": "2026-08-07T23:20:47.573Z",
     "lastSourceUpdate": "2026-08-07T22:52:10.874Z",
     "latestVictimDiscovered": "2026-08-07T22:52:10.874Z",
     "latestVictimName": "MEDICOS",
     "latestVictimGroup": "bravox",
     "latestVictimCountry": "FR",
-    "sourceDataAgeMinutes": 584,
+    "sourceDataAgeMinutes": 627,
     "feedFreshness": "fresh",
     "newClaimsSincePreviousCollection": 0,
     "selectedBy": "freshest-latest-victim",
@@ -41,7 +41,7 @@
     "activeGroups": 380,
     "recentClaims": 100,
     "retainedClaims": 30614,
-    "claims24h": 31,
+    "claims24h": 17,
     "newClaimsSincePreviousCollection": 0,
     "countriesRecent": 23,
     "sectorsRecent": 13
@@ -1750,7 +1750,8 @@
       "description": "0mega is a double-extortion ransomware group that emerged in May 2022, targeting businesses across multiple sectors worldwide by encrypting files and threatening to leak stolen data; it also pivoted to cloud-based extortion by compromising Microsoft 365 admin accounts.",
       "locationCount": 2,
       "locations": [
-        "0mega | Blog"
+        "0mega | Blog",
+        "Daily Sweepstakes — Free Entry"
       ],
       "victims": 0,
       "firstSeen": null,
@@ -4229,7 +4230,7 @@
       "locationCount": 5,
       "locations": [
         "This Website Has Been Seized",
-        "Loading https://m.ntesgsght.com/c/jtck6n?network_click_id=928ba5ecf2d84d3e80e27ca61515362d&site_id=4601&sub_site_id=handala.to&campaign=pwn_h72na_youdao_all_gb_install_conversion_event_pc_20260121&ad=&ad_name=&ad_group=",
+        "Redirecting...",
         "Error Response Page",
         "Security Verification"
       ],
