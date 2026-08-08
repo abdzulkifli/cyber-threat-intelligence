@@ -11,7 +11,7 @@ const OUT_PATH = process.env.PULSE_OUTPUT || path.join(ROOT, 'data', 'pulse.json
 const MAX_PER_SOURCE = Math.max(10, Number(process.env.PULSE_MAX_PER_SOURCE || 120));
 const RETENTION_DAYS = Math.max(1, Number(process.env.PULSE_RETENTION_DAYS || 30));
 const FETCH_TIMEOUT_MS = Math.max(5000, Number(process.env.PULSE_FETCH_TIMEOUT_MS || 20000));
-const USER_AGENT = process.env.PULSE_USER_AGENT || 'ThreadHub-Pulse/2.0 (+https://futurelogic.my/)';
+const USER_AGENT = process.env.PULSE_USER_AGENT || 'ThreadHub-Pulse/3.0 (+https://futurelogic.my/)';
 const VALIDATE_ONLY = process.argv.includes('--validate');
 
 const STOP = new Set('a an and are as at be been by for from has have in into is it its latest new of on or over security the this to update updates vulnerability vulnerabilities with'.split(' '));
@@ -52,6 +52,51 @@ function parseFeed(xml,source){
     return normalizeItem({title,url,published,summary,id},source);
   }).filter(x=>x.title && x.url && /^https?:\/\//i.test(x.url));
 }
+
+function htmlDecodeText(s=''){ return stripHtml(String(s).replace(/\\u0026/g,'&')); }
+function absoluteUrl(href,base){ try{return new URL(decodeXml(href),base).href}catch{return''} }
+function nearbyDate(html,index){
+  const chunk=html.slice(Math.max(0,index-700),Math.min(html.length,index+1300));
+  const iso=(chunk.match(/\b(20\d{2})[-\/](\d{1,2})[-\/](\d{1,2})\b/)||[]);
+  if(iso[0]) return safeDate(`${iso[1]}-${String(iso[2]).padStart(2,'0')}-${String(iso[3]).padStart(2,'0')}T12:00:00Z`);
+  const named=(chunk.match(/\b(January|February|March|April|May|June|July|August|September|October|November|December)\s+(\d{1,2}),?\s+(20\d{2})\b/i)||[]);
+  if(named[0]) return safeDate(named[0]);
+  return '';
+}
+function parseHtmlListing(html,source,matcher){
+  const out=[],seen=new Set(),re=new RegExp('<a\\b[^>]*href=["\\\']([^"\\\']+)["\\\'][^>]*>([\\s\\S]*?)<\\/a>','gi');
+  let m;
+  while((m=re.exec(html)) && out.length<MAX_PER_SOURCE){
+    const url=absoluteUrl(m[1],source.url),title=htmlDecodeText(m[2]);
+    if(!url||!title||title.length<8||!matcher(url,title)) continue;
+    const clean=url.replace(/[?#].*$/,''); if(seen.has(clean)) continue; seen.add(clean);
+    const idx=m.index,context=stripHtml(html.slice(Math.max(0,idx-350),Math.min(html.length,idx+1600))).slice(0,1100);
+    const published=nearbyDate(html,idx)||nowIso();
+    out.push(normalizeItem({title,url:clean,published,summary:context,id:clean},source));
+  }
+  return out;
+}
+function parseCisaKevJson(text,source){
+  const data=JSON.parse(text),rows=Array.isArray(data)?data:(data.vulnerabilities||[]);
+  return rows.slice().sort((a,b)=>String(b.dateAdded||'').localeCompare(String(a.dateAdded||''))).slice(0,MAX_PER_SOURCE).map(v=>{
+    const title=`${v.cveID||v.cve||'CVE'} · ${v.vendorProject||v.vendor||''} ${v.product||''}`.trim();
+    const summary=[v.vulnerabilityName,v.shortDescription,v.requiredAction,v.knownRansomwareCampaignUse&&`Known ransomware use: ${v.knownRansomwareCampaignUse}`].filter(Boolean).join(' · ');
+    const cve=v.cveID||v.cve||'';
+    const url=cve?`https://www.cisa.gov/known-exploited-vulnerabilities-catalog?search_api_fulltext=${encodeURIComponent(cve)}`:(source.homepage||source.url);
+    return normalizeItem({title,url,published:v.dateAdded||nowIso(),summary,id:cve||title},source);
+  }).filter(x=>daysAgo(x.published)<=RETENTION_DAYS);
+}
+function parseByAdapter(text,source){
+  if(source.type==='cisa-kev-json') return parseCisaKevJson(text,source);
+  if(source.type==='cisa-advisories-html') return parseHtmlListing(text,source,(u)=>/\/news-events\/cybersecurity-advisories\/[^/?#]+/i.test(u));
+  if(source.type==='cisa-ics-html') return parseHtmlListing(text,source,(u)=>/\/news-events\/ics-advisories\/[^/?#]+/i.test(u));
+  if(source.type==='cert-eu-html'){
+    const path=source.matchPath||'/publications/';
+    return parseHtmlListing(text,source,(u)=>u.includes('cert.europa.eu')&&u.includes(path)&&!new RegExp(`${path.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')}20\\d{2}/?$`).test(u));
+  }
+  return parseFeed(text,source);
+}
+
 function extractCves(text){ return [...new Set((String(text).match(/CVE-\d{4}-\d{4,7}/gi)||[]).map(x=>x.toUpperCase()))]; }
 function extractRansomware(text){ const lower=String(text).toLowerCase(); return RANSOMWARE_NAMES.filter(n=>lower.includes(n)); }
 function classify(text){
@@ -85,7 +130,7 @@ function normalizeItem(raw,source){
     id:`${source.id}:${sha(raw.id||raw.url||raw.title)}`,
     title:stripHtml(raw.title), summary:stripHtml(raw.summary).slice(0,900), url:raw.url,
     published, collectedAt:nowIso(), sourceId:source.id, sourceName:source.name,
-    sourceType:source.sourceType||'research', credibility:clamp(Number(source.credibility||0.7),0,1),
+    sourceType:source.sourceType||'research', sourceClass:source.sourceClass||source.sourceType||'OSINT', credibility:clamp(Number(source.credibility||0.7),0,1),
     category, entities:{cves,ransomwareGroups:ransomware}, severityHint:severityHints(text)
   };
 }
@@ -156,12 +201,12 @@ async function main(){
     const started=Date.now();
     try{
       console.log(`Pulse: fetching ${source.name} -> ${source.url}`);
-      const xml=await fetchText(source.url),items=parseFeed(xml,source).filter(x=>daysAgo(x.published)<=RETENTION_DAYS);
+      const payload=await fetchText(source.url),items=parseByAdapter(payload,source).filter(x=>daysAgo(x.published)<=RETENTION_DAYS);
       all.push(...items);
-      statuses.push({id:source.id,name:source.name,status:'ok',items:items.length,url:source.homepage||source.url,collectedAt:nowIso(),durationMs:Date.now()-started});
+      statuses.push({id:source.id,name:source.name,status:'ok',items:items.length,url:source.homepage||source.url,sourceType:source.sourceType||'research',sourceClass:source.sourceClass||source.sourceType||'OSINT',credibility:source.credibility??0.7,collectorType:source.type||'rss',collectedAt:nowIso(),durationMs:Date.now()-started,lastSuccessAt:nowIso(),error:''});
       console.log(`Pulse: ${source.name}: ${items.length} retained items`);
     }catch(err){
-      statuses.push({id:source.id,name:source.name,status:'failed',items:0,url:source.homepage||source.url,collectedAt:nowIso(),durationMs:Date.now()-started,error:String(err.message||err)});
+      statuses.push({id:source.id,name:source.name,status:'failed',items:0,url:source.homepage||source.url,sourceType:source.sourceType||'research',sourceClass:source.sourceClass||source.sourceType||'OSINT',credibility:source.credibility??0.7,collectorType:source.type||'rss',collectedAt:nowIso(),durationMs:Date.now()-started,lastSuccessAt:'',error:String(err.message||err)});
       console.error(`Pulse: ${source.name} failed: ${err.message||err}`);
     }
   }
@@ -169,8 +214,10 @@ async function main(){
   const items=[...seen.values()].sort((a,b)=>new Date(b.published)-new Date(a.published));
   const topics=clusterItems(items).map(topicFromCluster).sort((a,b)=>b.score-a.score||new Date(b.latest)-new Date(a.latest));
   const ok=statuses.filter(x=>x.status==='ok').length;
+  const classes=[...new Set(statuses.map(x=>x.sourceClass).filter(Boolean))];
+  const failed=statuses.length-ok;
   const out={
-    meta:{status:ok?'ok':'failed',schemaVersion:1,collectedAt:nowIso(),collector:'ThreadHub Internet Signal Collector V2 · Wave 1',retentionDays:RETENTION_DAYS,sourcesConfigured:statuses.length,sourcesHealthy:ok,items:items.length,topics:topics.length},
+    meta:{status:ok?'ok':'failed',schemaVersion:2,collectedAt:nowIso(),collector:'ThreadHub Internet Signal Collector V3 · Wave 1B',retentionDays:RETENTION_DAYS,sourcesConfigured:statuses.length,sourcesHealthy:ok,sourcesFailed:failed,sourceClasses:classes.length,sourceClassNames:classes,items:items.length,topics:topics.length},
     sources:statuses, topics, items:items.slice(0,500)
   };
   fs.writeFileSync(OUT_PATH,JSON.stringify(out,null,2)+'\n');
