@@ -459,3 +459,12 @@ body{
 .pulse-drawer-stars{font-size:14px;color:#ffc246;letter-spacing:2px}.pulse-drawer-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin:14px 0}.pulse-drawer-grid>div{border:1px solid rgba(64,103,132,.3);background:rgba(6,19,30,.75);border-radius:8px;padding:10px}.pulse-drawer-grid span{display:block;font-size:9px;color:#7893a6;text-transform:uppercase;letter-spacing:.08em}.pulse-drawer-grid strong{display:block;margin-top:5px;font-size:18px}.pulse-evidence-list{display:grid;gap:8px}.pulse-evidence-list a{display:flex;justify-content:space-between;gap:12px;text-decoration:none;color:#b9ebf8;border:1px solid rgba(53,101,130,.28);border-radius:7px;padding:9px 10px;background:rgba(5,18,29,.7)}.pulse-evidence-list a small{color:#6f899c}
 @media(max-width:1200px){.pulse-kpi-grid{grid-template-columns:repeat(3,1fr)}.pulse-layout{grid-template-columns:1fr}.pulse-topic-row{grid-template-columns:38px minmax(0,1fr) 80px 90px auto}.pulse-signals{display:none}}
 @media(max-width:760px){.pulse-kpi-grid{grid-template-columns:1fr 1fr}.pulse-topic-row{grid-template-columns:34px minmax(0,1fr) auto}.pulse-score,.pulse-momentum,.pulse-signals{display:none}.pulse-filterbar input{margin-left:0;width:100%;min-width:0}.pulse-v1-note{align-items:flex-start;flex-direction:column}}
+/* ThreadHub Pulse Internet Signal Collector V1 category extensions */
+.pulse-badge.malware{color:#ff9f43;border-color:rgba(255,159,67,.38);background:rgba(255,159,67,.08)}
+.pulse-badge.breach{color:#ff5470;border-color:rgba(255,84,112,.38);background:rgba(255,84,112,.08)}
+.pulse-badge.threat-actor{color:#ba7cff;border-color:rgba(186,124,255,.38);background:rgba(186,124,255,.08)}
+.pulse-badge.phishing{color:#ffd166;border-color:rgba(255,209,102,.38);background:rgba(255,209,102,.08)}
+.pulse-momentum.cooling{color:#7894a7}
+.pulse-topic-row[data-cat="malware"] .pulse-rank{color:#ff9f43;background:rgba(255,159,67,.08);border-color:rgba(255,159,67,.18)}
+.pulse-topic-row[data-cat="breach"] .pulse-rank{color:#ff5470;background:rgba(255,84,112,.08);border-color:rgba(255,84,112,.18)}
+.pulse-topic-row[data-cat="threat-actor"] .pulse-rank{color:#ba7cff;background:rgba(186,124,255,.08);border-color:rgba(186,124,255,.18)}
