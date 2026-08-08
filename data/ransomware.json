@@ -6,15 +6,15 @@
     "upstream": "ransomware.live",
     "mode": "direct-v2",
     "authentication": "none",
-    "collectedAt": "2026-08-08T07:56:51.906Z",
-    "checkedAt": "2026-08-08T07:56:51.906Z",
+    "collectedAt": "2026-08-08T08:36:05.799Z",
+    "checkedAt": "2026-08-08T08:36:05.799Z",
     "dataUpdatedAt": "2026-08-07T23:20:47.573Z",
     "lastSourceUpdate": "2026-08-07T22:52:10.874Z",
     "latestVictimDiscovered": "2026-08-07T22:52:10.874Z",
     "latestVictimName": "MEDICOS",
     "latestVictimGroup": "bravox",
     "latestVictimCountry": "FR",
-    "sourceDataAgeMinutes": 545,
+    "sourceDataAgeMinutes": 584,
     "feedFreshness": "fresh",
     "newClaimsSincePreviousCollection": 0,
     "selectedBy": "freshest-latest-victim",
@@ -41,7 +41,7 @@
     "activeGroups": 380,
     "recentClaims": 100,
     "retainedClaims": 30614,
-    "claims24h": 69,
+    "claims24h": 31,
     "newClaimsSincePreviousCollection": 0,
     "countriesRecent": 23,
     "sectorsRecent": 13
@@ -2497,7 +2497,9 @@
       "status": "active",
       "description": "Blackout is a ransomware group that first appeared in early 2024, initially claiming attacks against healthcare entities in Canada, France, and Germany before expanding to telecommunications, mining, and manufacturing sectors, operating a double-extortion model with a data leak site.",
       "locationCount": 1,
-      "locations": [],
+      "locations": [
+        "Blackout Blog"
+      ],
       "victims": 0,
       "firstSeen": null,
       "lastSeen": null,
@@ -4041,8 +4043,7 @@
       "locations": [
         "New Address Blog",
         "Funksec",
-        "Funksec v3.0",
-        "..."
+        "Funksec v3.0"
       ],
       "victims": 0,
       "firstSeen": null,
@@ -4264,8 +4265,8 @@
       "description": "",
       "locationCount": 3,
       "locations": [
-        "HELIX",
-        "HELIX - Leaks"
+        "HELIX - Leaks",
+        "HELIX"
       ],
       "victims": 0,
       "firstSeen": null,
@@ -4978,9 +4979,9 @@
       "description": "LockBit 3.0 (\"LockBit Black\"), active since June 2022, is the third iteration of the LockBit RaaS platform incorporating code from BlackMatter ransomware, featuring modular encrypted payloads that evade analysis and targeting Windows and VMware ESXi environments across all sectors globally.",
       "locationCount": 26,
       "locations": [
+        "LockBit Private Note",
         "LockBit - Leaked",
-        "LockBit File Share",
-        "LockBit Private Note"
+        "LockBit File Share"
       ],
       "victims": 0,
       "firstSeen": null,
@@ -5745,8 +5746,8 @@
       "locations": [
         "NightSpire",
         "Verify human - NightSpire",
-        "Database | NightSpire",
-        "RaaS Service Started"
+        "RaaS Service Started",
+        "Database | NightSpire"
       ],
       "victims": 0,
       "firstSeen": null,
