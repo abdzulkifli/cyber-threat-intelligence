@@ -6,15 +6,15 @@
     "upstream": "ransomware.live",
     "mode": "direct-v2",
     "authentication": "none",
-    "collectedAt": "2026-08-08T18:15:20.410Z",
-    "checkedAt": "2026-08-08T18:15:20.410Z",
+    "collectedAt": "2026-08-08T19:00:32.958Z",
+    "checkedAt": "2026-08-08T19:00:32.958Z",
     "dataUpdatedAt": "2026-08-08T16:50:53.996Z",
     "lastSourceUpdate": "2026-08-08T16:28:01.710Z",
     "latestVictimDiscovered": "2026-08-08T16:28:01.710Z",
     "latestVictimName": "Impact Centre Chrétien",
     "latestVictimGroup": "qilin",
     "latestVictimCountry": "HT",
-    "sourceDataAgeMinutes": 107,
+    "sourceDataAgeMinutes": 153,
     "feedFreshness": "fresh",
     "newClaimsSincePreviousCollection": 0,
     "selectedBy": "freshest-latest-victim",
@@ -28,7 +28,7 @@
       {
         "mode": "direct-legacy",
         "source": "ransomware.live public API",
-        "latestVictimDiscovered": "2026-08-08T12:30:30.169Z",
+        "latestVictimDiscovered": "2026-08-08T14:25:56.891Z",
         "victimCount": 100
       }
     ],
@@ -2497,7 +2497,9 @@
       "status": "active",
       "description": "Blackout is a ransomware group that first appeared in early 2024, initially claiming attacks against healthcare entities in Canada, France, and Germany before expanding to telecommunications, mining, and manufacturing sectors, operating a double-extortion model with a data leak site.",
       "locationCount": 1,
-      "locations": [],
+      "locations": [
+        "Blackout Blog"
+      ],
       "victims": 0,
       "firstSeen": null,
       "lastSeen": null,
@@ -2700,8 +2702,8 @@
       "locationCount": 8,
       "locations": [
         "BrainCipher Storage",
-        "Brain Cipher Dataleak",
         "BrainCipher Client Area",
+        "Brain Cipher Dataleak",
         "Brain Cipher Client Area",
         "Not Found"
       ],
@@ -4039,8 +4041,7 @@
       "locations": [
         "New Address Blog",
         "Funksec",
-        "Funksec v3.0",
-        "..."
+        "Funksec v3.0"
       ],
       "victims": 0,
       "firstSeen": null,
@@ -4262,8 +4263,8 @@
       "description": "",
       "locationCount": 3,
       "locations": [
-        "HELIX - Leaks",
-        "HELIX"
+        "HELIX",
+        "HELIX - Leaks"
       ],
       "victims": 0,
       "firstSeen": null,
@@ -4956,8 +4957,8 @@
       "description": "LockBit, also recognized as LockBit Black or Lockbit 3.0, is one of the largest Ransomware Groups in the world and has orchestrated extensive cyberattacks across various industries, impacting thousands of organizations globally with its relentless and adaptive strategies.",
       "locationCount": 36,
       "locations": [
-        "Title",
         "LockBit LOGIN",
+        "Title",
         "LockBit BLOG",
         "Humanity check",
         "504 Gateway Time-out"
@@ -5948,8 +5949,8 @@
       "description": "First seen 2026-07-07",
       "locationCount": 2,
       "locations": [
-        "OROVA",
-        "OROVA Blog"
+        "OROVA Blog",
+        "OROVA"
       ],
       "victims": 0,
       "firstSeen": null,
@@ -7609,9 +7610,9 @@
       "description": "Pro-Palestinian Group",
       "locationCount": 4,
       "locations": [
-        "Telegram: Contact @CyberToufanBackup",
-        "Telegram: Contact @CyberToufan02",
         "Telegram: Contact @CyberToufan",
+        "Telegram: Contact @CyberToufan02",
+        "Telegram: Contact @CyberToufanBackup",
         "Cyber Toufan"
       ],
       "victims": 0,
@@ -7987,6 +7988,7 @@
       "description": "WereWolves is a Russian-speaking ransomware group that emerged in May 2023, using a modified LockBit 3 (Black) encryptor, operating an unusual public website that actively recruits new members and offers a bug-bounty program with rewards up to $1 million, with at least 26 victims across Russia, the US, and Europe.",
       "locationCount": 2,
       "locations": [
+        "kelkoogroup.net",
         "werewolves.pro"
       ],
       "victims": 0,
