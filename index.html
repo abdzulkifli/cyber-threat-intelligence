@@ -211,9 +211,9 @@
 
     <!-- THREADHUB PULSE -->
     <section class="tab-panel pulse-panel" data-panel="pulse">
-      <div class="section-heading pulse-heading"><div><span>DISCOVERY · THREADHUB PULSE</span><h2>What the cyber world is signaling now</h2><p>Rank curated public-internet security signals together with ThreadHub ransomware, exploited-vulnerability and advisory intelligence — then pivot into investigation or the original source evidence.</p></div><div class="pulse-heading-actions"><span class="live-chip"><i></i>LIVE RANKING</span><span class="context-badge" id="pulseScopeBadge">V3 · AUTHORITATIVE + INTERNET CTI</span></div></div>
+      <div class="section-heading pulse-heading"><div><span>DISCOVERY · THREADHUB PULSE</span><h2>What the cyber world is signaling now</h2><p>Rank curated public-internet security signals together with ThreadHub ransomware, exploited-vulnerability and advisory intelligence — then pivot into investigation or the original source evidence.</p></div><div class="pulse-heading-actions"><span class="live-chip"><i></i>LIVE RANKING</span><span class="context-badge" id="pulseScopeBadge">V2 · INTERNET + CTI SOURCES</span></div></div>
 
-      <article class="panel pulse-v1-note"><div><strong>Pulse Wave 1B is evidence-first.</strong><span>It now includes first-class CISA and CERT-EU collection adapters alongside vendor and threat-research feeds, while preserving original-source evidence and collector health.</span></div><button class="soft-btn small" type="button" data-tab-jump="sources">View source health →</button></article>
+      <article class="panel pulse-v1-note"><div><strong>Pulse V1 is evidence-first.</strong><span>It ranks the intelligence sources already collected by ThreadHub. The web-wide conversation collector can be added as the next backend layer without changing this UI.</span></div><button class="soft-btn small" type="button" data-tab-jump="sources">View source health →</button></article>
 
       <div class="pulse-kpi-grid">
         <article class="pulse-kpi"><span>SIGNALS ANALYZED</span><strong id="pulseSignals">—</strong><small>Loaded source-backed records</small></article>
@@ -464,18 +464,7 @@
 
     <!-- SOURCES -->
     <section class="tab-panel" data-panel="sources">
-      <div class="section-heading"><div><span>SOURCE ASSURANCE</span><h2>Intelligence Sources & Collector Health</h2><p>See exactly where ThreadHub intelligence comes from, which Internet collectors are healthy, and when each source was last checked.</p></div><span class="context-badge" id="sourceRegistryBadge">WAVE 1B · 19 PULSE SOURCES</span></div>
-      <div class="source-health-kpis">
-        <article><span>ACTIVE SOURCES</span><strong id="sourceActiveTotal">—</strong><small>Core + Internet collectors</small></article>
-        <article><span>HEALTHY</span><strong id="sourceHealthyTotal">—</strong><small>Successful collection</small></article>
-        <article><span>DEGRADED / FAILED</span><strong id="sourceFailedTotal">—</strong><small>Needs attention</small></article>
-        <article><span>SOURCE CLASSES</span><strong id="sourceClassTotal">—</strong><small>Official · Vendor · Research · OSINT</small></article>
-      </div>
-      <article class="panel source-registry-panel">
-        <div class="panel-head"><div><span class="section-label">PULSE INTERNET REGISTRY</span><h3>Authoritative + research collectors</h3><small id="pulseRegistrySummary">Waiting for Pulse collection…</small></div><div class="source-registry-legend"><span><i class="ok"></i>Healthy</span><span><i class="warn"></i>Degraded</span><span><i class="bad"></i>Failed</span></div></div>
-        <div id="pulseSourceTable" class="pulse-source-table"></div>
-      </article>
-      <div class="section-heading compact-heading"><div><span>CORE THREADHUB SOURCES</span><h2>Correlation sources</h2><p>Primary feeds used by the ransomware, vulnerability, regional and prioritisation modules.</p></div></div>
+      <div class="section-heading"><div><span>SOURCE ASSURANCE</span><h2>Collection health & traceability</h2><p>Every intelligence item retains its originating source and collection state.</p></div></div>
       <div id="sourceCards" class="source-cards"></div>
       <article class="panel methodology"><div><span class="section-label">TRANSPARENT SCORING</span><h3>CTI Priority = CVSS + EPSS + ransomware use + recency</h3><p>CVSS up to 30 + EPSS up to 35 + known ransomware use up to 25 + recent KEV addition up to 10 = 100. This is external-intelligence prioritisation, not organisational risk.</p></div><strong>0–100</strong></article>
     </section>
@@ -504,6 +493,6 @@
     <div id="drawerContent"></div>
   </aside>
 
-  <script src="js/app.js?v=threadhub-20260808-wave1b"></script>
+  <script src="js/app.js?v=threadhub-20260808-pulse1"></script>
 </body>
 </html>
