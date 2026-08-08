@@ -6,15 +6,15 @@
     "upstream": "ransomware.live",
     "mode": "direct-v2",
     "authentication": "none",
-    "collectedAt": "2026-08-08T03:52:34.115Z",
-    "checkedAt": "2026-08-08T03:52:34.115Z",
+    "collectedAt": "2026-08-08T04:43:14.673Z",
+    "checkedAt": "2026-08-08T04:43:14.673Z",
     "dataUpdatedAt": "2026-08-07T23:20:47.573Z",
     "lastSourceUpdate": "2026-08-07T22:52:10.874Z",
     "latestVictimDiscovered": "2026-08-07T22:52:10.874Z",
     "latestVictimName": "MEDICOS",
     "latestVictimGroup": "bravox",
     "latestVictimCountry": "FR",
-    "sourceDataAgeMinutes": 300,
+    "sourceDataAgeMinutes": 351,
     "feedFreshness": "fresh",
     "newClaimsSincePreviousCollection": 0,
     "selectedBy": "freshest-latest-victim",
@@ -40,8 +40,8 @@
     "trackedGroups": 380,
     "activeGroups": 380,
     "recentClaims": 100,
-    "retainedClaims": 30612,
-    "claims24h": 80,
+    "retainedClaims": 30614,
+    "claims24h": 82,
     "newClaimsSincePreviousCollection": 0,
     "countriesRecent": 23,
     "sectorsRecent": 13
@@ -203,7 +203,7 @@
     },
     {
       "date": "2026-08-07",
-      "count": 87
+      "count": 89
     }
   ],
   "victims": [
@@ -4230,7 +4230,7 @@
       "locationCount": 5,
       "locations": [
         "This Website Has Been Seized",
-        "Redirecting...",
+        "Seraphine23 Cam Model: Free Live Sex Show & Chat | Stripchat",
         "Error Response Page",
         "Security Verification"
       ],
