@@ -1,4 +1,4 @@
-name: Update ThreadHub Pulse · Wave 1B
+name: Update ThreadHub Pulse · Wave 2
 
 on:
   workflow_dispatch:
@@ -29,7 +29,7 @@ jobs:
       - name: Validate Pulse source registry
         run: node scripts/sync-pulse.js --validate
 
-      - name: Collect public Internet security signals
+      - name: Collect + cluster public Internet security signals
         run: node scripts/sync-pulse.js
 
       - name: Commit Pulse intelligence
