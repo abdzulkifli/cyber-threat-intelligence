@@ -6,15 +6,15 @@
     "upstream": "ransomware.live",
     "mode": "direct-v2",
     "authentication": "none",
-    "collectedAt": "2026-08-08T15:46:19.793Z",
-    "checkedAt": "2026-08-08T15:46:19.793Z",
+    "collectedAt": "2026-08-08T16:11:30.608Z",
+    "checkedAt": "2026-08-08T16:11:30.608Z",
     "dataUpdatedAt": "2026-08-08T14:47:56.665Z",
     "lastSourceUpdate": "2026-08-08T14:25:56.891Z",
     "latestVictimDiscovered": "2026-08-08T14:25:56.891Z",
     "latestVictimName": "Louisville Bar Association",
     "latestVictimGroup": "incransom",
     "latestVictimCountry": "US",
-    "sourceDataAgeMinutes": 80,
+    "sourceDataAgeMinutes": 106,
     "feedFreshness": "fresh",
     "newClaimsSincePreviousCollection": 0,
     "selectedBy": "freshest-latest-victim",
@@ -4957,8 +4957,8 @@
       "description": "LockBit, also recognized as LockBit Black or Lockbit 3.0, is one of the largest Ransomware Groups in the world and has orchestrated extensive cyberattacks across various industries, impacting thousands of organizations globally with its relentless and adaptive strategies.",
       "locationCount": 36,
       "locations": [
-        "Title",
         "LockBit LOGIN",
+        "Title",
         "LockBit BLOG",
         "Humanity check",
         "504 Gateway Time-out"
@@ -6934,8 +6934,8 @@
       "description": "Encrypted Extension: .vanhelsing, .vanlocker. Targets Windows Platform only",
       "locationCount": 4,
       "locations": [
-        "SECP0 News",
-        "Error Response Page"
+        "Error Response Page",
+        "SECP0 News"
       ],
       "victims": 0,
       "firstSeen": null,
