@@ -6,15 +6,15 @@
     "upstream": "ransomware.live",
     "mode": "direct-v2",
     "authentication": "none",
-    "collectedAt": "2026-08-08T17:16:43.328Z",
-    "checkedAt": "2026-08-08T17:16:43.328Z",
+    "collectedAt": "2026-08-08T17:48:42.926Z",
+    "checkedAt": "2026-08-08T17:48:42.926Z",
     "dataUpdatedAt": "2026-08-08T16:50:53.996Z",
     "lastSourceUpdate": "2026-08-08T16:28:01.710Z",
     "latestVictimDiscovered": "2026-08-08T16:28:01.710Z",
     "latestVictimName": "Impact Centre Chrétien",
     "latestVictimGroup": "qilin",
     "latestVictimCountry": "HT",
-    "sourceDataAgeMinutes": 49,
+    "sourceDataAgeMinutes": 81,
     "feedFreshness": "fresh",
     "newClaimsSincePreviousCollection": 0,
     "selectedBy": "freshest-latest-victim",
@@ -41,7 +41,7 @@
     "activeGroups": 380,
     "recentClaims": 100,
     "retainedClaims": 30620,
-    "claims24h": 8,
+    "claims24h": 7,
     "newClaimsSincePreviousCollection": 0,
     "countriesRecent": 25,
     "sectorsRecent": 13
@@ -2497,9 +2497,7 @@
       "status": "active",
       "description": "Blackout is a ransomware group that first appeared in early 2024, initially claiming attacks against healthcare entities in Canada, France, and Germany before expanding to telecommunications, mining, and manufacturing sectors, operating a double-extortion model with a data leak site.",
       "locationCount": 1,
-      "locations": [
-        "Blackout Blog"
-      ],
+      "locations": [],
       "victims": 0,
       "firstSeen": null,
       "lastSeen": null,
@@ -4228,7 +4226,7 @@
       "locationCount": 5,
       "locations": [
         "This Website Has Been Seized",
-        "Loading https://m.ntesgsght.com/c/jtck6n?network_click_id=990cfc3108c24a66929a6f50186ea370&site_id=4601&sub_site_id=handala.to&campaign=pwn_h72na_youdao_all_gb_install_conversion_event_pc_20260121&ad=&ad_name=&ad_group=",
+        "Redirecting...",
         "Error Response Page",
         "Security Verification"
       ],
@@ -4264,8 +4262,8 @@
       "description": "",
       "locationCount": 3,
       "locations": [
-        "HELIX",
-        "HELIX - Leaks"
+        "HELIX - Leaks",
+        "HELIX"
       ],
       "victims": 0,
       "firstSeen": null,
@@ -4577,6 +4575,7 @@
       "description": "Karakurt is a pure data-extortion group (no encryption) assessed with high confidence to be the extortion arm of the Conti ransomware group, active from 2021, that steals data and threatens to auction or publish it unless ransoms ranging from $25,000 to $13 million are paid.",
       "locationCount": 3,
       "locations": [
+        "kelkoogroup.net",
         "Magazine",
         "Chat"
       ],
@@ -4957,8 +4956,8 @@
       "description": "LockBit, also recognized as LockBit Black or Lockbit 3.0, is one of the largest Ransomware Groups in the world and has orchestrated extensive cyberattacks across various industries, impacting thousands of organizations globally with its relentless and adaptive strategies.",
       "locationCount": 36,
       "locations": [
-        "LockBit LOGIN",
         "Title",
+        "LockBit LOGIN",
         "LockBit BLOG",
         "Humanity check",
         "504 Gateway Time-out"
@@ -5949,8 +5948,8 @@
       "description": "First seen 2026-07-07",
       "locationCount": 2,
       "locations": [
-        "OROVA Blog",
-        "OROVA"
+        "OROVA",
+        "OROVA Blog"
       ],
       "victims": 0,
       "firstSeen": null,
