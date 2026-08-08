@@ -11,7 +11,7 @@ const OUT_PATH = process.env.PULSE_OUTPUT || path.join(ROOT, 'data', 'pulse.json
 const MAX_PER_SOURCE = Math.max(10, Number(process.env.PULSE_MAX_PER_SOURCE || 120));
 const RETENTION_DAYS = Math.max(1, Number(process.env.PULSE_RETENTION_DAYS || 30));
 const FETCH_TIMEOUT_MS = Math.max(5000, Number(process.env.PULSE_FETCH_TIMEOUT_MS || 20000));
-const USER_AGENT = process.env.PULSE_USER_AGENT || 'ThreadHub-Pulse/1.0 (+https://futurelogic.my/)';
+const USER_AGENT = process.env.PULSE_USER_AGENT || 'ThreadHub-Pulse/2.0 (+https://futurelogic.my/)';
 const VALIDATE_ONLY = process.argv.includes('--validate');
 
 const STOP = new Set('a an and are as at be been by for from has have in into is it its latest new of on or over security the this to update updates vulnerability vulnerabilities with'.split(' '));
@@ -46,7 +46,7 @@ function parseFeed(xml,source){
   return blocks.slice(0,MAX_PER_SOURCE).map(block=>{
     const title=tag(block,'title');
     const url=isAtom?atomLink(block):(tag(block,'link')||tag(block,'guid'));
-    const published=tag(block,isAtom?'published':'pubDate')||tag(block,'updated')||tag(block,'date');
+    const published=tag(block,isAtom?'published':'pubDate')||tag(block,'updated')||tag(block,'dc:date')||tag(block,'date');
     const summary=tag(block,'description')||tag(block,'summary')||tag(block,'content')||tag(block,'content:encoded');
     const id=tag(block,'guid')||tag(block,'id')||url||`${title}:${published}`;
     return normalizeItem({title,url,published,summary,id},source);
@@ -170,7 +170,7 @@ async function main(){
   const topics=clusterItems(items).map(topicFromCluster).sort((a,b)=>b.score-a.score||new Date(b.latest)-new Date(a.latest));
   const ok=statuses.filter(x=>x.status==='ok').length;
   const out={
-    meta:{status:ok?'ok':'failed',schemaVersion:1,collectedAt:nowIso(),collector:'ThreadHub Internet Signal Collector V1',retentionDays:RETENTION_DAYS,sourcesConfigured:statuses.length,sourcesHealthy:ok,items:items.length,topics:topics.length},
+    meta:{status:ok?'ok':'failed',schemaVersion:1,collectedAt:nowIso(),collector:'ThreadHub Internet Signal Collector V2 · Wave 1',retentionDays:RETENTION_DAYS,sourcesConfigured:statuses.length,sourcesHealthy:ok,items:items.length,topics:topics.length},
     sources:statuses, topics, items:items.slice(0,500)
   };
   fs.writeFileSync(OUT_PATH,JSON.stringify(out,null,2)+'\n');
