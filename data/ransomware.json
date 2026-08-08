@@ -6,15 +6,15 @@
     "upstream": "ransomware.live",
     "mode": "direct-v2",
     "authentication": "none",
-    "collectedAt": "2026-08-08T00:35:52.816Z",
-    "checkedAt": "2026-08-08T00:35:52.816Z",
+    "collectedAt": "2026-08-08T02:32:06.714Z",
+    "checkedAt": "2026-08-08T02:32:06.714Z",
     "dataUpdatedAt": "2026-08-07T23:20:47.573Z",
     "lastSourceUpdate": "2026-08-07T22:52:10.874Z",
     "latestVictimDiscovered": "2026-08-07T22:52:10.874Z",
     "latestVictimName": "MEDICOS",
     "latestVictimGroup": "bravox",
     "latestVictimCountry": "FR",
-    "sourceDataAgeMinutes": 104,
+    "sourceDataAgeMinutes": 220,
     "feedFreshness": "fresh",
     "newClaimsSincePreviousCollection": 0,
     "selectedBy": "freshest-latest-victim",
@@ -41,7 +41,7 @@
     "activeGroups": 380,
     "recentClaims": 100,
     "retainedClaims": 30612,
-    "claims24h": 85,
+    "claims24h": 80,
     "newClaimsSincePreviousCollection": 0,
     "countriesRecent": 23,
     "sectorsRecent": 13
@@ -2701,9 +2701,9 @@
       "description": "Brain Cipher emerged in July 2024. Both Windows and Linux variants are available. Brain Cipher using the leaked build of LockBit Black for their operations. The group suspected to have exploited CVE-2023-28252 (Microsoft Windows CLFS Driver Privilege Escalation Vulnerability). The Ransom demand ranges from $150,000 to $1,00,0000. Demand to be paid with Monero (XMR) cryptocurrency. In 2025, they have shifted their new Negotiation portal to new server with vanity TOR Domain starting with 'brain'.",
       "locationCount": 8,
       "locations": [
+        "BrainCipher Storage",
         "Brain Cipher Dataleak",
         "BrainCipher Client Area",
-        "BrainCipher Storage",
         "Brain Cipher Client Area",
         "Not Found"
       ],
@@ -4230,7 +4230,7 @@
       "locationCount": 5,
       "locations": [
         "This Website Has Been Seized",
-        "Loading https://m.ntesgsght.com/c/jtck6n?network_click_id=c5b4b87343564bf0ba4b3f8a55ad880e&site_id=4601&sub_site_id=handala.to&campaign=pwn_h72na_youdao_all_gb_install_conversion_event_pc_20260121&ad=&ad_name=&ad_group=",
+        "Loading https://m.ntesgsght.com/c/jtck6n?network_click_id=79084d1b7344444c8c43947524650682&site_id=4601&sub_site_id=handala.to&campaign=pwn_h72na_youdao_all_us_install_conversion_event_pc_20260121&ad=&ad_name=&ad_group=",
         "Error Response Page",
         "Security Verification"
       ],
@@ -4784,8 +4784,8 @@
       "description": "",
       "locationCount": 2,
       "locations": [
-        "Home | L Blog",
-        "Posts | L Blog"
+        "Posts | L Blog",
+        "Home | L Blog"
       ],
       "victims": 0,
       "firstSeen": null,
@@ -5951,8 +5951,8 @@
       "description": "First seen 2026-07-07",
       "locationCount": 2,
       "locations": [
-        "OROVA",
-        "OROVA Blog"
+        "OROVA Blog",
+        "OROVA"
       ],
       "victims": 0,
       "firstSeen": null,
