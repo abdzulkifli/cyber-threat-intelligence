@@ -6,15 +6,15 @@
     "upstream": "ransomware.live",
     "mode": "direct-v2",
     "authentication": "none",
-    "collectedAt": "2026-08-08T11:37:00.599Z",
-    "checkedAt": "2026-08-08T11:37:00.599Z",
+    "collectedAt": "2026-08-08T11:58:45.237Z",
+    "checkedAt": "2026-08-08T11:58:45.237Z",
     "dataUpdatedAt": "2026-08-08T09:57:48.936Z",
     "lastSourceUpdate": "2026-08-08T09:21:21.811Z",
     "latestVictimDiscovered": "2026-08-08T09:21:21.811Z",
     "latestVictimName": "United Group of Companies",
     "latestVictimGroup": "Storm",
     "latestVictimCountry": "US",
-    "sourceDataAgeMinutes": 136,
+    "sourceDataAgeMinutes": 157,
     "feedFreshness": "fresh",
     "newClaimsSincePreviousCollection": 0,
     "selectedBy": "freshest-latest-victim",
@@ -1750,7 +1750,8 @@
       "description": "0mega is a double-extortion ransomware group that emerged in May 2022, targeting businesses across multiple sectors worldwide by encrypting files and threatening to leak stolen data; it also pivoted to cloud-based extortion by compromising Microsoft 365 admin accounts.",
       "locationCount": 2,
       "locations": [
-        "0mega | Blog"
+        "0mega | Blog",
+        "403 Forbidden"
       ],
       "victims": 0,
       "firstSeen": null,
@@ -2497,7 +2498,9 @@
       "status": "active",
       "description": "Blackout is a ransomware group that first appeared in early 2024, initially claiming attacks against healthcare entities in Canada, France, and Germany before expanding to telecommunications, mining, and manufacturing sectors, operating a double-extortion model with a data leak site.",
       "locationCount": 1,
-      "locations": [],
+      "locations": [
+        "Loading http://black3gnkizshuynieigw6ejgpblb53mpasftzd6pydqpmq2vn2xf6yd.onion/"
+      ],
       "victims": 0,
       "firstSeen": null,
       "lastSeen": null,
@@ -4228,7 +4231,7 @@
       "locationCount": 5,
       "locations": [
         "This Website Has Been Seized",
-        "Loading https://m.ntesgsght.com/c/jtck6n?network_click_id=9ded9a286f1847cc9297c5f280cef0e5&site_id=4601&sub_site_id=handala.to&campaign=pwn_h72na_youdao_all_gb_install_conversion_event_pc_20260121&ad=&ad_name=&ad_group=",
+        "Redirecting...",
         "Error Response Page",
         "Security Verification"
       ],
@@ -7610,10 +7613,10 @@
       "description": "Pro-Palestinian Group",
       "locationCount": 4,
       "locations": [
-        "Telegram: Contact @CyberToufanBackup",
+        "Cyber Toufan",
         "Telegram: Contact @CyberToufan02",
-        "Telegram: Contact @CyberToufan",
-        "Cyber Toufan"
+        "Telegram: Contact @CyberToufanBackup",
+        "Telegram: Contact @CyberToufan"
       ],
       "victims": 0,
       "firstSeen": null,
@@ -7988,6 +7991,7 @@
       "description": "WereWolves is a Russian-speaking ransomware group that emerged in May 2023, using a modified LockBit 3 (Black) encryptor, operating an unusual public website that actively recruits new members and offers a bug-bounty program with rewards up to $1 million, with at least 26 victims across Russia, the US, and Europe.",
       "locationCount": 2,
       "locations": [
+        "403 Forbidden",
         "werewolves.pro"
       ],
       "victims": 0,
