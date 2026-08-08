@@ -12,7 +12,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png?v=threadhub-20260808" />
   <link rel="shortcut icon" href="favicon-32x32.png?v=threadhub-20260808" />
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=threadhub-20260808" />
-  <link rel="stylesheet" href="css/style.css?v=threadhub-20260808-2" />
+  <link rel="stylesheet" href="css/style.css?v=threadhub-20260808-3" />
 </head>
 <body>
   <div class="aurora aurora-a"></div><div class="aurora aurora-b"></div>
@@ -102,18 +102,26 @@
       <div class="th-command-grid">
         <article class="panel th-map-panel">
           <div class="panel-head th-panel-head">
-            <div><span class="section-label">GLOBAL THREAT LANDSCAPE</span><h3>Ransomware targeting & live cyber signals</h3><small id="overviewMapCoverage">Building global intelligence view…</small></div>
-            <div class="th-map-actions"><span class="micro-pill">30 DAYS</span><button class="soft-btn small" data-tab-jump="ransomware" data-scroll-target="rwWorldMap">View full map ↗</button></div>
+            <div><span class="section-label">GLOBAL THREAT LANDSCAPE</span><h3>Geolocated threat activity & live intelligence</h3><small id="overviewMapCoverage">Building global intelligence view…</small></div>
+            <div class="th-map-actions"><span class="live-chip map-live-chip"><i></i>AUTO</span><small id="overviewMapRefreshState">60s sync</small><button class="soft-btn small" data-tab-jump="ransomware" data-scroll-target="rwWorldMap">View full map ↗</button></div>
           </div>
-          <div class="th-map-stage world-map-stage" id="overviewWorldMap"><div class="skeleton chart"></div></div>
+          <div class="th-map-toolbar" aria-label="Overview threat filters">
+            <div class="th-filter-group"><span class="th-filter-label">Scope</span><span class="th-scope-pill">GLOBAL</span></div>
+            <div class="th-filter-group th-filter-segment" id="overviewThreatFilters"><span class="th-filter-label">Signal</span><button class="active" type="button" data-overview-type="all">All</button><button type="button" data-overview-type="ransomware">Ransomware</button><button type="button" data-overview-type="actors">Threat Actors</button><button type="button" data-overview-type="vulnerabilities">Vulnerabilities</button></div>
+            <div class="th-filter-group th-filter-segment" id="overviewWindowFilters"><span class="th-filter-label">Window</span><button type="button" data-overview-window="1">24H</button><button type="button" data-overview-window="7">7D</button><button class="active" type="button" data-overview-window="30">30D</button><button type="button" data-overview-window="all">ALL</button></div>
+          </div>
+          <div class="th-map-stage world-map-stage overview-map" id="overviewWorldMap"><div class="skeleton chart"></div></div>
+          <div id="overviewMapNotice" class="th-map-notice" hidden></div>
           <div class="th-map-legend">
-            <span><i class="dot critical"></i>Critical / high activity</span><span><i class="dot orange"></i>Elevated</span><span><i class="dot cyan"></i>Observed</span><span><i class="dot purple"></i>Ransomware</span><span><i class="dot live"></i>Latest ≤24h</span>
+            <span><i class="dot critical"></i>Highest activity</span><span><i class="dot orange"></i>Elevated</span><span><i class="dot cyan"></i>Observed</span><span><i class="dot purple"></i>Actor / ransomware lens</span><span><i class="dot live"></i>Latest ≤24h</span>
+            <span class="th-map-updated" id="overviewMapUpdated">Waiting for first render…</span>
           </div>
         </article>
 
         <article class="panel th-live-panel">
-          <div class="panel-head th-panel-head"><div><span class="section-label">LIVE INTELLIGENCE FEED</span><h3>Newest correlated signals</h3></div><button class="icon-link" data-tab-jump="live" aria-label="Open full live feed">↗</button></div>
+          <div class="panel-head th-panel-head"><div><span class="section-label">LIVE INTELLIGENCE FEED</span><h3>Newest correlated signals</h3><small id="overviewLiveFilterLabel">All signals · 30D</small></div><div class="th-live-head-state"><span class="live-chip"><i></i>LIVE</span><small id="overviewLiveUpdated">—</small><button class="icon-link" data-tab-jump="live" aria-label="Open full live feed">↗</button></div></div>
           <div id="overviewLiveFeed" class="th-live-feed"><div class="skeleton row"></div><div class="skeleton row"></div><div class="skeleton row"></div></div>
+          <div class="th-live-auto-note"><span class="status-led"></span><span>Auto-checking ransomware every 60s · full intelligence refresh every 5 min</span></div>
           <button class="th-feed-more" type="button" data-tab-jump="live">View all intelligence →</button>
         </article>
       </div>
@@ -407,6 +415,6 @@
     <div id="drawerContent"></div>
   </aside>
 
-  <script src="js/app.js?v=threadhub-20260808-2"></script>
+  <script src="js/app.js?v=threadhub-20260808-3"></script>
 </body>
 </html>
