@@ -1,6 +1,6 @@
 {
-  "version": 1,
-  "description": "ThreadHub Pulse Internet Signal Collector V1. Curated public feeds only; add sources deliberately and preserve original-source attribution.",
+  "version": 2,
+  "description": "ThreadHub Pulse Wave 1 source registry: authoritative vendor advisories and high-confidence threat research feeds. Expand deliberately; preserve original attribution and source-health status.",
   "sources": [
     {
       "id": "google-threat-intelligence",
@@ -10,27 +10,151 @@
       "homepage": "https://cloud.google.com/blog/topics/threat-intelligence",
       "sourceType": "research",
       "credibility": 0.98,
-      "enabled": true
+      "enabled": true,
+      "tier": 1
     },
     {
       "id": "google-cloud-security-bulletins",
       "name": "Google Cloud Security Bulletins",
       "type": "rss",
       "url": "https://cloud.google.com/feeds/google-cloud-security-bulletins.xml",
-      "homepage": "https://docs.cloud.google.com/support/bulletins",
+      "homepage": "https://cloud.google.com/support/bulletins",
       "sourceType": "vendor",
       "credibility": 0.99,
-      "enabled": true
+      "enabled": true,
+      "tier": 1
     },
     {
       "id": "redhat-security-advisories",
       "name": "Red Hat Security Advisories",
       "type": "rss",
       "url": "https://security.access.redhat.com/data/meta/v1/rhsa.rss",
-      "homepage": "https://access.redhat.com/security/data",
+      "homepage": "https://access.redhat.com/security/security-updates/",
       "sourceType": "vendor",
       "credibility": 0.99,
-      "enabled": true
+      "enabled": true,
+      "tier": 1
+    },
+    {
+      "id": "microsoft-security-blog",
+      "name": "Microsoft Security Blog",
+      "type": "rss",
+      "url": "https://www.microsoft.com/en-us/security/blog/feed/",
+      "homepage": "https://www.microsoft.com/en-us/security/blog/",
+      "sourceType": "research",
+      "credibility": 0.98,
+      "enabled": true,
+      "tier": 1
+    },
+    {
+      "id": "microsoft-msrc",
+      "name": "Microsoft Security Response Center",
+      "type": "rss",
+      "url": "https://api.msrc.microsoft.com/update-guide/rss",
+      "homepage": "https://msrc.microsoft.com/update-guide/",
+      "sourceType": "vendor",
+      "credibility": 1.0,
+      "enabled": true,
+      "tier": 1
+    },
+    {
+      "id": "cisco-psirt",
+      "name": "Cisco Security Advisories",
+      "type": "rss",
+      "url": "https://sec.cloudapps.cisco.com/security/center/psirtrss20/CiscoSecurityAdvisory.xml",
+      "homepage": "https://sec.cloudapps.cisco.com/security/center/publicationListing.x",
+      "sourceType": "vendor",
+      "credibility": 1.0,
+      "enabled": true,
+      "tier": 1
+    },
+    {
+      "id": "paloalto-psirt",
+      "name": "Palo Alto Networks Security Advisories",
+      "type": "rss",
+      "url": "https://security.paloaltonetworks.com/rss.xml",
+      "homepage": "https://security.paloaltonetworks.com/",
+      "sourceType": "vendor",
+      "credibility": 1.0,
+      "enabled": true,
+      "tier": 1
+    },
+    {
+      "id": "paloalto-unit42",
+      "name": "Palo Alto Unit 42",
+      "type": "rss",
+      "url": "https://unit42.paloaltonetworks.com/feed/",
+      "homepage": "https://unit42.paloaltonetworks.com/",
+      "sourceType": "research",
+      "credibility": 0.96,
+      "enabled": true,
+      "tier": 1
+    },
+    {
+      "id": "rapid7-blog",
+      "name": "Rapid7 Research & Blog",
+      "type": "rss",
+      "url": "https://www.rapid7.com/blog/rss/",
+      "homepage": "https://www.rapid7.com/blog/",
+      "sourceType": "research",
+      "credibility": 0.94,
+      "enabled": true,
+      "tier": 1
+    },
+    {
+      "id": "sentinellabs",
+      "name": "SentinelLabs",
+      "type": "rss",
+      "url": "https://www.sentinelone.com/labs/feed/",
+      "homepage": "https://www.sentinelone.com/labs/",
+      "sourceType": "research",
+      "credibility": 0.94,
+      "enabled": true,
+      "tier": 1
+    },
+    {
+      "id": "checkpoint-research",
+      "name": "Check Point Research",
+      "type": "rss",
+      "url": "https://research.checkpoint.com/feed/",
+      "homepage": "https://research.checkpoint.com/",
+      "sourceType": "research",
+      "credibility": 0.93,
+      "enabled": true,
+      "tier": 1
+    },
+    {
+      "id": "eset-welivesecurity",
+      "name": "ESET WeLiveSecurity",
+      "type": "rss",
+      "url": "https://www.welivesecurity.com/en/rss/feed/",
+      "homepage": "https://www.welivesecurity.com/en/",
+      "sourceType": "research",
+      "credibility": 0.93,
+      "enabled": true,
+      "tier": 1
+    },
+    {
+      "id": "sophos-threat-research",
+      "name": "Sophos Threat Research",
+      "type": "rss",
+      "url": "https://news.sophos.com/en-us/category/threat-research/feed/",
+      "homepage": "https://news.sophos.com/en-us/category/threat-research/",
+      "sourceType": "research",
+      "credibility": 0.93,
+      "enabled": true,
+      "tier": 1
+    },
+    {
+      "id": "google-project-zero",
+      "name": "Google Project Zero",
+      "type": "rss",
+      "url": "https://googleprojectzero.blogspot.com/feeds/posts/default",
+      "homepage": "https://googleprojectzero.blogspot.com/",
+      "sourceType": "research",
+      "credibility": 0.97,
+      "enabled": true,
+      "tier": 1
     }
   ]
 }
