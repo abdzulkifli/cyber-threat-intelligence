@@ -6,15 +6,15 @@
     "upstream": "ransomware.live",
     "mode": "direct-v2",
     "authentication": "none",
-    "collectedAt": "2026-08-08T02:32:06.714Z",
-    "checkedAt": "2026-08-08T02:32:06.714Z",
+    "collectedAt": "2026-08-08T03:52:34.115Z",
+    "checkedAt": "2026-08-08T03:52:34.115Z",
     "dataUpdatedAt": "2026-08-07T23:20:47.573Z",
     "lastSourceUpdate": "2026-08-07T22:52:10.874Z",
     "latestVictimDiscovered": "2026-08-07T22:52:10.874Z",
     "latestVictimName": "MEDICOS",
     "latestVictimGroup": "bravox",
     "latestVictimCountry": "FR",
-    "sourceDataAgeMinutes": 220,
+    "sourceDataAgeMinutes": 300,
     "feedFreshness": "fresh",
     "newClaimsSincePreviousCollection": 0,
     "selectedBy": "freshest-latest-victim",
@@ -28,7 +28,7 @@
       {
         "mode": "direct-legacy",
         "source": "ransomware.live public API",
-        "latestVictimDiscovered": "2026-08-07T16:30:41.713Z",
+        "latestVictimDiscovered": "2026-08-07T22:52:10.874Z",
         "victimCount": 100
       }
     ],
@@ -4230,7 +4230,7 @@
       "locationCount": 5,
       "locations": [
         "This Website Has Been Seized",
-        "Loading https://m.ntesgsght.com/c/jtck6n?network_click_id=79084d1b7344444c8c43947524650682&site_id=4601&sub_site_id=handala.to&campaign=pwn_h72na_youdao_all_us_install_conversion_event_pc_20260121&ad=&ad_name=&ad_group=",
+        "Redirecting...",
         "Error Response Page",
         "Security Verification"
       ],
@@ -4284,8 +4284,8 @@
       "description": "HellCat is a ransomware-as-a-service group that formed in Q4 2024 and quickly became notable for high-profile attacks against Schneider Electric, Telefónica, and Israel's Knesset, primarily gaining initial access via stolen Jira credentials harvested by infostealer malware, targeting critical infrastructure and government entities.",
       "locationCount": 6,
       "locations": [
-        "404 Not Found",
-        "HellCat - Blog"
+        "HellCat - Blog",
+        "404 Not Found"
       ],
       "victims": 0,
       "firstSeen": null,
@@ -4959,10 +4959,10 @@
       "description": "LockBit, also recognized as LockBit Black or Lockbit 3.0, is one of the largest Ransomware Groups in the world and has orchestrated extensive cyberattacks across various industries, impacting thousands of organizations globally with its relentless and adaptive strategies.",
       "locationCount": 36,
       "locations": [
-        "Humanity check",
-        "LockBit LOGIN",
         "Title",
+        "LockBit LOGIN",
         "LockBit BLOG",
+        "Humanity check",
         "504 Gateway Time-out"
       ],
       "victims": 0,
